@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Select Boarding & Dropping Points</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/screens/bp-dp-selection.css">
+</head>
+<body>
+  <div id="app">
+    <div class="screen-container">
+      <!-- Top Navigation -->
+      <div class="top-nav">
+        <button class="back-btn" onclick="history.back()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M15.16 7.41L10.58 12L15.16 16.59L13.75 18L7.75 12L13.75 6L15.16 7.41Z" fill="#1D1D1D"/>
+          </svg>
+        </button>
+        <div class="nav-text">
+          <span class="nav-title">Select boarding & dropping points</span>
+          <span class="nav-subtitle">Bangalore → Chennai</span>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs-container">
+        <div class="tab active" data-tab="boarding">
+          <span class="tab-title">Boarding points</span>
+          <span class="tab-subtitle" id="boardingSubtitle">Select location</span>
+          <div class="tab-indicator"></div>
+        </div>
+        <div class="tab" data-tab="dropping">
+          <span class="tab-title">Dropping points</span>
+          <span class="tab-subtitle" id="droppingSubtitle">Select location</span>
+          <div class="tab-indicator"></div>
+        </div>
+      </div>
+
+      <!-- Scrollable Body -->
+      <div class="body-scroll">
+        <!-- Boarding Points Tab Content -->
+        <div class="tab-content active" id="boardingContent">
+          <!-- Preferred Boarding Point -->
+          <div class="points-card">
+            <div class="section-title preferred">
+              <span>Your preferred boarding point</span>
+            </div>
+            <div class="point-item">
+              <div class="point-time">18:45</div>
+              <div class="point-details">
+                <div class="point-name">Madiwala</div>
+                <div class="point-address">Madiwala bus stand</div>
+              </div>
+              <div class="point-radio">
+                <div class="radio-circle"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- All Boarding Points -->
+          <div class="points-card">
+            <div class="section-title">
+              <span>All boarding points in Bangalore</span>
+            </div>
+            
+            <!-- Point 1 -->
+            <div class="point-item">
+              <div class="point-time">18:45</div>
+              <div class="point-details">
+                <div class="point-name">Majestic</div>
+                <div class="point-address">MAJESTIC-Upparpet Traffic Police Station</div>
+                <div class="point-distance">2.3 km away</div>
+              </div>
+              <div class="point-radio">
+                <div class="radio-circle"></div>
+              </div>
+            </div>
+
+            <!-- Point 2 with Lounge -->
+            <div class="point-item has-lounge">
+              <div class="point-time">20:55</div>
+              <div class="point-details">
+                <div class="point-name">Majestic</div>
+                <div class="point-address">MAJESTIC-Upparpet Traffic Police Station</div>
+                <div class="point-distance">2.3 km away</div>
+                
+                <!-- Lounge Card -->
+                <div class="lounge-card">
+                  <div class="lounge-header">
+                    <svg class="lounge-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M21 10H18V6C18 5.46957 17.7893 4.96086 17.4142 4.58579C17.0391 4.21071 16.5304 4 16 4H8C7.46957 4 6.96086 4.21071 6.58579 4.58579C6.21071 4.96086 6 5.46957 6 6V10H3C2.46957 10 1.96086 10.2107 1.58579 10.5858C1.21071 10.9609 1 11.4696 1 12V17C1 17.5304 1.21071 18.0391 1.58579 18.4142C1.96086 18.7893 2.46957 19 3 19H4V20C4 20.2652 4.10536 20.5196 4.29289 20.7071C4.48043 20.8946 4.73478 21 5 21C5.26522 21 5.51957 20.8946 5.70711 20.7071C5.89464 20.5196 6 20.2652 6 20V19H18V20C18 20.2652 18.1054 20.5196 18.2929 20.7071C18.4804 20.8946 18.7348 21 19 21C19.2652 21 19.5196 20.8946 19.7071 20.7071C19.8946 20.5196 20 20.2652 20 20V19H21C21.5304 19 22.0391 18.7893 22.4142 18.4142C22.7893 18.0391 23 17.5304 23 17V12C23 11.4696 22.7893 10.9609 22.4142 10.5858C22.0391 10.2107 21.5304 10 21 10ZM8 6H16V10H8V6ZM21 17H3V12H21V17Z" fill="#D63941"/>
+                    </svg>
+                    <div class="lounge-tag">Free access</div>
+                  </div>
+                  <div class="lounge-title">redBus Lounge nearby</div>
+                  <div class="lounge-address">JP Cordial Hotel, Anand Rao Circle</div>
+                  <div class="lounge-distance">Within 300 mtr from boarding point</div>
+                  <div class="lounge-amenities">
+                    <div class="amenity-tag">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 5.5C11.3 5.5 10.75 6.05 10.75 6.75V8.25H10C9.17 8.25 8.5 8.92 8.5 9.75V11H15.5V9.75C15.5 8.92 14.83 8.25 14 8.25H13.25V6.75C13.25 6.05 12.7 5.5 12 5.5ZM5.5 12V17.5C5.5 18.33 6.17 19 7 19H17C17.83 19 18.5 18.33 18.5 17.5V12H5.5Z" fill="#1D1D1D"/>
+                      </svg>
+                      <span>Washroom</span>
+                    </div>
+                    <div class="amenity-tag">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M11 9H9V2H7V9H5V2H3V9C3 11.12 4.66 12.84 6.75 12.97V22H9.25V12.97C11.34 12.84 13 11.12 13 9V2H11V9ZM16 6V14H18.5V22H21V2C18.24 2 16 4.24 16 7V6Z" fill="#1D1D1D"/>
+                      </svg>
+                      <span>Restaurant</span>
+                    </div>
+                    <div class="amenity-tag">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 18C8.69 18 6 15.31 6 12C6 8.69 8.69 6 12 6C15.31 6 18 8.69 18 12C18 15.31 15.31 18 12 18ZM1 11H4V13H1V11ZM20 11H23V13H20V11ZM11 1H13V4H11V1ZM11 20H13V23H11V20Z" fill="#1D1D1D"/>
+                      </svg>
+                      <span>Wifi</span>
+                    </div>
+                    <div class="amenity-tag">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M16 4H8C6.9 4 6 4.9 6 6V18C6 19.1 6.9 20 8 20H16C17.1 20 18 19.1 18 18V6C18 4.9 17.1 4 16 4ZM16 18H8V6H16V18ZM11 7H13V10H11V7ZM11 11H13V14H11V11Z" fill="#1D1D1D"/>
+                      </svg>
+                      <span>Charging socket</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="point-radio">
+                <div class="radio-circle"></div>
+              </div>
+            </div>
+
+            <!-- Point 3 -->
+            <div class="point-item">
+              <div class="point-time">21:10</div>
+              <div class="point-details">
+                <div class="point-name">Majestic</div>
+                <div class="point-address">MAJESTIC-Upparpet Traffic Police Station</div>
+                <div class="point-distance">2.3 km away</div>
+              </div>
+              <div class="point-radio">
+                <div class="radio-circle"></div>
+              </div>
+            </div>
+
+            <!-- Point 4 -->
+            <div class="point-item">
+              <div class="point-time">22:00</div>
+              <div class="point-details">
+                <div class="point-name">Majestic</div>
+                <div class="point-address">MAJESTIC-Upparpet Traffic Police Station</div>
+                <div class="point-distance">2.3 km away</div>
+              </div>
+              <div class="point-radio">
+                <div class="radio-circle"></div>
+              </div>
+            </div>
+
+            <!-- Point 5 -->
+            <div class="point-item">
+              <div class="point-time">22:30</div>
+              <div class="point-details">
+                <div class="point-name">Majestic</div>
+                <div class="point-address">MAJESTIC-Upparpet Traffic Police Station</div>
+                <div class="point-distance">2.3 km away</div>
+              </div>
+              <div class="point-radio">
+                <div class="radio-circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dropping Points Tab Content -->
+        <div class="tab-content" id="droppingContent">
+          <!-- All Dropping Points -->
+          <div class="points-card">
+            <div class="section-title">
+              <span>All dropping points in Chennai</span>
+            </div>
+            
+            <!-- Point 1 -->
+            <div class="point-item">
+              <div class="point-time">05:30</div>
+              <div class="point-details">
+                <div class="point-name">Koyambedu</div>
+                <div class="point-address">CMBT Bus Stand, Koyambedu</div>
+                <div class="point-distance">3.5 km away</div>
+              </div>
+              <div class="point-radio">
+                <div class="radio-circle"></div>
+              </div>
+            </div>
+
+            <!-- Point 2 -->
+            <div class="point-item">
+              <div class="point-time">06:00</div>
+              <div class="point-details">
+                <div class="point-name">Guindy</div>
+                <div class="point-address">Guindy Bus Stand</div>
+                <div class="point-distance">5.2 km away</div>
+              </div>
+              <div class="point-radio">
+                <div class="radio-circle"></div>
+              </div>
+            </div>
+
+            <!-- Point 3 -->
+            <div class="point-item">
+              <div class="point-time">06:30</div>
+              <div class="point-details">
+                <div class="point-name">T Nagar</div>
+                <div class="point-address">T Nagar Bus Stand</div>
+                <div class="point-distance">6.8 km away</div>
+              </div>
+              <div class="point-radio">
+                <div class="radio-circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabs = document.querySelectorAll('.tab');
+      const tabContents = document.querySelectorAll('.tab-content');
+      const boardingSubtitle = document.getElementById('boardingSubtitle');
+      const droppingSubtitle = document.getElementById('droppingSubtitle');
+
+      // Tab switching
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          const tabName = this.dataset.tab;
+          
+          // Remove active from all tabs and contents
+          tabs.forEach(t => t.classList.remove('active'));
+          tabContents.forEach(c => c.classList.remove('active'));
+          
+          // Add active to clicked tab
+          this.classList.add('active');
+          
+          // Show corresponding content
+          if (tabName === 'boarding') {
+            document.getElementById('boardingContent').classList.add('active');
+          } else {
+            document.getElementById('droppingContent').classList.add('active');
+          }
+        });
+      });
+
+      // Point selection
+      const boardingPoints = document.querySelectorAll('#boardingContent .point-item');
+      const droppingPoints = document.querySelectorAll('#droppingContent .point-item');
+
+      boardingPoints.forEach(point => {
+        point.addEventListener('click', function() {
+          // Remove selection from all boarding points
+          boardingPoints.forEach(p => {
+            p.querySelector('.radio-circle').classList.remove('selected');
+            p.removeAttribute('data-selected');
+          });
+          
+          // Select this point
+          this.querySelector('.radio-circle').classList.add('selected');
+          this.setAttribute('data-selected', 'true');
+          
+          // Update subtitle
+          const pointName = this.querySelector('.point-name').textContent;
+          boardingSubtitle.textContent = pointName;
+          
+          // Auto-switch to dropping points tab after a brief delay
+          setTimeout(() => {
+            // Remove active from all tabs and contents
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+            
+            // Activate dropping tab
+            document.querySelector('[data-tab="dropping"]').classList.add('active');
+            document.getElementById('droppingContent').classList.add('active');
+          }, 300);
+        });
+      });
+
+      droppingPoints.forEach(point => {
+        point.addEventListener('click', function() {
+          // Remove selection from all dropping points
+          droppingPoints.forEach(p => {
+            p.querySelector('.radio-circle').classList.remove('selected');
+            p.removeAttribute('data-selected');
+          });
+          
+          // Select this point
+          this.querySelector('.radio-circle').classList.add('selected');
+          this.setAttribute('data-selected', 'true');
+          
+          // Update subtitle
+          const pointName = this.querySelector('.point-name').textContent;
+          droppingSubtitle.textContent = pointName;
+          
+          // Navigate to passenger info screen after a brief delay
+          setTimeout(() => {
+            window.location.href = 'passenger-info.html';
+          }, 300);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+

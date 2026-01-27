@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Bus Listing - Proto</title>
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/screens/bus-listing.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <div class="screen">
+      <!-- Status Bar -->
+      <div class="status-bar">
+        <span class="time">9:30</span>
+        <div class="status-icons">
+          <div class="camera-dot"></div>
+          <div class="signal-icons">
+            <svg class="signal" width="17" height="11" viewBox="0 0 17 11" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 2.5C10.5 1.67157 11.1716 1 12 1H14C14.8284 1 15.5 1.67157 15.5 2.5V8.5C15.5 9.32843 14.8284 10 14 10H12C11.1716 10 10.5 9.32843 10.5 8.5V2.5ZM7 4C6.17157 4 5.5 4.67157 5.5 5.5V8.5C5.5 9.32843 6.17157 10 7 10H9C9.82843 10 10.5 9.32843 10.5 8.5V5.5C10.5 4.67157 9.82843 4 9 4H7ZM0.5 7C0.5 6.17157 1.17157 5.5 2 5.5H4C4.82843 5.5 5.5 6.17157 5.5 7V8.5C5.5 9.32843 4.82843 10 4 10H2C1.17157 10 0.5 9.32843 0.5 8.5V7Z" fill="#1C1C1C"/>
+            </svg>
+            <svg class="wifi" width="16" height="12" viewBox="0 0 16 12" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M8 2.28882C10.1038 2.28882 12.0672 3.12424 13.4932 4.55024L14.9174 3.126C13.1172 1.32591 10.6447 0.288818 8 0.288818C5.35535 0.288818 2.88281 1.32591 1.08264 3.126L2.50682 4.55024C3.93282 3.12424 5.89625 2.28882 8 2.28882ZM4.81467 5.85807L6.23885 7.28231C7.21219 6.30897 8.78781 6.30897 9.76115 7.28231L11.1853 5.85807C9.43037 4.10315 6.56963 4.10315 4.81467 5.85807ZM8 11.2888L10.1716 9.11723C9.00896 7.95459 7.09104 7.95459 5.92841 9.11723L8 11.2888Z" fill="#1C1C1C"/>
+            </svg>
+            <div class="battery">
+              <div class="battery-body">
+                <div class="battery-level"></div>
+              </div>
+              <div class="battery-cap"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Header -->
+      <header class="nav-header">
+        <button class="back-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18L9 12L15 6" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="route-info">
+          <h1 class="route-title">Bangalore → Chennai</h1>
+          <p class="bus-count">5 buses</p>
+        </div>
+        <div class="date-badge">
+          <span class="date-num">26 Jun</span>
+          <span class="date-day">Fri</span>
+        </div>
+      </header>
+
+      <!-- Promo Carousel Section -->
+      <section class="promo-carousel">
+        <div class="promo-scroll">
+          <!-- Promo Card 1 - 10% OFF -->
+          <div class="promo-card promo-green">
+            <img src="../assets/images/promo-bus.png" alt="NuGo Bus" class="promo-image" onerror="this.style.display='none'">
+            <div class="promo-badge">10%<br><span>OFF</span></div>
+            <div class="promo-content">
+              <img src="../assets/images/nugo-logo.png" alt="NuGo" class="nugo-logo" onerror="this.style.display='none'">
+              <p class="promo-text-small">Ride to a<br>GREENER FUTURE</p>
+            </div>
+          </div>
+
+          <!-- Promo Card 2 - Last min -->
+          <div class="promo-card promo-white">
+            <div class="promo-label">
+              <div class="timer-dots">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <span class="label-text">Last min.</span>
+            </div>
+            <h3 class="promo-title">Limited time<br>steal deals</h3>
+            <div class="promo-icon-wrap">
+              <div class="stopwatch-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <circle cx="20" cy="22" r="16" stroke="#FF6B35" stroke-width="3"/>
+                  <path d="M20 12V22L26 26" stroke="#FF6B35" stroke-width="3" stroke-linecap="round"/>
+                  <rect x="17" y="2" width="6" height="4" rx="1" fill="#FF6B35"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Promo Card 3 - Try new -->
+          <div class="promo-card promo-white">
+            <div class="promo-label">
+              <div class="timer-dots">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <span class="label-text">Try -new</span>
+            </div>
+            <h3 class="promo-title">Up to ₹150 off<br>with new<br>operator</h3>
+            <div class="promo-icon-wrap promo-icon-img">
+              <div class="avatar-circle"></div>
+            </div>
+          </div>
+
+          <!-- Promo Card 4 - Early buy -->
+          <div class="promo-card promo-white">
+            <div class="promo-label">
+              <div class="timer-dots">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <span class="label-text">Early buy</span>
+            </div>
+            <h3 class="promo-title">Buy early to get special prices</h3>
+            <div class="promo-icon-wrap"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filter Section -->
+      <section class="filter-section">
+        <!-- Row 1 -->
+        <div class="filter-row">
+          <div class="filter-scroll">
+            <button class="filter-chip filter-chip-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M2.5 5.83333H17.5M5.83333 10H14.1667M8.33333 14.1667H11.6667" stroke="#1C1C1C" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <span>Filter & Sort</span>
+            </button>
+            <button class="filter-chip">Primo</button>
+            <button class="filter-chip">AC</button>
+            <button class="filter-chip">Sleeper</button>
+            <button class="filter-chip">Seater</button>
+          </div>
+        </div>
+        <!-- Row 2 -->
+        <div class="filter-row">
+          <div class="filter-scroll">
+            <button class="filter-chip filter-chip-avatars active">
+              <div class="avatars">
+                <div class="avatar av1"></div>
+                <div class="avatar av2"></div>
+                <div class="avatar av3"></div>
+              </div>
+              <span>Student deal</span>
+            </button>
+            <button class="filter-chip">Single seats</button>
+            <button class="filter-chip">Seater</button>
+            <button class="filter-chip">AC</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bus Listings -->
+      <section class="bus-listings">
+        <!-- Bus Card 1 - Primo -->
+        <article class="bus-card">
+          <div class="card-header">
+            <div class="primo-badge">
+              <span class="primo-text">Primo</span>
+              <svg class="primo-check" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M10 3L4.5 8.5L2 6" stroke="#6B4EFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="offer-tag offer-exclusive">
+              <span>Exclusive 5% OFF</span>
+            </div>
+          </div>
+          
+          <div class="card-content">
+            <div class="time-row">
+              <div class="time-info">
+                <span class="time-main">20:15</span>
+                <span class="time-separator">—</span>
+                <span class="time-main">09:00</span>
+              </div>
+              <div class="price-info">
+                <div class="price-row">
+                  <span class="price-old">₹1,450</span>
+                  <span class="price-current">₹1,305</span>
+                </div>
+                <span class="price-label">Onwards</span>
+              </div>
+            </div>
+            
+            <div class="duration-row">
+              <span class="duration">7h 30m</span>
+              <span class="seats-dot">·</span>
+              <span class="seats">11 Seats</span>
+            </div>
+
+            <div class="operator-row">
+              <div class="operator-info">
+                <h3 class="operator-name">Sri Krishna Travels</h3>
+                <p class="bus-type">A/C Sleeper (2+1)</p>
+              </div>
+              <div class="rating-badge">
+                <div class="rating-score">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M5 0L6.12257 3.45492H9.75528L6.81636 5.59017L7.93893 9.04508L5 6.90983L2.06107 9.04508L3.18364 5.59017L0.244718 3.45492H3.87743L5 0Z" fill="white"/>
+                  </svg>
+                  <span>4.4</span>
+                </div>
+                <span class="rating-count">0000</span>
+              </div>
+            </div>
+
+            <div class="offer-strip">
+              <div class="avatars small">
+                <div class="avatar av1"></div>
+                <div class="avatar av2"></div>
+                <div class="avatar av3"></div>
+              </div>
+              <span class="offer-text">Share this bus and get 15% refund</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Bus Card 2 -->
+        <article class="bus-card">
+          <div class="card-header">
+            <div class="offer-tag offer-lastmin">
+              <span>Exclusive 5% OFF</span>
+            </div>
+          </div>
+          
+          <div class="card-content">
+            <div class="time-row">
+              <div class="time-info">
+                <span class="time-main">21:45</span>
+                <span class="time-separator">—</span>
+                <span class="time-main">09:00</span>
+              </div>
+              <div class="price-info">
+                <div class="price-row">
+                  <span class="price-current single">₹949</span>
+                </div>
+                <span class="price-label">Onwards</span>
+              </div>
+            </div>
+            
+            <div class="duration-row">
+              <span class="duration">7h 30m</span>
+              <span class="seats-dot">·</span>
+              <span class="seats">11 Seats</span>
+              <span class="seat-type">(2 Single)</span>
+            </div>
+
+            <div class="operator-row">
+              <div class="operator-info">
+                <h3 class="operator-name">Ganesh Tourists</h3>
+                <p class="bus-type">A/C Sleeper (2+1)</p>
+              </div>
+              <div class="rating-badge">
+                <div class="rating-score">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M5 0L6.12257 3.45492H9.75528L6.81636 5.59017L7.93893 9.04508L5 6.90983L2.06107 9.04508L3.18364 5.59017L0.244718 3.45492H3.87743L5 0Z" fill="white"/>
+                  </svg>
+                  <span>4.4</span>
+                </div>
+                <span class="rating-count">0000</span>
+              </div>
+            </div>
+
+            <div class="tags-row">
+              <span class="tag">Clean Bus</span>
+              <span class="tag">Safety +</span>
+              <span class="tag">Something</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Bus Card 3 -->
+        <article class="bus-card">
+          <div class="card-header">
+            <div class="offer-tag offer-lastmin">
+              <span>Exclusive 5% OFF</span>
+            </div>
+          </div>
+          
+          <div class="card-content">
+            <div class="time-row">
+              <div class="time-info">
+                <span class="time-main">22:00</span>
+                <span class="time-separator">—</span>
+                <span class="time-main">08:30</span>
+              </div>
+              <div class="price-info">
+                <div class="price-row">
+                  <span class="price-current single">₹799</span>
+                </div>
+                <span class="price-label">Onwards</span>
+              </div>
+            </div>
+            
+            <div class="duration-row">
+              <span class="duration">7h 30m</span>
+              <span class="seats-dot">·</span>
+              <span class="seats">11 Seats</span>
+            </div>
+
+            <div class="operator-row">
+              <div class="operator-info">
+                <h3 class="operator-name">Orange Tours</h3>
+                <p class="bus-type">A/C Sleeper (2+1)</p>
+              </div>
+              <div class="rating-badge">
+                <div class="rating-score">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M5 0L6.12257 3.45492H9.75528L6.81636 5.59017L7.93893 9.04508L5 6.90983L2.06107 9.04508L3.18364 5.59017L0.244718 3.45492H3.87743L5 0Z" fill="white"/>
+                  </svg>
+                  <span>4.4</span>
+                </div>
+                <span class="rating-count">0000</span>
+              </div>
+            </div>
+
+            <div class="tags-row">
+              <span class="tag">Clean Bus</span>
+              <span class="tag">Safety +</span>
+              <span class="tag">Something</span>
+            </div>
+          </div>
+        </article>
+
+      </section>
+    </div>
+  </div>
+</body>
+</html>
+

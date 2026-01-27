@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Payment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/base.css">
+  <style>
+    /* ============================================
+       PAYMENT PAGE STYLES
+       ============================================ */
+    
+    .screen-container {
+      width: calc(360 * var(--px));
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: #f2f2f8;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    /* Top Navigation */
+    .top-nav {
+      width: calc(360 * var(--px));
+      background: white;
+      border-bottom: calc(0.33 * var(--px)) solid #E5E5E5;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .nav-content {
+      display: flex;
+      align-items: center;
+      gap: calc(4 * var(--px));
+      padding: calc(8 * var(--px)) calc(4 * var(--px));
+    }
+    
+    .back-btn {
+      width: calc(48 * var(--px));
+      height: calc(48 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .back-btn svg {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    .nav-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    .nav-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(16 * var(--px));
+      line-height: calc(24 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    .nav-timer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 calc(12 * var(--px));
+    }
+    
+    .timer-value {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      color: #ad4e00;
+    }
+    
+    .timer-bar {
+      width: calc(40 * var(--px));
+      height: calc(2 * var(--px));
+      background: #f2f2f8;
+      border-radius: calc(9999 * var(--px));
+      position: relative;
+      margin-top: calc(2 * var(--px));
+    }
+    
+    .timer-bar-progress {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 85%;
+      background: #ad4e00;
+      border-radius: calc(9999 * var(--px));
+    }
+    
+    /* Review Booking Section */
+    .review-section {
+      background: white;
+      padding-bottom: calc(8 * var(--px));
+    }
+    
+    .review-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: calc(12 * var(--px)) calc(16 * var(--px));
+      min-height: calc(64 * var(--px));
+    }
+    
+    .review-title-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .review-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(16 * var(--px));
+      line-height: calc(24 * var(--px));
+      letter-spacing: calc(-0.176 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    .review-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.084 * var(--px));
+      color: #6f6f6f;
+      margin: 0;
+    }
+    
+    .view-details-btn {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.084 * var(--px));
+      color: #0000ee;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: calc(14 * var(--px)) calc(12 * var(--px));
+    }
+    
+    .journey-info {
+      padding: 0 calc(16 * var(--px)) calc(16 * var(--px));
+    }
+    
+    .journey-route {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    .journey-date {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    .journey-addons {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #b14b00;
+      margin: 0;
+    }
+    
+    /* Offer Banner */
+    .offer-banner {
+      background: #007b28;
+      padding: calc(8 * var(--px)) calc(16 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: calc(8 * var(--px));
+    }
+    
+    .offer-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #fdfdfd;
+      margin: 0;
+    }
+    
+    .offer-text strong {
+      font-weight: 700;
+    }
+    
+    /* Trust Markers */
+    .trust-markers {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: calc(8 * var(--px)) calc(16 * var(--px));
+    }
+    
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: calc(8 * var(--px));
+      flex: 1;
+    }
+    
+    .trust-icon {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      flex-shrink: 0;
+    }
+    
+    .trust-icon img {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .trust-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(11 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.05 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    /* Wallet Card */
+    .wallet-section {
+      padding: calc(8 * var(--px)) calc(16 * var(--px));
+    }
+    
+    .wallet-card {
+      background: white;
+      border-radius: calc(16 * var(--px));
+      box-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.08),
+                  0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    
+    .wallet-row {
+      display: flex;
+      align-items: center;
+      gap: calc(16 * var(--px));
+      padding: calc(8 * var(--px)) calc(16 * var(--px));
+      min-height: calc(72 * var(--px));
+    }
+    
+    .wallet-icon {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      flex-shrink: 0;
+    }
+    
+    .wallet-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .wallet-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .wallet-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(16 * var(--px));
+      line-height: calc(22 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    .wallet-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      margin: 0;
+    }
+    
+    .wallet-subtitle .amount {
+      font-weight: 700;
+      color: #1d1d1d;
+      letter-spacing: calc(-0.09 * var(--px));
+    }
+    
+    .wallet-subtitle .details-link {
+      font-weight: 500;
+      color: #5258e4;
+      text-decoration: underline;
+      letter-spacing: calc(-0.09 * var(--px));
+    }
+    
+    .checkbox {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      flex-shrink: 0;
+    }
+    
+    .checkbox-checked {
+      background: #d63941;
+      border-radius: calc(4 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .checkbox-checked svg {
+      width: calc(16 * var(--px));
+      height: calc(16 * var(--px));
+    }
+    
+    /* Payment List */
+    .payment-section {
+      padding: calc(8 * var(--px)) calc(16 * var(--px));
+    }
+    
+    .payment-card {
+      background: white;
+      border-radius: calc(16 * var(--px));
+      box-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.08),
+                  0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0,0,0,0.08);
+      overflow: hidden;
+      padding-bottom: calc(8 * var(--px));
+    }
+    
+    .payment-header {
+      padding: calc(12 * var(--px)) calc(16 * var(--px));
+      min-height: calc(56 * var(--px));
+    }
+    
+    .payment-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(16 * var(--px));
+      line-height: calc(24 * var(--px));
+      letter-spacing: calc(-0.176 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    .payment-item {
+      display: flex;
+      align-items: center;
+      gap: calc(16 * var(--px));
+      padding: calc(8 * var(--px)) calc(16 * var(--px));
+      min-height: calc(72 * var(--px));
+      cursor: pointer;
+    }
+    
+    .payment-icon {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .payment-icon img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    
+    .payment-item-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .payment-item-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(16 * var(--px));
+      line-height: calc(24 * var(--px));
+      letter-spacing: calc(-0.176 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    .payment-item-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.084 * var(--px));
+      color: #6f6f6f;
+      margin: 0;
+    }
+    
+    .payment-item-subtitle.downtime {
+      color: #d63941;
+    }
+    
+    .radio {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      border: calc(2 * var(--px)) solid #b0b0b0;
+      border-radius: 50%;
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+    
+    .radio.selected {
+      border-color: #d63941;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .radio.selected::after {
+      content: '';
+      width: calc(12 * var(--px));
+      height: calc(12 * var(--px));
+      background: #d63941;
+      border-radius: 50%;
+    }
+    
+    /* Pay Button Container */
+    .pay-button-container {
+      padding: 0 calc(56 * var(--px)) calc(16 * var(--px)) calc(56 * var(--px));
+    }
+    
+    .pay-btn {
+      width: 100%;
+      height: calc(48 * var(--px));
+      background: #d63941;
+      border: none;
+      border-radius: calc(999 * var(--px));
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .pay-btn span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(16 * var(--px));
+      line-height: calc(22 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      color: #fdfdfd;
+    }
+    
+    /* Divider */
+    .divider {
+      height: calc(1 * var(--px));
+      background: #e5e5e5;
+      margin: 0 calc(56 * var(--px)) 0 calc(56 * var(--px));
+    }
+    
+    /* Card icons */
+    .card-brand-icon {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      border-radius: calc(4 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .card-brand-icon.mastercard {
+      background: #1a1f71;
+    }
+    
+    .card-brand-icon.visa {
+      background: #1a1f71;
+    }
+    
+    /* Home Indicator */
+    .home-indicator {
+      display: flex;
+      justify-content: center;
+      padding: calc(8 * var(--px)) 0 calc(16 * var(--px));
+    }
+    
+    .home-indicator-bar {
+      width: calc(108 * var(--px));
+      height: calc(4 * var(--px));
+      background: black;
+      border-radius: calc(12 * var(--px));
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="screen-container">
+      <!-- Top Navigation -->
+      <nav class="top-nav">
+        <div class="nav-content">
+          <button class="back-btn" onclick="history.back()">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M19 12H5M12 19L5 12L12 5" stroke="#1d1d1d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="nav-text">
+            <h1 class="nav-title">₹1,305</h1>
+          </div>
+          <div class="nav-timer">
+            <span class="timer-value" id="timerValue">06:01</span>
+            <div class="timer-bar">
+              <div class="timer-bar-progress" id="timerProgress"></div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+      <!-- Review Booking Section -->
+      <div class="review-section">
+        <div class="review-header">
+          <div class="review-title-wrap">
+            <h2 class="review-title">Review booking</h2>
+            <p class="review-subtitle">2 Seats</p>
+          </div>
+          <button class="view-details-btn">View details</button>
+        </div>
+        
+        <div class="journey-info">
+          <p class="journey-route">Bangalore → Chennai</p>
+          <p class="journey-date">Mon, 16 Jan · 18:45</p>
+          <p class="journey-addons">3 Add-on selected</p>
+        </div>
+        
+        <!-- Offer Banner -->
+        <div class="offer-banner">
+          <p class="offer-text">Last min. deal applied · <strong>₹200 Saved</strong></p>
+        </div>
+      </div>
+      
+      <!-- Trust Markers -->
+      <div class="trust-markers">
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 2Z" fill="#007b28" fill-opacity="0.2"/>
+              <path d="M12 2L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 2Z" stroke="#007b28" stroke-width="1.5"/>
+              <path d="M9 12L11 14L15 10" stroke="#007b28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="trust-text">Secure Payment</span>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="6" width="20" height="12" rx="2" stroke="#ff9800" stroke-width="1.5"/>
+              <path d="M6 10H10M6 14H8" stroke="#ff9800" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M14 12L16 10L18 12L16 14L14 12Z" fill="#ff9800"/>
+            </svg>
+          </div>
+          <span class="trust-text">Superfast Refunds</span>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="#2196f3" stroke-width="1.5"/>
+              <path d="M12 6V12L16 14" stroke="#2196f3" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="trust-text">40 millones de usuarios</span>
+        </div>
+      </div>
+      
+      <!-- Wallet Section -->
+      <div class="wallet-section">
+        <div class="wallet-card">
+          <div class="wallet-row">
+            <div class="wallet-icon">
+              <img src="assets/payment/redbus-wallet.png" alt="redBus wallet">
+            </div>
+            <div class="wallet-text">
+              <p class="wallet-title">redBus wallet</p>
+              <p class="wallet-subtitle">
+                <span>Use </span><span class="amount">₹1,760</span>
+                <span> </span><span class="details-link">Details</span>
+              </p>
+            </div>
+            <div class="checkbox checkbox-checked">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 12L10 17L19 8" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Preferred Payment Method -->
+      <div class="payment-section">
+        <div class="payment-card">
+          <div class="payment-header">
+            <h3 class="payment-title">Preferred payment method</h3>
+          </div>
+          
+          <!-- PhonePe/UPI Option - Selected -->
+          <div class="payment-item" data-payment="upi">
+            <div class="payment-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect width="24" height="24" rx="4" fill="#5f259f"/>
+                <path d="M7 6L12 18L14 13L19 11L7 6Z" fill="white"/>
+              </svg>
+            </div>
+            <div class="payment-item-text">
+              <p class="payment-item-title">test@okhdfcbank</p>
+            </div>
+            <div class="radio selected"></div>
+          </div>
+          
+          <!-- Pay Button -->
+          <div class="pay-button-container">
+            <button class="pay-btn">
+              <span>Pay ₹1,305</span>
+            </button>
+          </div>
+          
+          <div class="divider"></div>
+          
+          <!-- ICICI Credit Card -->
+          <div class="payment-item" data-payment="icici">
+            <div class="card-brand-icon mastercard">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="9" cy="12" r="5" fill="#eb001b"/>
+                <circle cx="15" cy="12" r="5" fill="#f79e1b"/>
+              </svg>
+            </div>
+            <div class="payment-item-text">
+              <p class="payment-item-title">ICICI Credit Card</p>
+              <p class="payment-item-subtitle">3441 XXXX XXXX 8291</p>
+              <p class="payment-item-subtitle">CVV not required as per RBI Guidelines</p>
+            </div>
+            <div class="radio"></div>
+          </div>
+          
+          <div class="divider"></div>
+          
+          <!-- SBI Credit Card -->
+          <div class="payment-item" data-payment="sbi">
+            <div class="card-brand-icon visa">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 8L7 16H9L12 8H10L8 14L6 8H4Z" fill="white"/>
+                <circle cx="14" cy="12" r="2" fill="white"/>
+                <path d="M17 8V16M17 8C19 8 20 9 20 11C20 13 19 14 17 14" stroke="white" stroke-width="1.5"/>
+                <path d="M20 14C20 15 19 16 17 16" stroke="white" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="payment-item-text">
+              <p class="payment-item-title">SBI Credit Card</p>
+              <p class="payment-item-subtitle">4541 XXXX XXXX 3925</p>
+              <p class="payment-item-subtitle downtime">Facing Downtime</p>
+            </div>
+            <div class="radio"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Home Indicator -->
+      <div class="home-indicator">
+        <div class="home-indicator-bar"></div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Timer countdown
+      let timeLeft = 361; // 6:01 in seconds
+      const timerValue = document.getElementById('timerValue');
+      const timerProgress = document.getElementById('timerProgress');
+      const totalTime = 420; // 7 minutes total
+      
+      function updateTimer() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        timerValue.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        
+        // Update progress bar
+        const progress = (timeLeft / totalTime) * 100;
+        timerProgress.style.width = progress + '%';
+        
+        if (timeLeft > 0) {
+          timeLeft--;
+          setTimeout(updateTimer, 1000);
+        }
+      }
+      
+      updateTimer();
+      
+      // Payment selection
+      const paymentItems = document.querySelectorAll('.payment-item');
+      const payButton = document.querySelector('.pay-btn');
+      
+      paymentItems.forEach(item => {
+        item.addEventListener('click', function() {
+          // Remove selected from all
+          paymentItems.forEach(pi => {
+            pi.querySelector('.radio').classList.remove('selected');
+          });
+          
+          // Add selected to clicked
+          this.querySelector('.radio').classList.add('selected');
+          
+          // Move pay button after selected item
+          const payContainer = document.querySelector('.pay-button-container');
+          const nextSibling = this.nextElementSibling;
+          
+          // Remove existing pay button container positioning
+          if (nextSibling && nextSibling.classList.contains('pay-button-container')) {
+            // Already in right place
+          } else {
+            // Move it
+            this.parentNode.insertBefore(payContainer, this.nextElementSibling);
+          }
+        });
+      });
+      
+      // Pay button click
+      payButton.addEventListener('click', function() {
+        window.location.href = 'ticket-confirmation.html';
+      });
+    });
+  </script>
+</body>
+</html>

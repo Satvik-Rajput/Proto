@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Ticket Details</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/base.css">
+  <style>
+    /* ============================================
+       TICKET CONFIRMATION PAGE STYLES
+       ============================================ */
+    
+    .screen-container {
+      width: calc(360 * var(--px));
+      height: 100vh;
+      height: 100dvh;
+      background: #f2f2f8;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* ============================================
+       HOTEL PROMOTION BANNER (Background Layer)
+       ============================================ */
+    .hotel-banner {
+      width: calc(360 * var(--px));
+      height: calc(400 * var(--px));
+      background: linear-gradient(180deg, #e4ecfd 65%, #ffffff 100%);
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 1;
+    }
+    
+    @media (min-width: 361px) {
+      .hotel-banner {
+        left: calc(50%);
+      }
+    }
+    
+    /* Banner Header */
+    .banner-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+    }
+    
+    .banner-nav {
+      display: flex;
+      align-items: center;
+      gap: calc(4 * var(--px));
+      padding: calc(8 * var(--px)) calc(4 * var(--px));
+      position: relative;
+      z-index: 100;
+    }
+    
+    .banner-back-btn {
+      width: calc(48 * var(--px));
+      height: calc(48 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .banner-back-btn svg {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    .banner-header-spacer {
+      flex: 1;
+      height: calc(48 * var(--px));
+    }
+    
+    .banner-actions {
+      display: flex;
+      align-items: center;
+    }
+    
+    .banner-action-btn {
+      width: calc(48 * var(--px));
+      height: calc(48 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .banner-action-btn svg {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    .banner-illustration {
+      position: absolute;
+      right: calc(16 * var(--px));
+      top: calc(70 * var(--px));
+      width: calc(138 * var(--px));
+      height: calc(126 * var(--px));
+    }
+    
+    .banner-illustration img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .banner-text {
+      padding: calc(48 * var(--px)) calc(56 * var(--px)) 0;
+      text-align: center;
+    }
+    
+    .banner-question {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+      margin: 0 0 calc(2 * var(--px));
+    }
+    
+    .banner-offer {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(28 * var(--px));
+      line-height: calc(36 * var(--px));
+      letter-spacing: calc(-0.59 * var(--px));
+      background: linear-gradient(90deg, #4b4b4b 0%, #0171a0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+    }
+    
+    .banner-cta-section {
+      padding: 0 calc(16 * var(--px)) calc(32 * var(--px));
+      display: flex;
+      flex-direction: column;
+      gap: calc(16 * var(--px));
+      align-items: center;
+    }
+    
+    /* Coupon Card */
+    .coupon-card {
+      width: 100%;
+      background: white;
+      border-radius: calc(16 * var(--px));
+      box-shadow: 0 calc(1 * var(--px)) calc(2 * var(--px)) rgba(0,0,0,0.08),
+                  0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.04);
+      padding: 0 calc(24 * var(--px));
+      min-height: calc(88 * var(--px));
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .coupon-decoration {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: calc(119 * var(--px));
+      height: calc(116 * var(--px));
+      opacity: 0.1;
+      background: linear-gradient(135deg, #285bf3 0%, transparent 60%);
+      border-radius: 0 0 calc(100 * var(--px)) 0;
+    }
+    
+    .coupon-content {
+      display: flex;
+      flex-direction: column;
+      gap: calc(4 * var(--px));
+      padding: calc(12 * var(--px)) calc(8 * var(--px));
+    }
+    
+    .coupon-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #dce0fe;
+      border: calc(1 * var(--px)) dashed #4b4b4b;
+      border-radius: calc(8 * var(--px));
+      padding: calc(4 * var(--px)) calc(8 * var(--px));
+      height: calc(32 * var(--px));
+    }
+    
+    .coupon-code {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(16 * var(--px));
+      line-height: calc(22 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    .coupon-hint {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    /* CTA Button */
+    .banner-cta-btn {
+      width: 100%;
+      height: calc(48 * var(--px));
+      background: white;
+      border-radius: calc(999 * var(--px));
+      box-shadow: 0 calc(1 * var(--px)) calc(2 * var(--px)) -1px rgba(0,0,0,0.08),
+                  0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.04);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    
+    .banner-cta-btn span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    /* Carousel Dots */
+    .carousel-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: calc(4 * var(--px));
+      padding: calc(4 * var(--px)) 0;
+    }
+    
+    .carousel-dot {
+      border-radius: 50%;
+      background: rgba(29, 29, 29, 0.24);
+    }
+    
+    .carousel-dot.active {
+      width: calc(12 * var(--px));
+      height: calc(12 * var(--px));
+      background: #1d1d1d;
+    }
+    
+    .carousel-dot:not(.active) {
+      width: calc(6 * var(--px));
+      height: calc(6 * var(--px));
+    }
+    
+    /* ============================================
+       BOTTOM SHEET TRAY (Scrollable Layer)
+       ============================================ */
+    .bottom-sheet-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 10;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .bottom-sheet-spacer {
+      height: calc(376 * var(--px));
+      pointer-events: none;
+    }
+    
+    .bottom-sheet {
+      background: white;
+      border-radius: calc(24 * var(--px)) calc(24 * var(--px)) 0 0;
+      position: relative;
+      min-height: calc(100vh - 376 * var(--px));
+      min-height: calc(100dvh - 376 * var(--px));
+      box-shadow: 0 calc(-4 * var(--px)) calc(20 * var(--px)) rgba(0, 0, 0, 0.1);
+      transition: border-radius 0.3s ease;
+    }
+    
+    .bottom-sheet.expanded {
+      border-radius: 0;
+    }
+    
+    .bottom-sheet-handle {
+      display: flex;
+      justify-content: center;
+      padding: calc(8 * var(--px)) 0 calc(4 * var(--px));
+      cursor: grab;
+      transition: opacity 0.2s ease, max-height 0.2s ease;
+      max-height: calc(20 * var(--px));
+      overflow: hidden;
+    }
+    
+    .bottom-sheet-handle:active {
+      cursor: grabbing;
+    }
+    
+    .bottom-sheet.expanded .bottom-sheet-handle {
+      opacity: 0;
+      max-height: 0;
+      padding: 0;
+    }
+    
+    .bottom-sheet-handle-bar {
+      width: calc(48 * var(--px));
+      height: calc(4 * var(--px));
+      background: #e5e5e5;
+      border-radius: calc(2 * var(--px));
+    }
+    
+    /* Top Navigation (Tray) */
+    .top-nav {
+      width: calc(360 * var(--px));
+      background: white;
+      border-bottom: calc(0.33 * var(--px)) solid #e5e5e5;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    
+    .nav-content {
+      display: flex;
+      align-items: center;
+      gap: calc(4 * var(--px));
+      padding: calc(8 * var(--px)) calc(4 * var(--px)) calc(8 * var(--px)) calc(16 * var(--px));
+      transition: padding 0.2s ease;
+    }
+    
+    .bottom-sheet.expanded .nav-content {
+      padding: calc(8 * var(--px)) calc(4 * var(--px));
+    }
+    
+    /* Minimize Button (shown when expanded) */
+    .minimize-btn {
+      width: calc(48 * var(--px));
+      height: calc(48 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      opacity: 0;
+      max-width: 0;
+      overflow: hidden;
+      transition: opacity 0.2s ease, max-width 0.2s ease;
+    }
+    
+    .minimize-btn svg {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    .bottom-sheet.expanded .minimize-btn {
+      opacity: 1;
+      max-width: calc(48 * var(--px));
+    }
+    
+    .nav-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: calc(48 * var(--px));
+      overflow: hidden;
+    }
+    
+    .nav-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(16 * var(--px));
+      line-height: calc(24 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    .nav-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.08 * var(--px));
+      color: #6f6f6f;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    
+    .nav-action-btn {
+      width: calc(48 * var(--px));
+      height: calc(48 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .nav-action-btn svg {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    /* ============================================
+       REFERRAL CARD (in content)
+       ============================================ */
+    .referral-card {
+      background: linear-gradient(180deg, #ebdbff 0%, #ffffff 100%);
+      border-radius: calc(16 * var(--px));
+      padding: calc(24 * var(--px)) 0;
+      overflow: hidden;
+    }
+    
+    .referral-text-section {
+      padding: 0 calc(16 * var(--px)) calc(16 * var(--px));
+      text-align: center;
+    }
+    
+    .referral-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(22 * var(--px));
+      line-height: calc(28 * var(--px));
+      letter-spacing: calc(-0.4 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    .referral-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+      margin: calc(2 * var(--px)) 0 0;
+    }
+    
+    .referral-link {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #5258e4;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-top: calc(8 * var(--px));
+    }
+    
+    .referral-avatars {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 0 calc(16 * var(--px));
+    }
+    
+    .referral-avatar-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: calc(4 * var(--px));
+      width: calc(92 * var(--px));
+    }
+    
+    .referral-avatar {
+      width: calc(40 * var(--px));
+      height: calc(40 * var(--px));
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      background: #ece9fc;
+    }
+    
+    .referral-avatar img {
+      width: calc(55 * var(--px));
+      height: calc(55 * var(--px));
+      object-fit: cover;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -40%);
+    }
+    
+    .referral-avatar.ishan img {
+      width: calc(40 * var(--px));
+      height: calc(40 * var(--px));
+      transform: translate(-50%, -45%);
+    }
+    
+    .referral-avatar.outlined {
+      border: calc(1.43 * var(--px)) dashed #b0b0b0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      overflow: visible;
+    }
+    
+    .referral-avatar.outlined svg {
+      width: calc(17 * var(--px));
+      height: calc(17 * var(--px));
+    }
+    
+    .referral-avatar-badge {
+      position: absolute;
+      bottom: calc(-2 * var(--px));
+      right: calc(-2 * var(--px));
+      width: calc(16 * var(--px));
+      height: calc(16 * var(--px));
+      background: #285bf3;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: calc(2.86 * var(--px));
+    }
+    
+    .referral-avatar-badge svg {
+      width: calc(10 * var(--px));
+      height: calc(10 * var(--px));
+    }
+    
+    .referral-avatar-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+      text-align: center;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      border-bottom: calc(1 * var(--px)) solid #e6e6e6;
+      background: white;
+    }
+    
+    .tab {
+      flex: 1;
+      padding: calc(14 * var(--px)) calc(8 * var(--px));
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: rgba(29, 29, 29, 0.64);
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      text-align: center;
+      white-space: nowrap;
+    }
+    
+    .tab.active {
+      color: #d63941;
+      font-weight: 700;
+    }
+    
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: calc(8 * var(--px));
+      right: calc(8 * var(--px));
+      height: calc(3 * var(--px));
+      background: #d63941;
+      border-radius: calc(3 * var(--px)) calc(3 * var(--px)) 0 0;
+    }
+    
+    /* Content Area */
+    .content {
+      padding: calc(16 * var(--px));
+      display: flex;
+      flex-direction: column;
+      gap: calc(16 * var(--px));
+    }
+    
+    /* Ticket Card */
+    .ticket-card {
+      border-radius: calc(16 * var(--px));
+      overflow: hidden;
+      box-shadow: 0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0,0,0,0.08),
+                  0 calc(8 * var(--px)) calc(16 * var(--px)) rgba(0,0,0,0.08);
+    }
+    
+    /* Journey Section */
+    .journey-section {
+      background: #d63941;
+      padding: calc(16 * var(--px)) calc(16 * var(--px)) 0;
+    }
+    
+    .journey-row {
+      display: flex;
+      align-items: flex-start;
+      gap: calc(8 * var(--px));
+    }
+    
+    .journey-progress-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: calc(20 * var(--px));
+      padding-top: calc(4 * var(--px));
+    }
+    
+    .journey-dot {
+      width: calc(20 * var(--px));
+      height: calc(20 * var(--px));
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .journey-dot-circle {
+      width: calc(12 * var(--px));
+      height: calc(12 * var(--px));
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+    }
+    
+    .journey-dot svg {
+      width: calc(12 * var(--px));
+      height: calc(12 * var(--px));
+      position: relative;
+      z-index: 1;
+    }
+    
+    .journey-line {
+      width: calc(1 * var(--px));
+      height: calc(24 * var(--px));
+      background: rgba(255, 255, 255, 0.7);
+    }
+    
+    .journey-info-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .journey-city {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(22 * var(--px));
+      line-height: calc(28 * var(--px));
+      letter-spacing: calc(-1.8 * var(--px));
+      color: white;
+      margin: 0;
+    }
+    
+    .journey-location {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.01 * var(--px));
+      color: white;
+      margin: 0;
+    }
+    
+    .journey-time-col {
+      text-align: right;
+    }
+    
+    .journey-time {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(22 * var(--px));
+      line-height: calc(28 * var(--px));
+      letter-spacing: calc(-1.8 * var(--px));
+      color: white;
+      margin: 0;
+    }
+    
+    .journey-date {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.01 * var(--px));
+      color: white;
+      margin: 0;
+    }
+    
+    /* Duration Section */
+    .duration-section {
+      display: flex;
+      align-items: center;
+      gap: calc(8 * var(--px));
+      padding: calc(24 * var(--px)) calc(16 * var(--px));
+      padding-left: calc(36 * var(--px));
+    }
+    
+    .duration-line {
+      flex: 1;
+      height: 0;
+      border-top: calc(1 * var(--px)) dashed rgba(255, 255, 255, 0.7);
+    }
+    
+    .duration-logo {
+      width: calc(36 * var(--px));
+      height: calc(24 * var(--px));
+      flex-shrink: 0;
+    }
+    
+    .duration-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .duration-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.01 * var(--px));
+      color: white;
+      white-space: nowrap;
+    }
+    
+    /* Layover Section */
+    .layover-section {
+      background: #d63941;
+      padding: calc(8 * var(--px)) calc(16 * var(--px));
+      border-top: calc(1 * var(--px)) dashed rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: calc(4 * var(--px));
+    }
+    
+    .layover-icon {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .layover-icon svg {
+      width: calc(19 * var(--px));
+      height: calc(14 * var(--px));
+    }
+    
+    .layover-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.01 * var(--px));
+      color: white;
+    }
+    
+    /* Bus Info Section */
+    .bus-info-section {
+      background: white;
+      padding: calc(16 * var(--px));
+    }
+    
+    .bus-number-plate {
+      display: inline-flex;
+      align-items: center;
+      gap: calc(4 * var(--px));
+      background: #f4bf08;
+      border: calc(1 * var(--px)) solid #1d1d1d;
+      border-radius: calc(4 * var(--px));
+      padding: 0 calc(4 * var(--px));
+      height: calc(20 * var(--px));
+      margin-bottom: calc(2 * var(--px));
+    }
+    
+    .bus-number-dot {
+      width: calc(2 * var(--px));
+      height: calc(2 * var(--px));
+      background: #1d1d1d;
+      border-radius: 50%;
+    }
+    
+    .bus-number-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    .bus-operator {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(16 * var(--px));
+      line-height: calc(22 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      color: #1d1d1d;
+      margin: 0 0 calc(4 * var(--px));
+    }
+    
+    /* Passengers List */
+    .passengers-list {
+      display: flex;
+      flex-direction: column;
+      gap: calc(6 * var(--px));
+    }
+    
+    .passenger-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .passenger-name {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    .seat-badge {
+      background: #e4ecfd;
+      border-radius: calc(24 * var(--px));
+      padding: 0 calc(8 * var(--px));
+      min-width: calc(40 * var(--px));
+      height: calc(20 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .seat-badge span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.01 * var(--px));
+      color: #285bf3;
+    }
+    
+    .extra-passengers {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.01 * var(--px));
+      color: rgba(29, 29, 29, 0.64);
+      margin-top: calc(4 * var(--px));
+    }
+    
+    /* Ticket Cutout */
+    .ticket-cutout {
+      display: flex;
+      align-items: center;
+      background: white;
+    }
+    
+    .cutout-left, .cutout-right {
+      width: calc(17 * var(--px));
+      height: calc(32 * var(--px));
+      background: #f2f2f8;
+      flex-shrink: 0;
+    }
+    
+    .cutout-left {
+      border-radius: 0 calc(16 * var(--px)) calc(16 * var(--px)) 0;
+    }
+    
+    .cutout-right {
+      border-radius: calc(16 * var(--px)) 0 0 calc(16 * var(--px));
+    }
+    
+    .cutout-divider {
+      flex: 1;
+      border-top: calc(2 * var(--px)) dashed #e5e5e5;
+    }
+    
+    /* Ticket Details Link */
+    .ticket-details-link {
+      background: white;
+      padding: calc(8 * var(--px)) calc(16 * var(--px)) calc(16 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .ticket-link-btn {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #5258e4;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    /* Info Text */
+    .info-text-section {
+      text-align: center;
+      padding: 0 calc(16 * var(--px));
+    }
+    
+    .info-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    .info-text strong {
+      font-weight: 700;
+    }
+    
+    /* CTA Card */
+    .cta-card {
+      background: white;
+      border: calc(1 * var(--px)) solid #e6e6e6;
+      border-radius: calc(16 * var(--px));
+      overflow: hidden;
+    }
+    
+    .cta-item {
+      display: flex;
+      align-items: center;
+      gap: calc(16 * var(--px));
+      padding: calc(8 * var(--px)) calc(16 * var(--px));
+      min-height: calc(72 * var(--px));
+      cursor: pointer;
+    }
+    
+    .cta-item:not(:last-child) {
+      border-bottom: calc(1 * var(--px)) solid #e6e6e6;
+    }
+    
+    .cta-icon {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .cta-icon svg, .cta-icon img {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .cta-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .cta-overline {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(11 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.05 * var(--px));
+      color: #007b28;
+      margin: 0;
+    }
+    
+    .cta-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(16 * var(--px));
+      line-height: calc(24 * var(--px));
+      letter-spacing: calc(-0.176 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    .cta-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.084 * var(--px));
+      color: #6f6f6f;
+      margin: 0;
+    }
+    
+    .cta-arrow {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      flex-shrink: 0;
+    }
+    
+    .cta-arrow svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    /* Add to Calendar */
+    .calendar-card {
+      background: white;
+      border: calc(1 * var(--px)) solid #e6e6e6;
+      border-radius: calc(16 * var(--px));
+      display: flex;
+      align-items: center;
+      gap: calc(16 * var(--px));
+      padding: calc(8 * var(--px)) calc(16 * var(--px));
+      min-height: calc(56 * var(--px));
+    }
+    
+    .calendar-icon {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    .calendar-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .calendar-text {
+      flex: 1;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(16 * var(--px));
+      line-height: calc(24 * var(--px));
+      letter-spacing: calc(-0.176 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    .calendar-add {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    .calendar-add svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    /* Home Indicator */
+    .home-indicator {
+      display: flex;
+      justify-content: center;
+      padding: calc(8 * var(--px)) 0 calc(16 * var(--px));
+    }
+    
+    .home-indicator-bar {
+      width: calc(108 * var(--px));
+      height: calc(4 * var(--px));
+      background: black;
+      border-radius: calc(12 * var(--px));
+    }
+    
+    /* ============================================
+       POINTS SECTION (Grey Background)
+       ============================================ */
+    .points-section {
+      background: #f2f2f8;
+      padding: calc(16 * var(--px));
+      display: flex;
+      flex-direction: column;
+      gap: calc(16 * var(--px));
+    }
+    
+    /* ============================================
+       BOARDING / DROPPING POINT CARDS
+       ============================================ */
+    .point-card {
+      background: white;
+      border-radius: calc(16 * var(--px));
+      box-shadow: 0 calc(2 * var(--px)) calc(8 * var(--px)) rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    
+    .point-card-header {
+      padding: calc(16 * var(--px)) calc(16 * var(--px)) 0;
+    }
+    
+    .point-card-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(22 * var(--px));
+      line-height: calc(28 * var(--px));
+      letter-spacing: calc(-0.4 * var(--px));
+      color: #1d1d1d;
+      margin: 0 0 calc(12 * var(--px));
+    }
+    
+    .point-time-badge {
+      display: inline-flex;
+      align-items: center;
+      background: #f3f0ff;
+      border-radius: calc(4 * var(--px));
+      padding: calc(4 * var(--px)) calc(8 * var(--px));
+    }
+    
+    .point-time-badge span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.01 * var(--px));
+      color: #5258e4;
+    }
+    
+    .point-card-body {
+      padding: calc(12 * var(--px)) calc(16 * var(--px)) calc(16 * var(--px));
+    }
+    
+    .point-content {
+      display: flex;
+      gap: calc(16 * var(--px));
+      align-items: flex-start;
+    }
+    
+    .point-info {
+      flex: 1;
+    }
+    
+    .point-location {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(16 * var(--px));
+      line-height: calc(22 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      color: #1d1d1d;
+      margin: 0 0 calc(4 * var(--px));
+    }
+    
+    .point-address {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #6f6f6f;
+      margin: 0;
+    }
+    
+    .point-image {
+      width: calc(88 * var(--px));
+      height: calc(72 * var(--px));
+      border-radius: calc(8 * var(--px));
+      overflow: hidden;
+      position: relative;
+      background: #f5f5f5;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .point-image svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .point-image-label {
+      position: absolute;
+      bottom: calc(4 * var(--px));
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.9);
+      border-radius: calc(4 * var(--px));
+      padding: calc(2 * var(--px)) calc(6 * var(--px));
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(10 * var(--px));
+      line-height: calc(14 * var(--px));
+      color: #5258e4;
+      white-space: nowrap;
+    }
+    
+    .point-actions {
+      display: flex;
+      border-top: calc(1 * var(--px)) solid #e6e6e6;
+    }
+    
+    .point-action {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: calc(8 * var(--px));
+      padding: calc(12 * var(--px)) calc(8 * var(--px));
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .point-action:first-child {
+      border-right: calc(1 * var(--px)) solid #e6e6e6;
+    }
+    
+    .point-action svg {
+      width: calc(20 * var(--px));
+      height: calc(20 * var(--px));
+    }
+    
+    .point-action span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="screen-container">
+      <!-- Hotel Promotion Banner -->
+      <div class="hotel-banner">
+        <!-- Header with navigation -->
+        <div class="banner-header">
+          <!-- Navigation -->
+          <div class="banner-nav">
+            <button class="banner-back-btn" onclick="window.location.href='payment.html'">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#1d1d1d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="banner-header-spacer"></div>
+            <div class="banner-actions">
+              <button class="banner-action-btn">
+                <!-- Favorite Outline -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#1d1d1d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <button class="banner-action-btn">
+                <!-- Favorite Outline -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#1d1d1d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Illustration -->
+        <div class="banner-illustration">
+          <img src="assets/payment/hotel-human.png" alt="Hotel offer">
+        </div>
+        
+        <!-- Banner Text -->
+        <div class="banner-text">
+          <p class="banner-question">Traveling to Chennai on 24 May?</p>
+          <h2 class="banner-offer">You get 50% off<br>on hotels</h2>
+        </div>
+        
+        <!-- Coupon + CTA -->
+        <div class="banner-cta-section">
+          <div class="coupon-card">
+            <div class="coupon-decoration"></div>
+            <div class="coupon-content">
+              <div class="coupon-tag">
+                <span class="coupon-code">RB200</span>
+              </div>
+              <p class="coupon-hint">Use code at checkout</p>
+            </div>
+          </div>
+          <button class="banner-cta-btn">
+            <span>Copy code & book now</span>
+          </button>
+          <div class="carousel-dots">
+            <div class="carousel-dot active"></div>
+            <div class="carousel-dot"></div>
+            <div class="carousel-dot"></div>
+            <div class="carousel-dot"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Scrollable Tray Wrapper -->
+      <div class="bottom-sheet-wrapper" id="trayWrapper">
+        <!-- Spacer to show hotel banner initially -->
+        <div class="bottom-sheet-spacer"></div>
+        
+        <!-- Bottom Sheet Tray -->
+        <div class="bottom-sheet" id="bottomSheet">
+          <!-- Handle -->
+          <div class="bottom-sheet-handle" id="trayHandle">
+            <div class="bottom-sheet-handle-bar"></div>
+          </div>
+        
+        <!-- Top Navigation -->
+        <nav class="top-nav">
+          <div class="nav-content">
+            <!-- Minimize Button (shown when expanded) -->
+            <button class="minimize-btn" id="minimizeBtn">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z" fill="#1d1d1d"/>
+              </svg>
+            </button>
+            <div class="nav-text">
+              <h1 class="nav-title">Ticket details</h1>
+              <p class="nav-subtitle">Ticket #TS8P86396626</p>
+            </div>
+            <div class="nav-actions">
+              <button class="nav-action-btn">
+                <!-- Support Agent Icon -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M21 12.22C21 6.73 16.74 3 12 3C7.31 3 3 6.65 3 12.28C2.4 12.62 2 13.26 2 14V16C2 17.1 2.9 18 4 18H5V11.9C5 8.03 8.13 4.9 12 4.9C15.87 4.9 19 8.03 19 11.9V19H11V21H19C20.1 21 21 20.1 21 19V17.78C21.59 17.47 22 16.86 22 16.14V13.84C22 13.14 21.59 12.53 21 12.22Z" fill="#1d1d1d"/>
+                  <path d="M9 14C9.55228 14 10 13.5523 10 13C10 12.4477 9.55228 12 9 12C8.44772 12 8 12.4477 8 13C8 13.5523 8.44772 14 9 14Z" fill="#1d1d1d"/>
+                  <path d="M15 14C15.5523 14 16 13.5523 16 13C16 12.4477 15.5523 12 15 12C14.4477 12 14 12.4477 14 13C14 13.5523 14.4477 14 15 14Z" fill="#1d1d1d"/>
+                  <path d="M18 11.03C17.52 8.18 15.04 6 12.05 6C9.02 6 5.76 8.51 6.02 12.45C8.49 11.44 10.35 9.24 10.88 6.56C12.19 9.19 14.88 11 18 11.03Z" fill="#1d1d1d"/>
+                </svg>
+              </button>
+              <button class="nav-action-btn">
+                <!-- Share Icon -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M18 16.08C17.24 16.08 16.56 16.38 16.04 16.85L8.91 12.7C8.96 12.47 9 12.24 9 12C9 11.76 8.96 11.53 8.91 11.3L15.96 7.19C16.5 7.69 17.21 8 18 8C19.66 8 21 6.66 21 5C21 3.34 19.66 2 18 2C16.34 2 15 3.34 15 5C15 5.24 15.04 5.47 15.09 5.7L8.04 9.81C7.5 9.31 6.79 9 6 9C4.34 9 3 10.34 3 12C3 13.66 4.34 15 6 15C6.79 15 7.5 14.69 8.04 14.19L15.16 18.35C15.11 18.56 15.08 18.78 15.08 19C15.08 20.61 16.39 21.92 18 21.92C19.61 21.92 20.92 20.61 20.92 19C20.92 17.39 19.61 16.08 18 16.08Z" fill="#1d1d1d"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </nav>
+      
+        <!-- Tabs -->
+        <div class="tabs">
+        <button class="tab active">Ticket details</button>
+        <button class="tab">Boarding points</button>
+        <button class="tab">Dropping po...</button>
+      </div>
+      
+      <!-- Content -->
+      <div class="content">
+        <!-- Ticket Card -->
+        <div class="ticket-card">
+          <!-- Journey Section -->
+          <div class="journey-section">
+            <!-- Departure -->
+            <div class="journey-row">
+              <div class="journey-progress-col">
+                <div class="journey-dot">
+                  <div class="journey-dot-circle"></div>
+                  <svg viewBox="0 0 12 12" fill="none">
+                    <path d="M2 10L10 2M10 2H4M10 2V8" stroke="#d63941" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="journey-line"></div>
+              </div>
+              <div class="journey-info-col">
+                <h2 class="journey-city">Bangalore</h2>
+                <p class="journey-location">Madiwala</p>
+              </div>
+              <div class="journey-time-col">
+                <p class="journey-time">17:13</p>
+                <p class="journey-date">Sun, 18 Jun</p>
+              </div>
+            </div>
+            
+            <!-- Duration -->
+            <div class="duration-section">
+              <div class="duration-line"></div>
+              <div class="duration-logo">
+                <img src="assets/payment/redbus-logo.png" alt="redBus">
+              </div>
+              <span class="duration-text">8h 20min</span>
+              <div class="duration-line"></div>
+            </div>
+            
+            <!-- Arrival -->
+            <div class="journey-row">
+              <div class="journey-progress-col">
+                <div class="journey-dot">
+                  <div class="journey-dot-circle"></div>
+                  <svg viewBox="0 0 12 12" fill="none">
+                    <path d="M10 2L2 10M2 10H8M2 10V4" stroke="#d63941" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="journey-info-col">
+                <h2 class="journey-city">Chennai</h2>
+                <p class="journey-location">Vijaywada</p>
+              </div>
+              <div class="journey-time-col">
+                <p class="journey-time">02:40</p>
+                <p class="journey-date">Mon, 19 Jan</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Layover -->
+          <div class="layover-section">
+            <div class="layover-icon">
+              <svg viewBox="0 0 19 14" fill="none">
+                <circle cx="2.5" cy="7" r="2" stroke="white" stroke-width="1.5"/>
+                <circle cx="16.5" cy="7" r="2" stroke="white" stroke-width="1.5"/>
+                <path d="M4.5 7H14.5" stroke="white" stroke-width="1.5"/>
+                <circle cx="9.5" cy="7" r="1" fill="white"/>
+              </svg>
+            </div>
+            <span class="layover-text">1 h Layover at Kashmeri Gate, New Delhi</span>
+          </div>
+          
+          <!-- Bus Info -->
+          <div class="bus-info-section">
+            <div class="bus-number-plate">
+              <div class="bus-number-dot"></div>
+              <span class="bus-number-text">KA 03 K 2345</span>
+              <div class="bus-number-dot"></div>
+            </div>
+            <h3 class="bus-operator">Sri Krishna Travels</h3>
+            
+            <div class="passengers-list">
+              <div class="passenger-row">
+                <span class="passenger-name">Netesh Chandra</span>
+                <div class="seat-badge"><span>A6</span></div>
+              </div>
+              <div class="passenger-row">
+                <span class="passenger-name">Ishan Jalan</span>
+                <div class="seat-badge"><span>A17</span></div>
+              </div>
+            </div>
+            <p class="extra-passengers">+3 Passengers</p>
+          </div>
+          
+          <!-- Ticket Cutout -->
+          <div class="ticket-cutout">
+            <div class="cutout-left"></div>
+            <div class="cutout-divider"></div>
+            <div class="cutout-right"></div>
+          </div>
+          
+          <!-- Ticket Details Link -->
+          <div class="ticket-details-link">
+            <button class="ticket-link-btn">Ticket details</button>
+          </div>
+        </div>
+        
+        <!-- Info Text -->
+        <div class="info-text-section">
+          <p class="info-text">Bus number and tracking details will be shared on the day of journey on <strong>+919741862088</strong></p>
+        </div>
+        
+        <!-- CTA Card -->
+        <div class="cta-card">
+          <div class="cta-item">
+            <div class="cta-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 6V12L16 14" stroke="rgba(29,29,29,0.64)" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M5 8L7 6L5 4" stroke="rgba(29,29,29,0.64)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 6H4C3 6 2 7 2 8V16C2 17 3 18 4 18H20C21 18 22 17 22 16V8C22 7 21 6 20 6H17" stroke="rgba(29,29,29,0.64)" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M19 16L17 18L19 20" stroke="rgba(29,29,29,0.64)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cta-text">
+              <p class="cta-title">Free bus change</p>
+              <p class="cta-subtitle">This is a FlexiTicket</p>
+            </div>
+            <div class="cta-arrow">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="#1d1d1d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="cta-item">
+            <div class="cta-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="rgba(29,29,29,0.64)" stroke-width="1.5"/>
+                <path d="M8 12L11 15L16 9" stroke="rgba(29,29,29,0.64)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cta-text">
+              <p class="cta-overline">Free Cancellation active</p>
+              <p class="cta-title">Review and cancel</p>
+              <p class="cta-subtitle">Full refund until 23:15, 17 Jan</p>
+            </div>
+            <div class="cta-arrow">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="#1d1d1d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Referral Card -->
+        <div class="referral-card">
+          <div class="referral-text-section">
+            <h2 class="referral-title">Waiting for your friends to join</h2>
+            <p class="referral-subtitle">To unlock 15% refund</p>
+            <a class="referral-link">Know more</a>
+          </div>
+          <div class="referral-avatars">
+            <div class="referral-avatar-item">
+              <div class="referral-avatar">
+                <img src="assets/payment/you-avatar.png" alt="You">
+              </div>
+              <span class="referral-avatar-text">You get<br>15% refund</span>
+            </div>
+            <div class="referral-avatar-item">
+              <div class="referral-avatar outlined">
+                <svg viewBox="0 0 17 15" fill="none">
+                  <path d="M11.43 14.29V12.86C11.43 11.28 10.15 10 8.57 10H3.57C1.99 10 0.71 11.28 0.71 12.86V14.29" stroke="#b0b0b0" stroke-width="1.2" stroke-linecap="round"/>
+                  <circle cx="6.07" cy="4.29" r="2.86" stroke="#b0b0b0" stroke-width="1.2"/>
+                </svg>
+                <div class="referral-avatar-badge">
+                  <svg viewBox="0 0 10 10" fill="none">
+                    <path d="M5 2V8M2 5H8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+              </div>
+              <span class="referral-avatar-text">Friend 1 gets<br>15% refund</span>
+            </div>
+            <div class="referral-avatar-item">
+              <div class="referral-avatar outlined">
+                <svg viewBox="0 0 17 15" fill="none">
+                  <path d="M11.43 14.29V12.86C11.43 11.28 10.15 10 8.57 10H3.57C1.99 10 0.71 11.28 0.71 12.86V14.29" stroke="#b0b0b0" stroke-width="1.2" stroke-linecap="round"/>
+                  <circle cx="6.07" cy="4.29" r="2.86" stroke="#b0b0b0" stroke-width="1.2"/>
+                </svg>
+                <div class="referral-avatar-badge">
+                  <svg viewBox="0 0 10 10" fill="none">
+                    <path d="M5 2V8M2 5H8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+              </div>
+              <span class="referral-avatar-text">Friend 2 gets<br>15% refund</span>
+            </div>
+          </div>
+        </div>
+        
+      </div> <!-- End content -->
+        
+      <!-- Points Section (Grey Background) -->
+      <div class="points-section">
+        <!-- Boarding Point Card -->
+        <div class="point-card">
+          <div class="point-card-header">
+            <h3 class="point-card-title">Boarding point details</h3>
+            <div class="point-time-badge">
+              <span>17:13 · Sun, 18 Jan</span>
+            </div>
+          </div>
+          <div class="point-card-body">
+            <div class="point-content">
+              <div class="point-info">
+                <h4 class="point-location">Madiwala, Bangalore</h4>
+                <p class="point-address">Near Hyderabad Biryani House Shamshabad, Bavarchi Hotel</p>
+              </div>
+              <div class="point-image">
+                <svg viewBox="0 0 88 72" fill="none">
+                  <rect width="88" height="72" rx="8" fill="#fef2f2"/>
+                  <path d="M44 18C38 18 33 23 33 29C33 37 44 50 44 50C44 50 55 37 55 29C55 23 50 18 44 18ZM44 33C41.8 33 40 31.2 40 29C40 26.8 41.8 25 44 25C46.2 25 48 26.8 48 29C48 31.2 46.2 33 44 33Z" fill="#d63941"/>
+                  <rect x="28" y="42" width="32" height="20" rx="2" fill="#fee2e2"/>
+                  <rect x="32" y="46" width="24" height="4" rx="1" fill="#fecaca"/>
+                  <rect x="32" y="52" width="16" height="4" rx="1" fill="#fecaca"/>
+                </svg>
+                <span class="point-image-label">View 360°</span>
+              </div>
+            </div>
+          </div>
+          <div class="point-actions">
+            <button class="point-action">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#6f6f6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Directions</span>
+            </button>
+            <button class="point-action">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#6f6f6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Bus stop</span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Dropping Point Card -->
+        <div class="point-card">
+          <div class="point-card-header">
+            <h3 class="point-card-title">Dropping point details</h3>
+            <div class="point-time-badge">
+              <span>02:40 · Mon, 19 Jan</span>
+            </div>
+          </div>
+          <div class="point-card-body">
+            <div class="point-content">
+              <div class="point-info">
+                <h4 class="point-location">Vijayvada, Chennai</h4>
+                <p class="point-address">Near Hyderabad Biryani House Shamshabad, Bavarchi Hotel</p>
+              </div>
+              <div class="point-image">
+                <svg viewBox="0 0 88 72" fill="none">
+                  <rect width="88" height="72" rx="8" fill="#fef2f2"/>
+                  <path d="M44 18C38 18 33 23 33 29C33 37 44 50 44 50C44 50 55 37 55 29C55 23 50 18 44 18ZM44 33C41.8 33 40 31.2 40 29C40 26.8 41.8 25 44 25C46.2 25 48 26.8 48 29C48 31.2 46.2 33 44 33Z" fill="#d63941"/>
+                  <rect x="28" y="42" width="32" height="20" rx="2" fill="#fee2e2"/>
+                  <rect x="32" y="46" width="24" height="4" rx="1" fill="#fecaca"/>
+                  <rect x="32" y="52" width="16" height="4" rx="1" fill="#fecaca"/>
+                </svg>
+                <span class="point-image-label">View 360°</span>
+              </div>
+            </div>
+          </div>
+          <div class="point-actions">
+            <button class="point-action">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#6f6f6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Directions</span>
+            </button>
+            <button class="point-action">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#6f6f6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Bus stop</span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Home Indicator -->
+        <div class="home-indicator">
+          <div class="home-indicator-bar"></div>
+        </div>
+      </div> <!-- End points-section -->
+      
+      </div> <!-- End bottom-sheet -->
+      </div> <!-- End bottom-sheet-wrapper -->
+    </div>
+  </div>
+  
+  <script>
+    // Tab switching
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+    
+    // Tray scroll behavior
+    const trayWrapper = document.getElementById('trayWrapper');
+    const bottomSheet = document.getElementById('bottomSheet');
+    const trayHandle = document.getElementById('trayHandle');
+    const minimizeBtn = document.getElementById('minimizeBtn');
+    
+    // Get the computed px value
+    const pxValue = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--px')) || 1;
+    const spacerHeight = 376 * pxValue;
+    
+    let isScrolling = false;
+    let scrollTimeout;
+    let isExpanded = false;
+    
+    // Update expanded state based on scroll position
+    function updateExpandedState() {
+      const scrollTop = trayWrapper.scrollTop;
+      const threshold = spacerHeight * 0.7; // 70% threshold for expansion
+      
+      if (scrollTop >= threshold && !isExpanded) {
+        isExpanded = true;
+        bottomSheet.classList.add('expanded');
+      } else if (scrollTop < threshold && isExpanded) {
+        isExpanded = false;
+        bottomSheet.classList.remove('expanded');
+      }
+    }
+    
+    // Snap to positions on scroll end
+    trayWrapper.addEventListener('scroll', function() {
+      clearTimeout(scrollTimeout);
+      isScrolling = true;
+      
+      // Update expanded state during scroll
+      updateExpandedState();
+      
+      scrollTimeout = setTimeout(function() {
+        isScrolling = false;
+        const scrollTop = trayWrapper.scrollTop;
+        const threshold = spacerHeight / 2;
+        
+        if (scrollTop > 0 && scrollTop < spacerHeight) {
+          // Snap to either collapsed (0) or expanded (spacerHeight)
+          if (scrollTop > threshold) {
+            trayWrapper.scrollTo({ top: spacerHeight, behavior: 'smooth' });
+          } else {
+            trayWrapper.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }
+      }, 150);
+    });
+    
+    // Handle tap on tray handle to expand
+    let lastTapTime = 0;
+    trayHandle.addEventListener('click', function(e) {
+      const currentTime = new Date().getTime();
+      const tapGap = currentTime - lastTapTime;
+      
+      if (tapGap < 300) return; // Debounce
+      lastTapTime = currentTime;
+      
+      // Expand - scroll up to cover banner
+      trayWrapper.scrollTo({ top: spacerHeight, behavior: 'smooth' });
+    });
+    
+    // Minimize button - collapse tray to show hotel banner
+    minimizeBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      // Collapse - scroll down to show banner
+      trayWrapper.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

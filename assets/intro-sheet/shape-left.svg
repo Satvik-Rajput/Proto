@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 90 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Shape">
+<rect id="Rectangle 275" width="80" height="1" transform="matrix(-1 0 0 1 80 9.5)" fill="url(#paint0_linear_0_76)"/>
+<path id="Star 1" d="M80 0L80.41 9.28986L88.6603 5L80.82 10L88.6603 15L80.41 10.7101L80 20L79.59 10.7101L71.3397 15L79.18 10L71.3397 5L79.59 9.28986L80 0Z" fill="var(--fill-0, #1D1D1D)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_76" x1="0" y1="0.5" x2="80" y2="0.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1D1D1D"/>
+<stop offset="1" stop-color="#1D1D1D" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>

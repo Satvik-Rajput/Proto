@@ -1,0 +1,86 @@
+/* ============================================
+   PROTO - Pixel-Perfect Scaling System
+   Base Design: 360 x 800
+   ============================================ */
+
+/* CSS Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Design dimensions */
+  --design-width: 360;
+  --design-height: 800;
+  
+  /* 
+   * Scale factor: 1px at 360px viewport width
+   * On 360px device: --px = 1px
+   * On 720px device: --px = 2px
+   * etc.
+   */
+  --scale: calc(100vw / 360);
+  --px: var(--scale);
+  --px-h: var(--scale); /* Use same scale for height to maintain proportions */
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  background: #fff;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+#app {
+  width: 100vw;
+  max-width: 100vw;
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+  overflow-x: hidden;
+  background: #F5F5F5;
+}
+
+/* Base screen class - all screens extend this */
+.screen {
+  width: calc(360 * var(--px));
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Flexbox utilities */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-start { justify-content: flex-start; }
+.justify-end { justify-content: flex-end; }
+
+/* Position utilities */
+.absolute { position: absolute; }
+.relative { position: relative; }
+
+/* Text utilities */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }

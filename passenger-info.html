@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Passenger Information</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/base.css">
+  <style>
+    /* ============================================
+       PASSENGER INFO PAGE STYLES
+       ============================================ */
+    
+    .screen-container {
+      width: calc(360 * var(--px));
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: #f2f2f8;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    /* Top Navigation */
+    .top-nav {
+      width: calc(360 * var(--px));
+      background: white;
+      border-bottom: calc(0.33 * var(--px)) solid #E6E6E6;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .nav-content {
+      display: flex;
+      align-items: center;
+      gap: calc(4 * var(--px));
+      padding: calc(8 * var(--px)) calc(4 * var(--px));
+    }
+    
+    .back-btn {
+      width: calc(48 * var(--px));
+      height: calc(48 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .back-btn svg {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    .nav-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    .nav-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(16 * var(--px));
+      line-height: calc(22 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    .nav-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.01 * var(--px));
+      color: rgba(29, 29, 29, 0.64);
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    /* Trip Summary Card */
+    .trip-summary {
+      width: calc(360 * var(--px));
+      background: white;
+      padding: calc(16 * var(--px)) 0 calc(8 * var(--px));
+    }
+    
+    .trip-header {
+      display: flex;
+      align-items: center;
+      gap: calc(8 * var(--px));
+      padding: 0 calc(16 * var(--px)) calc(12 * var(--px));
+    }
+    
+    .trip-header-line {
+      flex: 1;
+      height: calc(0.5 * var(--px));
+      background: #e6e6e6;
+    }
+    
+    .trip-header-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.01 * var(--px));
+      color: rgba(29, 29, 29, 0.64);
+    }
+    
+    .trip-details {
+      display: flex;
+      gap: calc(12 * var(--px));
+      padding: 0 calc(16 * var(--px)) calc(12 * var(--px));
+      align-items: flex-end;
+    }
+    
+    .trip-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    
+    .trip-info.right {
+      text-align: right;
+      align-items: flex-end;
+    }
+    
+    .trip-date {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    .trip-location {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    .trip-arrow {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .trip-arrow svg {
+      width: calc(20 * var(--px));
+      height: calc(13 * var(--px));
+    }
+    
+    .trip-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0 0 calc(16 * var(--px));
+    }
+    
+    .seat-tag {
+      display: flex;
+      align-items: center;
+      gap: calc(4 * var(--px));
+      background: #e4ecfd;
+      border-radius: calc(8 * var(--px));
+      padding: 0 calc(4 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    .seat-tag svg {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    .seat-tag span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.01 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    .view-details-btn {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #5258e4;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: calc(14 * var(--px)) calc(12 * var(--px));
+    }
+    
+    /* Content Area */
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: calc(12 * var(--px));
+      padding: 0 calc(16 * var(--px));
+      padding-bottom: calc(24 * var(--px));
+    }
+    
+    /* Card Styles */
+    .card {
+      background: white;
+      border-radius: calc(16 * var(--px));
+      overflow: hidden;
+    }
+    
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: calc(12 * var(--px)) calc(16 * var(--px));
+      min-height: calc(64 * var(--px));
+    }
+    
+    .card-header-large {
+      min-height: calc(72 * var(--px));
+    }
+    
+    .card-title-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    
+    .card-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(16 * var(--px));
+      line-height: calc(22 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    .card-title-large {
+      font-size: calc(22 * var(--px));
+      line-height: calc(28 * var(--px));
+      letter-spacing: calc(-0.4 * var(--px));
+    }
+    
+    .card-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: rgba(29, 29, 29, 0.64);
+      margin: 0;
+    }
+    
+    .card-action {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    /* Contact Details */
+    .contact-fields {
+      display: flex;
+      flex-direction: column;
+      gap: calc(4 * var(--px));
+      padding: 0 calc(16 * var(--px)) calc(12 * var(--px));
+    }
+    
+    .contact-field {
+      display: flex;
+      align-items: center;
+      gap: calc(8 * var(--px));
+    }
+    
+    .contact-field svg {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      flex-shrink: 0;
+    }
+    
+    .contact-field span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(16 * var(--px));
+      line-height: calc(22 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    .whatsapp-info {
+      margin: 0 calc(16 * var(--px)) calc(16 * var(--px));
+      background: #e4ecfd;
+      border-radius: calc(8 * var(--px));
+      padding: calc(8 * var(--px));
+      display: flex;
+      gap: calc(4 * var(--px));
+      align-items: flex-start;
+    }
+    
+    .whatsapp-info svg {
+      width: calc(32 * var(--px));
+      height: calc(32 * var(--px));
+      flex-shrink: 0;
+    }
+    
+    .whatsapp-info span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.01 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    /* Passenger Selection */
+    .passenger-alert {
+      padding: calc(8 * var(--px)) calc(16 * var(--px)) calc(16 * var(--px));
+    }
+    
+    .passenger-alert p {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(16 * var(--px));
+      line-height: calc(22 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    .passenger-alert span {
+      font-weight: 400;
+    }
+    
+    .passenger-alert .female {
+      color: #c51986;
+    }
+    
+    .passenger-alert .male {
+      color: #285bf3;
+    }
+    
+    .add-passenger-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: calc(4 * var(--px));
+      width: calc(296 * var(--px));
+      height: calc(40 * var(--px));
+      background: #fed9d5;
+      border-radius: calc(999 * var(--px));
+      border: none;
+      cursor: pointer;
+      margin: 0 calc(16 * var(--px)) calc(16 * var(--px));
+    }
+    
+    .add-passenger-btn svg {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    .add-passenger-btn span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    /* List Items */
+    .list-item {
+      display: flex;
+      align-items: center;
+      gap: calc(16 * var(--px));
+      padding: calc(8 * var(--px)) calc(16 * var(--px));
+      min-height: calc(72 * var(--px));
+      border-bottom: calc(1 * var(--px)) solid #e6e6e6;
+    }
+    
+    .list-item:last-child {
+      border-bottom: none;
+    }
+    
+    .list-item-icon {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      flex-shrink: 0;
+    }
+    
+    .list-item-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    
+    .list-item-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(16 * var(--px));
+      line-height: calc(22 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    .list-item-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: rgba(29, 29, 29, 0.64);
+    }
+    
+    .list-item-action {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    /* View More */
+    .view-more-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: calc(4 * var(--px));
+      padding: calc(8 * var(--px));
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    
+    .view-more-btn svg {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    .view-more-btn span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+      text-decoration: underline;
+    }
+    
+    /* Assurance Card */
+    .assurance-value {
+      background: #f9fafb;
+      border-radius: calc(12 * var(--px));
+      padding: calc(12 * var(--px)) calc(16 * var(--px));
+      margin: 0 calc(16 * var(--px));
+      text-align: center;
+    }
+    
+    .assurance-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    .assurance-amount {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(28 * var(--px));
+      line-height: calc(36 * var(--px));
+      letter-spacing: calc(-0.59 * var(--px));
+      color: #007b28;
+      margin: calc(4 * var(--px)) 0;
+    }
+    
+    .assurance-breakdown {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+    
+    .assurance-terms {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.01 * var(--px));
+      color: rgba(29, 29, 29, 0.64);
+      text-align: center;
+      padding: calc(8 * var(--px)) calc(32 * var(--px));
+      margin: 0;
+    }
+    
+    .assurance-terms a {
+      color: #5258e4;
+      font-weight: 500;
+      text-decoration: underline;
+    }
+    
+    /* Option Cards */
+    .option-cards {
+      display: flex;
+      flex-direction: column;
+      gap: calc(12 * var(--px));
+      padding: calc(8 * var(--px)) calc(16 * var(--px)) calc(16 * var(--px));
+    }
+    
+    .option-card {
+      border: calc(1 * var(--px)) solid #b0b0b0;
+      border-radius: calc(16 * var(--px));
+      overflow: hidden;
+    }
+    
+    /* Free Cancellation Card */
+    .fc-value {
+      background: #f9fafb;
+      border-radius: calc(12 * var(--px));
+      padding: calc(12 * var(--px)) calc(16 * var(--px));
+      margin: 0 calc(16 * var(--px));
+      text-align: center;
+    }
+    
+    .fc-amount {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(28 * var(--px));
+      line-height: calc(36 * var(--px));
+      letter-spacing: calc(-0.59 * var(--px));
+      color: #007b28;
+    }
+    
+    .fc-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: rgba(29, 29, 29, 0.64);
+    }
+    
+    /* Free Tag */
+    .free-tag {
+      background: #e2ebff;
+      border-radius: calc(8 * var(--px));
+      padding: 0 calc(8 * var(--px));
+      height: calc(24 * var(--px));
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .free-tag span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.01 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    .option-with-tag {
+      position: relative;
+    }
+    
+    .option-tag-wrapper {
+      background: #adf2b3;
+      border-radius: calc(8 * var(--px)) calc(8 * var(--px)) 0 0;
+      display: inline-flex;
+    }
+    
+    .option-card-tagged {
+      background: #adf2b3;
+      border-radius: 0 calc(16 * var(--px)) calc(16 * var(--px)) calc(16 * var(--px));
+      overflow: hidden;
+    }
+    
+    .option-card-tagged .option-card-inner {
+      background: white;
+      border: calc(1 * var(--px)) solid #e6e6e6;
+      border-radius: calc(16 * var(--px));
+    }
+    
+    /* GST Card */
+    .gst-card {
+      padding: calc(8 * var(--px)) calc(16 * var(--px));
+      display: flex;
+      align-items: center;
+      min-height: calc(56 * var(--px));
+    }
+    
+    .gst-text {
+      flex: 1;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(16 * var(--px));
+      line-height: calc(22 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    .gst-text .optional {
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(29, 29, 29, 0.64);
+    }
+    
+    /* redBus Cares */
+    .rcare-item {
+      display: flex;
+      align-items: flex-start;
+      gap: calc(16 * var(--px));
+      padding: calc(12 * var(--px)) calc(16 * var(--px));
+      min-height: calc(88 * var(--px));
+    }
+    
+    .rcare-icon {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      flex-shrink: 0;
+      background: #d63941;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .rcare-text {
+      flex: 1;
+    }
+    
+    .rcare-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(16 * var(--px));
+      line-height: calc(22 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    .rcare-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: rgba(29, 29, 29, 0.64);
+      margin: 0;
+    }
+    
+    .rcare-subtitle .green {
+      color: #007b28;
+    }
+    
+    /* Terms */
+    .terms-section {
+      text-align: center;
+      padding: calc(4 * var(--px)) 0;
+    }
+    
+    .terms-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    .terms-links {
+      display: flex;
+      justify-content: center;
+      gap: calc(16 * var(--px));
+    }
+    
+    .terms-link {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #5258e4;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: calc(14 * var(--px)) calc(12 * var(--px));
+    }
+    
+    /* Bottom Footer - NOT sticky, scrolls with content */
+    .bottom-footer {
+      width: calc(360 * var(--px));
+      background: white;
+      border-top: calc(1 * var(--px)) solid #e6e6e6;
+      padding: 0 calc(16 * var(--px)) calc(8 * var(--px));
+      margin-top: calc(12 * var(--px));
+    }
+    
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: calc(8 * var(--px)) 0;
+    }
+    
+    .price-label {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    
+    .price-label-main {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    .price-label-sub {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.01 * var(--px));
+      color: rgba(29, 29, 29, 0.64);
+    }
+    
+    .price-value {
+      display: flex;
+      align-items: center;
+      gap: calc(8 * var(--px));
+    }
+    
+    .price-values {
+      display: flex;
+      align-items: baseline;
+      gap: calc(4 * var(--px));
+    }
+    
+    .price-old {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: rgba(29, 29, 29, 0.64);
+      text-decoration: line-through;
+    }
+    
+    .price-current {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(22 * var(--px));
+      line-height: calc(28 * var(--px));
+      letter-spacing: calc(-0.4 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    .price-expand {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    .continue-btn {
+      width: 100%;
+      height: calc(48 * var(--px));
+      background: #d63941;
+      border: none;
+      border-radius: calc(999 * var(--px));
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .continue-btn span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(16 * var(--px));
+      line-height: calc(22 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      color: #fdfdfd;
+    }
+    
+    /* Home Indicator */
+    .home-indicator {
+      display: flex;
+      justify-content: center;
+      padding: calc(8 * var(--px)) 0;
+    }
+    
+    .home-indicator-bar {
+      width: calc(108 * var(--px));
+      height: calc(4 * var(--px));
+      background: black;
+      border-radius: calc(12 * var(--px));
+    }
+    
+    /* Radio styles */
+    .radio-unselected {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      border: calc(2 * var(--px)) solid #b0b0b0;
+      border-radius: 50%;
+      box-sizing: border-box;
+    }
+    
+    .radio-selected {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      border: calc(2 * var(--px)) solid #d63941;
+      border-radius: 50%;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .radio-selected::after {
+      content: '';
+      width: calc(12 * var(--px));
+      height: calc(12 * var(--px));
+      background: #d63941;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="screen-container">
+      <!-- Top Navigation -->
+      <nav class="top-nav">
+        <div class="nav-content">
+          <button class="back-btn" onclick="history.back()">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M19 12H5M12 19L5 12L12 5" stroke="#1d1d1d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="nav-text">
+            <h1 class="nav-title">Passenger information</h1>
+            <p class="nav-subtitle">Bangalore → Chennai</p>
+          </div>
+        </div>
+      </nav>
+      
+      <!-- Trip Summary -->
+      <div class="trip-summary">
+        <div class="trip-header">
+          <div class="trip-header-line"></div>
+          <span class="trip-header-text">Onward trip · Sri Krishna Travels</span>
+          <div class="trip-header-line"></div>
+        </div>
+        
+        <div class="trip-details">
+          <div class="trip-info">
+            <span class="trip-date">Mon, 27 Jan · 20:15</span>
+            <span class="trip-location">Madiwala</span>
+            <span class="trip-location">Bangalore</span>
+          </div>
+          <div class="trip-arrow">
+            <svg viewBox="0 0 20 13" fill="none">
+              <path d="M13.5 1L19 6.5M19 6.5L13.5 12M19 6.5H1" stroke="#1d1d1d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="trip-info right">
+            <span class="trip-date">Tue, 28 Jan · 05:45</span>
+            <span class="trip-location">Sriperumbudur</span>
+            <span class="trip-location">Chennai</span>
+          </div>
+        </div>
+        
+        <div class="trip-footer">
+          <div class="seat-tag">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M5 11V7C5 5.89543 5.89543 5 7 5H17C18.1046 5 19 5.89543 19 7V11" stroke="#285bf3" stroke-width="1.5"/>
+              <path d="M4 11H20V17C20 18.1046 19.1046 19 18 19H6C4.89543 19 4 18.1046 4 17V11Z" stroke="#285bf3" stroke-width="1.5"/>
+              <path d="M8 19V21M16 19V21" stroke="#285bf3" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>2 seats</span>
+          </div>
+          <button class="view-details-btn">View details</button>
+        </div>
+      </div>
+      
+      <!-- Content -->
+      <div class="content">
+        <!-- Passenger Contact Details -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-wrap">
+              <h2 class="card-title">Passenger contact details</h2>
+              <p class="card-subtitle">We'll send ticket updates here</p>
+            </div>
+            <span class="view-details-btn" style="padding: 0;">Edit</span>
+          </div>
+          
+          <div class="contact-fields">
+            <div class="contact-field">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="rgba(29,29,29,0.64)" stroke-width="1.5"/>
+                <path d="M22 6L12 13L2 6" stroke="rgba(29,29,29,0.64)" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <span>name@email.com</span>
+            </div>
+            <div class="contact-field">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M22 16.92V19.92C22 20.48 21.56 20.96 21 21C14.08 21.5 7.5 18.5 3.5 13.5C0.5 9.5 -0.5 4.5 3 3C3.44 2.96 3.92 3.04 4.32 3.32L7.92 5.92C8.32 6.2 8.52 6.68 8.44 7.16L7.52 11.08C7.44 11.56 7.68 12.04 8.12 12.28L11.72 14.28C12.16 14.52 12.32 15.04 12.12 15.48L10.52 19.08C10.32 19.56 10.52 20.08 10.96 20.28" stroke="rgba(29,29,29,0.64)" stroke-width="1.5"/>
+              </svg>
+              <span>+91 00000 00000</span>
+            </div>
+            <div class="contact-field">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 5.02944 7.02944 1 12 1C16.9706 1 21 5.02944 21 10Z" stroke="rgba(29,29,29,0.64)" stroke-width="1.5"/>
+                <circle cx="12" cy="10" r="3" stroke="rgba(29,29,29,0.64)" stroke-width="1.5"/>
+              </svg>
+              <span>State</span>
+            </div>
+          </div>
+          
+          <div class="whatsapp-info">
+            <svg viewBox="0 0 32 32" fill="none">
+              <path d="M16 3C8.82 3 3 8.82 3 16C3 18.47 3.68 20.79 4.87 22.79L3 29L9.37 27.18C11.3 28.25 13.58 28.92 16 28.92C23.18 28.92 29 23.1 29 16C29 8.82 23.18 3 16 3Z" fill="#25D366"/>
+              <path d="M22.5 19.1C22.2 18.95 20.65 18.2 20.4 18.1C20.15 18 19.95 17.95 19.75 18.25C19.55 18.55 18.95 19.25 18.8 19.45C18.65 19.65 18.45 19.7 18.15 19.55C17.85 19.4 16.85 19.1 15.65 18.05C14.7 17.2 14.1 16.15 13.95 15.85C13.8 15.55 13.95 15.4 14.1 15.25C14.2 15.15 14.4 14.95 14.55 14.8C14.7 14.65 14.75 14.55 14.85 14.35C14.95 14.15 14.9 13.95 14.85 13.8C14.8 13.65 14.2 12.1 14 11.5C13.8 10.9 13.6 11 13.45 11C13.3 11 13.1 11 12.9 11C12.7 11 12.4 11.1 12.15 11.4C11.9 11.7 11.1 12.45 11.1 13.95C11.1 15.45 12.2 16.85 12.35 17.05C12.5 17.25 14.15 19.9 16.7 21.2C19.25 22.5 19.25 22.1 19.75 22.05C20.25 22 21.55 21.3 21.75 20.55C21.95 19.8 21.95 19.15 21.9 19.05C21.85 18.95 21.65 18.9 21.35 18.75L22.5 19.1Z" fill="white"/>
+            </svg>
+            <span>WhatsApp communication enabled</span>
+          </div>
+        </div>
+        
+        <!-- Select Passengers -->
+        <div class="card">
+          <div class="card-header card-header-large">
+            <div class="card-title-wrap">
+              <h2 class="card-title card-title-large">Select passengers</h2>
+              <p class="card-subtitle">0/2 selected</p>
+            </div>
+          </div>
+          
+          <div class="passenger-alert">
+            <p>Select 2 passengers</p>
+            <p><span>(</span><span class="female">1 female</span><span>, </span><span class="male">1 male</span><span> minimum)</span></p>
+          </div>
+          
+          <div style="border-bottom: 1px solid #e6e6e6; padding-bottom: calc(16 * var(--px));">
+            <button class="add-passenger-btn">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M16 21V19C16 16.79 14.21 15 12 15H5C2.79 15 1 16.79 1 19V21" stroke="#1d1d1d" stroke-width="1.5"/>
+                <circle cx="8.5" cy="7" r="4" stroke="#1d1d1d" stroke-width="1.5"/>
+                <path d="M20 8V14M17 11H23" stroke="#1d1d1d" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <span>Add new passenger</span>
+            </button>
+          </div>
+          
+          <div class="list-item">
+            <div class="list-item-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="8" r="4" stroke="rgba(29,29,29,0.64)" stroke-width="1.5"/>
+                <path d="M20 21C20 16.58 16.42 13 12 13C7.58 13 4 16.58 4 21" stroke="rgba(29,29,29,0.64)" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="list-item-text">
+              <span class="list-item-title">Name Name</span>
+              <span class="list-item-subtitle">Gender, age</span>
+            </div>
+            <div class="radio-unselected"></div>
+          </div>
+          
+          <div class="list-item">
+            <div class="list-item-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="8" r="4" stroke="rgba(29,29,29,0.64)" stroke-width="1.5"/>
+                <path d="M20 21C20 16.58 16.42 13 12 13C7.58 13 4 16.58 4 21" stroke="rgba(29,29,29,0.64)" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="list-item-text">
+              <span class="list-item-title">Name Name</span>
+              <span class="list-item-subtitle">Gender, age</span>
+            </div>
+            <div class="radio-unselected"></div>
+          </div>
+          
+          <button class="view-more-btn">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M6 9L12 15L18 9" stroke="#1d1d1d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>View more</span>
+          </button>
+        </div>
+        
+        <!-- redBus Assurance -->
+        <div class="card">
+          <div class="card-header card-header-large">
+            <div class="card-title-wrap">
+              <h2 class="card-title card-title-large">redBus Assurance</h2>
+              <p class="card-subtitle">₹20 per passenger</p>
+            </div>
+            <svg class="card-action" viewBox="0 0 24 24" fill="none">
+              <path d="M18 15L12 9L6 15" stroke="#1d1d1d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          
+          <div class="assurance-value">
+            <p class="assurance-label">If your bus gets cancelled, you get</p>
+            <p class="assurance-amount">₹3,775</p>
+            <p class="assurance-breakdown">₹3,275 + ₹500 (extra cashback)</p>
+          </div>
+          
+          <p class="assurance-terms">
+            Includes coverage of ₹75,000 for hospitalisation and ₹5,00,000 in case of death, PTD or PPD. <a href="#">Terms and conditions</a>
+          </p>
+          
+          <div class="option-cards">
+            <div class="option-card">
+              <div class="list-item" style="border: none;">
+                <div class="list-item-text">
+                  <span class="list-item-title">Add redBus Assurance</span>
+                  <span class="list-item-subtitle">₹40 for 2 passengers</span>
+                </div>
+                <div class="radio-unselected"></div>
+              </div>
+            </div>
+            
+            <div class="option-card">
+              <div class="list-item" style="border: none; min-height: calc(56 * var(--px));">
+                <div class="list-item-text">
+                  <span class="list-item-title">Don't add redBus Assurance</span>
+                </div>
+                <div class="radio-unselected"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- GST Details -->
+        <div class="card">
+          <div class="gst-card">
+            <span class="gst-text">Enter GST details <span class="optional">(optional)</span></span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="width: calc(24 * var(--px)); height: calc(24 * var(--px));">
+              <path d="M9 18L15 12L9 6" stroke="#1d1d1d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        
+        <!-- Free Cancellation -->
+        <div class="card">
+          <div class="card-header card-header-large">
+            <div class="card-title-wrap">
+              <h2 class="card-title card-title-large">Free Cancellation</h2>
+              <p class="card-subtitle"><span style="color: #007b28; font-weight: 700;">₹0</span> <span style="text-decoration: line-through;">₹50</span> per passenger</p>
+            </div>
+          </div>
+          
+          <div class="fc-value">
+            <p class="fc-amount">100% refund</p>
+            <p class="fc-label">on cancellation</p>
+          </div>
+          
+          <p class="assurance-terms">
+            Cancel anytime up to 6 hours before bus departure time to get a full refund. <a href="#">Terms and conditions</a>
+          </p>
+          
+          <div class="option-cards">
+            <div class="option-with-tag">
+              <div class="option-tag-wrapper">
+                <div class="free-tag"><span>Free on your first booking</span></div>
+              </div>
+              <div class="option-card-tagged">
+                <div class="option-card-inner">
+                  <div class="list-item" style="border: none;">
+                    <div class="list-item-text">
+                      <span class="list-item-title">Add Free cancellation</span>
+                      <span class="list-item-subtitle"><span style="color: #007b28; font-weight: 700;">FREE</span> <span style="text-decoration: line-through;">₹100</span> for 2 passengers</span>
+                    </div>
+                    <div class="radio-unselected"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="option-card">
+              <div class="list-item" style="border: none; min-height: calc(56 * var(--px));">
+                <div class="list-item-text">
+                  <span class="list-item-title">Don't add Free Cancellation</span>
+                </div>
+                <div class="radio-unselected"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- redBus Cares -->
+        <div class="card">
+          <div class="rcare-item">
+            <div class="rcare-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M8 3L9.5 6H12.5L10 8L11 11L8 9L5 11L6 8L3.5 6H6.5L8 3Z" fill="white"/>
+              </svg>
+            </div>
+            <div class="rcare-text">
+              <p class="rcare-title">redBus cares</p>
+              <p class="rcare-subtitle"><span class="green">Support responsible tourism with a</span> ₹5 donation.</p>
+            </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="width: calc(24 * var(--px)); height: calc(24 * var(--px)); flex-shrink: 0;">
+              <path d="M9 18L15 12L9 6" stroke="#1d1d1d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        
+        <!-- Terms -->
+        <div class="terms-section">
+          <p class="terms-text">By clicking 'Pay now', I accept</p>
+          <div class="terms-links">
+            <button class="terms-link">Terms and conditions</button>
+            <button class="terms-link">Privacy policy</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bottom Footer - NOT sticky -->
+      <div class="bottom-footer">
+        <div class="price-row">
+          <div class="price-label">
+            <span class="price-label-main">Amount</span>
+            <span class="price-label-sub">Tax excluded</span>
+          </div>
+          <div class="price-value">
+            <div class="price-values">
+              <span class="price-old">₹1,450</span>
+              <span class="price-current">₹1,305</span>
+            </div>
+            <svg class="price-expand" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="18" height="18" rx="2" stroke="#1d1d1d" stroke-width="1.5"/>
+              <path d="M12 8V16M8 12H16" stroke="#1d1d1d" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        
+        <button class="continue-btn" onclick="window.location.href='payment.html'">
+          <span>Continue</span>
+        </button>
+      </div>
+      
+      <!-- Home Indicator -->
+      <div class="home-indicator">
+        <div class="home-indicator-bar"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
