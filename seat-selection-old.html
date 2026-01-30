@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Select Seats</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/screens/seat-selection.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="screen-container">
+    <!-- Top Navigation -->
+    <header class="top-nav">
+      <!-- Animated Purple Background Circle -->
+      <div class="share-anim-circle"></div>
+      
+      <a href="srp-old.html" class="back-btn">
+        <svg class="back-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <div class="nav-text">
+        <h1>Select seats</h1>
+        <p>Bangalore → Chennai</p>
+      </div>
+      
+      <!-- Animated Promo Text -->
+      <div class="promo-text-container">
+        <p class="promo-line-1">Get 15% refund on this booking</p>
+        <p class="promo-line-2">When 2+ friends book with your link</p>
+      </div>
+      
+      <!-- Straight arrow pointing to share button -->
+      <svg class="promo-arrow" viewBox="0 0 80 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 12 L60 12" stroke="white" stroke-width="3" stroke-linecap="round"/>
+        <path d="M55 4 L68 12 L55 20" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      
+      <button class="share-btn">
+        <img src="assets/share-btn-bg.svg" alt="" class="share-btn-bg">
+        <img src="assets/share-icon.svg" alt="Share" class="share-icon">
+        <img src="assets/share-avatar.png" alt="" class="share-avatar">
+      </button>
+      
+      <!-- Tooltip that appears when seat is selected -->
+      <div class="share-tooltip" id="shareTooltip">
+        <div class="tooltip-notch"></div>
+        <div class="tooltip-content">
+          <span>Yo! Get 15% refund</span>
+          <span>On this booking</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Seat Selection Area -->
+    <main class="seat-area">
+      <div class="decks-container">
+        <!-- Lower Deck -->
+        <div class="deck lower-deck">
+          <div class="deck-header">
+            <span class="deck-title">Lower deck</span>
+            <div class="steering-icon">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="20" r="14" stroke="#b0b0b0" stroke-width="2"/>
+                <circle cx="20" cy="20" r="4" fill="#b0b0b0"/>
+                <path d="M20 6V14M20 26V34M6 20H14M26 20H34" stroke="#b0b0b0" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="seats-grid">
+            <!-- Row 1 -->
+            <div class="seat-column left">
+              <div class="seat sleeper available" data-price="600">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹600</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper available" data-price="600">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹600</span>
+              </div>
+              <div class="seat sleeper available" data-price="450">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹450</span>
+              </div>
+              <div class="seat sleeper available" data-price="450">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹450</span>
+              </div>
+            </div>
+            <!-- Aisle -->
+            <div class="aisle"></div>
+            <!-- Row 2 -->
+            <div class="seat-column right">
+              <div class="seat sleeper available" data-price="600">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹600</span>
+              </div>
+              <div class="seat sleeper available" data-price="600">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹600</span>
+              </div>
+              <div class="seat sleeper available" data-price="600">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹600</span>
+              </div>
+              <div class="seat sleeper male" data-price="450">
+                <div class="seat-body"><div class="pillow"></div><span class="gender-icon">♂</span></div>
+                <span class="seat-price">₹450</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+            </div>
+            <div class="seat-column right">
+              <div class="seat sleeper available" data-price="600">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹600</span>
+              </div>
+              <div class="seat sleeper available" data-price="600">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹600</span>
+              </div>
+              <div class="seat sleeper available" data-price="600">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹600</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper available" data-price="450">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹450</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upper Deck -->
+        <div class="deck upper-deck">
+          <div class="deck-header">
+            <span class="deck-title">Upper deck</span>
+          </div>
+          <div class="seats-grid">
+            <div class="seat-column left">
+              <div class="seat sleeper available" data-price="450">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹450</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper available" data-price="450">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹450</span>
+              </div>
+              <div class="seat sleeper available" data-price="450">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹450</span>
+              </div>
+              <div class="seat sleeper available" data-price="450">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹450</span>
+              </div>
+              <div class="seat sleeper available" data-price="450">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹450</span>
+              </div>
+            </div>
+            <div class="aisle"></div>
+            <div class="seat-column right">
+              <div class="seat sleeper female" data-price="450">
+                <div class="seat-body"><div class="pillow pink"></div><span class="gender-icon">♀</span></div>
+                <span class="seat-price">₹450</span>
+              </div>
+              <div class="seat sleeper available" data-price="450">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹450</span>
+              </div>
+              <div class="seat sleeper available" data-price="450">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹450</span>
+              </div>
+              <div class="seat sleeper male" data-price="450">
+                <div class="seat-body"><div class="pillow blue"></div><span class="gender-icon">♂</span></div>
+                <span class="seat-price">₹450</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+            </div>
+            <div class="seat-column right">
+              <div class="seat sleeper sold female-sold">
+                <div class="seat-body"><span class="gender-icon">♀</span></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper available" data-price="450">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹450</span>
+              </div>
+              <div class="seat sleeper available" data-price="450">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹450</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper available" data-price="450">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹450</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Offer Ticker -->
+    <div class="offer-ticker">
+      <!-- Card 1: Exclusive 5% OFF -->
+      <div class="offer-chip">
+        <div class="offer-card">
+          <div class="offer-content">
+            <div class="coupon-tag yellow">
+              <div class="coupon-notch left">
+                <div class="notch-corner tl"></div>
+                <div class="notch-middle"></div>
+                <div class="notch-middle"></div>
+                <div class="notch-corner bl"></div>
+              </div>
+              <div class="coupon-text">
+                <span class="coupon-label">EXCLUSIVE</span>
+                <span class="coupon-value">5% OFF</span>
+              </div>
+              <div class="coupon-notch right">
+                <div class="notch-corner tr"></div>
+                <div class="notch-middle"></div>
+                <div class="notch-middle"></div>
+                <div class="notch-corner br"></div>
+              </div>
+            </div>
+            <p class="offer-text">Select seat to see discount</p>
+          </div>
+          <div class="offer-btn-wrap">
+            <button class="offer-btn active">Apply</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 2: Group 15% OFF -->
+      <div class="offer-chip">
+        <div class="offer-card purple-card">
+          <div class="offer-content">
+            <div class="coupon-tag purple">
+              <div class="coupon-notch left">
+                <div class="notch-corner tl"></div>
+                <div class="notch-middle"></div>
+                <div class="notch-middle"></div>
+                <div class="notch-corner bl"></div>
+              </div>
+              <div class="coupon-text">
+                <span class="coupon-label">GROUP</span>
+                <span class="coupon-value">15% OFF</span>
+              </div>
+              <div class="coupon-notch right">
+                <div class="notch-corner tr"></div>
+                <div class="notch-middle"></div>
+                <div class="notch-middle"></div>
+                <div class="notch-corner br"></div>
+              </div>
+            </div>
+            <p class="offer-text">Select at least 3 seats</p>
+          </div>
+          <div class="offer-btn-wrap">
+            <button class="offer-btn disabled">3 left</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Sheet -->
+    <div class="bottom-sheet">
+      <div class="sheet-handle">
+        <div class="handle-bar"></div>
+      </div>
+      <div class="sheet-content">
+        <div class="bus-info-header">
+          <div class="bus-details">
+            <h2>Sri Krishna Travels</h2>
+            <p>22:00 - 04:20  ·  Fri, 27 Jun</p>
+          </div>
+          <div class="rating-badge">
+            <div class="rating-value">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5L6 1Z" fill="white"/>
+              </svg>
+              <span>4.4</span>
+            </div>
+            <span class="rating-count">0000</span>
+          </div>
+        </div>
+        <div class="bus-meta">
+          <div class="bus-photo">
+            <img src="assets/bus-photo.png" alt="Bus">
+          </div>
+          <div class="meta-tags">
+            <div class="meta-tag">
+              <span class="meta-title">Highly on-time</span>
+              <span class="meta-desc">9 of 10 past trips</span>
+            </div>
+            <div class="meta-tag">
+              <span class="meta-title">New bus</span>
+              <span class="meta-desc">6 months old</span>
+            </div>
+            <div class="meta-tag primo-tag">
+              <img src="assets/primo-logo.png" alt="Primo" class="primo-mini">
+              <span class="meta-desc">A rising star</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Seat Selection Panel - Shows when seat is selected -->
+    <div class="seat-selection-panel" id="seatSelectionPanel">
+      <div class="selection-row">
+        <div class="selection-left">
+          <span class="seats-selected-text">1 seat selected</span>
+        </div>
+        <div class="selection-right">
+          <div class="price-info">
+            <span class="discount-badge">5% OFF</span>
+            <span class="original-price">₹1,450</span>
+            <span class="current-price">₹1,305</span>
+          </div>
+          <button class="add-seat-btn">
+            <img src="assets/add-box-icon.svg" alt="Add">
+          </button>
+        </div>
+      </div>
+      <div class="selection-cta-row">
+        <button class="selection-cta-btn" onclick="window.location.href='bp-dp-selection.html'">Select boarding and dropping points</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intro Bottom Sheet Overlay - Auto opens on page load -->
+  <div class="intro-sheet-overlay" id="introSheetOverlay">
+    <div class="intro-sheet-scrim"></div>
+    <div class="intro-sheet" id="introSheet">
+      <!-- Header with drag handle and close -->
+      <div class="intro-sheet-header">
+        <div class="intro-drag-handle"></div>
+        <button class="intro-sheet-close" id="introSheetClose">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 6L18 18" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Content with gradient background -->
+      <div class="intro-sheet-content">
+        <!-- Title Section -->
+        <div class="intro-title-section">
+          <!-- Bank account tag positioned to the right -->
+          <div class="intro-bank-tag-wrapper">
+            <img src="assets/final-sheet/arrow-curved.svg" class="intro-bank-arrow" alt="">
+            <div class="intro-bank-tag">
+              <span>Directly in your bank account</span>
+            </div>
+          </div>
+          <h1 class="intro-headline">Get 15% refund on this bus booking</h1>
+          <p class="intro-subtitle">When 2 or more friends book with your link</p>
+        </div>
+        
+        <!-- Friends Avatars -->
+        <div class="intro-friends-section">
+          <div class="intro-friend-item">
+            <div class="intro-friend-avatar you-avatar">
+              <img src="assets/final-sheet/you-avatar-exact.png" alt="You">
+            </div>
+            <div class="intro-friend-text">
+              <span class="intro-friend-label">You get</span>
+              <span class="intro-friend-refund">15% refund</span>
+            </div>
+          </div>
+          <div class="intro-friend-item">
+            <div class="intro-friend-avatar outlined">
+              <img src="assets/final-sheet/add-user-exact.svg" class="intro-add-user-icon" alt="">
+              <div class="intro-friend-badge">
+                <img src="assets/final-sheet/plus-exact.svg" alt="">
+              </div>
+            </div>
+            <div class="intro-friend-text">
+              <span class="intro-friend-label">Friend 1 gets</span>
+              <span class="intro-friend-refund">15% refund</span>
+            </div>
+          </div>
+          <div class="intro-friend-item">
+            <div class="intro-friend-avatar outlined">
+              <img src="assets/final-sheet/add-user-exact.svg" class="intro-add-user-icon" alt="">
+              <div class="intro-friend-badge">
+                <img src="assets/final-sheet/plus-exact.svg" alt="">
+              </div>
+            </div>
+            <div class="intro-friend-text">
+              <span class="intro-friend-label">Friend 2 gets</span>
+              <span class="intro-friend-refund">15% refund</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- How it works -->
+        <div class="intro-how-it-works">
+          <div class="intro-how-divider">
+            <img src="assets/final-sheet/shape-left-star.svg" class="intro-divider-shape" alt="">
+            <span class="intro-divider-text">How it works</span>
+            <img src="assets/final-sheet/shape-right-star.svg" class="intro-divider-shape" alt="">
+          </div>
+          
+          <div class="intro-video-container">
+            <video id="introVideo" autoplay muted loop playsinline webkit-playsinline>
+              <source src="assets/share-animation.mp4" type="video/mp4">
+            </video>
+            <div class="link-shared-badge" id="linkSharedBadge">
+              <svg viewBox="0 0 16 16" fill="none">
+                <path d="M13.3337 4L6.00033 11.3333L2.66699 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Link shared</span>
+            </div>
+          </div>
+          <p class="intro-step-text" id="introStepText">Share this link & complete your booking</p>
+          
+          <!-- List wrapper with 16px padding -->
+          <div class="intro-list-wrapper">
+            <div class="intro-list-row">
+              <span class="intro-list-label">Let them see my seat number</span>
+              <button class="intro-toggle active" id="introToggle">
+                <div class="intro-toggle-puck"></div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Share Button Fixed at Bottom -->
+      <div class="intro-cta-fixed">
+<button class="intro-share-btn">
+                <img src="assets/final-sheet/whatsapp-exact.svg" alt="">
+                <span>Share</span>
+              </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Native Share Sheet Simulation -->
+  <div class="native-share-overlay" id="nativeShareOverlay">
+    <div class="native-share-scrim"></div>
+    <div class="native-share-sheet">
+      <div class="native-share-header">
+        <span>Sharing text</span>
+      </div>
+      <div class="native-share-content">
+        <div class="share-contacts">
+          <div class="share-contact">
+            <div class="contact-avatar my-status">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="#25D366" stroke-width="2" stroke-dasharray="4 2"/>
+                <circle cx="12" cy="12" r="6" fill="#25D366"/>
+              </svg>
+            </div>
+            <span>My status</span>
+          </div>
+          <div class="share-contact placeholder"></div>
+          <div class="share-contact placeholder"></div>
+          <div class="share-contact placeholder"></div>
+        </div>
+        <div class="share-apps">
+          <div class="share-app" id="quickShareBtn">
+            <div class="app-icon quick-share">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 8C19.6569 8 21 6.65685 21 5C21 3.34315 19.6569 2 18 2C16.3431 2 15 3.34315 15 5C15 5.17681 15.0172 5.34962 15.0499 5.51675L8.58 9.2C7.94 8.47 7.02 8 6 8C4.34 8 3 9.34 3 11C3 12.66 4.34 14 6 14C7.02 14 7.94 13.53 8.58 12.8L15.05 16.48C15.02 16.65 15 16.82 15 17C15 18.66 16.34 20 18 20C19.66 20 21 18.66 21 17C21 15.34 19.66 14 18 14C16.98 14 16.06 14.47 15.42 15.2L8.95 11.52C8.98 11.35 9 11.18 9 11C9 10.82 8.98 10.65 8.95 10.48L15.42 6.8C16.06 7.53 16.98 8 18 8Z" fill="#4285F4"/>
+              </svg>
+            </div>
+            <span>Quick Share</span>
+          </div>
+          <div class="share-app" id="whatsappShareBtn">
+            <div class="app-icon whatsapp">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#25D366"/>
+              </svg>
+            </div>
+            <span>WhatsApp</span>
+          </div>
+          <div class="share-app">
+            <div class="app-icon gmail">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="#EA4335"/>
+              </svg>
+            </div>
+            <span>Gmail</span>
+          </div>
+          <div class="share-app">
+            <div class="app-icon rapido">
+              <span style="color: #FFCC00; font-weight: bold; font-size: 10px;">rapido</span>
+            </div>
+            <span>Rapido</span>
+          </div>
+          <div class="share-app">
+            <div class="app-icon instagram">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2C14.717 2 15.056 2.01 16.122 2.06C17.187 2.11 17.912 2.277 18.55 2.525C19.21 2.779 19.766 3.123 20.322 3.678C20.8305 4.1779 21.224 4.78259 21.475 5.45C21.722 6.087 21.89 6.813 21.94 7.878C21.987 8.944 22 9.283 22 12C22 14.717 21.99 15.056 21.94 16.122C21.89 17.187 21.722 17.912 21.475 18.55C21.2247 19.2178 20.8311 19.8226 20.322 20.322C19.822 20.8303 19.2173 21.2238 18.55 21.475C17.913 21.722 17.187 21.89 16.122 21.94C15.056 21.987 14.717 22 12 22C9.283 22 8.944 21.99 7.878 21.94C6.813 21.89 6.088 21.722 5.45 21.475C4.78233 21.2245 4.17753 20.8309 3.678 20.322C3.16941 19.8222 2.77593 19.2175 2.525 18.55C2.277 17.913 2.11 17.187 2.06 16.122C2.013 15.056 2 14.717 2 12C2 9.283 2.01 8.944 2.06 7.878C2.11 6.812 2.277 6.088 2.525 5.45C2.77524 4.78218 3.1688 4.17732 3.678 3.678C4.17767 3.16923 4.78243 2.77573 5.45 2.525C6.088 2.277 6.812 2.11 7.878 2.06C8.944 2.013 9.283 2 12 2ZM12 7C10.6739 7 9.40215 7.52678 8.46447 8.46447C7.52678 9.40215 7 10.6739 7 12C7 13.3261 7.52678 14.5979 8.46447 15.5355C9.40215 16.4732 10.6739 17 12 17C13.3261 17 14.5979 16.4732 15.5355 15.5355C16.4732 14.5979 17 13.3261 17 12C17 10.6739 16.4732 9.40215 15.5355 8.46447C14.5979 7.52678 13.3261 7 12 7ZM18.5 6.75C18.5 6.41848 18.3683 6.10054 18.1339 5.86612C17.8995 5.6317 17.5815 5.5 17.25 5.5C16.9185 5.5 16.6005 5.6317 16.3661 5.86612C16.1317 6.10054 16 6.41848 16 6.75C16 7.08152 16.1317 7.39946 16.3661 7.63388C16.6005 7.8683 16.9185 8 17.25 8C17.5815 8 17.8995 7.8683 18.1339 7.63388C18.3683 7.39946 18.5 7.08152 18.5 6.75ZM12 9C12.7956 9 13.5587 9.31607 14.1213 9.87868C14.6839 10.4413 15 11.2044 15 12C15 12.7956 14.6839 13.5587 14.1213 14.1213C13.5587 14.6839 12.7956 15 12 15C11.2044 15 10.4413 14.6839 9.87868 14.1213C9.31607 13.5587 9 12.7956 9 12C9 11.2044 9.31607 10.4413 9.87868 9.87868C10.4413 9.31607 11.2044 9 12 9Z" fill="url(#instagram-gradient)"/>
+                <defs>
+                  <linearGradient id="instagram-gradient" x1="2" y1="22" x2="22" y2="2">
+                    <stop stop-color="#FFDC80"/>
+                    <stop offset="0.5" stop-color="#F56040"/>
+                    <stop offset="1" stop-color="#833AB4"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span>Instagram Messages</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WhatsApp Screen Simulation -->
+  <div class="whatsapp-screen-overlay" id="whatsappScreenOverlay">
+    <div class="whatsapp-screen" id="whatsappScreen">
+      <!-- Header -->
+      <div class="whatsapp-header">
+        <button class="whatsapp-back-btn" id="whatsappBackBtn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="whatsapp-contact-avatar"></div>
+        <span class="whatsapp-contact-name">Rohan</span>
+      </div>
+      
+      <!-- Chat Content -->
+      <div class="whatsapp-chat-content">
+        <!-- Today Badge -->
+        <div class="whatsapp-today-badge">Today</div>
+        
+        <!-- Message Bubble -->
+        <div class="whatsapp-message">
+          <div class="message-header">
+            <img src="assets/whatsapp-message-img.png" class="message-img" alt="">
+            <span class="message-title">Get 15% refund on this bus booking</span>
+          </div>
+          <div class="message-body">
+            <p>Bro, quick one 😄</p>
+            <p>I'm booking a bus to Chennai on Fri, 27 Jun · 22:00</p>
+            <p>Come join me and we can get <strong>15% refund 💸</strong></p>
+            <p><br>How it works:</p>
+            <p>1. You, me + one more person (total 3) book the same bus using this link</p>
+            <p>2. All of us get 15% refund after the trip ends 💸</p>
+            <p class="message-link">👉 https://redbus.in/invite/ABC123</p>
+          </div>
+          <div class="message-tail"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Acknowledgment Overlay - Hurray invite sent -->
+  <div class="ack-overlay" id="ackOverlay">
+    <div class="ack-scrim"></div>
+    <img src="assets/celebration.png" class="ack-celebration" alt="">
+    <img src="assets/confetti.gif" class="ack-confetti" alt="">
+    <div class="ack-text">
+      <h1 class="ack-title">Hurray, invite sent</h1>
+      <p class="ack-subtitle">Now choose your preferred seat and complete the payment</p>
+    </div>
+  </div>
+
+  <!-- Share Bottom Sheet Overlay -->
+  <div class="share-sheet-overlay" id="shareSheetOverlay">
+    <div class="share-sheet-scrim"></div>
+    <div class="share-sheet" id="shareSheet">
+      <!-- Header with Close -->
+      <div class="share-sheet-header" id="shareSheetHeader">
+        <div class="share-sheet-handle"></div>
+        <button class="share-sheet-close" id="shareSheetClose">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18M6 6L18 18" stroke="#1d1d1d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- VIDEO STATE: Content with Video -->
+      <div class="share-sheet-content share-sheet-video-state" id="shareVideoState">
+        <div class="share-video-container">
+          <video id="shareVideo" autoplay muted loop playsinline webkit-playsinline>
+            <source src="assets/share-animation.mp4" type="video/mp4">
+          </video>
+        </div>
+        <h2 class="share-sheet-title" id="shareSheetTitle">Share this link & complete your booking</h2>
+      </div>
+      
+      <!-- FINAL STATE: Detailed Info -->
+      <div class="share-sheet-content share-sheet-final-state" id="shareFinalState">
+        <!-- Title Section -->
+        <div class="final-title-section">
+          <div class="bank-tag-wrapper">
+            <img src="assets/final-sheet/arrow-icon.svg" class="bank-arrow" alt="">
+            <div class="bank-tag">
+              <span>Directly in your bank account</span>
+            </div>
+          </div>
+          <h1 class="final-headline">Get 15% refund on this bus booking</h1>
+          <p class="final-subtitle">When 2 or more friends book with your link</p>
+        </div>
+        
+        <!-- Friends Avatars -->
+        <div class="friends-section">
+          <div class="friend-item you">
+            <div class="friend-avatar you-avatar">
+              <img src="assets/final-sheet/you-avatar.png" alt="You">
+            </div>
+            <span class="friend-label">You get</span>
+            <span class="friend-refund">15% refund</span>
+          </div>
+          <div class="friend-item">
+            <div class="friend-avatar outlined">
+              <img src="assets/final-sheet/add-user.svg" class="add-user-icon" alt="">
+              <div class="friend-badge">
+                <img src="assets/final-sheet/plus.svg" alt="">
+              </div>
+            </div>
+            <span class="friend-label">Friend 1 gets</span>
+            <span class="friend-refund">15% refund</span>
+          </div>
+          <div class="friend-item">
+            <div class="friend-avatar outlined">
+              <img src="assets/final-sheet/add-user.svg" class="add-user-icon" alt="">
+              <div class="friend-badge">
+                <img src="assets/final-sheet/plus.svg" alt="">
+              </div>
+            </div>
+            <span class="friend-label">Friend 2 gets</span>
+            <span class="friend-refund">15% refund</span>
+          </div>
+        </div>
+        
+        <!-- How it works -->
+        <div class="how-it-works">
+          <div class="how-divider">
+            <img src="assets/final-sheet/shape-left.svg" class="divider-shape" alt="">
+            <span class="divider-text">How it works</span>
+            <img src="assets/final-sheet/shape-right.svg" class="divider-shape" alt="">
+          </div>
+          
+          <div class="steps-list">
+            <div class="step-item">
+              <div class="step-icon-wrapper">
+                <img src="assets/final-sheet/step1.png" alt="">
+              </div>
+              <p>Share this link & complete your booking</p>
+            </div>
+            <div class="step-item">
+              <div class="step-icon-wrapper">
+                <img src="assets/final-sheet/step2.png" alt="">
+              </div>
+              <p>2 or more friends book the same bus</p>
+            </div>
+            <div class="step-item">
+              <div class="step-icon-wrapper">
+                <img src="assets/final-sheet/step3.png" alt="">
+              </div>
+              <p>Everyone gets 15% refund after the trip</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Share Button Fixed at Bottom -->
+      <div class="share-cta-fixed" id="shareCta">
+        <button class="whatsapp-share-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="white"/>
+          </svg>
+          <span>Share</span>
+        </button>
+        <div class="home-indicator"></div>
+      </div>
+      
+      <!-- Bottom Home Indicator -->
+      <div class="share-sheet-bottom">
+        <div class="share-sheet-indicator"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // =============================================
+      // PROPORTIONAL SCALING FOR BOTTOM SHEET
+      // =============================================
+      function calculateSheetScale() {
+        const designWidth = 360;
+        const designSheetHeight = 580; // Reduced design height (smaller video)
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        const maxSheetHeight = screenHeight * 0.95; // Maximum 95% of screen
+        
+        // Width-based scale (same as --px)
+        const widthScale = screenWidth / designWidth;
+        
+        // Height-based scale - what scale would make content fit in max height
+        const heightScale = maxSheetHeight / designSheetHeight;
+        
+        // Use the smaller scale to ensure content fits both dimensions
+        const sheetScale = Math.min(widthScale, heightScale);
+        
+        // Set the CSS variable on intro sheet
+        const introSheet = document.getElementById('introSheet');
+        if (introSheet) {
+          introSheet.style.setProperty('--px-sheet', sheetScale + 'px');
+        }
+      }
+      
+      // Calculate on load and resize
+      calculateSheetScale();
+      window.addEventListener('resize', calculateSheetScale);
+      
+      // =============================================
+      // INTRO BOTTOM SHEET - Auto opens on page load
+      // =============================================
+      const introOverlay = document.getElementById('introSheetOverlay');
+      const introClose = document.getElementById('introSheetClose');
+      const introScrim = introOverlay.querySelector('.intro-sheet-scrim');
+      const topShareBtn = document.querySelector('.top-nav .share-btn');
+      
+      // Rotating text configuration
+      const introStepText = document.getElementById('introStepText');
+      const introTexts = [
+        "Share this link & complete your booking",
+        "2 or more friends book the same bus",
+        "Everyone gets 15% refund after the trip"
+      ];
+      let introTextIndex = 0;
+      let introTextInterval;
+      
+// Start text rotation with smooth fade animation
+            function startIntroTextRotation() {
+              introTextInterval = setInterval(function() {
+                // Fade out
+                introStepText.classList.add('fade-out');
+                
+                // Wait for fade out to fully complete (350ms to be safe), then change text
+                setTimeout(function() {
+                  introTextIndex = (introTextIndex + 1) % introTexts.length;
+                  introStepText.textContent = introTexts[introTextIndex];
+                  
+                  // Fade in the new text
+                  introStepText.classList.remove('fade-out');
+                }, 350);
+              }, 2500); // 2500ms delay between animations
+            }
+      
+      // Get intro video element
+      const introVideoElement = document.getElementById('introVideo');
+      
+      // Function to open intro sheet and reset video
+      function openIntroSheetWithVideo() {
+        introOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        startIntroTextRotation();
+        
+        // Reset video to beginning and play
+        if (introVideoElement) {
+          introVideoElement.currentTime = 0;
+          introVideoElement.play();
+        }
+      }
+      
+      // Auto-open intro sheet after a brief delay
+      setTimeout(function() {
+        openIntroSheetWithVideo();
+      }, 300);
+      
+// Close intro sheet with morph animation to share button
+            function closeIntroSheet() {
+              clearInterval(introTextInterval);
+              
+              // Pause the video
+              if (introVideoElement) {
+                introVideoElement.pause();
+              }
+              
+              const introSheet = document.getElementById('introSheet');
+              
+              // Start morph animation
+              introSheet.classList.add('morphing');
+              
+              // After animation completes, reset everything
+              setTimeout(function() {
+                introOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Reset sheet styles
+                introSheet.classList.remove('morphing');
+                
+                // Reset text
+                introTextIndex = 0;
+                introStepText.textContent = introTexts[0];
+                
+                // Immediately flip to show avatar
+                topShareBtn.classList.add('flipping', 'show-avatar');
+                
+                // After flip animation (500ms) + 800ms showing avatar, flip back
+                setTimeout(function() {
+                  // Remove animation class only
+                  topShareBtn.classList.remove('flipping');
+                  
+                  // Force reflow
+                  topShareBtn.offsetHeight;
+                  
+                  // Start flip back - add show-share first, then remove show-avatar
+                  topShareBtn.classList.add('flipping', 'show-share');
+                  
+                  // Remove show-avatar after a tiny delay to prevent flash
+                  setTimeout(function() {
+                    topShareBtn.classList.remove('show-avatar');
+                  }, 10);
+                  
+                  // Clean up after flip back completes
+                  setTimeout(function() {
+                    topShareBtn.classList.remove('flipping', 'show-share');
+                  }, 500);
+                }, 500 + 800);
+              }, 600);
+            }
+            
+            // Close button click
+            introClose.addEventListener('click', closeIntroSheet);
+      
+            // Scrim click to close
+            introScrim.addEventListener('click', closeIntroSheet);
+            
+            // Share button click - open intro sheet
+            topShareBtn.addEventListener('click', function() {
+              openIntroSheetWithVideo();
+            });
+      
+      // Toggle switch functionality
+      const introToggle = document.getElementById('introToggle');
+      if (introToggle) {
+        introToggle.addEventListener('click', function() {
+          introToggle.classList.toggle('active');
+        });
+      }
+      
+      // =============================================
+      // NATIVE SHARE SHEET
+      // =============================================
+      const nativeShareOverlay = document.getElementById('nativeShareOverlay');
+      const nativeShareScrim = nativeShareOverlay.querySelector('.native-share-scrim');
+      const introShareBtn = document.querySelector('.intro-share-btn');
+      const linkSharedBadge = document.getElementById('linkSharedBadge');
+      const whatsappShareBtn = document.getElementById('whatsappShareBtn');
+      
+      // Open native share sheet when intro share button is clicked
+      introShareBtn.addEventListener('click', function() {
+        nativeShareOverlay.classList.add('active');
+      });
+      
+      // Open native share sheet when clicking on friend avatars (outlined ones, not "You")
+      const friendAvatarsOutlined = document.querySelectorAll('.friend-avatar.outlined');
+      friendAvatarsOutlined.forEach(avatar => {
+        avatar.addEventListener('click', function() {
+          nativeShareOverlay.classList.add('active');
+        });
+      });
+      
+      // Close native share sheet when scrim is clicked
+      nativeShareScrim.addEventListener('click', function() {
+        nativeShareOverlay.classList.remove('active');
+      });
+      
+      // Handle WhatsApp share click
+      const whatsappScreenOverlay = document.getElementById('whatsappScreenOverlay');
+      const whatsappBackBtn = document.getElementById('whatsappBackBtn');
+      
+      whatsappShareBtn.addEventListener('click', function() {
+        // Close native share sheet
+        nativeShareOverlay.classList.remove('active');
+        
+        // Open WhatsApp screen
+        whatsappScreenOverlay.classList.add('active');
+      });
+      
+      // =============================================
+      // ACKNOWLEDGMENT OVERLAY
+      // =============================================
+      const ackOverlay = document.getElementById('ackOverlay');
+      const whatsappScreen = document.getElementById('whatsappScreen');
+      
+      function showAcknowledgment() {
+        // Close WhatsApp screen
+        whatsappScreenOverlay.classList.remove('active');
+        
+        // Close the intro bottom sheet if open
+        introOverlay.classList.remove('active');
+        clearInterval(introTextInterval);
+        introVideo.pause();
+        
+        // Reset intro sheet text
+        introTextIndex = 0;
+        introStepText.textContent = introTexts[0];
+        introStepText.classList.remove('fade-in', 'fade-out');
+        
+        // Show acknowledgment over the seat layout
+        ackOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // After 2.5 seconds, hide acknowledgment and show seat layout
+        setTimeout(function() {
+          ackOverlay.classList.remove('active');
+          document.body.style.overflow = '';
+          
+          // Show link shared badge
+          linkSharedBadge.classList.add('active');
+          
+          // Hide badge after 3 seconds
+          setTimeout(function() {
+            linkSharedBadge.classList.remove('active');
+          }, 3000);
+        }, 2500);
+      }
+      
+      // Click anywhere on WhatsApp screen to show acknowledgment
+      whatsappScreen.addEventListener('click', showAcknowledgment);
+      
+      // Close WhatsApp screen when back button is clicked
+      whatsappBackBtn.addEventListener('click', function(e) {
+        e.stopPropagation(); // Prevent triggering the screen click
+        showAcknowledgment();
+      });
+      
+      // =============================================
+      // SHARE BOTTOM SHEET (existing - disabled)
+      // =============================================
+      // Share Bottom Sheet Logic
+      const shareBtn = document.querySelector('.share-btn');
+      const shareOverlay = document.getElementById('shareSheetOverlay');
+      const shareSheet = document.getElementById('shareSheet');
+      const shareSheetHeader = document.getElementById('shareSheetHeader');
+      const shareClose = document.getElementById('shareSheetClose');
+      const shareVideo = document.getElementById('shareVideo');
+      const shareTitle = document.getElementById('shareSheetTitle');
+      const videoState = document.getElementById('shareVideoState');
+      const finalState = document.getElementById('shareFinalState');
+      
+      // Text rotation configuration
+      const titleTexts = [
+        "Share this link & complete your booking",
+        "2 or more friends book the same bus",
+        "Everyone gets 15% refund after the trip"
+      ];
+      let textIndex = 0;
+      let textRotationInterval;
+      let isInFinalState = false;
+      
+      // Share button interactions removed
+      
+      // Transition to final state when video ends
+      if (shareVideo) {
+        shareVideo.addEventListener('ended', function() {
+          transitionToFinalState();
+        });
+      }
+      
+      // Transition to final state
+      function transitionToFinalState() {
+        // Stop text rotation
+        clearInterval(textRotationInterval);
+        
+        isInFinalState = true;
+        
+        // Enable close button
+        shareClose.style.opacity = '1';
+        shareClose.style.cursor = 'pointer';
+        
+        // Transition header to purple (final mode)
+        shareSheetHeader.classList.add('final-mode');
+        shareSheet.classList.remove('video-mode'); // Remove video mode
+        shareSheet.classList.add('final-mode'); // Add final mode for 70% height
+        
+        // Fade out video state
+        videoState.classList.add('hidden');
+        
+        // Fade in final state after a short delay
+        setTimeout(function() {
+          finalState.classList.add('visible');
+        }, 300);
+      }
+      
+      // Close function
+      function closeShareSheet() {
+        shareOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+        
+        // Stop text rotation
+        clearInterval(textRotationInterval);
+        
+        // Reset all states
+        isInFinalState = false;
+        videoState.classList.remove('hidden');
+        finalState.classList.remove('visible');
+        shareSheet.classList.remove('final-mode');
+        shareSheet.classList.remove('video-mode');
+        shareSheetHeader.classList.remove('final-mode');
+        
+        if (shareVideo) {
+          shareVideo.pause();
+          shareVideo.currentTime = 0;
+        }
+      }
+      
+      // Close button - only works in final state
+      shareClose.addEventListener('click', function() {
+        if (isInFinalState) {
+          closeShareSheet();
+        }
+      });
+      
+      // Scrim click to close - only in final state
+      shareOverlay.querySelector('.share-sheet-scrim').addEventListener('click', function() {
+        if (isInFinalState) {
+          closeShareSheet();
+        }
+      });
+      
+      // =============================================
+      // SEAT SELECTION PANEL
+      // =============================================
+      const seatSelectionPanel = document.getElementById('seatSelectionPanel');
+      const seats = document.querySelectorAll('.seat.available');
+      const topNavElement = document.querySelector('.top-nav');
+      const shareTooltip = document.getElementById('shareTooltip');
+      let selectedSeats = [];
+      let tooltipTimeout = null;
+      let avatarTimeout = null;
+      
+      // Add click handler to all available seats
+      seats.forEach(function(seat) {
+        seat.addEventListener('click', function() {
+          // Toggle selected state
+          if (seat.classList.contains('selected')) {
+            seat.classList.remove('selected');
+            selectedSeats = selectedSeats.filter(s => s !== seat);
+          } else {
+            seat.classList.add('selected');
+            selectedSeats.push(seat);
+          }
+          
+          // Show/hide selection panel based on selected seats
+          if (selectedSeats.length > 0) {
+            seatSelectionPanel.classList.add('active');
+            // Update text
+            const seatsText = seatSelectionPanel.querySelector('.seats-selected-text');
+            seatsText.textContent = selectedSeats.length + ' seat' + (selectedSeats.length > 1 ? 's' : '') + ' selected';
+            
+            // Clear previous timeouts
+            if (tooltipTimeout) clearTimeout(tooltipTimeout);
+            if (avatarTimeout) clearTimeout(avatarTimeout);
+            
+            // Show avatar on share button after 400ms delay
+            avatarTimeout = setTimeout(function() {
+              topNavElement.classList.add('seat-selected');
+              
+              // Show tooltip after another 400ms delay (800ms total)
+              tooltipTimeout = setTimeout(function() {
+                shareTooltip.classList.add('active');
+                
+                // Hide tooltip after 3 seconds
+                setTimeout(function() {
+                  shareTooltip.classList.remove('active');
+                }, 3000);
+              }, 400);
+            }, 400);
+          } else {
+            seatSelectionPanel.classList.remove('active');
+            // Hide avatar and tooltip immediately
+            topNavElement.classList.remove('seat-selected');
+            shareTooltip.classList.remove('active');
+            if (tooltipTimeout) clearTimeout(tooltipTimeout);
+            if (avatarTimeout) clearTimeout(avatarTimeout);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
