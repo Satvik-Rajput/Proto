@@ -796,9 +796,11 @@
       const introVideoElement = document.getElementById('introVideo');
       let videoReady = false;
       let sheetOpenPending = false;
+      let playRetryInterval = null;
       
       // Preload video
       if (introVideoElement) {
+        introVideoElement.muted = true;
         introVideoElement.load();
         
         // Mark ready when video can play through
@@ -809,6 +811,27 @@
             openIntroSheetWithVideo();
           }
         });
+      }
+      
+      // Function to try playing video repeatedly until it works
+      function tryPlayVideo() {
+        if (!introVideoElement) return;
+        
+        introVideoElement.currentTime = 0;
+        introVideoElement.muted = true;
+        
+        var playPromise = introVideoElement.play();
+        if (playPromise !== undefined) {
+          playPromise.then(function() {
+            // Success - stop retrying
+            if (playRetryInterval) {
+              clearInterval(playRetryInterval);
+              playRetryInterval = null;
+            }
+          }).catch(function() {
+            // Failed - will retry via interval
+          });
+        }
       }
       
       // Function to open intro sheet and reset video
@@ -823,11 +846,19 @@
         document.body.style.overflow = 'hidden';
         startIntroTextRotation();
         
-        // Reset video to beginning and play
-        if (introVideoElement) {
-          introVideoElement.currentTime = 0;
-          introVideoElement.play();
+        // Try to play video, keep retrying every 500ms until it works
+        tryPlayVideo();
+        if (!playRetryInterval) {
+          playRetryInterval = setInterval(tryPlayVideo, 500);
         }
+        
+        // Stop retrying after 5 seconds regardless
+        setTimeout(function() {
+          if (playRetryInterval) {
+            clearInterval(playRetryInterval);
+            playRetryInterval = null;
+          }
+        }, 5000);
       }
       
       // Auto-open intro sheet after a brief delay (waits for video to be ready)
