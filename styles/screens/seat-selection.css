@@ -1100,6 +1100,19 @@
   object-fit: cover;
 }
 
+/* Hide native video controls and play button */
+.share-video-container video::-webkit-media-controls {
+  display: none !important;
+}
+
+.share-video-container video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+}
+
+.share-video-container video::-webkit-media-controls-play-button {
+  display: none !important;
+}
+
 .share-sheet-title {
   margin: calc(8 * var(--px)) 0 calc(8 * var(--px));
   padding: 0 calc(16 * var(--px));
@@ -1898,6 +1911,19 @@
   margin-top: -5%;
   object-fit: cover;
   display: block;
+}
+
+/* Hide native video controls and play button */
+.intro-video-container video::-webkit-media-controls {
+  display: none !important;
+}
+
+.intro-video-container video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+}
+
+.intro-video-container video::-webkit-media-controls-play-button {
+  display: none !important;
 }
 
 /* Step text - 14px bold from Figma, 16px bottom padding to list */
