@@ -1900,21 +1900,6 @@
   margin-top: -5%;
   object-fit: cover;
   display: block;
-  pointer-events: none;
-}
-
-/* Hide native video controls and play button */
-.intro-video-container video::-webkit-media-controls {
-  display: none !important;
-}
-.intro-video-container video::-webkit-media-controls-start-playback-button {
-  display: none !important;
-}
-.intro-video-container video::-webkit-media-controls-play-button {
-  display: none !important;
-}
-.intro-video-container video::-webkit-media-controls-panel {
-  display: none !important;
 }
 
 /* Step text - 14px bold from Figma, 16px bottom padding to list */
