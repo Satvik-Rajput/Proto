@@ -449,7 +449,7 @@
           </div>
           
           <div class="intro-video-container">
-            <video id="introVideo" muted loop playsinline autoplay preload="auto">
+            <video id="introVideo" muted loop playsinline>
               <source src="assets/share-animation.mp4" type="video/mp4">
             </video>
             <div class="link-shared-badge" id="linkSharedBadge">
@@ -794,31 +794,9 @@
       
       // Get intro video element
       const introVideoElement = document.getElementById('introVideo');
-      let videoReady = false;
-      let sheetOpenPending = false;
-      
-      // Preload video
-      if (introVideoElement) {
-        introVideoElement.load();
-        
-        // Mark ready when video can play through
-        introVideoElement.addEventListener('canplaythrough', function() {
-          videoReady = true;
-          if (sheetOpenPending) {
-            sheetOpenPending = false;
-            openIntroSheetWithVideo();
-          }
-        });
-      }
       
       // Function to open intro sheet and reset video
       function openIntroSheetWithVideo() {
-        // Wait for video if not ready yet
-        if (!videoReady && introVideoElement) {
-          sheetOpenPending = true;
-          return;
-        }
-        
         introOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
         startIntroTextRotation();
@@ -830,7 +808,7 @@
         }
       }
       
-      // Auto-open intro sheet after a brief delay (waits for video to be ready)
+      // Auto-open intro sheet after a brief delay
       setTimeout(function() {
         openIntroSheetWithVideo();
       }, 300);
@@ -922,8 +900,7 @@
       });
       
       // Open native share sheet when clicking on friend avatars (outlined ones, not "You")
-      // This covers both the intro sheet avatars and the share sheet final state avatars
-      const friendAvatarsOutlined = document.querySelectorAll('.friend-avatar.outlined, .intro-friend-avatar.outlined');
+      const friendAvatarsOutlined = document.querySelectorAll('.friend-avatar.outlined');
       friendAvatarsOutlined.forEach(avatar => {
         avatar.addEventListener('click', function() {
           nativeShareOverlay.classList.add('active');
@@ -960,7 +937,7 @@
         // Close the intro bottom sheet if open
         introOverlay.classList.remove('active');
         clearInterval(introTextInterval);
-        if (introVideoElement) introVideoElement.pause();
+        introVideo.pause();
         
         // Reset intro sheet text
         introTextIndex = 0;
