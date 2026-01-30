@@ -3,291 +3,164 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Proto - Bus Listing</title>
-  <link rel="stylesheet" href="styles/base.css">
-  <link rel="stylesheet" href="styles/screens/bus-listing.css">
+  <title>Proto - Choose Flow</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --px: min(1px, 0.27vw);
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #E8F4EC 0%, #FFFFFF 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .logo-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      background: #0A8F3C;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo svg {
+      width: 48px;
+      height: 48px;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1D1D1D;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      font-weight: 400;
+      color: #666;
+      text-align: center;
+    }
+
+    .button-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cta-btn {
+      width: 100%;
+      padding: 18px 24px;
+      border-radius: 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .cta-btn:active {
+      transform: scale(0.98);
+    }
+
+    .cta-new {
+      background: #0A8F3C;
+      color: white;
+      border: none;
+      box-shadow: 0 4px 12px rgba(10, 143, 60, 0.3);
+    }
+
+    .cta-new:hover {
+      box-shadow: 0 6px 16px rgba(10, 143, 60, 0.4);
+    }
+
+    .cta-old {
+      background: white;
+      color: #1D1D1D;
+      border: 2px solid #E0E0E0;
+    }
+
+    .cta-old:hover {
+      border-color: #BDBDBD;
+      background: #FAFAFA;
+    }
+
+    .cta-icon {
+      width: 24px;
+      height: 24px;
+    }
+  </style>
 </head>
 <body>
-  <div id="app">
-    <div class="screen">
-      <!-- Navigation Header -->
-      <header class="nav-header">
-        <button class="back-btn">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M15 18L9 12L15 6" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <div class="route-info">
-          <h1 class="route-title">Bangalore → Chennai</h1>
-          <p class="bus-count">5 buses</p>
-        </div>
-        <div class="date-container">
-          <div class="date-badge">
-            <span class="date-text">26 Jun</span>
-          </div>
-          <span class="date-day">Fri</span>
-        </div>
-      </header>
+  <div class="container">
+    <div class="logo-section">
+      <div class="logo">
+        <svg viewBox="0 0 48 48" fill="none">
+          <path d="M12 8H36C38.2091 8 40 9.79086 40 12V36C40 38.2091 38.2091 40 36 40H12C9.79086 40 8 38.2091 8 36V12C8 9.79086 9.79086 8 12 8Z" fill="white" fill-opacity="0.2"/>
+          <path d="M16 18H32M16 24H32M16 30H26" stroke="white" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h1 class="title">Proto</h1>
+      <p class="subtitle">Choose your experience</p>
+    </div>
 
-      <!-- Filter Section -->
-      <section class="filter-section">
-        <div class="filter-row">
-          <div class="filter-scroll">
-            <button class="chip chip-icon">
-              <svg class="filter-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M2.5 4.16667H17.5M5 10H15M7.5 15.8333H12.5" stroke="#1D1D1D" stroke-width="1.67" stroke-linecap="round"/>
-              </svg>
-              <span>Filter & Sort</span>
-            </button>
-            <button class="chip">Primo</button>
-            <button class="chip">AC</button>
-            <button class="chip">Sleeper</button>
-            <button class="chip">Single Seat</button>
-            <button class="chip">Seater</button>
-          </div>
-        </div>
-        <div class="filter-row">
-          <div class="filter-scroll">
-            <button class="chip chip-avatars">
-              <div class="avatar-stack">
-                <img class="avatar" src="https://www.figma.com/api/mcp/asset/443bec34-b558-4d76-a375-18b91766a8c4" alt="">
-                <img class="avatar" src="https://www.figma.com/api/mcp/asset/22d184f5-eb42-4dd2-87e1-462f733c238d" alt="">
-                <img class="avatar" src="https://www.figma.com/api/mcp/asset/35ada04f-4d1f-4b7f-9456-663245b42113" alt="">
-              </div>
-              <span>Student deal</span>
-            </button>
-            <button class="chip">Single seats</button>
-            <button class="chip">Seater</button>
-            <button class="chip">Single Seat</button>
-            <button class="chip">Seater</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- Bus Listings -->
-      <section class="bus-listings">
-        <!-- Bus Card 1 -->
-        <a href="seat-selection.html" class="bus-card-link">
-        <article class="bus-card">
-          <div class="card-row card-row-header">
-            <div class="header-spacer"></div>
-            <div class="offer-tag tag-green">
-              <span>Exclusive 5% OFF</span>
-            </div>
-          </div>
-
-          <div class="card-row card-row-time">
-            <div class="time-block">
-              <div class="time-display">
-                <span class="time-value bold">20:15</span>
-                <span class="time-sep"></span>
-                <span class="time-value">09:00</span>
-              </div>
-              <div class="duration-seats">
-                <span>7h 30m</span>
-                <span class="dot-sep">·</span>
-                <span>11 Seats</span>
-              </div>
-            </div>
-            <div class="price-block">
-              <div class="price-row">
-                <span class="price-old">₹1,450</span>
-                <span class="price-current">₹1,305</span>
-              </div>
-              <span class="price-label">Onwards</span>
-            </div>
-          </div>
-
-          <div class="card-row card-row-operator">
-            <div class="operator-block">
-              <span class="operator-name">Sri Krishna Travels</span>
-              <span class="bus-type">A/C Sleeper (2+1)</span>
-            </div>
-            <div class="rating-block">
-              <div class="rating-score">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M6 1L7.34708 4.1459H10.7063L8.17963 6.0082L9.52671 9.1541L6 7.2918L2.47329 9.1541L3.82037 6.0082L1.29366 4.1459H4.65292L6 1Z" fill="white"/>
-                </svg>
-                <span>4.4</span>
-              </div>
-              <span class="rating-count">0000</span>
-            </div>
-          </div>
-
-          <div class="offer-strip">
-            <div class="avatar-stack small">
-              <img class="avatar" src="https://www.figma.com/api/mcp/asset/e9c7dc31-5937-42ce-9dc6-ff34800e3563" alt="">
-              <img class="avatar" src="https://www.figma.com/api/mcp/asset/009a5184-73bd-405c-9ccd-d2caa8bb3eb6" alt="">
-              <img class="avatar" src="https://www.figma.com/api/mcp/asset/2d4c4148-a5a3-4ded-83ed-77c70b672d16" alt="">
-            </div>
-            <span class="offer-strip-text">Extra 15% OFF on this bus</span>
-          </div>
-        </article>
-        </a>
-
-        <!-- Bus Card 2 -->
-        <article class="bus-card">
-          <div class="card-row card-row-header">
-            <div class="offer-tag tag-yellow">
-              <span>Exclusive 5% OFF</span>
-            </div>
-          </div>
-
-          <div class="card-row card-row-time">
-            <div class="time-block">
-              <div class="time-display">
-                <span class="time-value bold">21:45</span>
-                <span class="time-sep"></span>
-                <span class="time-value">09:00</span>
-              </div>
-              <div class="duration-seats">
-                <span>7h 30m</span>
-                <span class="dot-sep">·</span>
-                <span>11 Seats</span>
-                <span class="seats-single">(2 Single)</span>
-              </div>
-            </div>
-            <div class="price-block">
-              <div class="price-row">
-                <span class="price-current">₹949</span>
-              </div>
-              <span class="price-label">Onwards</span>
-            </div>
-          </div>
-
-          <div class="card-row card-row-operator">
-            <div class="operator-block">
-              <span class="operator-name">Ganesh Tourists</span>
-              <span class="bus-type">A/C Sleeper (2+1)</span>
-            </div>
-            <div class="rating-block">
-              <div class="rating-score">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M6 1L7.34708 4.1459H10.7063L8.17963 6.0082L9.52671 9.1541L6 7.2918L2.47329 9.1541L3.82037 6.0082L1.29366 4.1459H4.65292L6 1Z" fill="white"/>
-                </svg>
-                <span>4.4</span>
-              </div>
-              <span class="rating-count">0000</span>
-            </div>
-          </div>
-
-          <div class="tags-area">
-            <span class="tag">Clean Bus</span>
-            <span class="tag">Safety +</span>
-            <span class="tag">Something</span>
-          </div>
-        </article>
-
-        <!-- Bus Card 3 -->
-        <article class="bus-card">
-          <div class="card-row card-row-header">
-            <div class="offer-tag tag-yellow">
-              <span>Exclusive 5% OFF</span>
-            </div>
-          </div>
-
-          <div class="card-row card-row-time">
-            <div class="time-block">
-              <div class="time-display">
-                <span class="time-value bold">22:00</span>
-                <span class="time-sep"></span>
-                <span class="time-value">09:00</span>
-              </div>
-              <div class="duration-seats">
-                <span>7h 30m</span>
-                <span class="dot-sep">·</span>
-                <span>11 Seats</span>
-                <span class="seats-single">(2 Single)</span>
-              </div>
-            </div>
-            <div class="price-block">
-              <div class="price-row">
-                <span class="price-current">₹799</span>
-              </div>
-              <span class="price-label">Onwards</span>
-            </div>
-          </div>
-
-          <div class="card-row card-row-operator">
-            <div class="operator-block">
-              <span class="operator-name">Orange Tours</span>
-              <span class="bus-type">A/C Sleeper (2+1)</span>
-            </div>
-            <div class="rating-block">
-              <div class="rating-score">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M6 1L7.34708 4.1459H10.7063L8.17963 6.0082L9.52671 9.1541L6 7.2918L2.47329 9.1541L3.82037 6.0082L1.29366 4.1459H4.65292L6 1Z" fill="white"/>
-                </svg>
-                <span>4.4</span>
-              </div>
-              <span class="rating-count">0000</span>
-            </div>
-          </div>
-
-          <div class="tags-area">
-            <span class="tag">Clean Bus</span>
-            <span class="tag">Safety +</span>
-            <span class="tag">Something</span>
-          </div>
-        </article>
-
-        <!-- Bus Card 4 -->
-        <article class="bus-card">
-          <div class="card-row card-row-header">
-            <div class="offer-tag tag-yellow">
-              <span>Exclusive 5% OFF</span>
-            </div>
-          </div>
-
-          <div class="card-row card-row-time">
-            <div class="time-block">
-              <div class="time-display">
-                <span class="time-value bold">18:00</span>
-                <span class="time-sep"></span>
-                <span class="time-value">09:00</span>
-              </div>
-              <div class="duration-seats">
-                <span>7h 30m</span>
-                <span class="dot-sep">·</span>
-                <span>11 Seats</span>
-                <span class="seats-single">(2 Single)</span>
-              </div>
-            </div>
-            <div class="price-block">
-              <div class="price-row">
-                <span class="price-current">₹649</span>
-              </div>
-              <span class="price-label">Onwards</span>
-            </div>
-          </div>
-
-          <div class="card-row card-row-operator">
-            <div class="operator-block">
-              <span class="operator-name">Kaveri Express</span>
-              <span class="bus-type">A/C Sleeper (2+1)</span>
-            </div>
-            <div class="rating-block">
-              <div class="rating-score">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M6 1L7.34708 4.1459H10.7063L8.17963 6.0082L9.52671 9.1541L6 7.2918L2.47329 9.1541L3.82037 6.0082L1.29366 4.1459H4.65292L6 1Z" fill="white"/>
-                </svg>
-                <span>4.4</span>
-              </div>
-              <span class="rating-count">0000</span>
-            </div>
-          </div>
-
-          <div class="tags-area">
-            <span class="tag">Clean Bus</span>
-            <span class="tag">Safety +</span>
-            <span class="tag">Something</span>
-          </div>
-        </article>
-
-      </section>
+    <div class="button-section">
+      <a href="srp.html" class="cta-btn cta-new">
+        <svg class="cta-icon" viewBox="0 0 24 24" fill="none">
+          <path d="M13 10V3L4 14H11V21L20 10H13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        New Flow
+      </a>
+      
+      <a href="#" class="cta-btn cta-old" onclick="alert('Old flow not configured'); return false;">
+        <svg class="cta-icon" viewBox="0 0 24 24" fill="none">
+          <path d="M12 8V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        Old Flow
+      </a>
     </div>
   </div>
 </body>
