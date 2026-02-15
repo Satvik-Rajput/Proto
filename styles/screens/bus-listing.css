@@ -488,6 +488,12 @@
   display: flex;
   flex-direction: column;
   gap: calc(12 * var(--px));
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.bus-card:active {
+  transform: scale(0.98);
 }
 
 .card-row {
@@ -498,6 +504,8 @@
 
 .card-row-header {
   align-items: center;
+  gap: 0;
+  min-height: calc(32 * var(--px));
 }
 
 /* Header Spacer */
@@ -505,19 +513,203 @@
   flex: 1;
 }
 
-/* Primo Logo */
-.primo-logo {
+/* Deals Row Wrapper - contains primo + fade + deals */
+.bus-card .deals-row-wrapper {
+  position: relative;
+  width: 100%;
+  height: calc(28 * var(--px));
+  isolation: isolate;
+}
+
+/* Primo logo - absolute on top left */
+.bus-card .primo-logo {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(56 * var(--px));
+  height: calc(28 * var(--px));
+  object-fit: contain;
+  z-index: 4;
+}
+
+/* Fade gradient - starts from left edge to cover deals behind Primo */
+.bus-card .deals-fade {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(169 * var(--px));
+  height: calc(28 * var(--px));
+  background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Deals Row - right aligned */
+.bus-card .deals-row {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: calc(4 * var(--px)) !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  width: 100% !important;
+  height: calc(28 * var(--px)) !important;
+  box-sizing: border-box !important;
+  position: relative;
+  z-index: 2;
+}
+
+/* Primo Row - with logo overlay */
+.bus-card .primo-row {
+  position: relative !important;
+  width: 100% !important;
+  height: calc(28 * var(--px)) !important;
+  display: block !important;
+}
+
+/* Deals - base layer, horizontal row */
+.bus-card .primo-row .deals-base {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: calc(6 * var(--px)) !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding-left: calc(60 * var(--px)) !important;
+  width: 100% !important;
+  height: calc(28 * var(--px)) !important;
+  box-sizing: border-box !important;
+}
+
+/* Primo logo - absolute positioned on top left */
+.bus-card .primo-row .primo-absolute {
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  z-index: 10 !important;
+  display: flex !important;
+  align-items: center !important;
+  height: calc(28 * var(--px)) !important;
+}
+
+.bus-card .primo-row .primo-absolute img {
+  width: calc(56 * var(--px)) !important;
+  height: calc(28 * var(--px)) !important;
+  object-fit: contain !important;
+  display: block !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* White gradient to blend primo with deals */
+.bus-card .primo-row .primo-gradient {
+  position: absolute !important;
+  left: calc(50 * var(--px)) !important;
+  top: 0 !important;
+  width: calc(40 * var(--px)) !important;
+  height: calc(28 * var(--px)) !important;
+  background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 100%) !important;
+  z-index: 5 !important;
+  pointer-events: none !important;
+}
+
+/* Deal Tag Coupon - ticket style with notches */
+.deal-tag-coupon {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  height: calc(24 * var(--px)) !important;
+  border-radius: calc(4 * var(--px)) !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
+}
+
+.coupon-edge {
+  width: calc(10 * var(--px));
+  background: #FEDE92;
+  position: relative;
+}
+
+.coupon-edge::before {
+  content: '';
+  position: absolute;
+  width: calc(6 * var(--px));
+  height: calc(6 * var(--px));
+  background: white;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.coupon-edge.left::before {
+  left: calc(-3 * var(--px));
+}
+
+.coupon-edge.right::before {
+  right: calc(-3 * var(--px));
+}
+
+.coupon-content {
+  background: #FEDE92;
+  padding: 0 calc(4 * var(--px));
   display: flex;
   align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: calc(12 * var(--px));
+  font-weight: 500;
+  line-height: calc(16 * var(--px));
+  letter-spacing: 0.01px;
+  color: #1D1D1D;
+  white-space: nowrap;
 }
 
-.primo-logo-img {
-  height: calc(20 * var(--px));
-  width: auto;
-  object-fit: contain;
+.coupon-content strong {
+  font-weight: 700;
 }
 
-/* Offer Tags */
+/* Student tag - purple/lavender color */
+.deal-tag-coupon.student-tag .coupon-edge {
+  background: #EADBFE;
+}
+
+.deal-tag-coupon.student-tag .coupon-content {
+  background: #EADBFE;
+}
+
+/* Coupon Tags - ticket style with notches */
+.coupon-tag {
+  display: inline-flex;
+  align-items: center;
+  height: calc(24 * var(--px));
+  padding: 0 calc(8 * var(--px));
+  border-radius: calc(4 * var(--px));
+  position: relative;
+  margin-left: calc(4 * var(--px));
+}
+
+.coupon-tag-yellow {
+  background: #FEDE92;
+}
+
+.coupon-tag-purple {
+  background: #EADBFE;
+}
+
+.coupon-tag-text {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(12 * var(--px));
+  font-weight: 500;
+  color: #1D1D1D;
+  line-height: calc(16 * var(--px));
+  letter-spacing: calc(0.01 * var(--px));
+}
+
+.coupon-tag-text strong {
+  font-weight: 700;
+}
+
+/* Legacy Offer Tags - keeping for compatibility */
 .offer-tag {
   display: inline-flex;
   align-items: center;
@@ -529,6 +721,7 @@
   line-height: calc(16 * var(--px));
   letter-spacing: calc(0.01 * var(--px));
   color: #1D1D1D;
+  margin-left: calc(4 * var(--px));
 }
 
 .offer-tag strong {
@@ -541,7 +734,10 @@
 
 .tag-yellow {
   background: #FEDE92;
-  margin-left: auto;
+}
+
+.tag-purple {
+  background: #EADBFE;
 }
 
 /* Time Block */
@@ -589,8 +785,13 @@
 .dot-sep {
   width: calc(2 * var(--px));
   height: calc(2 * var(--px));
-  background: #1D1D1D;
+  background: rgba(29, 29, 29, 0.64);
   border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot-sep::before {
+  content: '';
 }
 
 .seats-single {
@@ -690,6 +891,10 @@
   font-weight: 700;
   line-height: calc(16 * var(--px));
   letter-spacing: calc(0.01 * var(--px));
+}
+
+.rating-score-grey {
+  background: #B0B0B0;
 }
 
 .rating-count {

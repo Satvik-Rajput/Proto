@@ -1,0 +1,305 @@
+/* Student Deal Page Styles */
+
+/* Purple Gradient Header - multiple layered gradients */
+.student-deal-header {
+  background: 
+    linear-gradient(180deg, rgba(234, 219, 254, 0.6) 32.16%, rgba(255, 255, 255, 0.6) 100%),
+    linear-gradient(180deg, rgba(234, 219, 254, 0.6) 32.944%, rgba(255, 255, 255, 0.6) 100%),
+    linear-gradient(180deg, rgba(234, 219, 254, 0.8) 32.944%, rgba(255, 255, 255, 0.8) 71.201%);
+  padding-bottom: calc(12 * var(--px));
+  position: relative;
+  overflow: visible;
+}
+
+/* Background wave/ray pattern */
+.header-wave-bg {
+  position: absolute;
+  top: calc(-64 * var(--px));
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(360 * var(--px));
+  height: calc(441 * var(--px));
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Status Bar for this page */
+.status-bar-dark {
+  background: transparent;
+  position: relative;
+  z-index: 10;
+}
+
+.status-bar-dark .time {
+  color: #000;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: calc(8 * var(--px));
+  right: calc(8 * var(--px));
+  width: calc(24 * var(--px));
+  height: calc(24 * var(--px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  overflow: hidden;
+}
+
+.close-btn-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Deal Badge Section */
+.deal-badge-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: calc(16 * var(--px));
+  position: relative;
+  z-index: 2;
+}
+
+.deal-badge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(4 * var(--px));
+  background: url('https://www.figma.com/api/mcp/asset/9866ab35-bbb9-48db-b761-f828abbe3c56') no-repeat center;
+  background-size: contain;
+  border-radius: calc(6 * var(--px));
+  box-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0, 0, 0, 0.08),
+              0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0, 0, 0, 0.08);
+  padding: calc(8 * var(--px));
+}
+
+.deal-avatars {
+  display: flex;
+  justify-content: center;
+  padding-right: calc(5 * var(--px));
+}
+
+.deal-avatar-wrapper {
+  width: calc(20 * var(--px));
+  height: calc(20 * var(--px));
+  border-radius: 50%;
+  border: calc(0.5 * var(--px)) solid #FDFDFD;
+  overflow: hidden;
+  margin-right: calc(-5 * var(--px));
+  background: #EADBFE;
+}
+
+.deal-avatar-wrapper:last-child {
+  margin-right: 0;
+}
+
+.deal-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.deal-badge-text {
+  font-size: calc(16 * var(--px));
+  font-weight: 500;
+  color: #1D1D1D;
+  line-height: calc(22 * var(--px));
+  letter-spacing: calc(-0.18 * var(--px));
+  text-align: center;
+}
+
+/* Title Section */
+.deal-title-section {
+  text-align: center;
+  padding: calc(24 * var(--px)) calc(16 * var(--px));
+  position: relative;
+  z-index: 2;
+}
+
+.deal-title {
+  font-size: calc(28 * var(--px));
+  font-weight: 700;
+  color: #1D1D1D;
+  line-height: calc(36 * var(--px));
+  letter-spacing: calc(-0.59 * var(--px));
+  margin: 0 0 calc(2 * var(--px)) 0;
+}
+
+.hand-wave {
+  position: absolute;
+  width: calc(30.65 * var(--px));
+  height: calc(35.06 * var(--px));
+  left: calc(230 * var(--px));
+  top: calc(59 * var(--px));
+  transform: rotate(109.59deg);
+}
+
+.deal-subtitle {
+  font-size: calc(16 * var(--px));
+  font-weight: 400;
+  color: #1D1D1D;
+  line-height: calc(22 * var(--px));
+  letter-spacing: calc(-0.18 * var(--px));
+  margin: 0;
+}
+
+/* Visual break shape - positioned to blend with gradient */
+.visual-break-shape {
+  width: calc(360 * var(--px));
+  height: calc(158.5 * var(--px));
+  position: relative;
+  z-index: 1;
+}
+
+.break-shape-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+/* How it works container */
+.how-it-works-container {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  background: transparent;
+  padding-bottom: calc(12 * var(--px));
+  margin-top: calc(-150 * var(--px));
+}
+
+/* How it works section */
+.how-it-works {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(8 * var(--px));
+  width: 100%;
+  position: relative;
+}
+
+.how-title {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(16 * var(--px));
+  font-weight: 700;
+  color: #1D1D1D;
+  text-align: center;
+  margin: 0;
+  line-height: calc(22 * var(--px));
+  letter-spacing: calc(-0.18 * var(--px));
+}
+
+.steps-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: calc(4 * var(--px));
+  width: 100%;
+  padding: 0 calc(16 * var(--px));
+  box-sizing: border-box;
+}
+
+.step {
+  flex: 1 0 0;
+  min-width: 0;
+  min-height: 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(4 * var(--px));
+}
+
+.step-icon {
+  width: calc(40 * var(--px));
+  height: calc(40 * var(--px));
+  border-radius: calc(999 * var(--px));
+  background: #ECE9FC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-icon-img {
+  width: calc(20 * var(--px));
+  height: calc(18 * var(--px));
+  object-fit: contain;
+}
+
+.step-text {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(14 * var(--px));
+  font-weight: 400;
+  color: #1D1D1D;
+  line-height: calc(20 * var(--px));
+  letter-spacing: calc(-0.09 * var(--px));
+  margin: 0;
+  text-align: center;
+  min-width: 100%;
+  white-space: pre-wrap;
+}
+
+/* Arrows between steps - positioned absolutely within .how-it-works */
+.step-arrow {
+  position: absolute;
+  width: calc(52 * var(--px));
+  height: calc(6 * var(--px));
+  top: calc(50% - 16 * var(--px));
+  transform: translate(-50%, -50%);
+}
+
+.step-arrow-1 {
+  left: calc(50% - 54 * var(--px));
+}
+
+.step-arrow-2 {
+  left: calc(50% + 56.5 * var(--px));
+  width: calc(51 * var(--px));
+}
+
+/* Filter Section */
+.filter-section {
+  padding: calc(16 * var(--px));
+  background: white;
+}
+
+.filter-chips {
+  display: flex;
+  gap: calc(8 * var(--px));
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filter-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-chip {
+  display: flex;
+  align-items: center;
+  gap: calc(4 * var(--px));
+  padding: calc(8 * var(--px)) calc(12 * var(--px));
+  border: calc(1 * var(--px)) solid #E6E6E6;
+  border-radius: calc(8 * var(--px));
+  background: white;
+  font-size: calc(14 * var(--px));
+  font-weight: 500;
+  color: #1D1D1D;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.filter-chip svg {
+  width: calc(16 * var(--px));
+  height: calc(16 * var(--px));
+}
+
+/* Bus Listings background */
+.student-deal-header ~ .filter-section ~ .bus-listings,
+.filter-section ~ .bus-listings {
+  background: #F5F5F5;
+}

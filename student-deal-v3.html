@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=360, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Student Deal - redBus</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/screens/student-deal-page.css">
+  <link rel="stylesheet" href="styles/screens/bus-listing.css">
+</head>
+<body>
+  <div class="device-frame">
+    <div class="screen">
+      <!-- Purple Gradient Header -->
+      <div class="student-deal-header">
+        <!-- Background wave/ray pattern -->
+        <img src="https://www.figma.com/api/mcp/asset/e91cb65d-895d-4bc6-bd89-9111c4e06b5b" alt="" class="header-wave-bg">
+
+        <!-- Close Button -->
+        <a href="srp-v3.html" class="close-btn">
+          <img src="https://www.figma.com/api/mcp/asset/68add09d-fca4-4ca8-b876-c0350dc1c37c" alt="Close" class="close-btn-icon">
+        </a>
+
+        <!-- Badge with avatars -->
+        <div class="deal-badge-section">
+          <div class="deal-badge-container">
+            <div class="deal-avatars">
+              <div class="deal-avatar-wrapper">
+                <img src="assets/avatar-1.png" alt="" class="deal-avatar">
+              </div>
+              <div class="deal-avatar-wrapper">
+                <img src="assets/avatar-2.png" alt="" class="deal-avatar">
+              </div>
+              <div class="deal-avatar-wrapper">
+                <img src="assets/avatar-3.png" alt="" class="deal-avatar">
+              </div>
+            </div>
+            <div class="deal-badge-text">Student deal</div>
+          </div>
+        </div>
+
+        <!-- Title -->
+        <div class="deal-title-section">
+          <h1 class="deal-title">Get 15% refund after <br>your trip</h1>
+          <img src="https://www.figma.com/api/mcp/asset/0a262a75-d5b2-4ca2-b7f6-fe213d53a437" alt="" class="hand-wave">
+          <p class="deal-subtitle">Directly in your bank account</p>
+        </div>
+
+        <!-- Visual break shape - blends with gradient background -->
+        <div class="visual-break-shape">
+          <img src="https://www.figma.com/api/mcp/asset/fd8a86e6-e039-4824-8386-c93eaf4e44a7" alt="" class="break-shape-img">
+        </div>
+
+        <!-- How it works - with visual break background -->
+        <div class="how-it-works-container">
+          <div class="how-it-works">
+            <h3 class="how-title">How it works</h3>
+            <div class="steps-row">
+              <div class="step">
+                <div class="step-icon">
+                  <img src="https://www.figma.com/api/mcp/asset/311b4213-2537-41d6-8407-676025f2f5c8" alt="" class="step-icon-img">
+                </div>
+                <p class="step-text">Complete <br>booking <br>for you</p>
+              </div>
+              <div class="step">
+                <div class="step-icon">
+                  <img src="https://www.figma.com/api/mcp/asset/324b5e95-86ef-4b85-a540-3e485591f97e" alt="" class="step-icon-img">
+                </div>
+                <p class="step-text">Get 2 friends to join you on this trip</p>
+              </div>
+              <div class="step">
+                <div class="step-icon">
+                  <img src="https://www.figma.com/api/mcp/asset/b2caaa05-cfef-46e0-9b89-f7a3c71480ad" alt="" class="step-icon-img">
+                </div>
+                <p class="step-text">Everyone gets 15% refund after the trip</p>
+              </div>
+            </div>
+            <!-- Arrows between steps - positioned absolutely within how-it-works -->
+            <img src="https://www.figma.com/api/mcp/asset/f7865907-4117-4cfb-877f-e302a0176c28" alt="" class="step-arrow step-arrow-1">
+            <img src="https://www.figma.com/api/mcp/asset/4bdd50c9-7b97-4c06-bee7-2a6cf4f8bdb4" alt="" class="step-arrow step-arrow-2">
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Chips -->
+      <div class="filter-section">
+        <div class="filter-chips">
+          <button class="filter-chip">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M2 4H14M4 8H12M6 12H10" stroke="#1D1D1D" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            Filter & Sort
+          </button>
+          <button class="filter-chip">Primo bus</button>
+          <button class="filter-chip">Special price</button>
+        </div>
+      </div>
+
+      <!-- Bus Listings -->
+      <section class="bus-listings">
+        <!-- Bus Card 1 - SSR royal travels -->
+        <article class="bus-card">
+          <div class="deals-row">
+            <div class="deal-tag-coupon">
+              <div class="coupon-edge left"></div>
+              <div class="coupon-content">Last min. <strong>5% OFF</strong></div>
+              <div class="coupon-edge right"></div>
+            </div>
+            <div class="deal-tag-coupon student-tag">
+              <div class="coupon-edge left"></div>
+              <div class="coupon-content">Student. <strong>15% OFF</strong></div>
+              <div class="coupon-edge right"></div>
+            </div>
+          </div>
+
+          <div class="card-row card-row-time">
+            <div class="time-block">
+              <div class="time-display">
+                <span class="time-value bold">19:15</span>
+                <span class="time-sep"></span>
+                <span class="time-value">09:00</span>
+              </div>
+              <div class="duration-seats">
+                <span>7h 30m</span>
+                <span class="dot-sep"></span>
+                <span>11 Seats</span>
+              </div>
+            </div>
+            <div class="price-block">
+              <div class="price-row">
+                <span class="price-old">₹1,450</span>
+                <span class="price-current">₹1,305</span>
+              </div>
+              <span class="price-label">Onwards</span>
+            </div>
+          </div>
+
+          <div class="card-row card-row-operator">
+            <div class="operator-block">
+              <span class="operator-name">SSR royal travels</span>
+              <span class="bus-type">A/C Sleeper (2+1)</span>
+            </div>
+            <div class="rating-block">
+              <div class="rating-score">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M6 1L7.34708 4.1459H10.7063L8.17963 6.0082L9.52671 9.1541L6 7.2918L2.47329 9.1541L3.82037 6.0082L1.29366 4.1459H4.65292L6 1Z" fill="white"/>
+                </svg>
+                <span>4.4</span>
+              </div>
+              <span class="rating-count">0000</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Bus Card 2 - Charter travels with Primo -->
+        <article class="bus-card">
+          <div class="deals-row-wrapper">
+            <img class="primo-logo" src="assets/primo-logo.png" alt="Primo">
+            <div class="deals-fade"></div>
+            <div class="deals-row">
+              <div class="deal-tag-coupon">
+                <div class="coupon-edge left"></div>
+                <div class="coupon-content">Last min. <strong>5% OFF</strong></div>
+                <div class="coupon-edge right"></div>
+              </div>
+              <div class="deal-tag-coupon student-tag">
+                <div class="coupon-edge left"></div>
+                <div class="coupon-content">Student. <strong>15% OFF</strong></div>
+                <div class="coupon-edge right"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-row card-row-time">
+            <div class="time-block">
+              <div class="time-display">
+                <span class="time-value bold">20:15</span>
+                <span class="time-sep"></span>
+                <span class="time-value">09:00</span>
+              </div>
+              <div class="duration-seats">
+                <span>7h 30m</span>
+                <span class="dot-sep"></span>
+                <span>11 Seats</span>
+              </div>
+            </div>
+            <div class="price-block">
+              <div class="price-row">
+                <span class="price-old">₹1,550</span>
+                <span class="price-current">₹1,405</span>
+              </div>
+              <span class="price-label">Onwards</span>
+            </div>
+          </div>
+
+          <div class="card-row card-row-operator">
+            <div class="operator-block">
+              <span class="operator-name">Charter travels</span>
+              <span class="bus-type">A/C Sleeper (2+1)</span>
+            </div>
+            <div class="rating-block">
+              <div class="rating-score">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M6 1L7.34708 4.1459H10.7063L8.17963 6.0082L9.52671 9.1541L6 7.2918L2.47329 9.1541L3.82037 6.0082L1.29366 4.1459H4.65292L6 1Z" fill="white"/>
+                </svg>
+                <span>4.4</span>
+              </div>
+              <span class="rating-count">0000</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Bus Card 3 - Shayamoli travels -->
+        <article class="bus-card">
+          <div class="deals-row">
+            <div class="deal-tag-coupon">
+              <div class="coupon-edge left"></div>
+              <div class="coupon-content">Last min. <strong>5% OFF</strong></div>
+              <div class="coupon-edge right"></div>
+            </div>
+            <div class="deal-tag-coupon student-tag">
+              <div class="coupon-edge left"></div>
+              <div class="coupon-content">Student. <strong>15% OFF</strong></div>
+              <div class="coupon-edge right"></div>
+            </div>
+          </div>
+
+          <div class="card-row card-row-time">
+            <div class="time-block">
+              <div class="time-display">
+                <span class="time-value bold">21:15</span>
+                <span class="time-sep"></span>
+                <span class="time-value">09:00</span>
+              </div>
+              <div class="duration-seats">
+                <span>7h 30m</span>
+                <span class="dot-sep"></span>
+                <span>11 Seats</span>
+              </div>
+            </div>
+            <div class="price-block">
+              <div class="price-row">
+                <span class="price-current">₹1,402</span>
+              </div>
+              <span class="price-label">Onwards</span>
+            </div>
+          </div>
+
+          <div class="card-row card-row-operator">
+            <div class="operator-block">
+              <span class="operator-name">Shayamoli travels</span>
+              <span class="bus-type">A/C Sleeper (2+1)</span>
+            </div>
+            <div class="rating-block">
+              <div class="rating-score">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M6 1L7.34708 4.1459H10.7063L8.17963 6.0082L9.52671 9.1541L6 7.2918L2.47329 9.1541L3.82037 6.0082L1.29366 4.1459H4.65292L6 1Z" fill="white"/>
+                </svg>
+                <span>4.4</span>
+              </div>
+              <span class="rating-count">0000</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Bus Card 4 - Babu travels -->
+        <article class="bus-card">
+          <div class="deals-row">
+            <div class="deal-tag-coupon student-tag">
+              <div class="coupon-edge left"></div>
+              <div class="coupon-content">Student. <strong>15% OFF</strong></div>
+              <div class="coupon-edge right"></div>
+            </div>
+          </div>
+
+          <div class="card-row card-row-time">
+            <div class="time-block">
+              <div class="time-display">
+                <span class="time-value bold">22:15</span>
+                <span class="time-sep"></span>
+                <span class="time-value">09:00</span>
+              </div>
+              <div class="duration-seats">
+                <span>7h 30m</span>
+                <span class="dot-sep"></span>
+                <span>11 Seats</span>
+              </div>
+            </div>
+            <div class="price-block">
+              <div class="price-row">
+                <span class="price-current">₹1,000</span>
+              </div>
+              <span class="price-label">Onwards</span>
+            </div>
+          </div>
+
+          <div class="card-row card-row-operator">
+            <div class="operator-block">
+              <span class="operator-name">Babu travels</span>
+              <span class="bus-type">A/C Sleeper (2+1)</span>
+            </div>
+            <div class="rating-block">
+              <div class="rating-score">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M6 1L7.34708 4.1459H10.7063L8.17963 6.0082L9.52671 9.1541L6 7.2918L2.47329 9.1541L3.82037 6.0082L1.29366 4.1459H4.65292L6 1Z" fill="white"/>
+                </svg>
+                <span>4.4</span>
+              </div>
+              <span class="rating-count">0000</span>
+            </div>
+          </div>
+        </article>
+
+      </section>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Make all bus cards clickable
+      const busCards = document.querySelectorAll('.bus-card');
+      busCards.forEach(function(card) {
+        card.addEventListener('click', function() {
+          // Set flag to indicate user is in student deal flow
+          sessionStorage.setItem('isStudentDealFlow', 'true');
+          window.location.href = 'seat-selection-v3.html';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

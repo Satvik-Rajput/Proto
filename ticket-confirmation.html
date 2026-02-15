@@ -15,344 +15,35 @@
     
     .screen-container {
       width: calc(360 * var(--px));
-      height: 100vh;
-      height: 100dvh;
+      min-height: 100vh;
+      min-height: 100dvh;
       background: #f2f2f8;
       position: relative;
-      overflow: hidden;
-    }
-    
-    /* ============================================
-       HOTEL PROMOTION BANNER (Background Layer)
-       ============================================ */
-    .hotel-banner {
-      width: calc(360 * var(--px));
-      height: calc(400 * var(--px));
-      background: linear-gradient(180deg, #e4ecfd 65%, #ffffff 100%);
-      position: fixed;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      z-index: 1;
-    }
-    
-    @media (min-width: 361px) {
-      .hotel-banner {
-        left: calc(50%);
-      }
-    }
-    
-    /* Banner Header */
-    .banner-header {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 10;
-    }
-    
-    .banner-nav {
-      display: flex;
-      align-items: center;
-      gap: calc(4 * var(--px));
-      padding: calc(8 * var(--px)) calc(4 * var(--px));
-      position: relative;
-      z-index: 100;
-    }
-    
-    .banner-back-btn {
-      width: calc(48 * var(--px));
-      height: calc(48 * var(--px));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-    
-    .banner-back-btn svg {
-      width: calc(24 * var(--px));
-      height: calc(24 * var(--px));
-    }
-    
-    .banner-header-spacer {
-      flex: 1;
-      height: calc(48 * var(--px));
-    }
-    
-    .banner-actions {
-      display: flex;
-      align-items: center;
-    }
-    
-    .banner-action-btn {
-      width: calc(48 * var(--px));
-      height: calc(48 * var(--px));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-    
-    .banner-action-btn svg {
-      width: calc(24 * var(--px));
-      height: calc(24 * var(--px));
-    }
-    
-    .banner-illustration {
-      position: absolute;
-      right: calc(16 * var(--px));
-      top: calc(70 * var(--px));
-      width: calc(138 * var(--px));
-      height: calc(126 * var(--px));
-    }
-    
-    .banner-illustration img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-    
-    .banner-text {
-      padding: calc(48 * var(--px)) calc(56 * var(--px)) 0;
-      text-align: center;
-    }
-    
-    .banner-question {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: calc(14 * var(--px));
-      line-height: calc(20 * var(--px));
-      letter-spacing: calc(-0.09 * var(--px));
-      color: #1d1d1d;
-      margin: 0 0 calc(2 * var(--px));
-    }
-    
-    .banner-offer {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: calc(28 * var(--px));
-      line-height: calc(36 * var(--px));
-      letter-spacing: calc(-0.59 * var(--px));
-      background: linear-gradient(90deg, #4b4b4b 0%, #0171a0 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin: 0;
-    }
-    
-    .banner-cta-section {
-      padding: 0 calc(16 * var(--px)) calc(32 * var(--px));
-      display: flex;
-      flex-direction: column;
-      gap: calc(16 * var(--px));
-      align-items: center;
-    }
-    
-    /* Coupon Card */
-    .coupon-card {
-      width: 100%;
-      background: white;
-      border-radius: calc(16 * var(--px));
-      box-shadow: 0 calc(1 * var(--px)) calc(2 * var(--px)) rgba(0,0,0,0.08),
-                  0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.04);
-      padding: 0 calc(24 * var(--px));
-      min-height: calc(88 * var(--px));
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .coupon-decoration {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: calc(119 * var(--px));
-      height: calc(116 * var(--px));
-      opacity: 0.1;
-      background: linear-gradient(135deg, #285bf3 0%, transparent 60%);
-      border-radius: 0 0 calc(100 * var(--px)) 0;
-    }
-    
-    .coupon-content {
-      display: flex;
-      flex-direction: column;
-      gap: calc(4 * var(--px));
-      padding: calc(12 * var(--px)) calc(8 * var(--px));
-    }
-    
-    .coupon-tag {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #dce0fe;
-      border: calc(1 * var(--px)) dashed #4b4b4b;
-      border-radius: calc(8 * var(--px));
-      padding: calc(4 * var(--px)) calc(8 * var(--px));
-      height: calc(32 * var(--px));
-    }
-    
-    .coupon-code {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: calc(16 * var(--px));
-      line-height: calc(22 * var(--px));
-      letter-spacing: calc(-0.18 * var(--px));
-      color: #1d1d1d;
-    }
-    
-    .coupon-hint {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: calc(14 * var(--px));
-      line-height: calc(20 * var(--px));
-      letter-spacing: calc(-0.09 * var(--px));
-      color: #1d1d1d;
-      margin: 0;
-    }
-    
-    /* CTA Button */
-    .banner-cta-btn {
-      width: 100%;
-      height: calc(48 * var(--px));
-      background: white;
-      border-radius: calc(999 * var(--px));
-      box-shadow: 0 calc(1 * var(--px)) calc(2 * var(--px)) -1px rgba(0,0,0,0.08),
-                  0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.04);
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-    
-    .banner-cta-btn span {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: calc(14 * var(--px));
-      line-height: calc(20 * var(--px));
-      letter-spacing: calc(-0.09 * var(--px));
-      color: #1d1d1d;
-    }
-    
-    /* Carousel Dots */
-    .carousel-dots {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: calc(4 * var(--px));
-      padding: calc(4 * var(--px)) 0;
-    }
-    
-    .carousel-dot {
-      border-radius: 50%;
-      background: rgba(29, 29, 29, 0.24);
-    }
-    
-    .carousel-dot.active {
-      width: calc(12 * var(--px));
-      height: calc(12 * var(--px));
-      background: #1d1d1d;
-    }
-    
-    .carousel-dot:not(.active) {
-      width: calc(6 * var(--px));
-      height: calc(6 * var(--px));
-    }
-    
-    /* ============================================
-       BOTTOM SHEET TRAY (Scrollable Layer)
-       ============================================ */
-    .bottom-sheet-wrapper {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      overflow-y: auto;
       overflow-x: hidden;
-      z-index: 10;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
+      overflow-y: auto;
     }
     
-    .bottom-sheet-spacer {
-      height: calc(376 * var(--px));
-      pointer-events: none;
-    }
-    
-    .bottom-sheet {
-      background: white;
-      border-radius: calc(24 * var(--px)) calc(24 * var(--px)) 0 0;
-      position: relative;
-      min-height: calc(100vh - 376 * var(--px));
-      min-height: calc(100dvh - 376 * var(--px));
-      box-shadow: 0 calc(-4 * var(--px)) calc(20 * var(--px)) rgba(0, 0, 0, 0.1);
-      transition: border-radius 0.3s ease;
-    }
-    
-    .bottom-sheet.expanded {
-      border-radius: 0;
-    }
-    
-    .bottom-sheet-handle {
-      display: flex;
-      justify-content: center;
-      padding: calc(8 * var(--px)) 0 calc(4 * var(--px));
-      cursor: grab;
-      transition: opacity 0.2s ease, max-height 0.2s ease;
-      max-height: calc(20 * var(--px));
-      overflow: hidden;
-    }
-    
-    .bottom-sheet-handle:active {
-      cursor: grabbing;
-    }
-    
-    .bottom-sheet.expanded .bottom-sheet-handle {
-      opacity: 0;
-      max-height: 0;
-      padding: 0;
-    }
-    
-    .bottom-sheet-handle-bar {
-      width: calc(48 * var(--px));
-      height: calc(4 * var(--px));
-      background: #e5e5e5;
-      border-radius: calc(2 * var(--px));
-    }
-    
-    /* Top Navigation (Tray) */
+    /* ============================================
+       TOP NAVIGATION
+       ============================================ */
     .top-nav {
       width: calc(360 * var(--px));
+      height: calc(64 * var(--px));
       background: white;
       border-bottom: calc(0.33 * var(--px)) solid #e5e5e5;
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 100;
     }
     
     .nav-content {
       display: flex;
       align-items: center;
       gap: calc(4 * var(--px));
-      padding: calc(8 * var(--px)) calc(4 * var(--px)) calc(8 * var(--px)) calc(16 * var(--px));
-      transition: padding 0.2s ease;
-    }
-    
-    .bottom-sheet.expanded .nav-content {
       padding: calc(8 * var(--px)) calc(4 * var(--px));
     }
     
-    /* Minimize Button (shown when expanded) */
-    .minimize-btn {
+    .close-btn {
       width: calc(48 * var(--px));
       height: calc(48 * var(--px));
       display: flex;
@@ -361,20 +52,11 @@
       background: none;
       border: none;
       cursor: pointer;
-      opacity: 0;
-      max-width: 0;
-      overflow: hidden;
-      transition: opacity 0.2s ease, max-width 0.2s ease;
     }
     
-    .minimize-btn svg {
+    .close-btn svg {
       width: calc(24 * var(--px));
       height: calc(24 * var(--px));
-    }
-    
-    .bottom-sheet.expanded .minimize-btn {
-      opacity: 1;
-      max-width: calc(48 * var(--px));
     }
     
     .nav-text {
@@ -432,141 +114,15 @@
     }
     
     /* ============================================
-       REFERRAL CARD (in content)
+       TABS
        ============================================ */
-    .referral-card {
-      background: linear-gradient(180deg, #ebdbff 0%, #ffffff 100%);
-      border-radius: calc(16 * var(--px));
-      padding: calc(24 * var(--px)) 0;
-      overflow: hidden;
-    }
-    
-    .referral-text-section {
-      padding: 0 calc(16 * var(--px)) calc(16 * var(--px));
-      text-align: center;
-    }
-    
-    .referral-title {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: calc(22 * var(--px));
-      line-height: calc(28 * var(--px));
-      letter-spacing: calc(-0.4 * var(--px));
-      color: #1d1d1d;
-      margin: 0;
-    }
-    
-    .referral-subtitle {
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: calc(14 * var(--px));
-      line-height: calc(20 * var(--px));
-      letter-spacing: calc(-0.09 * var(--px));
-      color: #1d1d1d;
-      margin: calc(2 * var(--px)) 0 0;
-    }
-    
-    .referral-link {
-      display: inline-block;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: calc(14 * var(--px));
-      line-height: calc(20 * var(--px));
-      letter-spacing: calc(-0.09 * var(--px));
-      color: #5258e4;
-      text-decoration: underline;
-      cursor: pointer;
-      margin-top: calc(8 * var(--px));
-    }
-    
-    .referral-avatars {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      padding: 0 calc(16 * var(--px));
-    }
-    
-    .referral-avatar-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: calc(4 * var(--px));
-      width: calc(92 * var(--px));
-    }
-    
-    .referral-avatar {
-      width: calc(40 * var(--px));
-      height: calc(40 * var(--px));
-      border-radius: 50%;
-      overflow: hidden;
-      position: relative;
-      background: #ece9fc;
-    }
-    
-    .referral-avatar img {
-      width: calc(55 * var(--px));
-      height: calc(55 * var(--px));
-      object-fit: cover;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -40%);
-    }
-    
-    .referral-avatar.ishan img {
-      width: calc(40 * var(--px));
-      height: calc(40 * var(--px));
-      transform: translate(-50%, -45%);
-    }
-    
-    .referral-avatar.outlined {
-      border: calc(1.43 * var(--px)) dashed #b0b0b0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      overflow: visible;
-    }
-    
-    .referral-avatar.outlined svg {
-      width: calc(17 * var(--px));
-      height: calc(17 * var(--px));
-    }
-    
-    .referral-avatar-badge {
-      position: absolute;
-      bottom: calc(-2 * var(--px));
-      right: calc(-2 * var(--px));
-      width: calc(16 * var(--px));
-      height: calc(16 * var(--px));
-      background: #285bf3;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: calc(2.86 * var(--px));
-    }
-    
-    .referral-avatar-badge svg {
-      width: calc(10 * var(--px));
-      height: calc(10 * var(--px));
-    }
-    
-    .referral-avatar-text {
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: calc(14 * var(--px));
-      line-height: calc(20 * var(--px));
-      letter-spacing: calc(-0.09 * var(--px));
-      color: #1d1d1d;
-      text-align: center;
-    }
-
-    /* Tabs */
     .tabs {
       display: flex;
-      border-bottom: calc(1 * var(--px)) solid #e6e6e6;
+      height: calc(48 * var(--px));
       background: white;
+      position: sticky;
+      top: calc(64 * var(--px));
+      z-index: 99;
     }
     
     .tab {
@@ -602,15 +158,491 @@
       border-radius: calc(3 * var(--px)) calc(3 * var(--px)) 0 0;
     }
     
-    /* Content Area */
+    /* ============================================
+       STUDENT DEAL COMPONENT
+       ============================================ */
+    .student-deal-container {
+      margin-top: calc(16 * var(--px));
+      background: linear-gradient(180.19deg, #EADBFE 0.16%, #F2F2F8 82.82%, #FFFFFF 99.84%);
+      border-radius: calc(16 * var(--px)) calc(16 * var(--px)) 0 0;
+      padding: calc(16 * var(--px)) 0 calc(24 * var(--px));
+      position: relative;
+      overflow: visible;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    /* Background rays */
+    .deal-rays {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(calc(-50% - 4 * var(--px)));
+      width: calc(320 * var(--px));
+      height: calc(266 * var(--px));
+      pointer-events: none;
+      opacity: 0.6;
+    }
+    
+    /* Badge hanging at top */
+    .deal-badge-hang {
+      position: absolute;
+      top: calc(-7 * var(--px));
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: flex-start;
+      z-index: 10;
+    }
+    
+    .deal-badge-ear-left,
+    .deal-badge-ear-right {
+      width: calc(4.04 * var(--px));
+      height: calc(7 * var(--px));
+    }
+    
+    .deal-badge-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #7E42EB;
+      border-radius: 0 0 calc(8 * var(--px)) calc(8 * var(--px));
+      padding: calc(24 * var(--px)) 0 calc(2 * var(--px));
+      width: calc(129 * var(--px));
+      position: relative;
+    }
+    
+    .deal-badge-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #FDFDFD;
+    }
+    
+    /* Avatars above badge */
+    .deal-badge-avatars {
+      position: absolute;
+      top: calc(-22.4 * var(--px));
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      padding-right: calc(11.2 * var(--px));
+    }
+    
+    .deal-avatar-item {
+      width: calc(44.8 * var(--px));
+      height: calc(44.8 * var(--px));
+      border-radius: 50%;
+      border: calc(1 * var(--px)) solid #FDFDFD;
+      background: #ECE9FC;
+      overflow: hidden;
+      margin-right: calc(-11.2 * var(--px));
+      position: relative;
+    }
+    
+    .deal-avatar-item:nth-child(1) { z-index: 3; }
+    .deal-avatar-item:nth-child(2) { z-index: 2; }
+    .deal-avatar-item:nth-child(3) { z-index: 1; }
+    
+    .deal-avatar-item img {
+      width: calc(50.4 * var(--px));
+      height: calc(50.4 * var(--px));
+      object-fit: cover;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -45%);
+    }
+    
+    /* Deal text content */
+    .deal-text-section {
+      padding-top: calc(56 * var(--px));
+      text-align: center;
+      position: relative;
+    }
+    
+    .deal-tag {
+      position: absolute;
+      top: calc(33 * var(--px));
+      left: 50%;
+      transform: translateX(calc(-50% + 70 * var(--px)));
+      background: white;
+      border-radius: calc(4 * var(--px));
+      padding: 0 calc(4 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: calc(16 * var(--px));
+    }
+    
+    .deal-tag span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(11 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.05 * var(--px));
+      color: #1D1D1D;
+    }
+    
+    .deal-arrow-doodle {
+      position: absolute;
+      top: calc(38 * var(--px));
+      left: 50%;
+      transform: translateX(calc(-50% - 27 * var(--px)));
+      width: calc(19.24 * var(--px));
+      height: calc(22 * var(--px));
+    }
+    
+    .deal-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(28 * var(--px));
+      line-height: calc(34 * var(--px));
+      letter-spacing: calc(-0.59 * var(--px));
+      color: #007B28;
+      margin: 0;
+      padding: 0 calc(16 * var(--px));
+    }
+    
+    .deal-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1D1D1D;
+      margin: 0;
+      padding: 0 calc(16 * var(--px));
+    }
+    
+    .deal-how-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1D1D1D;
+      text-decoration: underline;
+      cursor: pointer;
+      height: calc(48 * var(--px));
+      min-height: calc(48 * var(--px));
+      padding: calc(4 * var(--px)) calc(16 * var(--px));
+      margin-top: 0;
+      margin-bottom: calc(4 * var(--px));
+    }
+    
+    /* Share link box wrapper for animation */
+    .deal-share-box-wrapper {
+      margin: 0 calc(16 * var(--px));
+      position: relative;
+      border-radius: calc(16 * var(--px));
+      padding: calc(2 * var(--px));
+      background: #E0E0E0;
+      overflow: hidden;
+    }
+    
+    .deal-share-box-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(
+        from 0deg,
+        #E0E0E0 0deg,
+        #E0E0E0 180deg,
+        #E0CFFF 200deg,
+        #C4A1FF 230deg,
+        #7E42EB 270deg,
+        #C4A1FF 310deg,
+        #E0CFFF 340deg,
+        #E0E0E0 360deg
+      );
+      transform: translate(-50%, -50%);
+      animation: borderRotate 1.8s linear infinite;
+    }
+    
+    @keyframes borderRotate {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+    
+    /* Share link box */
+    .deal-share-box {
+      background: white;
+      border-radius: calc(14 * var(--px));
+      padding: calc(8 * var(--px)) calc(8 * var(--px)) calc(8 * var(--px)) calc(16 * var(--px));
+      display: flex;
+      align-items: center;
+      gap: calc(2 * var(--px));
+      position: relative;
+      z-index: 1;
+    }
+    
+    .share-text {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    
+    .share-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1D1D1D;
+      margin: 0;
+    }
+    
+    .share-url {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.01 * var(--px));
+      color: #1D1D1D;
+      margin: 0;
+    }
+    
+    .copy-btn {
+      padding: calc(8 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    
+    .copy-btn img {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    /* Share button */
+    .deal-share-btn {
+      margin: calc(12 * var(--px)) calc(20 * var(--px)) 0;
+      height: calc(48 * var(--px));
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: calc(8 * var(--px));
+      cursor: pointer;
+      padding: calc(4 * var(--px)) calc(16 * var(--px));
+      position: relative;
+    }
+    
+    .deal-share-btn::before {
+      content: '';
+      position: absolute;
+      top: calc(4 * var(--px));
+      bottom: calc(4 * var(--px));
+      left: 0;
+      right: 0;
+      background: #FFD7D2;
+      border-radius: calc(999 * var(--px));
+      z-index: 0;
+    }
+    
+    .deal-share-btn .whatsapp-icon {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      position: relative;
+      z-index: 1;
+    }
+    
+    .deal-share-btn span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1D1D1D;
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* ============================================
+       STUDENT DEAL - VARIANT TOGGLE LOGIC
+       ============================================ */
+    /* Default: show not-opted-in, hide opted-in (user hasn't opted in yet) */
+    .student-deal-container.opted-in {
+      display: none;
+    }
+    
+    .student-deal-container.not-opted-in {
+      display: flex;
+      /* Increased space above the card */
+      margin-top: calc(32 * var(--px));
+      /* Remove external bottom padding from content area */
+      margin-bottom: calc(-32 * var(--px));
+      /* Match Figma: pt-16, pb-32 */
+      padding: calc(16 * var(--px)) 0 calc(32 * var(--px));
+      /* Match Figma: only top corners rounded */
+      border-radius: calc(16 * var(--px)) calc(16 * var(--px)) 0 0;
+      /* Match Figma gradient: ends at 91.317% */
+      background: linear-gradient(180.82deg, #EADBFE 0.64%, #FFFFFF 91.32%);
+      /* No elevation/shadow in Figma design */
+    }
+    
+    /* When user HAS opted in - show opted-in variant (with share link), hide not-opted-in */
+    body.deal-opted-in .student-deal-container.opted-in {
+      display: flex;
+    }
+    
+    body.deal-opted-in .student-deal-container.not-opted-in {
+      display: none;
+    }
+    
+    /* Not opted-in text section - no "How it works" link */
+    .not-opted-in .deal-text-section {
+      /* Match Figma: pt-56 for badge space, pb-24, px-16 */
+      padding-top: calc(56 * var(--px));
+      padding-bottom: calc(24 * var(--px));
+      padding-left: calc(16 * var(--px));
+      padding-right: calc(16 * var(--px));
+    }
+    
+    /* Remove horizontal padding from title/subtitle since parent now has it */
+    .not-opted-in .deal-title,
+    .not-opted-in .deal-subtitle {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    
+    /* Not opted-in variant has white tag background */
+    .not-opted-in .deal-tag {
+      background: white;
+    }
+    
+    /* Inline How it works section for not opted-in variant */
+    .deal-how-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: calc(8 * var(--px));
+      padding: 0 calc(16 * var(--px));
+      position: relative;
+    }
+    
+    .deal-how-section::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, calc(-50% + 0.25 * var(--px)));
+      width: calc(328 * var(--px));
+      height: calc(114.5 * var(--px));
+      background: url('https://www.figma.com/api/mcp/asset/9d44e85a-d6b6-4117-b767-e80ad7744ec5') center center no-repeat;
+      background-size: contain;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .deal-how-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(16 * var(--px));
+      line-height: calc(22 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      color: #1D1D1D;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .deal-how-steps {
+      display: flex;
+      gap: calc(12 * var(--px));
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .deal-how-step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: calc(4 * var(--px));
+    }
+    
+    .deal-how-step-icon {
+      width: calc(32 * var(--px));
+      height: calc(32 * var(--px));
+      border-radius: 50%;
+      background: #ECE9FC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .deal-how-step-icon img {
+      width: calc(16 * var(--px));
+      height: calc(16 * var(--px));
+    }
+    
+    .deal-how-step-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.01 * var(--px));
+      color: #1D1D1D;
+      text-align: center;
+      margin: 0;
+    }
+    
+    /* Not opted-in variant CTA section */
+    .deal-cta-section {
+      padding: calc(12 * var(--px)) calc(20 * var(--px)) 0;
+      margin-bottom: 0;
+    }
+    
+    .deal-cta-section .deal-share-btn {
+      margin: 0;
+      width: 100%;
+    }
+    
+    /* Not opted-in variant WhatsApp icon size */
+    .not-opted-in .deal-share-btn .whatsapp-icon {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    /* ============================================
+       CONTENT AREA (White background - TicketsView)
+       ============================================ */
     .content {
       padding: calc(16 * var(--px));
+      padding-bottom: calc(32 * var(--px));
       display: flex;
       flex-direction: column;
       gap: calc(16 * var(--px));
+      background: #ffffff;
     }
     
-    /* Ticket Card */
+    /* ============================================
+       TICKET CARD
+       ============================================ */
     .ticket-card {
       border-radius: calc(16 * var(--px));
       overflow: hidden;
@@ -621,13 +653,15 @@
     /* Journey Section */
     .journey-section {
       background: #d63941;
-      padding: calc(16 * var(--px)) calc(16 * var(--px)) 0;
+      padding: calc(16 * var(--px)) 0 0;
     }
     
     .journey-row {
       display: flex;
       align-items: flex-start;
       gap: calc(8 * var(--px));
+      padding-left: calc(8 * var(--px));
+      padding-right: calc(16 * var(--px));
     }
     
     .journey-progress-col {
@@ -635,7 +669,7 @@
       flex-direction: column;
       align-items: center;
       width: calc(20 * var(--px));
-      padding-top: calc(4 * var(--px));
+      align-self: stretch;
     }
     
     .journey-dot {
@@ -645,6 +679,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
     
     .journey-dot-circle {
@@ -653,25 +688,66 @@
       background: white;
       border-radius: 50%;
       position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
     
-    .journey-dot svg {
-      width: calc(12 * var(--px));
-      height: calc(12 * var(--px));
-      position: relative;
+    .journey-dot .arrow-icon {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      position: absolute;
+      top: calc(6 * var(--px));
+      left: calc(6 * var(--px));
       z-index: 1;
+    }
+    
+    .journey-dot .arrow-icon img {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .journey-dot .start-line {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(1 * var(--px));
+      height: calc(10.63 * var(--px));
+      background: #e5e5e5;
+      opacity: 0.7;
+      border-radius: calc(4 * var(--px)) calc(4 * var(--px)) 0 0;
+    }
+    
+    .journey-dot .end-line {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(1 * var(--px));
+      height: calc(13 * var(--px));
+      background: #e5e5e5;
+      opacity: 0.7;
+      border-radius: 0 0 calc(4 * var(--px)) calc(4 * var(--px));
+    }
+    
+    .journey-dot.arrival-dot .arrow-icon {
+      transform-origin: center;
     }
     
     .journey-line {
       width: calc(1 * var(--px));
-      height: calc(24 * var(--px));
-      background: rgba(255, 255, 255, 0.7);
+      flex: 1;
+      min-height: calc(10 * var(--px));
+      background: #e5e5e5;
+      opacity: 0.7;
     }
     
     .journey-info-col {
       flex: 1;
       display: flex;
       flex-direction: column;
+      gap: calc(4 * var(--px));
     }
     
     .journey-city {
@@ -679,8 +755,8 @@
       font-weight: 700;
       font-size: calc(22 * var(--px));
       line-height: calc(28 * var(--px));
-      letter-spacing: calc(-1.8 * var(--px));
-      color: white;
+      letter-spacing: calc(-0.4 * var(--px));
+      color: #fdfdfd;
       margin: 0;
     }
     
@@ -690,12 +766,16 @@
       font-size: calc(12 * var(--px));
       line-height: calc(16 * var(--px));
       letter-spacing: calc(0.01 * var(--px));
-      color: white;
+      color: #fdfdfd;
       margin: 0;
     }
     
     .journey-time-col {
       text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding-bottom: calc(4 * var(--px));
     }
     
     .journey-time {
@@ -703,8 +783,8 @@
       font-weight: 700;
       font-size: calc(22 * var(--px));
       line-height: calc(28 * var(--px));
-      letter-spacing: calc(-1.8 * var(--px));
-      color: white;
+      letter-spacing: calc(-0.4 * var(--px));
+      color: #fdfdfd;
       margin: 0;
     }
     
@@ -714,7 +794,7 @@
       font-size: calc(12 * var(--px));
       line-height: calc(16 * var(--px));
       letter-spacing: calc(0.01 * var(--px));
-      color: white;
+      color: #fdfdfd;
       margin: 0;
     }
     
@@ -734,8 +814,8 @@
     }
     
     .duration-logo {
-      width: calc(36 * var(--px));
-      height: calc(24 * var(--px));
+      width: calc(45 * var(--px));
+      height: calc(30 * var(--px));
       flex-shrink: 0;
     }
     
@@ -751,19 +831,35 @@
       font-size: calc(12 * var(--px));
       line-height: calc(16 * var(--px));
       letter-spacing: calc(0.01 * var(--px));
-      color: white;
+      color: #fdfdfd;
       white-space: nowrap;
     }
     
     /* Layover Section */
     .layover-section {
       background: #d63941;
-      padding: calc(8 * var(--px)) calc(16 * var(--px));
-      border-top: calc(1 * var(--px)) dashed rgba(255, 255, 255, 0.5);
+      padding: calc(8 * var(--px));
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: calc(4 * var(--px));
+    }
+    
+    .layover-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: calc(1 * var(--px));
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.5) 0,
+        rgba(255, 255, 255, 0.5) calc(4 * var(--px)),
+        transparent calc(4 * var(--px)),
+        transparent calc(8 * var(--px))
+      );
     }
     
     .layover-icon {
@@ -774,7 +870,7 @@
       justify-content: center;
     }
     
-    .layover-icon svg {
+    .layover-icon img {
       width: calc(19 * var(--px));
       height: calc(14 * var(--px));
     }
@@ -785,13 +881,20 @@
       font-size: calc(12 * var(--px));
       line-height: calc(16 * var(--px));
       letter-spacing: calc(0.01 * var(--px));
-      color: white;
+      color: #fdfdfd;
     }
     
     /* Bus Info Section */
     .bus-info-section {
       background: white;
       padding: calc(16 * var(--px));
+    }
+    
+    .bus-info-top {
+      display: flex;
+      flex-direction: column;
+      gap: calc(2 * var(--px));
+      margin-bottom: calc(4 * var(--px));
     }
     
     .bus-number-plate {
@@ -803,6 +906,7 @@
       border-radius: calc(4 * var(--px));
       padding: 0 calc(4 * var(--px));
       height: calc(20 * var(--px));
+      width: fit-content;
       margin-bottom: calc(2 * var(--px));
     }
     
@@ -829,7 +933,7 @@
       line-height: calc(22 * var(--px));
       letter-spacing: calc(-0.18 * var(--px));
       color: #1d1d1d;
-      margin: 0 0 calc(4 * var(--px));
+      margin: 0;
     }
     
     /* Passengers List */
@@ -888,33 +992,43 @@
     .ticket-cutout {
       display: flex;
       align-items: center;
+      align-items: center;
       background: white;
     }
     
     .cutout-left, .cutout-right {
       width: calc(17 * var(--px));
       height: calc(32 * var(--px));
-      background: #f2f2f8;
       flex-shrink: 0;
     }
     
-    .cutout-left {
-      border-radius: 0 calc(16 * var(--px)) calc(16 * var(--px)) 0;
+    .cutout-left img, .cutout-right img {
+      width: 100%;
+      height: 100%;
     }
     
-    .cutout-right {
-      border-radius: calc(16 * var(--px)) 0 0 calc(16 * var(--px));
+    .cutout-right img {
+      transform: scaleX(-1);
+    }
+    
+    .cutout-center {
+      flex: 1;
+      background: white;
+      display: flex;
+      align-items: center;
+      padding: 0 calc(15 * var(--px));
     }
     
     .cutout-divider {
       flex: 1;
-      border-top: calc(2 * var(--px)) dashed #e5e5e5;
+      height: 0;
+      border-top: calc(2 * var(--px)) dashed #e6e6e6;
     }
     
     /* Ticket Details Link */
     .ticket-details-link {
       background: white;
-      padding: calc(8 * var(--px)) calc(16 * var(--px)) calc(16 * var(--px));
+      padding: 0 calc(8 * var(--px)) calc(16 * var(--px));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -928,15 +1042,19 @@
       letter-spacing: calc(-0.09 * var(--px));
       color: #5258e4;
       text-decoration: underline;
+      text-underline-offset: calc(2 * var(--px));
       background: none;
       border: none;
       cursor: pointer;
+      height: calc(48 * var(--px));
+      min-height: calc(48 * var(--px));
+      padding: calc(4 * var(--px)) calc(16 * var(--px));
     }
     
     /* Info Text */
     .info-text-section {
       text-align: center;
-      padding: 0 calc(16 * var(--px));
+      padding: 0 calc(8 * var(--px));
     }
     
     .info-text {
@@ -945,7 +1063,7 @@
       font-size: calc(14 * var(--px));
       line-height: calc(20 * var(--px));
       letter-spacing: calc(-0.09 * var(--px));
-      color: #1d1d1d;
+      color: rgba(29, 29, 29, 0.64);
       margin: 0;
     }
     
@@ -959,6 +1077,7 @@
       border: calc(1 * var(--px)) solid #e6e6e6;
       border-radius: calc(16 * var(--px));
       overflow: hidden;
+      padding: calc(4 * var(--px)) 0;
     }
     
     .cta-item {
@@ -983,7 +1102,7 @@
       justify-content: center;
     }
     
-    .cta-icon svg, .cta-icon img {
+    .cta-icon svg {
       width: 100%;
       height: 100%;
     }
@@ -1035,85 +1154,29 @@
       height: 100%;
     }
     
-    /* Add to Calendar */
-    .calendar-card {
-      background: white;
-      border: calc(1 * var(--px)) solid #e6e6e6;
-      border-radius: calc(16 * var(--px));
-      display: flex;
-      align-items: center;
-      gap: calc(16 * var(--px));
-      padding: calc(8 * var(--px)) calc(16 * var(--px));
-      min-height: calc(56 * var(--px));
-    }
-    
-    .calendar-icon {
-      width: calc(24 * var(--px));
-      height: calc(24 * var(--px));
-    }
-    
-    .calendar-icon svg {
-      width: 100%;
-      height: 100%;
-    }
-    
-    .calendar-text {
-      flex: 1;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: calc(16 * var(--px));
-      line-height: calc(24 * var(--px));
-      letter-spacing: calc(-0.176 * var(--px));
-      color: #1d1d1d;
-    }
-    
-    .calendar-add {
-      width: calc(24 * var(--px));
-      height: calc(24 * var(--px));
-    }
-    
-    .calendar-add svg {
-      width: 100%;
-      height: 100%;
-    }
-    
-    /* Home Indicator */
-    .home-indicator {
-      display: flex;
-      justify-content: center;
-      padding: calc(8 * var(--px)) 0 calc(16 * var(--px));
-    }
-    
-    .home-indicator-bar {
-      width: calc(108 * var(--px));
-      height: calc(4 * var(--px));
-      background: black;
-      border-radius: calc(12 * var(--px));
-    }
-    
     /* ============================================
-       POINTS SECTION (Grey Background)
+       POINTS SECTION
        ============================================ */
     .points-section {
-      background: #f2f2f8;
-      padding: calc(16 * var(--px));
+      padding: calc(24 * var(--px)) calc(16 * var(--px));
       display: flex;
       flex-direction: column;
-      gap: calc(16 * var(--px));
+      gap: calc(24 * var(--px));
     }
     
     /* ============================================
-       BOARDING / DROPPING POINT CARDS
+       POINT CARDS (Boarding/Dropping)
        ============================================ */
     .point-card {
       background: white;
       border-radius: calc(16 * var(--px));
-      box-shadow: 0 calc(2 * var(--px)) calc(8 * var(--px)) rgba(0,0,0,0.08);
+      box-shadow: 0 calc(1 * var(--px)) calc(12 * var(--px)) rgba(29,29,29,0.1);
       overflow: hidden;
     }
     
     .point-card-header {
-      padding: calc(16 * var(--px)) calc(16 * var(--px)) 0;
+      padding: calc(16 * var(--px));
+      border-bottom: calc(1 * var(--px)) solid #e6e6e6;
     }
     
     .point-card-title {
@@ -1121,30 +1184,30 @@
       font-weight: 700;
       font-size: calc(22 * var(--px));
       line-height: calc(28 * var(--px));
-      letter-spacing: calc(-0.4 * var(--px));
       color: #1d1d1d;
-      margin: 0 0 calc(12 * var(--px));
+      margin: 0;
+    }
+    
+    .point-card-body {
+      padding: calc(16 * var(--px));
     }
     
     .point-time-badge {
       display: inline-flex;
       align-items: center;
-      background: #f3f0ff;
-      border-radius: calc(4 * var(--px));
+      background: #e6ebfd;
+      border-radius: calc(8 * var(--px));
       padding: calc(4 * var(--px)) calc(8 * var(--px));
+      height: calc(24 * var(--px));
+      margin-bottom: calc(8 * var(--px));
     }
     
     .point-time-badge span {
       font-family: 'Inter', sans-serif;
-      font-weight: 700;
+      font-weight: 500;
       font-size: calc(12 * var(--px));
       line-height: calc(16 * var(--px));
-      letter-spacing: calc(0.01 * var(--px));
-      color: #5258e4;
-    }
-    
-    .point-card-body {
-      padding: calc(12 * var(--px)) calc(16 * var(--px)) calc(16 * var(--px));
+      color: #1d1d1d;
     }
     
     .point-content {
@@ -1161,8 +1224,7 @@
       font-family: 'Inter', sans-serif;
       font-weight: 700;
       font-size: calc(16 * var(--px));
-      line-height: calc(22 * var(--px));
-      letter-spacing: calc(-0.18 * var(--px));
+      line-height: calc(24 * var(--px));
       color: #1d1d1d;
       margin: 0 0 calc(4 * var(--px));
     }
@@ -1172,48 +1234,43 @@
       font-weight: 400;
       font-size: calc(14 * var(--px));
       line-height: calc(20 * var(--px));
-      letter-spacing: calc(-0.09 * var(--px));
       color: #6f6f6f;
       margin: 0;
     }
     
     .point-image {
-      width: calc(88 * var(--px));
-      height: calc(72 * var(--px));
+      width: calc(96 * var(--px));
+      height: calc(56 * var(--px));
       border-radius: calc(8 * var(--px));
       overflow: hidden;
       position: relative;
-      background: #f5f5f5;
+      background: #1d4ce7;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 calc(1 * var(--px)) calc(12 * var(--px)) rgba(29,29,29,0.1);
+    }
+    
+    .point-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.34);
+      z-index: 1;
     }
     
     .point-image svg {
-      width: 100%;
-      height: 100%;
-    }
-    
-    .point-image-label {
-      position: absolute;
-      bottom: calc(4 * var(--px));
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255,255,255,0.9);
-      border-radius: calc(4 * var(--px));
-      padding: calc(2 * var(--px)) calc(6 * var(--px));
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: calc(10 * var(--px));
-      line-height: calc(14 * var(--px));
-      color: #5258e4;
-      white-space: nowrap;
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      position: relative;
+      z-index: 2;
     }
     
     .point-actions {
       display: flex;
-      border-top: calc(1 * var(--px)) solid #e6e6e6;
+      border-top: calc(1 * var(--px)) solid #e5e5e5;
+      padding: calc(4 * var(--px)) 0;
     }
     
     .point-action {
@@ -1222,145 +1279,1098 @@
       align-items: center;
       justify-content: center;
       gap: calc(8 * var(--px));
-      padding: calc(12 * var(--px)) calc(8 * var(--px));
+      padding: calc(12 * var(--px)) calc(16 * var(--px));
       background: none;
       border: none;
       cursor: pointer;
+      height: calc(40 * var(--px));
     }
     
     .point-action:first-child {
-      border-right: calc(1 * var(--px)) solid #e6e6e6;
+      border-right: calc(1 * var(--px)) solid #e5e5e5;
     }
     
     .point-action svg {
-      width: calc(20 * var(--px));
-      height: calc(20 * var(--px));
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
     }
     
     .point-action span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      color: #1d1d1d;
+      text-decoration: underline;
+    }
+    
+    /* ============================================
+       WAKE UP CARD
+       ============================================ */
+    .wake-up-card {
+      background: white;
+      border-radius: calc(16 * var(--px));
+      box-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.08),
+                  0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0,0,0,0.08);
+      overflow: hidden;
+      padding: calc(12 * var(--px)) calc(16 * var(--px));
+      display: flex;
+      gap: calc(16 * var(--px));
+      align-items: flex-start;
+      min-height: calc(88 * var(--px));
+    }
+    
+    .wake-up-icon {
+      width: calc(40 * var(--px));
+      height: calc(40 * var(--px));
+      background: #ffdad6;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .wake-up-icon span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(16 * var(--px));
+      line-height: calc(24 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    .wake-up-text {
+      flex: 1;
+    }
+    
+    .wake-up-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(16 * var(--px));
+      line-height: calc(24 * var(--px));
+      letter-spacing: calc(-0.176 * var(--px));
+      color: #1d1d1d;
+      margin: 0;
+    }
+    
+    .wake-up-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.084 * var(--px));
+      color: #6f6f6f;
+      margin: 0;
+    }
+    
+    .toggle-switch {
+      width: calc(52 * var(--px));
+      height: calc(32 * var(--px));
+      background: #d63941;
+      border-radius: calc(999 * var(--px));
+      padding: calc(4 * var(--px));
+      cursor: pointer;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    
+    .toggle-puck {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+      background: white;
+      border-radius: 50%;
+    }
+    
+    /* ============================================
+       REDBUDDY CARD
+       ============================================ */
+    .redbuddy-card {
+      background: white;
+      border-radius: calc(16 * var(--px));
+      box-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.08),
+                  0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0,0,0,0.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: calc(16 * var(--px));
+    }
+    
+    .redbuddy-icon {
+      width: calc(64 * var(--px));
+      height: calc(64 * var(--px));
+      margin-bottom: calc(2 * var(--px));
+    }
+    
+    .redbuddy-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .redbuddy-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(22 * var(--px));
+      line-height: calc(28 * var(--px));
+      letter-spacing: calc(-0.4 * var(--px));
+      color: #1d1d1d;
+      text-align: center;
+      margin: 0 0 calc(16 * var(--px));
+      min-height: calc(56 * var(--px));
+      display: flex;
+      align-items: center;
+    }
+    
+    .redbuddy-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: calc(12 * var(--px));
+      line-height: calc(16 * var(--px));
+      letter-spacing: calc(0.01 * var(--px));
+      color: #747474;
+      text-align: center;
+      margin: 0 0 calc(12 * var(--px));
+    }
+    
+    .redbuddy-cta {
+      width: 100%;
+      height: calc(48 * var(--px));
+      background: #fed9d5;
+      border: none;
+      border-radius: calc(999 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: calc(4 * var(--px));
+      cursor: pointer;
+    }
+    
+    .redbuddy-cta svg {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    .redbuddy-cta span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    /* Bottom padding */
+    .bottom-padding {
+      height: calc(24 * var(--px));
+    }
+    
+    /* ============================================
+       NATIVE SHARE SHEET
+       ============================================ */
+    .native-share-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 600;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .native-share-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .native-share-scrim {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .native-share-sheet {
+      position: relative;
+      width: calc(360 * var(--px));
+      background: #f5f5f5;
+      border-radius: calc(16 * var(--px)) calc(16 * var(--px)) 0 0;
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+    
+    .native-share-overlay.active .native-share-sheet {
+      transform: translateY(0);
+    }
+    
+    .native-share-header {
+      background: white;
+      padding: calc(16 * var(--px));
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .native-share-header span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: calc(14 * var(--px));
+      color: #1d1d1d;
+    }
+    
+    .native-share-content {
+      padding: calc(16 * var(--px));
+    }
+    
+    .share-contacts {
+      display: flex;
+      gap: calc(16 * var(--px));
+      margin-bottom: calc(24 * var(--px));
+    }
+    
+    .share-contact {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: calc(8 * var(--px));
+    }
+    
+    .contact-avatar {
+      width: calc(56 * var(--px));
+      height: calc(56 * var(--px));
+      border-radius: 50%;
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .contact-avatar.my-status {
+      background: white;
+      border: calc(2 * var(--px)) solid #25D366;
+    }
+    
+    .contact-avatar.my-status svg {
+      width: calc(32 * var(--px));
+      height: calc(32 * var(--px));
+    }
+    
+    .share-contact span {
+      font-family: 'Inter', sans-serif;
+      font-size: calc(11 * var(--px));
+      color: #666;
+      text-align: center;
+    }
+    
+    .share-apps {
+      display: flex;
+      gap: calc(8 * var(--px));
+      overflow-x: auto;
+      padding-bottom: calc(16 * var(--px));
+    }
+    
+    .share-app {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: calc(8 * var(--px));
+      min-width: calc(64 * var(--px));
+      cursor: pointer;
+    }
+    
+    .share-app:active {
+      opacity: 0.7;
+    }
+    
+    .app-icon {
+      width: calc(48 * var(--px));
+      height: calc(48 * var(--px));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .app-icon.quick-share {
+      background: #e8f0fe;
+    }
+    
+    .app-icon.whatsapp {
+      background: #25D366;
+    }
+    
+    .app-icon.whatsapp svg path {
+      fill: white;
+    }
+    
+    .app-icon.gmail {
+      background: white;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .app-icon.messages {
+      background: #34C759;
+    }
+    
+    .app-icon.messages svg path {
+      fill: white;
+    }
+    
+    .app-icon.copy-link {
+      background: #007AFF;
+    }
+    
+    .app-icon.copy-link svg path {
+      fill: white;
+    }
+    
+    .app-icon.more {
+      background: #8E8E93;
+    }
+    
+    .app-icon.more svg path {
+      fill: white;
+    }
+    
+    .app-icon svg {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    .share-app span {
+      font-family: 'Inter', sans-serif;
+      font-size: calc(11 * var(--px));
+      color: #1d1d1d;
+      text-align: center;
+      white-space: nowrap;
+    }
+    
+    /* ============================================
+       SNACKBAR
+       ============================================ */
+    .snackbar {
+      position: fixed;
+      bottom: calc(16 * var(--px));
+      left: 50%;
+      transform: translateX(-50%) translateY(calc(100 * var(--px)));
+      width: calc(344 * var(--px));
+      min-height: calc(48 * var(--px));
+      max-height: calc(64 * var(--px));
+      background: #303030;
+      border-radius: calc(8 * var(--px));
+      padding: calc(12 * var(--px)) calc(16 * var(--px));
+      display: flex;
+      align-items: center;
+      gap: calc(8 * var(--px));
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+      box-shadow: 0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0, 0, 0, 0.08),
+                  0 calc(8 * var(--px)) calc(16 * var(--px)) rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+    
+    .snackbar.active {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .snackbar-text {
+      flex: 1;
       font-family: 'Inter', sans-serif;
       font-weight: 500;
       font-size: calc(14 * var(--px));
       line-height: calc(20 * var(--px));
       letter-spacing: calc(-0.09 * var(--px));
+      color: #FDFDFD;
+    }
+    
+    .snackbar-timer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: calc(4 * var(--px));
+      background: #D63941;
+      width: 100%;
+      transform-origin: left;
+      animation: snackbar-timer 2.5s linear forwards;
+    }
+    
+    .snackbar:not(.active) .snackbar-timer {
+      animation: none;
+      width: 100%;
+    }
+    
+    @keyframes snackbar-timer {
+      from {
+        transform: scaleX(1);
+      }
+      to {
+        transform: scaleX(0);
+      }
+    }
+    
+    /* ============================================
+       HOW IT WORKS BOTTOM SHEET
+       ============================================ */
+    .hiw-sheet-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1000;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    
+    .hiw-sheet-overlay.active {
+      display: flex;
+    }
+    
+    .hiw-sheet-scrim {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .hiw-sheet {
+      position: relative;
+      width: 100%;
+      max-width: calc(360 * var(--px));
+      background: white;
+      border-radius: calc(16 * var(--px)) calc(16 * var(--px)) 0 0;
+      overflow: visible;
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .hiw-sheet-overlay.active .hiw-sheet {
+      transform: translateY(0);
+    }
+    
+    /* Hanging Badge */
+    .hiw-badge-hang {
+      position: absolute;
+      top: calc(-7 * var(--px));
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: flex-start;
+      z-index: 10;
+    }
+    
+    .hiw-badge-ear-left,
+    .hiw-badge-ear-right {
+      width: calc(4.04 * var(--px));
+      height: calc(7 * var(--px));
+    }
+    
+    .hiw-badge-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #7E42EB;
+      padding: calc(24 * var(--px)) 0 calc(2 * var(--px));
+      border-radius: 0 0 calc(8 * var(--px)) calc(8 * var(--px));
+      min-width: calc(129 * var(--px));
+    }
+    
+    .hiw-badge-avatars {
+      position: absolute;
+      top: calc(-22 * var(--px));
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      padding-right: calc(11.2 * var(--px));
+    }
+    
+    .hiw-avatar-item {
+      width: calc(44.8 * var(--px));
+      height: calc(44.8 * var(--px));
+      border-radius: 50%;
+      border: calc(1 * var(--px)) solid #FDFDFD;
+      background: #ECE9FC;
+      overflow: hidden;
+      margin-right: calc(-11.2 * var(--px));
+      position: relative;
+    }
+    
+    .hiw-avatar-item:nth-child(1) { z-index: 3; }
+    .hiw-avatar-item:nth-child(2) { z-index: 2; }
+    .hiw-avatar-item:nth-child(3) { z-index: 1; }
+    
+    .hiw-avatar-item img {
+      width: calc(50.4 * var(--px));
+      height: calc(50.4 * var(--px));
+      object-fit: cover;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .hiw-badge-label {
+      font-family: 'Inter', sans-serif;
+      font-size: calc(14 * var(--px));
+      font-weight: 700;
+      color: #FDFDFD;
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+    }
+    
+    /* Sheet Header */
+    .hiw-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: calc(8 * var(--px)) 0;
+      border-top-left-radius: calc(16 * var(--px));
+      border-top-right-radius: calc(16 * var(--px));
+      background: #EADBFE;
+      position: relative;
+    }
+    
+    .hiw-drag-handle {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(32 * var(--px));
+      height: calc(4 * var(--px));
+      background: #B0B0B0;
+      border-radius: calc(999 * var(--px));
+      top: calc(8 * var(--px));
+    }
+    
+    .hiw-close-btn {
+      width: calc(56 * var(--px));
+      height: calc(48 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .hiw-close-btn svg {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    /* Sheet Body */
+    .hiw-body {
+      background: linear-gradient(180.55deg, #EADBFE 0.64%, #FFFFFF 105.25%);
+      padding: 0;
+      padding-bottom: calc(12 * var(--px));
+      overflow: visible;
+      position: relative;
+    }
+    
+    .hiw-title-section {
+      text-align: center;
+      padding: calc(24 * var(--px)) calc(16 * var(--px));
+      position: relative;
+    }
+    
+    .hiw-main-title {
+      font-family: 'Inter', sans-serif;
+      font-size: calc(28 * var(--px));
+      font-weight: 700;
+      color: #1D1D1D;
+      line-height: calc(36 * var(--px));
+      letter-spacing: calc(-0.59 * var(--px));
+      margin: 0 0 calc(2 * var(--px));
+    }
+    
+    .hiw-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: calc(16 * var(--px));
+      font-weight: 400;
+      color: #1D1D1D;
+      line-height: calc(22 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      margin: 0;
+    }
+    
+    .hiw-arrow-doodle {
+      position: absolute;
+      left: calc(231.44 * var(--px));
+      top: calc(58.25 * var(--px));
+      width: calc(32.92 * var(--px));
+      height: calc(37.64 * var(--px));
+      transform: rotate(109.59deg);
+    }
+    
+    /* How it works section */
+    .hiw-container {
+      padding: calc(8 * var(--px)) calc(16 * var(--px)) calc(16 * var(--px));
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: calc(8 * var(--px));
+    }
+    
+    .hiw-section-title {
+      font-family: 'Inter', sans-serif;
+      font-size: calc(16 * var(--px));
+      font-weight: 700;
+      color: #1D1D1D;
+      text-align: center;
+      margin: 0;
+      line-height: calc(22 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+    }
+    
+    .hiw-steps-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: calc(4 * var(--px));
+      width: 100%;
+      position: relative;
+    }
+    
+    .hiw-step {
+      flex: 1 0 0;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: calc(4 * var(--px));
+    }
+    
+    .hiw-step-icon {
+      width: calc(40 * var(--px));
+      height: calc(40 * var(--px));
+      border-radius: 50%;
+      background: #ECE9FC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .hiw-step-icon img {
+      width: calc(20 * var(--px));
+      height: calc(18 * var(--px));
+      object-fit: contain;
+    }
+    
+    .hiw-step-text {
+      font-family: 'Inter', sans-serif;
+      font-size: calc(14 * var(--px));
+      font-weight: 400;
+      color: #1D1D1D;
+      line-height: calc(20 * var(--px));
+      letter-spacing: calc(-0.09 * var(--px));
+      margin: 0;
+      text-align: center;
+    }
+    
+    .hiw-step-arrow {
+      position: absolute;
+      width: calc(52 * var(--px));
+      height: calc(6 * var(--px));
+      top: calc(50% - 16 * var(--px));
+      transform: translate(-50%, -50%);
+    }
+    
+    .hiw-step-arrow-1 {
+      left: calc(50% - 54 * var(--px));
+    }
+    
+    .hiw-step-arrow-2 {
+      left: calc(50% + 56.5 * var(--px));
+      width: calc(51 * var(--px));
+    }
+    
+    /* CTA Section */
+    .hiw-cta-section {
+      background: white;
+      padding: calc(16 * var(--px)) calc(16 * var(--px)) 0;
+    }
+    
+    .hiw-cta-btn {
+      width: 100%;
+      height: calc(48 * var(--px));
+      background: #D63941;
+      border: none;
+      border-radius: calc(999 * var(--px));
+      font-family: 'Inter', sans-serif;
+      font-size: calc(16 * var(--px));
+      font-weight: 700;
+      color: #FDFDFD;
+      line-height: calc(22 * var(--px));
+      letter-spacing: calc(-0.18 * var(--px));
+      cursor: pointer;
+    }
+    
+    .hiw-home-indicator {
+      height: calc(24 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .hiw-indicator-bar {
+      width: calc(108 * var(--px));
+      height: calc(4 * var(--px));
+      background: black;
+      border-radius: calc(12 * var(--px));
+    }
+    
+    /* ============================================
+       WHATSAPP SCREEN OVERLAY
+       ============================================ */
+    .whatsapp-screen-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .whatsapp-screen-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .whatsapp-screen {
+      width: calc(360 * var(--px));
+      height: calc(800 * var(--px));
+      background: #e5ddd5;
+      position: relative;
+      overflow: hidden;
+      transform: scale(0.95);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    
+    .whatsapp-screen-overlay.active .whatsapp-screen {
+      transform: scale(1);
+      opacity: 1;
+    }
+    
+    /* WhatsApp background pattern */
+    .whatsapp-screen::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23cdc9c3' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.3;
+      z-index: 0;
+    }
+    
+    /* WhatsApp header */
+    .whatsapp-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: calc(80 * var(--px));
+      background: #075E54;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 calc(8 * var(--px)) calc(12 * var(--px));
+      z-index: 10;
+    }
+    
+    .whatsapp-back-btn {
+      width: calc(40 * var(--px));
+      height: calc(40 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .whatsapp-back-btn svg {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    .whatsapp-back-btn svg path {
+      fill: white;
+    }
+    
+    .whatsapp-contact {
+      display: flex;
+      align-items: center;
+      gap: calc(12 * var(--px));
+      flex: 1;
+    }
+    
+    .whatsapp-avatar {
+      width: calc(40 * var(--px));
+      height: calc(40 * var(--px));
+      border-radius: 50%;
+      background: #ccc;
+      overflow: hidden;
+    }
+    
+    .whatsapp-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .whatsapp-contact-name {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: calc(16 * var(--px));
+      color: white;
+    }
+    
+    .whatsapp-header-actions {
+      display: flex;
+      gap: calc(8 * var(--px));
+    }
+    
+    .whatsapp-header-btn {
+      width: calc(40 * var(--px));
+      height: calc(40 * var(--px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .whatsapp-header-btn svg {
+      width: calc(24 * var(--px));
+      height: calc(24 * var(--px));
+    }
+    
+    .whatsapp-header-btn svg path {
+      fill: white;
+    }
+    
+    /* Chat area */
+    .whatsapp-chat {
+      position: absolute;
+      top: calc(80 * var(--px));
+      left: 0;
+      right: 0;
+      bottom: calc(56 * var(--px));
+      padding: calc(16 * var(--px));
+      overflow-y: auto;
+      z-index: 1;
+    }
+    
+    .whatsapp-date-badge {
+      display: flex;
+      justify-content: center;
+      margin-bottom: calc(16 * var(--px));
+    }
+    
+    .whatsapp-date-badge span {
+      background: #e1f2fb;
+      padding: calc(4 * var(--px)) calc(12 * var(--px));
+      border-radius: calc(8 * var(--px));
+      font-family: 'Inter', sans-serif;
+      font-size: calc(12 * var(--px));
+      color: #54656f;
+    }
+    
+    /* Message bubble */
+    .whatsapp-message {
+      max-width: calc(280 * var(--px));
+      margin-left: auto;
+      background: white;
+      border-radius: calc(8 * var(--px));
+      border-top-right-radius: 0;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 calc(1 * var(--px)) calc(1 * var(--px)) rgba(0,0,0,0.1);
+    }
+    
+    /* Message tail */
+    .whatsapp-message::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: calc(-8 * var(--px));
+      width: 0;
+      height: 0;
+      border-left: calc(8 * var(--px)) solid white;
+      border-top: calc(8 * var(--px)) solid transparent;
+    }
+    
+    .message-promo-card {
+      padding: calc(12 * var(--px));
+      background: linear-gradient(180deg, #EBDBFF 0%, #FFFFFF 100%);
+      display: flex;
+      align-items: center;
+      gap: calc(8 * var(--px));
+      border-radius: calc(6 * var(--px));
+      margin: calc(4 * var(--px));
+    }
+    
+    .promo-card-image {
+      width: calc(65 * var(--px));
+      height: calc(47 * var(--px));
+      flex-shrink: 0;
+    }
+    
+    .promo-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .promo-card-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
       color: #1d1d1d;
+      letter-spacing: -0.09px;
+    }
+    
+    .message-text {
+      padding: calc(4 * var(--px)) calc(12 * var(--px)) calc(12 * var(--px));
+      font-family: 'Inter', sans-serif;
+      font-size: calc(14 * var(--px));
+      line-height: calc(20 * var(--px));
+      color: #1d1d1d;
+      letter-spacing: -0.09px;
+    }
+    
+    .message-text p {
+      margin: 0 0 calc(8 * var(--px));
+    }
+    
+    .message-text p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .message-text strong {
+      font-weight: 700;
+    }
+    
+    .message-text .link {
+      color: #285bf3;
       text-decoration: underline;
+      font-weight: 500;
+    }
+    
+    /* WhatsApp input bar */
+    .whatsapp-input-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: calc(56 * var(--px));
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      padding: 0 calc(8 * var(--px));
+      gap: calc(8 * var(--px));
+      z-index: 10;
+    }
+    
+    .whatsapp-input {
+      flex: 1;
+      height: calc(40 * var(--px));
+      background: white;
+      border-radius: calc(20 * var(--px));
+      display: flex;
+      align-items: center;
+      padding: 0 calc(12 * var(--px));
+    }
+    
+    .whatsapp-input span {
+      font-family: 'Inter', sans-serif;
+      font-size: calc(14 * var(--px));
+      color: #8696a0;
+    }
+    
+    .whatsapp-send-btn {
+      width: calc(40 * var(--px));
+      height: calc(40 * var(--px));
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .whatsapp-send-btn svg {
+      width: calc(20 * var(--px));
+      height: calc(20 * var(--px));
+    }
+    
+    .whatsapp-send-btn svg path {
+      fill: white;
     }
   </style>
 </head>
 <body>
   <div id="app">
     <div class="screen-container">
-      <!-- Hotel Promotion Banner -->
-      <div class="hotel-banner">
-        <!-- Header with navigation -->
-        <div class="banner-header">
-          <!-- Navigation -->
-          <div class="banner-nav">
-            <button class="banner-back-btn" onclick="window.location.href='payment.html'">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#1d1d1d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-            <div class="banner-header-spacer"></div>
-            <div class="banner-actions">
-              <button class="banner-action-btn">
-                <!-- Favorite Outline -->
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#1d1d1d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-              <button class="banner-action-btn">
-                <!-- Favorite Outline -->
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#1d1d1d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Illustration -->
-        <div class="banner-illustration">
-          <img src="assets/payment/hotel-human.png" alt="Hotel offer">
-        </div>
-        
-        <!-- Banner Text -->
-        <div class="banner-text">
-          <p class="banner-question">Traveling to Chennai on 24 May?</p>
-          <h2 class="banner-offer">You get 50% off<br>on hotels</h2>
-        </div>
-        
-        <!-- Coupon + CTA -->
-        <div class="banner-cta-section">
-          <div class="coupon-card">
-            <div class="coupon-decoration"></div>
-            <div class="coupon-content">
-              <div class="coupon-tag">
-                <span class="coupon-code">RB200</span>
-              </div>
-              <p class="coupon-hint">Use code at checkout</p>
-            </div>
-          </div>
-          <button class="banner-cta-btn">
-            <span>Copy code & book now</span>
+      <!-- Top Navigation -->
+      <nav class="top-nav">
+        <div class="nav-content">
+          <button class="close-btn" onclick="window.location.href='payment.html'">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M18 6L6 18M6 6L18 18" stroke="#1d1d1d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </button>
-          <div class="carousel-dots">
-            <div class="carousel-dot active"></div>
-            <div class="carousel-dot"></div>
-            <div class="carousel-dot"></div>
-            <div class="carousel-dot"></div>
+          <div class="nav-text">
+            <h1 class="nav-title">Ticket details</h1>
+            <p class="nav-subtitle">Ticket #TS8P86396626</p>
           </div>
-        </div>
-      </div>
-      
-      <!-- Scrollable Tray Wrapper -->
-      <div class="bottom-sheet-wrapper" id="trayWrapper">
-        <!-- Spacer to show hotel banner initially -->
-        <div class="bottom-sheet-spacer"></div>
-        
-        <!-- Bottom Sheet Tray -->
-        <div class="bottom-sheet" id="bottomSheet">
-          <!-- Handle -->
-          <div class="bottom-sheet-handle" id="trayHandle">
-            <div class="bottom-sheet-handle-bar"></div>
-          </div>
-        
-        <!-- Top Navigation -->
-        <nav class="top-nav">
-          <div class="nav-content">
-            <!-- Minimize Button (shown when expanded) -->
-            <button class="minimize-btn" id="minimizeBtn">
+          <div class="nav-actions">
+            <button class="nav-action-btn">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z" fill="#1d1d1d"/>
+                <path d="M21 12.22C21 6.73 16.74 3 12 3C7.31 3 3 6.65 3 12.28C2.4 12.62 2 13.26 2 14V16C2 17.1 2.9 18 4 18H5V11.9C5 8.03 8.13 4.9 12 4.9C15.87 4.9 19 8.03 19 11.9V19H11V21H19C20.1 21 21 20.1 21 19V17.78C21.59 17.47 22 16.86 22 16.14V13.84C22 13.14 21.59 12.53 21 12.22Z" fill="#1d1d1d"/>
+                <path d="M9 14C9.55228 14 10 13.5523 10 13C10 12.4477 9.55228 12 9 12C8.44772 12 8 12.4477 8 13C8 13.5523 8.44772 14 9 14Z" fill="#1d1d1d"/>
+                <path d="M15 14C15.5523 14 16 13.5523 16 13C16 12.4477 15.5523 12 15 12C14.4477 12 14 12.4477 14 13C14 13.5523 14.4477 14 15 14Z" fill="#1d1d1d"/>
               </svg>
             </button>
-            <div class="nav-text">
-              <h1 class="nav-title">Ticket details</h1>
-              <p class="nav-subtitle">Ticket #TS8P86396626</p>
-            </div>
-            <div class="nav-actions">
-              <button class="nav-action-btn">
-                <!-- Support Agent Icon -->
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M21 12.22C21 6.73 16.74 3 12 3C7.31 3 3 6.65 3 12.28C2.4 12.62 2 13.26 2 14V16C2 17.1 2.9 18 4 18H5V11.9C5 8.03 8.13 4.9 12 4.9C15.87 4.9 19 8.03 19 11.9V19H11V21H19C20.1 21 21 20.1 21 19V17.78C21.59 17.47 22 16.86 22 16.14V13.84C22 13.14 21.59 12.53 21 12.22Z" fill="#1d1d1d"/>
-                  <path d="M9 14C9.55228 14 10 13.5523 10 13C10 12.4477 9.55228 12 9 12C8.44772 12 8 12.4477 8 13C8 13.5523 8.44772 14 9 14Z" fill="#1d1d1d"/>
-                  <path d="M15 14C15.5523 14 16 13.5523 16 13C16 12.4477 15.5523 12 15 12C14.4477 12 14 12.4477 14 13C14 13.5523 14.4477 14 15 14Z" fill="#1d1d1d"/>
-                  <path d="M18 11.03C17.52 8.18 15.04 6 12.05 6C9.02 6 5.76 8.51 6.02 12.45C8.49 11.44 10.35 9.24 10.88 6.56C12.19 9.19 14.88 11 18 11.03Z" fill="#1d1d1d"/>
-                </svg>
-              </button>
-              <button class="nav-action-btn">
-                <!-- Share Icon -->
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M18 16.08C17.24 16.08 16.56 16.38 16.04 16.85L8.91 12.7C8.96 12.47 9 12.24 9 12C9 11.76 8.96 11.53 8.91 11.3L15.96 7.19C16.5 7.69 17.21 8 18 8C19.66 8 21 6.66 21 5C21 3.34 19.66 2 18 2C16.34 2 15 3.34 15 5C15 5.24 15.04 5.47 15.09 5.7L8.04 9.81C7.5 9.31 6.79 9 6 9C4.34 9 3 10.34 3 12C3 13.66 4.34 15 6 15C6.79 15 7.5 14.69 8.04 14.19L15.16 18.35C15.11 18.56 15.08 18.78 15.08 19C15.08 20.61 16.39 21.92 18 21.92C19.61 21.92 20.92 20.61 20.92 19C20.92 17.39 19.61 16.08 18 16.08Z" fill="#1d1d1d"/>
-                </svg>
-              </button>
-            </div>
+            <button class="nav-action-btn">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M18 16.08C17.24 16.08 16.56 16.38 16.04 16.85L8.91 12.7C8.96 12.47 9 12.24 9 12C9 11.76 8.96 11.53 8.91 11.3L15.96 7.19C16.5 7.69 17.21 8 18 8C19.66 8 21 6.66 21 5C21 3.34 19.66 2 18 2C16.34 2 15 3.34 15 5C15 5.24 15.04 5.47 15.09 5.7L8.04 9.81C7.5 9.31 6.79 9 6 9C4.34 9 3 10.34 3 12C3 13.66 4.34 15 6 15C6.79 15 7.5 14.69 8.04 14.19L15.16 18.35C15.11 18.56 15.08 18.78 15.08 19C15.08 20.61 16.39 21.92 18 21.92C19.61 21.92 20.92 20.61 20.92 19C20.92 17.39 19.61 16.08 18 16.08Z" fill="#1d1d1d"/>
+              </svg>
+            </button>
           </div>
-        </nav>
+        </div>
+      </nav>
       
-        <!-- Tabs -->
-        <div class="tabs">
+      <!-- Tabs -->
+      <div class="tabs">
         <button class="tab active">Ticket details</button>
         <button class="tab">Boarding points</button>
         <button class="tab">Dropping po...</button>
@@ -1368,6 +2378,62 @@
       
       <!-- Content -->
       <div class="content">
+        <!-- Student Deal Component - OPTED IN VERSION (shown when user clicked "Yes I'm in") -->
+        <div class="student-deal-container opted-in">
+          <!-- Background rays -->
+          <img src="https://www.figma.com/api/mcp/asset/dda64e16-46ac-4cf0-a5a2-bfe3c143a5d8" alt="" class="deal-rays">
+          
+          <!-- Badge hanging at top -->
+          <div class="deal-badge-hang">
+            <img src="https://www.figma.com/api/mcp/asset/812300b4-ec6e-4eaf-a070-ef273cb81c31" alt="" class="deal-badge-ear-left">
+            <div class="deal-badge-inner">
+              <div class="deal-badge-avatars">
+                <div class="deal-avatar-item">
+                  <img src="assets/avatar-1.png" alt="">
+                </div>
+                <div class="deal-avatar-item">
+                  <img src="assets/avatar-2.png" alt="">
+                </div>
+                <div class="deal-avatar-item">
+                  <img src="assets/avatar-3.png" alt="">
+                </div>
+              </div>
+              <span class="deal-badge-label">Student deal</span>
+            </div>
+            <img src="https://www.figma.com/api/mcp/asset/0db6bb88-788b-4f7d-ae0f-74eb76e8133d" alt="" class="deal-badge-ear-right">
+          </div>
+          
+          <!-- Text content -->
+          <div class="deal-text-section">
+            <div class="deal-tag">
+              <span>Directly in your bank account</span>
+            </div>
+            <img src="https://www.figma.com/api/mcp/asset/6993bba2-dc76-425d-bae3-fa3d1bc94a8f" alt="" class="deal-arrow-doodle">
+            <h2 class="deal-title">Get ₹150 refund</h2>
+            <p class="deal-subtitle">When 2 or more friends book this same trip with your link</p>
+            <a class="deal-how-link">How it works</a>
+          </div>
+          
+          <!-- Share link box -->
+          <div class="deal-share-box-wrapper">
+            <div class="deal-share-box">
+              <div class="share-text">
+                <p class="share-label">Your link to share</p>
+                <p class="share-url">http://redbus.com/satviknjsg/bangalore</p>
+              </div>
+              <button class="copy-btn">
+                <img src="https://www.figma.com/api/mcp/asset/f9802e44-3152-4818-b0a6-0d7b1dda3224" alt="copy">
+              </button>
+            </div>
+          </div>
+          
+          <!-- Share button -->
+          <button class="deal-share-btn">
+            <img src="https://www.figma.com/api/mcp/asset/caabed3d-7040-443b-bfce-901e5ae717ba" alt="WhatsApp" class="whatsapp-icon">
+            <span>Share</span>
+          </button>
+        </div>
+        
         <!-- Ticket Card -->
         <div class="ticket-card">
           <!-- Journey Section -->
@@ -1376,10 +2442,11 @@
             <div class="journey-row">
               <div class="journey-progress-col">
                 <div class="journey-dot">
+                  <div class="start-line"></div>
                   <div class="journey-dot-circle"></div>
-                  <svg viewBox="0 0 12 12" fill="none">
-                    <path d="M2 10L10 2M10 2H4M10 2V8" stroke="#d63941" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
+                  <div class="arrow-icon">
+                    <img src="https://www.figma.com/api/mcp/asset/80489eb8-dba3-4cbc-858f-b211dc6ce349" alt="">
+                  </div>
                 </div>
                 <div class="journey-line"></div>
               </div>
@@ -1397,7 +2464,7 @@
             <div class="duration-section">
               <div class="duration-line"></div>
               <div class="duration-logo">
-                <img src="assets/payment/redbus-logo.png" alt="redBus">
+                <img src="https://www.figma.com/api/mcp/asset/67f94bbb-8a67-4620-b1cf-509e3efcced2" alt="redBus">
               </div>
               <span class="duration-text">8h 20min</span>
               <div class="duration-line"></div>
@@ -1406,11 +2473,12 @@
             <!-- Arrival -->
             <div class="journey-row">
               <div class="journey-progress-col">
-                <div class="journey-dot">
+                <div class="journey-dot arrival-dot">
+                  <div class="end-line"></div>
                   <div class="journey-dot-circle"></div>
-                  <svg viewBox="0 0 12 12" fill="none">
-                    <path d="M10 2L2 10M2 10H8M2 10V4" stroke="#d63941" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
+                  <div class="arrow-icon" style="transform: rotate(90deg);">
+                    <img src="https://www.figma.com/api/mcp/asset/80489eb8-dba3-4cbc-858f-b211dc6ce349" alt="">
+                  </div>
                 </div>
               </div>
               <div class="journey-info-col">
@@ -1427,24 +2495,21 @@
           <!-- Layover -->
           <div class="layover-section">
             <div class="layover-icon">
-              <svg viewBox="0 0 19 14" fill="none">
-                <circle cx="2.5" cy="7" r="2" stroke="white" stroke-width="1.5"/>
-                <circle cx="16.5" cy="7" r="2" stroke="white" stroke-width="1.5"/>
-                <path d="M4.5 7H14.5" stroke="white" stroke-width="1.5"/>
-                <circle cx="9.5" cy="7" r="1" fill="white"/>
-              </svg>
+              <img src="https://www.figma.com/api/mcp/asset/880696a4-ab4e-44d5-8f5b-2347614b7c2e" alt="">
             </div>
             <span class="layover-text">1 h Layover at Kashmeri Gate, New Delhi</span>
           </div>
           
           <!-- Bus Info -->
           <div class="bus-info-section">
-            <div class="bus-number-plate">
-              <div class="bus-number-dot"></div>
-              <span class="bus-number-text">KA 03 K 2345</span>
-              <div class="bus-number-dot"></div>
+            <div class="bus-info-top">
+              <div class="bus-number-plate">
+                <div class="bus-number-dot"></div>
+                <span class="bus-number-text">KA 03 K 2345</span>
+                <div class="bus-number-dot"></div>
+              </div>
+              <h3 class="bus-operator">Sri Krishna Travels</h3>
             </div>
-            <h3 class="bus-operator">Sri Krishna Travels</h3>
             
             <div class="passengers-list">
               <div class="passenger-row">
@@ -1461,9 +2526,15 @@
           
           <!-- Ticket Cutout -->
           <div class="ticket-cutout">
-            <div class="cutout-left"></div>
-            <div class="cutout-divider"></div>
-            <div class="cutout-right"></div>
+            <div class="cutout-left">
+              <img src="https://www.figma.com/api/mcp/asset/99e89824-8d23-4f33-9e84-c29683e4a010" alt="">
+            </div>
+            <div class="cutout-center">
+              <div class="cutout-divider"></div>
+            </div>
+            <div class="cutout-right">
+              <img src="https://www.figma.com/api/mcp/asset/38b80fae-adf6-4882-942c-d1c04efc1bba" alt="">
+            </div>
           </div>
           
           <!-- Ticket Details Link -->
@@ -1518,93 +2589,106 @@
           </div>
         </div>
         
-        <!-- Referral Card -->
-        <div class="referral-card">
-          <div class="referral-text-section">
-            <h2 class="referral-title">Waiting for your friends to join</h2>
-            <p class="referral-subtitle">To unlock 15% refund</p>
-            <a class="referral-link">Know more</a>
+        <!-- Student Deal Component - NOT OPTED IN VERSION (shown when user hasn't opted in yet) -->
+        <div class="student-deal-container not-opted-in">
+          <!-- Background rays -->
+          <img src="https://www.figma.com/api/mcp/asset/dda64e16-46ac-4cf0-a5a2-bfe3c143a5d8" alt="" class="deal-rays">
+          
+          <!-- Badge hanging at top -->
+          <div class="deal-badge-hang">
+            <img src="https://www.figma.com/api/mcp/asset/812300b4-ec6e-4eaf-a070-ef273cb81c31" alt="" class="deal-badge-ear-left">
+            <div class="deal-badge-inner">
+              <div class="deal-badge-avatars">
+                <div class="deal-avatar-item">
+                  <img src="assets/avatar-1.png" alt="">
+                </div>
+                <div class="deal-avatar-item">
+                  <img src="assets/avatar-2.png" alt="">
+                </div>
+                <div class="deal-avatar-item">
+                  <img src="assets/avatar-3.png" alt="">
+                </div>
+              </div>
+              <span class="deal-badge-label">Student deal</span>
+            </div>
+            <img src="https://www.figma.com/api/mcp/asset/0db6bb88-788b-4f7d-ae0f-74eb76e8133d" alt="" class="deal-badge-ear-right">
           </div>
-          <div class="referral-avatars">
-            <div class="referral-avatar-item">
-              <div class="referral-avatar">
-                <img src="assets/payment/you-avatar.png" alt="You">
-              </div>
-              <span class="referral-avatar-text">You get<br>15% refund</span>
+          
+          <!-- Text content - no "How it works" link -->
+          <div class="deal-text-section">
+            <div class="deal-tag">
+              <span>Directly in your bank account</span>
             </div>
-            <div class="referral-avatar-item">
-              <div class="referral-avatar outlined">
-                <svg viewBox="0 0 17 15" fill="none">
-                  <path d="M11.43 14.29V12.86C11.43 11.28 10.15 10 8.57 10H3.57C1.99 10 0.71 11.28 0.71 12.86V14.29" stroke="#b0b0b0" stroke-width="1.2" stroke-linecap="round"/>
-                  <circle cx="6.07" cy="4.29" r="2.86" stroke="#b0b0b0" stroke-width="1.2"/>
-                </svg>
-                <div class="referral-avatar-badge">
-                  <svg viewBox="0 0 10 10" fill="none">
-                    <path d="M5 2V8M2 5H8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                  </svg>
+            <img src="https://www.figma.com/api/mcp/asset/6993bba2-dc76-425d-bae3-fa3d1bc94a8f" alt="" class="deal-arrow-doodle">
+            <h2 class="deal-title">Get ₹150 refund </h2>
+            <p class="deal-subtitle">When 2 or more friends book this same trip with your link</p>
+          </div>
+          
+          <!-- Inline How it works section -->
+          <div class="deal-how-section">
+            <h3 class="deal-how-title">How it works</h3>
+            <div class="deal-how-steps">
+              <div class="deal-how-step">
+                <div class="deal-how-step-icon">
+                  <img src="https://www.figma.com/api/mcp/asset/ee4de637-f7f7-4e76-89ff-3c7e008b491d" alt="">
                 </div>
+                <p class="deal-how-step-text">Get 2 friends to join you on this trip</p>
               </div>
-              <span class="referral-avatar-text">Friend 1 gets<br>15% refund</span>
-            </div>
-            <div class="referral-avatar-item">
-              <div class="referral-avatar outlined">
-                <svg viewBox="0 0 17 15" fill="none">
-                  <path d="M11.43 14.29V12.86C11.43 11.28 10.15 10 8.57 10H3.57C1.99 10 0.71 11.28 0.71 12.86V14.29" stroke="#b0b0b0" stroke-width="1.2" stroke-linecap="round"/>
-                  <circle cx="6.07" cy="4.29" r="2.86" stroke="#b0b0b0" stroke-width="1.2"/>
-                </svg>
-                <div class="referral-avatar-badge">
-                  <svg viewBox="0 0 10 10" fill="none">
-                    <path d="M5 2V8M2 5H8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                  </svg>
+              <div class="deal-how-step">
+                <div class="deal-how-step-icon">
+                  <img src="https://www.figma.com/api/mcp/asset/e6297bb0-c0f3-496b-a5c4-94a06973278f" alt="">
                 </div>
+                <p class="deal-how-step-text">Everyone gets ₹150 refund after the trip</p>
               </div>
-              <span class="referral-avatar-text">Friend 2 gets<br>15% refund</span>
             </div>
+          </div>
+          
+          <!-- Share button -->
+          <div class="deal-cta-section">
+            <button class="deal-share-btn not-opted-share-btn">
+              <img src="https://www.figma.com/api/mcp/asset/caabed3d-7040-443b-bfce-901e5ae717ba" alt="WhatsApp" class="whatsapp-icon">
+              <span>Share</span>
+            </button>
           </div>
         </div>
-        
-      </div> <!-- End content -->
-        
-      <!-- Points Section (Grey Background) -->
+      </div>
+      
+      <!-- Points Section -->
       <div class="points-section">
         <!-- Boarding Point Card -->
         <div class="point-card">
           <div class="point-card-header">
             <h3 class="point-card-title">Boarding point details</h3>
+          </div>
+          <div class="point-card-body">
             <div class="point-time-badge">
               <span>17:13 · Sun, 18 Jan</span>
             </div>
-          </div>
-          <div class="point-card-body">
             <div class="point-content">
               <div class="point-info">
                 <h4 class="point-location">Madiwala, Bangalore</h4>
                 <p class="point-address">Near Hyderabad Biryani House Shamshabad, Bavarchi Hotel</p>
               </div>
               <div class="point-image">
-                <svg viewBox="0 0 88 72" fill="none">
-                  <rect width="88" height="72" rx="8" fill="#fef2f2"/>
-                  <path d="M44 18C38 18 33 23 33 29C33 37 44 50 44 50C44 50 55 37 55 29C55 23 50 18 44 18ZM44 33C41.8 33 40 31.2 40 29C40 26.8 41.8 25 44 25C46.2 25 48 26.8 48 29C48 31.2 46.2 33 44 33Z" fill="#d63941"/>
-                  <rect x="28" y="42" width="32" height="20" rx="2" fill="#fee2e2"/>
-                  <rect x="32" y="46" width="24" height="4" rx="1" fill="#fecaca"/>
-                  <rect x="32" y="52" width="16" height="4" rx="1" fill="#fecaca"/>
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="white"/>
+                  <path d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z" fill="white"/>
                 </svg>
-                <span class="point-image-label">View 360°</span>
               </div>
             </div>
           </div>
           <div class="point-actions">
             <button class="point-action">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#6f6f6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#1d1d1d"/>
               </svg>
               <span>Directions</span>
             </button>
             <button class="point-action">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#6f6f6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6.62 10.79C8.06 13.62 10.38 15.94 13.21 17.38L15.41 15.18C15.69 14.9 16.08 14.82 16.43 14.93C17.55 15.3 18.75 15.5 20 15.5C20.55 15.5 21 15.95 21 16.5V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z" fill="#1d1d1d"/>
               </svg>
-              <span>Bus stop</span>
+              <span>Bus operator</span>
             </button>
           </div>
         </div>
@@ -1613,56 +2697,364 @@
         <div class="point-card">
           <div class="point-card-header">
             <h3 class="point-card-title">Dropping point details</h3>
+          </div>
+          <div class="point-card-body">
             <div class="point-time-badge">
               <span>02:40 · Mon, 19 Jan</span>
             </div>
-          </div>
-          <div class="point-card-body">
             <div class="point-content">
               <div class="point-info">
                 <h4 class="point-location">Vijayvada, Chennai</h4>
                 <p class="point-address">Near Hyderabad Biryani House Shamshabad, Bavarchi Hotel</p>
               </div>
               <div class="point-image">
-                <svg viewBox="0 0 88 72" fill="none">
-                  <rect width="88" height="72" rx="8" fill="#fef2f2"/>
-                  <path d="M44 18C38 18 33 23 33 29C33 37 44 50 44 50C44 50 55 37 55 29C55 23 50 18 44 18ZM44 33C41.8 33 40 31.2 40 29C40 26.8 41.8 25 44 25C46.2 25 48 26.8 48 29C48 31.2 46.2 33 44 33Z" fill="#d63941"/>
-                  <rect x="28" y="42" width="32" height="20" rx="2" fill="#fee2e2"/>
-                  <rect x="32" y="46" width="24" height="4" rx="1" fill="#fecaca"/>
-                  <rect x="32" y="52" width="16" height="4" rx="1" fill="#fecaca"/>
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="white"/>
+                  <path d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z" fill="white"/>
                 </svg>
-                <span class="point-image-label">View 360°</span>
               </div>
             </div>
           </div>
           <div class="point-actions">
             <button class="point-action">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#6f6f6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#1d1d1d"/>
               </svg>
               <span>Directions</span>
             </button>
             <button class="point-action">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#6f6f6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6.62 10.79C8.06 13.62 10.38 15.94 13.21 17.38L15.41 15.18C15.69 14.9 16.08 14.82 16.43 14.93C17.55 15.3 18.75 15.5 20 15.5C20.55 15.5 21 15.95 21 16.5V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z" fill="#1d1d1d"/>
               </svg>
-              <span>Bus stop</span>
+              <span>Bus operator</span>
             </button>
           </div>
         </div>
         
-        <!-- Home Indicator -->
-        <div class="home-indicator">
-          <div class="home-indicator-bar"></div>
+        <!-- Wake Up Card -->
+        <div class="wake-up-card">
+          <div class="wake-up-icon">
+            <span>A</span>
+          </div>
+          <div class="wake-up-text">
+            <p class="wake-up-title">Wake me up</p>
+            <p class="wake-up-subtitle">We will call you 5 h before the dropping point on +919741862088</p>
+          </div>
+          <div class="toggle-switch">
+            <div class="toggle-puck"></div>
+          </div>
         </div>
-      </div> <!-- End points-section -->
+        
+        <!-- redBuddy Card -->
+        <div class="redbuddy-card">
+          <div class="redbuddy-icon">
+            <svg viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="32" r="28" fill="#FED9D5"/>
+              <circle cx="24" cy="26" r="4" fill="#1D1D1D"/>
+              <circle cx="40" cy="26" r="4" fill="#1D1D1D"/>
+              <path d="M22 38C22 38 26 44 32 44C38 44 42 38 42 38" stroke="#1D1D1D" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="redbuddy-title">Need help with ticket details?</h3>
+          <p class="redbuddy-subtitle">24x7 support · Quick resolution · Multilingual</p>
+          <button class="redbuddy-cta">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M20 2H4C2.9 2 2.01 2.9 2.01 4L2 22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM6 9H18V11H6V9ZM14 14H6V12H14V14ZM18 8H6V6H18V8Z" fill="#1D1D1D"/>
+            </svg>
+            <span>Chat with redBuddy</span>
+          </button>
+        </div>
+      </div>
       
-      </div> <!-- End bottom-sheet -->
-      </div> <!-- End bottom-sheet-wrapper -->
+      <div class="bottom-padding"></div>
+    </div>
+    
+    <!-- Native Share Sheet -->
+    <div class="native-share-overlay">
+      <div class="native-share-scrim"></div>
+      <div class="native-share-sheet">
+        <div class="native-share-header">
+          <span>Share via</span>
+        </div>
+        <div class="native-share-content">
+          <!-- Recent contacts -->
+          <div class="share-contacts">
+            <div class="share-contact">
+              <div class="contact-avatar my-status">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" fill="#25D366"/>
+                </svg>
+              </div>
+              <span>My status</span>
+            </div>
+            <div class="share-contact">
+              <div class="contact-avatar">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#666"/>
+                </svg>
+              </div>
+              <span>Contact</span>
+            </div>
+            <div class="share-contact">
+              <div class="contact-avatar">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#666"/>
+                </svg>
+              </div>
+              <span>Contact</span>
+            </div>
+            <div class="share-contact">
+              <div class="contact-avatar">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#666"/>
+                </svg>
+              </div>
+              <span>Contact</span>
+            </div>
+          </div>
+          
+          <!-- Share apps -->
+          <div class="share-apps">
+            <div class="share-app">
+              <div class="app-icon whatsapp">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="white"/>
+                </svg>
+              </div>
+              <span>WhatsApp</span>
+            </div>
+            <div class="share-app">
+              <div class="app-icon messages">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" fill="white"/>
+                </svg>
+              </div>
+              <span>Messages</span>
+            </div>
+            <div class="share-app">
+              <div class="app-icon gmail">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="#EA4335"/>
+                </svg>
+              </div>
+              <span>Gmail</span>
+            </div>
+            <div class="share-app">
+              <div class="app-icon copy-link">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z" fill="white"/>
+                </svg>
+              </div>
+              <span>Copy link</span>
+            </div>
+            <div class="share-app">
+              <div class="app-icon more">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="white"/>
+                </svg>
+              </div>
+              <span>More</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- WhatsApp Screen Overlay -->
+    <div class="whatsapp-screen-overlay">
+      <div class="whatsapp-screen">
+        <!-- WhatsApp Header -->
+        <div class="whatsapp-header">
+          <button class="whatsapp-back-btn">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="white"/>
+            </svg>
+          </button>
+          <div class="whatsapp-contact">
+            <div class="whatsapp-avatar">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="8" r="4" fill="#666"/>
+                <path d="M12 14c-4 0-8 2-8 4v2h16v-2c0-2-4-4-8-4z" fill="#666"/>
+              </svg>
+            </div>
+            <span class="whatsapp-contact-name">Rohan</span>
+          </div>
+          <div class="whatsapp-header-actions">
+            <button class="whatsapp-header-btn">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" fill="white"/>
+              </svg>
+            </button>
+            <button class="whatsapp-header-btn">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="white"/>
+              </svg>
+            </button>
+            <button class="whatsapp-header-btn">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="white"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Chat Area -->
+        <div class="whatsapp-chat">
+          <div class="whatsapp-date-badge">
+            <span>Today</span>
+          </div>
+          
+          <!-- Message Bubble -->
+          <div class="whatsapp-message">
+            <div class="message-promo-card">
+              <div class="promo-card-image">
+                <img src="https://www.figma.com/api/mcp/asset/5c907fe8-dca4-4a1a-861a-e52403bbc5d5" alt="Student Deal">
+              </div>
+              <div class="promo-card-text">Get ₹150 refund on this bus booking</div>
+            </div>
+            <div class="message-text">
+              <p>Bro, quick one 😄</p>
+              <p>I'm booking a bus to Chennai on Fri, 27 Jun · 22:00</p>
+              <p>Come join me and we can get <strong>₹150 refund 💸</strong></p>
+              <p>How it works:</p>
+              <p>1️. You, me + one more person (total 3) book the same bus using this link</p>
+              <p>2. All of us get ₹150 refund after the trip ends 💸</p>
+              <p><span class="link">👉 https://redbus.in/invite/ABC123</span></p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Input Bar -->
+        <div class="whatsapp-input-bar">
+          <div class="whatsapp-input">
+            <span>Message</span>
+          </div>
+          <button class="whatsapp-send-btn">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="white"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Snackbar -->
+  <div class="snackbar">
+    <span class="snackbar-text">Link copied successfully</span>
+    <div class="snackbar-timer"></div>
+  </div>
+  
+  <!-- How It Works Bottom Sheet -->
+  <div class="hiw-sheet-overlay" id="hiwSheetOverlay">
+    <div class="hiw-sheet-scrim"></div>
+    <div class="hiw-sheet">
+      <!-- Hanging Badge with Avatars -->
+      <div class="hiw-badge-hang">
+        <img src="https://www.figma.com/api/mcp/asset/917c4d23-a227-46c2-9666-7ecf51f2a879" alt="" class="hiw-badge-ear-left">
+        <div class="hiw-badge-inner">
+          <div class="hiw-badge-avatars">
+            <div class="hiw-avatar-item">
+              <img src="assets/avatar-1.png" alt="">
+            </div>
+            <div class="hiw-avatar-item">
+              <img src="assets/avatar-2.png" alt="">
+            </div>
+            <div class="hiw-avatar-item">
+              <img src="assets/avatar-3.png" alt="">
+            </div>
+          </div>
+          <span class="hiw-badge-label">Student deal</span>
+        </div>
+        <img src="https://www.figma.com/api/mcp/asset/7e875b59-e9de-4a8c-9504-43bcef909f7f" alt="" class="hiw-badge-ear-right">
+      </div>
+      
+      <!-- Sheet Header with close button -->
+      <div class="hiw-header-row">
+        <div class="hiw-drag-handle"></div>
+        <button class="hiw-close-btn" id="hiwCloseBtn">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" fill="#1D1D1D"/>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Sheet Body -->
+      <div class="hiw-body">
+        <div class="hiw-title-section">
+          <h2 class="hiw-main-title">Get ₹150 refund after <br>your trip</h2>
+          <p class="hiw-subtitle">Directly in your bank account</p>
+          <img src="https://www.figma.com/api/mcp/asset/480994d2-ae92-4da1-8b7d-8b9398313c93" alt="" class="hiw-arrow-doodle">
+        </div>
+        
+        <!-- How it works section -->
+        <div class="hiw-container">
+          <h3 class="hiw-section-title">How it works</h3>
+          <div class="hiw-steps-row">
+            <div class="hiw-step">
+              <div class="hiw-step-icon">
+                <img src="https://www.figma.com/api/mcp/asset/311b4213-2537-41d6-8407-676025f2f5c8" alt="">
+              </div>
+              <p class="hiw-step-text">Complete<br>booking<br>for you</p>
+            </div>
+            <div class="hiw-step">
+              <div class="hiw-step-icon">
+                <img src="https://www.figma.com/api/mcp/asset/324b5e95-86ef-4b85-a540-3e485591f97e" alt="">
+              </div>
+              <p class="hiw-step-text">Get 2 friends to join you on this trip</p>
+            </div>
+            <div class="hiw-step">
+              <div class="hiw-step-icon">
+                <img src="https://www.figma.com/api/mcp/asset/b2caaa05-cfef-46e0-9b89-f7a3c71480ad" alt="">
+              </div>
+              <p class="hiw-step-text">Everyone gets ₹150 refund after the trip</p>
+            </div>
+          </div>
+          <!-- Arrows between steps - positioned relative to hiw-container -->
+          <img src="https://www.figma.com/api/mcp/asset/f927f6fc-74e3-4bfa-8f7d-ff7533c2acdf" alt="" class="hiw-step-arrow hiw-step-arrow-1">
+          <img src="https://www.figma.com/api/mcp/asset/42cc4bc3-6920-4677-9fcc-69b325ca6779" alt="" class="hiw-step-arrow hiw-step-arrow-2">
+        </div>
+      </div>
+      
+      <!-- CTA Button -->
+      <div class="hiw-cta-section">
+        <button class="hiw-cta-btn" id="hiwOkayBtn">Okay</button>
+        <div class="hiw-home-indicator">
+          <div class="hiw-indicator-bar"></div>
+        </div>
+      </div>
     </div>
   </div>
   
   <script>
+    // =============================================
+    // CHECK IF IN STUDENT DEAL FLOW
+    // =============================================
+    const isStudentDealFlow = sessionStorage.getItem('isStudentDealFlow') === 'true';
+    
+    // If not in student deal flow, hide all student deal cards
+    if (!isStudentDealFlow) {
+      // Hide both opted-in and not-opted-in variants
+      document.querySelectorAll('.student-deal-container').forEach(function(card) {
+        card.style.display = 'none';
+      });
+      // Hide "How It Works" bottom sheet as well
+      const hiwOverlayToHide = document.getElementById('hiwSheetOverlay');
+      if (hiwOverlayToHide) {
+        hiwOverlayToHide.style.display = 'none';
+      }
+    }
+    
+    // =============================================
+    // CHECK STUDENT DEAL OPT-IN STATUS
+    // =============================================
+    // Check sessionStorage (set during booking flow) or URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const isOptedIn = sessionStorage.getItem('studentDealOptedIn') === 'true' || urlParams.get('studentDealOptedIn') === 'true';
+    if (isOptedIn && isStudentDealFlow) {
+      document.body.classList.add('deal-opted-in');
+    }
+    
     // Tab switching
     document.querySelectorAll('.tab').forEach(tab => {
       tab.addEventListener('click', function() {
@@ -1671,77 +3063,126 @@
       });
     });
     
-    // Tray scroll behavior
-    const trayWrapper = document.getElementById('trayWrapper');
-    const bottomSheet = document.getElementById('bottomSheet');
-    const trayHandle = document.getElementById('trayHandle');
-    const minimizeBtn = document.getElementById('minimizeBtn');
+    // Share button functionality - handle all share buttons
+    const shareBtns = document.querySelectorAll('.deal-share-btn');
+    const shareOverlay = document.querySelector('.native-share-overlay');
+    const shareScrim = document.querySelector('.native-share-scrim');
+    const whatsappOverlay = document.querySelector('.whatsapp-screen-overlay');
+    const whatsappBackBtn = document.querySelector('.whatsapp-back-btn');
+    const snackbar = document.querySelector('.snackbar');
+    const copyBtn = document.querySelector('.copy-btn');
     
-    // Get the computed px value
-    const pxValue = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--px')) || 1;
-    const spacerHeight = 376 * pxValue;
-    
-    let isScrolling = false;
-    let scrollTimeout;
-    let isExpanded = false;
-    
-    // Update expanded state based on scroll position
-    function updateExpandedState() {
-      const scrollTop = trayWrapper.scrollTop;
-      const threshold = spacerHeight * 0.7; // 70% threshold for expansion
+    if (shareBtns.length > 0 && shareOverlay) {
+      // Open share sheet when clicking any share button
+      shareBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          shareOverlay.classList.add('active');
+        });
+      });
       
-      if (scrollTop >= threshold && !isExpanded) {
-        isExpanded = true;
-        bottomSheet.classList.add('expanded');
-      } else if (scrollTop < threshold && isExpanded) {
-        isExpanded = false;
-        bottomSheet.classList.remove('expanded');
-      }
+      // Close share sheet when clicking scrim
+      shareScrim.addEventListener('click', function() {
+        shareOverlay.classList.remove('active');
+      });
+      
+      // Handle share app clicks
+      document.querySelectorAll('.share-app').forEach(app => {
+        app.addEventListener('click', function() {
+          const appName = this.querySelector('span').textContent;
+          
+          // Close share sheet first
+          shareOverlay.classList.remove('active');
+          
+          // If WhatsApp is clicked, show WhatsApp screen
+          if (appName === 'WhatsApp') {
+            setTimeout(() => {
+              whatsappOverlay.classList.add('active');
+            }, 200);
+          }
+        });
+      });
     }
     
-    // Snap to positions on scroll end
-    trayWrapper.addEventListener('scroll', function() {
-      clearTimeout(scrollTimeout);
-      isScrolling = true;
-      
-      // Update expanded state during scroll
-      updateExpandedState();
-      
-      scrollTimeout = setTimeout(function() {
-        isScrolling = false;
-        const scrollTop = trayWrapper.scrollTop;
-        const threshold = spacerHeight / 2;
+    // WhatsApp back button - close WhatsApp screen
+    if (whatsappBackBtn) {
+      whatsappBackBtn.addEventListener('click', function() {
+        whatsappOverlay.classList.remove('active');
+      });
+    }
+    
+    // Copy button - show snackbar
+    let snackbarTimeout;
+    console.log('Copy btn:', copyBtn, 'Snackbar:', snackbar);
+    if (copyBtn && snackbar) {
+      copyBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Copy button clicked!');
         
-        if (scrollTop > 0 && scrollTop < spacerHeight) {
-          // Snap to either collapsed (0) or expanded (spacerHeight)
-          if (scrollTop > threshold) {
-            trayWrapper.scrollTo({ top: spacerHeight, behavior: 'smooth' });
-          } else {
-            trayWrapper.scrollTo({ top: 0, behavior: 'smooth' });
-          }
+        // Copy link to clipboard
+        const shareUrl = document.querySelector('.share-url');
+        if (shareUrl) {
+          navigator.clipboard.writeText(shareUrl.textContent).catch(() => {
+            // Fallback for older browsers
+            console.log('Link copied');
+          });
         }
-      }, 150);
-    });
+        
+        // Reset timer animation
+        const timer = snackbar.querySelector('.snackbar-timer');
+        if (timer) {
+          timer.style.animation = 'none';
+          timer.offsetHeight; // Trigger reflow
+          timer.style.animation = '';
+        }
+        
+        // Clear any existing timeout
+        if (snackbarTimeout) {
+          clearTimeout(snackbarTimeout);
+        }
+        
+        // Show snackbar
+        snackbar.classList.add('active');
+        console.log('Snackbar active:', snackbar.classList.contains('active'));
+        
+        // Hide snackbar after 2.5 seconds
+        snackbarTimeout = setTimeout(() => {
+          snackbar.classList.remove('active');
+        }, 2500);
+      });
+    } else {
+      console.log('Copy button or snackbar not found!');
+    }
     
-    // Handle tap on tray handle to expand
-    let lastTapTime = 0;
-    trayHandle.addEventListener('click', function(e) {
-      const currentTime = new Date().getTime();
-      const tapGap = currentTime - lastTapTime;
-      
-      if (tapGap < 300) return; // Debounce
-      lastTapTime = currentTime;
-      
-      // Expand - scroll up to cover banner
-      trayWrapper.scrollTo({ top: spacerHeight, behavior: 'smooth' });
-    });
+    // How It Works Bottom Sheet functionality
+    const hiwLink = document.querySelector('.deal-how-link');
+    const hiwOverlay = document.getElementById('hiwSheetOverlay');
+    const hiwScrim = document.querySelector('.hiw-sheet-scrim');
+    const hiwCloseBtn = document.getElementById('hiwCloseBtn');
+    const hiwOkayBtn = document.getElementById('hiwOkayBtn');
     
-    // Minimize button - collapse tray to show hotel banner
-    minimizeBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      // Collapse - scroll down to show banner
-      trayWrapper.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    if (hiwLink && hiwOverlay) {
+      // Open bottom sheet when clicking "How it works" link
+      hiwLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        hiwOverlay.classList.add('active');
+      });
+      
+      // Close bottom sheet when clicking scrim
+      hiwScrim.addEventListener('click', function() {
+        hiwOverlay.classList.remove('active');
+      });
+      
+      // Close bottom sheet when clicking close button
+      hiwCloseBtn.addEventListener('click', function() {
+        hiwOverlay.classList.remove('active');
+      });
+      
+      // Close bottom sheet when clicking Okay button
+      hiwOkayBtn.addEventListener('click', function() {
+        hiwOverlay.classList.remove('active');
+      });
+    }
   </script>
 </body>
 </html>

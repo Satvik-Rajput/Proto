@@ -1,0 +1,436 @@
+/* Student Deal Link - makes the whole promo clickable */
+.student-deal-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.student-deal-link * {
+  text-decoration: none;
+}
+
+/* Student Deal Wrapper - contains badge and card */
+.student-deal-wrapper {
+  position: relative;
+  margin: calc(16 * var(--px)) calc(0 * var(--px));
+  padding-top: calc(29 * var(--px)); /* Space for the hanging badge */
+}
+
+/* Badge Container - positioned absolutely to hang over the card */
+.promo-badge-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.promo-avatars {
+  display: flex;
+  margin-bottom: calc(-23 * var(--px));
+  z-index: 2;
+  padding-right: calc(11.2 * var(--px));
+}
+
+.promo-avatar-wrapper {
+  width: calc(44.8 * var(--px));
+  height: calc(44.8 * var(--px));
+  border-radius: 50%;
+  background: #ECE9FC;
+  border: calc(1 * var(--px)) solid #FDFDFD;
+  overflow: hidden;
+  margin-right: calc(-11.2 * var(--px));
+  position: relative;
+}
+
+.promo-avatar-wrapper:nth-child(1) { z-index: 3; }
+.promo-avatar-wrapper:nth-child(2) { z-index: 2; }
+.promo-avatar-wrapper:nth-child(3) { z-index: 1; }
+
+.promo-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.promo-badge-wrapper {
+  display: flex;
+  align-items: flex-start;
+  z-index: 1;
+}
+
+.badge-ear {
+  width: calc(4 * var(--px));
+  height: calc(7 * var(--px));
+}
+
+.promo-badge {
+  background: #7E42EB;
+  color: #FDFDFD;
+  padding: calc(24 * var(--px)) calc(0 * var(--px)) calc(2 * var(--px));
+  border-radius: 0 0 calc(8 * var(--px)) calc(8 * var(--px));
+  font-family: 'Inter', sans-serif;
+  font-size: calc(14 * var(--px));
+  font-weight: 700;
+  line-height: calc(20 * var(--px));
+  letter-spacing: -0.09px;
+  width: calc(129 * var(--px));
+  text-align: center;
+}
+
+/* Student Deal Promo Card */
+.student-deal-promo {
+  padding: calc(32 * var(--px)) calc(0 * var(--px)) calc(16 * var(--px));
+  background: linear-gradient(180deg, #EADBFE 0%, #ECE9FC 100%);
+  border-radius: calc(20 * var(--px));
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Wave Pattern */
+.promo-bg-wave {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(360 * var(--px));
+  height: calc(441 * var(--px));
+  pointer-events: none;
+}
+
+/* Promo Text */
+.promo-text {
+  text-align: center;
+  padding: calc(24 * var(--px)) calc(16 * var(--px)) calc(16 * var(--px));
+  position: relative;
+  z-index: 1;
+}
+
+.promo-headline {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(22 * var(--px));
+  font-weight: 700;
+  line-height: calc(28 * var(--px));
+  letter-spacing: -0.4px;
+  color: #1D1D1D;
+  margin: 0 0 calc(2 * var(--px));
+  position: relative;
+}
+
+.hand-wave-icon {
+  width: calc(26 * var(--px));
+  height: calc(30 * var(--px));
+  position: absolute;
+  transform: rotate(110deg);
+  margin-left: calc(4 * var(--px));
+}
+
+.promo-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(14 * var(--px));
+  font-weight: 400;
+  line-height: calc(20 * var(--px));
+  letter-spacing: -0.09px;
+  color: #1D1D1D;
+  margin: 0;
+}
+
+/* Preview Card Container */
+.promo-card-container {
+  padding: 0 calc(16 * var(--px));
+  position: relative;
+  height: calc(162 * var(--px));
+  overflow: hidden;
+  z-index: 1;
+}
+
+.promo-bus-card {
+  background: white;
+  border-radius: calc(20 * var(--px));
+  padding: calc(16 * var(--px));
+  width: calc(328 * var(--px));
+}
+
+/* Deal Tags - Coupon Style */
+.promo-deal-tags {
+  display: flex;
+  gap: calc(4 * var(--px));
+  justify-content: flex-end;
+  margin-bottom: calc(12 * var(--px));
+}
+
+.deal-tag-coupon {
+  display: flex;
+  align-items: stretch;
+  height: calc(24 * var(--px));
+  border-radius: calc(4 * var(--px));
+  overflow: hidden;
+}
+
+.coupon-edge {
+  width: calc(10 * var(--px));
+  background: #FEDE92;
+  position: relative;
+}
+
+.coupon-edge::before {
+  content: '';
+  position: absolute;
+  width: calc(6 * var(--px));
+  height: calc(6 * var(--px));
+  background: white;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.coupon-edge.left::before {
+  left: calc(-3 * var(--px));
+}
+
+.coupon-edge.right::before {
+  right: calc(-3 * var(--px));
+}
+
+.coupon-content {
+  background: #FEDE92;
+  padding: 0 calc(4 * var(--px));
+  display: flex;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: calc(12 * var(--px));
+  font-weight: 500;
+  line-height: calc(16 * var(--px));
+  letter-spacing: 0.01px;
+  color: #1D1D1D;
+  white-space: nowrap;
+}
+
+.coupon-content strong {
+  font-weight: 700;
+}
+
+/* Student tag - purple/lavender color */
+.deal-tag-coupon.student-tag .coupon-edge {
+  background: #EADBFE;
+}
+
+.deal-tag-coupon.student-tag .coupon-content {
+  background: #EADBFE;
+}
+
+.deal-tag-coupon.student-tag .coupon-edge.left::before,
+.deal-tag-coupon.student-tag .coupon-edge.right::before {
+  background: white;
+}
+
+/* Card Rows */
+.promo-card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: calc(12 * var(--px));
+}
+
+.promo-card-row:last-child {
+  margin-bottom: 0;
+  align-items: center;
+}
+
+/* Time Section */
+.promo-time {
+  display: flex;
+  flex-direction: column;
+}
+
+.time-main {
+  display: flex;
+  align-items: center;
+  gap: calc(6 * var(--px));
+}
+
+.time-bold {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(16 * var(--px));
+  font-weight: 700;
+  line-height: calc(22 * var(--px));
+  letter-spacing: -0.18px;
+  color: #1D1D1D;
+}
+
+.time-regular {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(16 * var(--px));
+  font-weight: 400;
+  line-height: calc(22 * var(--px));
+  letter-spacing: -0.18px;
+  color: #1D1D1D;
+}
+
+.time-separator {
+  width: calc(12 * var(--px));
+  height: calc(1.5 * var(--px));
+  background: #E6E6E6;
+  border-radius: calc(1 * var(--px));
+}
+
+.time-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(12 * var(--px));
+  font-weight: 400;
+  line-height: calc(16 * var(--px));
+  letter-spacing: 0.01px;
+  color: rgba(29, 29, 29, 0.64);
+}
+
+/* Price Section */
+.promo-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.price-row {
+  display: flex;
+  align-items: baseline;
+  gap: calc(4 * var(--px));
+}
+
+.price-old {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(14 * var(--px));
+  font-weight: 400;
+  line-height: calc(20 * var(--px));
+  letter-spacing: -0.09px;
+  color: rgba(29, 29, 29, 0.26);
+  text-decoration: line-through;
+}
+
+.price-new {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(16 * var(--px));
+  font-weight: 700;
+  line-height: calc(22 * var(--px));
+  letter-spacing: -0.18px;
+  color: #1D1D1D;
+}
+
+.price-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(12 * var(--px));
+  font-weight: 400;
+  line-height: calc(16 * var(--px));
+  letter-spacing: 0.01px;
+  color: rgba(29, 29, 29, 0.26);
+}
+
+/* Operator Section */
+.promo-operator {
+  display: flex;
+  flex-direction: column;
+}
+
+.operator-name {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(14 * var(--px));
+  font-weight: 700;
+  line-height: calc(20 * var(--px));
+  letter-spacing: -0.09px;
+  color: #1D1D1D;
+}
+
+.operator-type {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(12 * var(--px));
+  font-weight: 400;
+  line-height: calc(16 * var(--px));
+  letter-spacing: 0.01px;
+  color: rgba(29, 29, 29, 0.64);
+}
+
+/* Rating */
+.promo-rating {
+  display: flex;
+}
+
+.rating-outer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #E2EEE3;
+  border-radius: calc(8 * var(--px));
+  padding: calc(2 * var(--px));
+}
+
+.rating-badge {
+  display: flex;
+  align-items: center;
+  gap: calc(0 * var(--px));
+  background: #007B28;
+  color: #FDFDFD;
+  padding: calc(0 * var(--px)) calc(1 * var(--px));
+  border-radius: calc(6 * var(--px));
+  font-family: 'Inter', sans-serif;
+  font-size: calc(12 * var(--px));
+  font-weight: 700;
+  line-height: calc(16 * var(--px));
+  letter-spacing: 0.01px;
+  min-width: calc(46 * var(--px));
+  min-height: calc(20 * var(--px));
+  justify-content: center;
+}
+
+.rating-badge svg {
+  width: calc(12 * var(--px));
+  height: calc(12 * var(--px));
+  margin-right: calc(2 * var(--px));
+}
+
+.rating-count {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(12 * var(--px));
+  font-weight: 500;
+  line-height: calc(16 * var(--px));
+  letter-spacing: 0.01px;
+  color: #1D1D1D;
+}
+
+/* Fade Overlay */
+.promo-card-fade {
+  position: absolute;
+  bottom: 0;
+  left: calc(16 * var(--px));
+  right: calc(16 * var(--px));
+  height: calc(97 * var(--px));
+  background: linear-gradient(180deg, rgba(236, 233, 252, 0) 0%, #ECE9FC 100%);
+  pointer-events: none;
+  border-radius: 0 0 calc(20 * var(--px)) calc(20 * var(--px));
+}
+
+/* CTA Button */
+.promo-cta {
+  padding: calc(0 * var(--px)) calc(16 * var(--px)) calc(0 * var(--px));
+  position: relative;
+  z-index: 2;
+  margin-top: calc(-40 * var(--px)); /* Overlap with the card above */
+}
+
+.promo-cta-btn {
+  width: 100%;
+  height: calc(48 * var(--px));
+  padding: calc(4 * var(--px)) calc(16 * var(--px));
+  background: white;
+  border: none;
+  border-radius: calc(999 * var(--px));
+  font-family: 'Inter', sans-serif;
+  font-size: calc(14 * var(--px));
+  font-weight: 700;
+  line-height: calc(20 * var(--px));
+  letter-spacing: -0.09px;
+  color: #1D1D1D;
+  box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.08), 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+}

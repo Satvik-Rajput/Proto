@@ -20,9 +20,6 @@
   height: calc(64 * var(--px));
   background: white;
   box-sizing: border-box;
-  position: sticky;
-  top: 0;
-  z-index: 299;
   overflow: visible;
 }
 
@@ -403,7 +400,7 @@
 /* Seat Area */
 .seat-area {
   background: #f2f2f8;
-  padding: calc(16 * var(--px)) calc(12 * var(--px));
+  padding: 0;
   padding-bottom: calc(250 * var(--px));
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -414,6 +411,8 @@
   gap: calc(12 * var(--px));
   width: max-content;
   min-width: 100%;
+  padding: calc(16 * var(--px)) calc(12 * var(--px));
+  padding-top: calc(8 * var(--px));
 }
 
 .deck {
@@ -590,19 +589,39 @@
 
 /* Offer Ticker - Fixed at bottom above sheet */
 /* Total height: 88px = 12px padding + 64px chips + 12px padding */
-.offer-ticker {
+.offer-ticker-wrap {
   position: fixed;
   bottom: calc(124 * var(--px));
   left: 50%;
   transform: translateX(-50%);
   width: calc(360 * var(--px));
+  z-index: 100;
+}
+
+/* Gradient overlay below offer ticker */
+.offer-ticker-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: calc(-14 * var(--px));
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.offer-ticker {
+  position: relative;
+  width: 100%;
   height: calc(88 * var(--px));
   display: flex;
   gap: calc(8 * var(--px));
   padding: calc(12 * var(--px));
   padding-left: calc(12 * var(--px));
   padding-right: calc(16 * var(--px));
-  z-index: 100;
+  z-index: 1;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -774,6 +793,79 @@
 }
 
 .offer-btn.disabled {
+  background: #e6e6e6;
+  cursor: default;
+}
+
+/* New Ticker Card V3 with background images */
+.deal-card-v3-ticker {
+  display: flex;
+  align-items: center;
+  gap: calc(16 * var(--px));
+  height: calc(56 * var(--px));
+  padding: calc(4 * var(--px)) calc(16 * var(--px));
+  border-radius: calc(12 * var(--px));
+  overflow: hidden;
+  box-shadow: 0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0,0,0,0.08),
+              0 calc(8 * var(--px)) calc(16 * var(--px)) rgba(0,0,0,0.08);
+  box-sizing: border-box;
+  position: relative;
+}
+
+.deal-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.deal-card-content-ticker {
+  display: flex;
+  flex-direction: column;
+  gap: calc(2 * var(--px));
+  position: relative;
+  z-index: 1;
+}
+
+.offer-text.white {
+  color: #fdfdfd;
+}
+
+.deal-btn-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(48 * var(--px));
+  min-height: calc(48 * var(--px));
+  min-width: calc(48 * var(--px));
+  padding: 0 calc(12 * var(--px));
+  position: relative;
+  z-index: 1;
+}
+
+.deal-btn {
+  height: calc(32 * var(--px));
+  padding: 0 calc(12 * var(--px));
+  border: none;
+  border-radius: calc(999 * var(--px));
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: calc(12 * var(--px));
+  line-height: calc(16 * var(--px));
+  letter-spacing: calc(0.01 * var(--px));
+  color: #1d1d1d;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.deal-btn.active {
+  background: #fed9d5;
+}
+
+.deal-btn.disabled {
   background: #e6e6e6;
   cursor: default;
 }
@@ -2061,8 +2153,9 @@
   transform: translateX(-50%) translateY(100%);
   width: calc(360 * var(--px));
   background: white;
-  box-shadow: 0 calc(-2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.08),
-              0 calc(-4 * var(--px)) calc(8 * var(--px)) rgba(0,0,0,0.08);
+  border-radius: calc(16 * var(--px)) calc(16 * var(--px)) 0 0;
+  box-shadow: 0 calc(-4 * var(--px)) calc(8 * var(--px)) rgba(0, 0, 0, 0.08),
+              0 calc(-8 * var(--px)) calc(16 * var(--px)) rgba(0, 0, 0, 0.08);
   z-index: 400;
   display: flex;
   flex-direction: column;
@@ -2159,7 +2252,7 @@
 
 /* CTA Row */
 .selection-cta-row {
-  padding: 0 calc(16 * var(--px)) calc(16 * var(--px));
+  padding: 0 calc(16 * var(--px));
 }
 
 .selection-cta-btn {
@@ -2179,6 +2272,21 @@
 
 .selection-cta-btn:active {
   transform: scale(0.98);
+}
+
+/* Home indicator */
+.selection-home-indicator {
+  height: calc(24 * var(--px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selection-home-indicator .indicator-bar {
+  width: calc(108 * var(--px));
+  height: calc(4 * var(--px));
+  background: black;
+  border-radius: calc(12 * var(--px));
 }
 
 /* ============================================
@@ -2732,3 +2840,618 @@
   color: #fdfdfd;
   margin: 0;
 }
+
+/* ============================================
+   SIMPLE NAV (without share button)
+   ============================================ */
+.top-nav.simple-nav {
+  background: white;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ============================================
+   STUDENT DEAL BANNER V3
+   ============================================ */
+.student-deal-container {
+  display: block;
+  position: relative;
+  padding: 0 calc(16 * var(--px));
+  padding-top: calc(23 * var(--px)); /* Space for badge to hang */
+  padding-bottom: calc(8 * var(--px));
+  text-decoration: none;
+  color: inherit;
+  /* Initial collapsed state for push-down animation */
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 0.4s ease-out;
+}
+
+.student-deal-container.animate-in {
+  max-height: calc(150 * var(--px)); /* Enough height to contain the card */
+  opacity: 1;
+}
+
+/* Hanging badge positioned above the card */
+.deal-badge-hang {
+  position: absolute;
+  top: calc(-7 * var(--px));
+  left: calc(12 * var(--px));
+  display: flex;
+  align-items: flex-start;
+  z-index: 2;
+}
+
+.badge-ear-left {
+  width: calc(4.041 * var(--px));
+  height: calc(7 * var(--px));
+  display: block;
+}
+
+.badge-ear-right {
+  width: calc(4.041 * var(--px));
+  height: calc(7 * var(--px));
+  display: block;
+  transform: scaleX(-1);
+}
+
+.deal-badge-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(4 * var(--px));
+  background: #7E42EB;
+  padding: calc(4 * var(--px));
+  border-radius: 0 0 calc(8 * var(--px)) calc(8 * var(--px));
+}
+
+.badge-avatars-stack {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.badge-avatar-item {
+  width: calc(20 * var(--px));
+  height: calc(20 * var(--px));
+  border-radius: calc(499.5 * var(--px));
+  border: calc(0.417 * var(--px)) solid #EADBFE;
+  overflow: hidden;
+  margin-right: calc(-5 * var(--px));
+  background: white;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.badge-avatar-item:nth-child(1) { z-index: 3; }
+.badge-avatar-item:nth-child(2) { z-index: 2; }
+.badge-avatar-item:nth-child(3) { z-index: 1; margin-right: 0; }
+
+.badge-avatar-item img {
+  width: calc(22.5 * var(--px));
+  height: calc(22.5 * var(--px));
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.badge-label {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(12 * var(--px));
+  font-weight: 700;
+  color: #FDFDFD;
+  line-height: calc(16 * var(--px));
+  letter-spacing: calc(0.01 * var(--px));
+  white-space: nowrap;
+}
+
+/* The main card */
+.deal-card-v3 {
+  position: relative;
+  overflow: visible;
+}
+
+/* Inner wrapper clips rays but lets badge overflow */
+.deal-card-inner {
+  position: relative;
+  background: linear-gradient(180deg, #EADBFE 0%, white 75%);
+  border-radius: calc(16 * var(--px));
+  box-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0, 0, 0, 0.08),
+              0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* Background rays */
+.deal-card-rays {
+  position: absolute;
+  width: calc(360 * var(--px));
+  height: calc(441 * var(--px));
+  left: 50%;
+  transform: translateX(calc(-50% - 72 * var(--px)));
+  top: calc(-144 * var(--px));
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Content wrapper */
+.deal-card-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: calc(24 * var(--px)) calc(12 * var(--px)) calc(12 * var(--px));
+  z-index: 1;
+}
+
+.deal-text-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.deal-card-title {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(16 * var(--px));
+  font-weight: 700;
+  color: #1D1D1D;
+  line-height: calc(22 * var(--px));
+  letter-spacing: calc(-0.18 * var(--px));
+  margin: 0;
+}
+
+.deal-card-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(12 * var(--px));
+  font-weight: 400;
+  color: rgba(29, 29, 29, 0.69);
+  line-height: calc(16 * var(--px));
+  letter-spacing: calc(0.01 * var(--px));
+  margin: 0;
+}
+
+.deal-card-arrow {
+  width: calc(22 * var(--px));
+  height: calc(22 * var(--px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.deal-card-arrow img {
+  width: calc(7.33 * var(--px));
+  height: calc(13.29 * var(--px));
+}
+
+/* ============================================
+   STUDENT DEAL BOTTOM SHEET
+   ============================================ */
+.student-deal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.student-deal-overlay.active {
+  display: flex;
+}
+
+.student-deal-scrim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.student-deal-sheet {
+  position: relative;
+  width: 100%;
+  max-width: calc(360 * var(--px));
+  background: white;
+  border-radius: calc(16 * var(--px)) calc(16 * var(--px)) 0 0;
+  overflow: visible;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-out;
+}
+
+.student-deal-overlay.active .student-deal-sheet {
+  transform: translateY(0);
+}
+
+/* Hanging Badge */
+.sheet-badge-hang {
+  position: absolute;
+  top: calc(-7 * var(--px));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-start;
+  z-index: 10;
+}
+
+.sheet-badge-ear-left,
+.sheet-badge-ear-right {
+  width: calc(4.04 * var(--px));
+  height: calc(7 * var(--px));
+}
+
+.sheet-badge-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #7E42EB;
+  padding: calc(24 * var(--px)) 0 calc(2 * var(--px));
+  border-radius: 0 0 calc(8 * var(--px)) calc(8 * var(--px));
+  min-width: calc(129 * var(--px));
+}
+
+.sheet-badge-avatars {
+  position: absolute;
+  top: calc(-22 * var(--px));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  padding-right: calc(11.2 * var(--px));
+}
+
+.sheet-avatar-item {
+  width: calc(44.8 * var(--px));
+  height: calc(44.8 * var(--px));
+  border-radius: 50%;
+  border: calc(1 * var(--px)) solid #FDFDFD;
+  background: #ECE9FC;
+  overflow: hidden;
+  margin-right: calc(-11.2 * var(--px));
+  position: relative;
+}
+
+.sheet-avatar-item:nth-child(1) { z-index: 3; }
+.sheet-avatar-item:nth-child(2) { z-index: 2; }
+.sheet-avatar-item:nth-child(3) { z-index: 1; }
+
+.sheet-avatar-item img {
+  width: calc(50.4 * var(--px));
+  height: calc(50.4 * var(--px));
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sheet-badge-label {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(14 * var(--px));
+  font-weight: 700;
+  color: #FDFDFD;
+  line-height: calc(20 * var(--px));
+  letter-spacing: calc(-0.09 * var(--px));
+}
+
+/* Sheet Header */
+.sheet-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: calc(8 * var(--px)) 0;
+  border-top-left-radius: calc(16 * var(--px));
+  border-top-right-radius: calc(16 * var(--px));
+  background: #EADBFE;
+}
+
+.sheet-drag-handle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(32 * var(--px));
+  height: calc(4 * var(--px));
+  background: #B0B0B0;
+  border-radius: calc(999 * var(--px));
+  top: calc(8 * var(--px));
+}
+
+.sheet-close-btn {
+  width: calc(56 * var(--px));
+  height: calc(48 * var(--px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sheet-close-btn svg {
+  width: calc(24 * var(--px));
+  height: calc(24 * var(--px));
+}
+
+/* Sheet Body */
+.sheet-body {
+  background: linear-gradient(180.55deg, #EADBFE 0.64%, #FFFFFF 105.25%);
+  padding: 0;
+  padding-bottom: calc(12 * var(--px));
+  overflow: visible;
+  position: relative;
+}
+
+.sheet-title-section {
+  text-align: center;
+  padding: calc(24 * var(--px)) calc(16 * var(--px));
+  padding-bottom: calc(24 * var(--px));
+  position: relative;
+}
+
+.sheet-main-title {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(28 * var(--px));
+  font-weight: 700;
+  color: #1D1D1D;
+  line-height: calc(36 * var(--px));
+  letter-spacing: calc(-0.59 * var(--px));
+  margin: 0 0 calc(2 * var(--px));
+}
+
+.sheet-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(16 * var(--px));
+  font-weight: 400;
+  color: #1D1D1D;
+  line-height: calc(22 * var(--px));
+  letter-spacing: calc(-0.18 * var(--px));
+  margin: 0;
+}
+
+.sheet-arrow-doodle {
+  position: absolute;
+  left: calc(231.44 * var(--px));
+  top: calc(58.25 * var(--px));
+  width: calc(32.92 * var(--px));
+  height: calc(37.64 * var(--px));
+  transform: rotate(109.59deg);
+}
+
+/* Visual break shape inside bottom sheet */
+.sheet-visual-break {
+  width: calc(360 * var(--px));
+  height: calc(158.5 * var(--px));
+  position: relative;
+  z-index: 1;
+}
+
+.sheet-how-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  background: transparent;
+  margin-top: calc(-140 * var(--px));
+}
+
+/* CTA Section */
+.sheet-cta-section {
+  background: white;
+  padding: calc(16 * var(--px)) calc(16 * var(--px)) 0;
+}
+
+.sheet-cta-btn {
+  width: 100%;
+  height: calc(48 * var(--px));
+  background: #D63941;
+  border: none;
+  border-radius: calc(999 * var(--px));
+  font-family: 'Inter', sans-serif;
+  font-size: calc(16 * var(--px));
+  font-weight: 700;
+  color: #FDFDFD;
+  line-height: calc(22 * var(--px));
+  letter-spacing: calc(-0.18 * var(--px));
+  cursor: pointer;
+}
+
+.sheet-cta-section .sheet-home-indicator {
+  height: calc(24 * var(--px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sheet-cta-section .indicator-bar {
+  width: calc(108 * var(--px));
+  height: calc(4 * var(--px));
+  background: black;
+  border-radius: calc(12 * var(--px));
+}
+
+/* ============================================
+   STUDENT DEAL SUCCESS SNACKBAR
+   ============================================ */
+.student-deal-snackbar {
+  position: fixed;
+  bottom: calc(220 * var(--px));
+  left: 50%;
+  transform: translateX(-50%) translateY(calc(20 * var(--px)));
+  width: calc(344 * var(--px));
+  height: calc(48 * var(--px));
+  background: #303030;
+  border-radius: calc(8 * var(--px));
+  box-shadow: 0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0, 0, 0, 0.08),
+              0 calc(8 * var(--px)) calc(16 * var(--px)) rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  padding: 0 calc(16 * var(--px));
+  z-index: 900;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  overflow: hidden;
+}
+
+.student-deal-snackbar.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.snackbar-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: calc(14 * var(--px));
+  line-height: calc(20 * var(--px));
+  letter-spacing: calc(-0.09 * var(--px));
+  color: #FDFDFD;
+  flex: 1;
+}
+
+.snackbar-timer-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: calc(4 * var(--px));
+  background: #D63941;
+  width: 100%;
+  transform-origin: left;
+}
+
+.student-deal-snackbar.active .snackbar-timer-bar {
+  animation: snackbarTimer 10s linear forwards;
+}
+
+@keyframes snackbarTimer {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+/* ============================================
+   CONFIRM DEAL BOTTOM SHEET (Non-dismissible)
+   ============================================ */
+.confirm-deal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1100;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.confirm-deal-overlay.active {
+  display: flex;
+}
+
+.confirm-deal-scrim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  /* No click handler - non-dismissible */
+}
+
+.confirm-deal-sheet {
+  position: relative;
+  width: 100%;
+  max-width: calc(360 * var(--px));
+  background: white;
+  border-radius: calc(16 * var(--px)) calc(16 * var(--px)) 0 0;
+  overflow: visible;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-out;
+}
+
+.confirm-deal-overlay.active .confirm-deal-sheet {
+  transform: translateY(0);
+}
+
+/* Reuse sheet-body gradient from student deal sheet */
+.confirm-deal-sheet .sheet-body {
+  background: linear-gradient(180.55deg, #EADBFE 0.64%, #FFFFFF 105.25%);
+  padding: 0;
+  padding-bottom: calc(12 * var(--px));
+  overflow: visible;
+  position: relative;
+}
+
+.confirm-deal-sheet .sheet-header-row {
+  background: #EADBFE;
+  justify-content: center;
+}
+
+/* Confirmation CTA Section with 2 buttons */
+.confirm-cta-section {
+  background: white;
+  padding: calc(16 * var(--px));
+  display: flex;
+  flex-direction: column;
+  gap: calc(16 * var(--px));
+}
+
+.confirm-cta-primary {
+  width: 100%;
+  height: calc(48 * var(--px));
+  background: #D63941;
+  border: none;
+  border-radius: calc(999 * var(--px));
+  font-family: 'Inter', sans-serif;
+  font-size: calc(16 * var(--px));
+  font-weight: 700;
+  color: #FDFDFD;
+  line-height: calc(22 * var(--px));
+  letter-spacing: calc(-0.18 * var(--px));
+  cursor: pointer;
+}
+
+.confirm-cta-secondary {
+  width: 100%;
+  height: calc(48 * var(--px));
+  background: transparent;
+  border: calc(1 * var(--px)) solid #4B4B4B;
+  border-radius: calc(999 * var(--px));
+  font-family: 'Inter', sans-serif;
+  font-size: calc(16 * var(--px));
+  font-weight: 700;
+  color: #1D1D1D;
+  line-height: calc(22 * var(--px));
+  letter-spacing: calc(-0.18 * var(--px));
+  cursor: pointer;
+}
+
+.confirm-cta-section .sheet-home-indicator {
+  height: calc(24 * var(--px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: calc(-8 * var(--px));
+}
+
+.confirm-cta-section .indicator-bar {
+  width: calc(108 * var(--px));
+  height: calc(4 * var(--px));
+  background: black;
+  border-radius: calc(12 * var(--px));
+}
+

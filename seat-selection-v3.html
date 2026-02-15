@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Select Seats</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/screens/seat-selection.css">
+  <link rel="stylesheet" href="styles/screens/student-deal-page.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="screen-container">
+    <!-- White Header (Nav only) -->
+    <header class="top-nav simple-nav">
+      <a href="srp-v3.html" class="back-btn">
+        <svg class="back-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <div class="nav-text">
+        <h1>Select seats</h1>
+        <p>Bangalore → Chennai</p>
+      </div>
+    </header>
+
+    <!-- Gray Background Section (Card + Seats) -->
+    <main class="seat-area">
+      <!-- Student Deal Card -->
+      <a href="student-deal-v3.html" class="student-deal-container">
+        <div class="deal-card-v3">
+          <!-- Badge hanging above the card -->
+          <div class="deal-badge-hang">
+            <img src="https://www.figma.com/api/mcp/asset/8b0b30ab-8c74-49e9-984d-ea34dff1a3ec" alt="" class="badge-ear-left">
+            <div class="deal-badge-inner">
+              <div class="badge-avatars-stack">
+                <div class="badge-avatar-item">
+                  <img src="assets/avatar-1.png" alt="">
+                </div>
+                <div class="badge-avatar-item">
+                  <img src="assets/avatar-2.png" alt="">
+                </div>
+                <div class="badge-avatar-item">
+                  <img src="assets/avatar-3.png" alt="">
+                </div>
+              </div>
+              <span class="badge-label">Student deal</span>
+            </div>
+            <img src="https://www.figma.com/api/mcp/asset/7d5cb304-88f8-40b5-8be8-a3bd9094223f" alt="" class="badge-ear-right">
+          </div>
+          
+          <!-- Card inner wrapper (clips rays) -->
+          <div class="deal-card-inner">
+            <!-- Background wave/rays -->
+            <img src="https://www.figma.com/api/mcp/asset/dfc5928d-17bd-43d0-ae84-064c941a0768" alt="" class="deal-card-rays">
+            
+            <!-- Content -->
+            <div class="deal-card-content">
+              <div class="deal-text-block">
+                <p class="deal-card-title">Get 15% refund after your trip</p>
+                <p class="deal-card-subtitle">Tap to know more</p>
+              </div>
+              <div class="deal-card-arrow">
+                <img src="https://www.figma.com/api/mcp/asset/2ba4ee15-9c48-488e-a4b0-bdd630243103" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Seat Decks -->
+      <div class="decks-container">
+        <!-- Lower Deck -->
+        <div class="deck lower-deck">
+          <div class="deck-header">
+            <span class="deck-title">Lower deck</span>
+            <div class="steering-icon">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="20" r="14" stroke="#b0b0b0" stroke-width="2"/>
+                <circle cx="20" cy="20" r="4" fill="#b0b0b0"/>
+                <path d="M20 6V14M20 26V34M6 20H14M26 20H34" stroke="#b0b0b0" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="seats-grid">
+            <!-- Row 1 -->
+            <div class="seat-column left">
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+            </div>
+            <!-- Aisle -->
+            <div class="aisle"></div>
+            <!-- Row 2 -->
+            <div class="seat-column right">
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper male" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div><span class="gender-icon">♂</span></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+            </div>
+            <div class="seat-column right">
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upper Deck -->
+        <div class="deck upper-deck">
+          <div class="deck-header">
+            <span class="deck-title">Upper deck</span>
+          </div>
+          <div class="seats-grid">
+            <div class="seat-column left">
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+            </div>
+            <div class="aisle"></div>
+            <div class="seat-column right">
+              <div class="seat sleeper female" data-price="1305">
+                <div class="seat-body"><div class="pillow pink"></div><span class="gender-icon">♀</span></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper male" data-price="1305">
+                <div class="seat-body"><div class="pillow blue"></div><span class="gender-icon">♂</span></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+            </div>
+            <div class="seat-column right">
+              <div class="seat sleeper sold female-sold">
+                <div class="seat-body"><span class="gender-icon">♀</span></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper sold">
+                <div class="seat-body"></div>
+                <span class="seat-price">Sold</span>
+              </div>
+              <div class="seat sleeper available" data-price="1305">
+                <div class="seat-body"><div class="pillow"></div></div>
+                <span class="seat-price">₹1,305</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Offer Ticker -->
+    <div class="offer-ticker-wrap">
+      <div class="offer-ticker">
+        <!-- Card 1: Exclusive 5% OFF -->
+        <div class="offer-chip">
+          <div class="deal-card-v3-ticker">
+            <img src="https://www.figma.com/api/mcp/asset/19d3ea9e-2d3f-49ac-b032-5d04e541b6ed" alt="" class="deal-card-bg">
+            <div class="deal-card-content-ticker">
+              <div class="coupon-tag yellow">
+                <div class="coupon-notch left">
+                  <div class="notch-corner tl"></div>
+                  <div class="notch-middle"></div>
+                  <div class="notch-middle"></div>
+                  <div class="notch-corner bl"></div>
+                </div>
+                <div class="coupon-text">
+                  <span class="coupon-label">EXCLUSIVE</span>
+                  <span class="coupon-value">5% OFF</span>
+                </div>
+                <div class="coupon-notch right">
+                  <div class="notch-corner tr"></div>
+                  <div class="notch-middle"></div>
+                  <div class="notch-middle"></div>
+                  <div class="notch-corner br"></div>
+                </div>
+              </div>
+              <p class="offer-text white">Select seat to see discount</p>
+            </div>
+            <div class="deal-btn-wrap">
+              <button class="deal-btn active">Apply</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 2: Student 15% OFF -->
+        <div class="offer-chip" id="studentDealChip">
+          <div class="deal-card-v3-ticker">
+            <img src="https://www.figma.com/api/mcp/asset/13166ea6-5fe5-41a6-a530-a783896b17c0" alt="" class="deal-card-bg">
+            <div class="deal-card-content-ticker">
+              <div class="coupon-tag purple">
+                <div class="coupon-notch left">
+                  <div class="notch-corner tl"></div>
+                  <div class="notch-middle"></div>
+                  <div class="notch-middle"></div>
+                  <div class="notch-corner bl"></div>
+                </div>
+                <div class="coupon-text">
+                  <span class="coupon-label">STUDENT</span>
+                  <span class="coupon-value">15% OFF</span>
+                </div>
+                <div class="coupon-notch right">
+                  <div class="notch-corner tr"></div>
+                  <div class="notch-middle"></div>
+                  <div class="notch-middle"></div>
+                  <div class="notch-corner br"></div>
+                </div>
+              </div>
+              <p class="offer-text white">Student deal</p>
+            </div>
+            <div class="deal-btn-wrap">
+              <button class="deal-btn active" id="studentDealKnowMore">Know more</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 3: Group 10% OFF -->
+        <div class="offer-chip">
+          <div class="deal-card-v3-ticker">
+            <img src="https://www.figma.com/api/mcp/asset/a0cc4d31-9bf8-40f6-b35f-9fa662fb415a" alt="" class="deal-card-bg">
+            <div class="deal-card-content-ticker">
+              <div class="coupon-tag purple">
+                <div class="coupon-notch left">
+                  <div class="notch-corner tl"></div>
+                  <div class="notch-middle"></div>
+                  <div class="notch-middle"></div>
+                  <div class="notch-corner bl"></div>
+                </div>
+                <div class="coupon-text">
+                  <span class="coupon-label">GROUP</span>
+                  <span class="coupon-value">15% OFF</span>
+                </div>
+                <div class="coupon-notch right">
+                  <div class="notch-corner tr"></div>
+                  <div class="notch-middle"></div>
+                  <div class="notch-middle"></div>
+                  <div class="notch-corner br"></div>
+                </div>
+              </div>
+              <p class="offer-text white">Select at least 3 seats</p>
+            </div>
+            <div class="deal-btn-wrap">
+              <button class="deal-btn disabled">3 left</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Sheet -->
+    <div class="bottom-sheet">
+      <div class="sheet-handle">
+        <div class="handle-bar"></div>
+      </div>
+      <div class="sheet-content">
+        <div class="bus-info-header">
+          <div class="bus-details">
+            <h2>SSR royal travels</h2>
+            <p>22:00 - 04:20  ·  Fri, 27 Jun</p>
+          </div>
+          <div class="rating-badge">
+            <div class="rating-value">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5L6 1Z" fill="white"/>
+              </svg>
+              <span>4.4</span>
+            </div>
+            <span class="rating-count">0000</span>
+          </div>
+        </div>
+        <div class="bus-meta">
+          <div class="bus-photo">
+            <img src="assets/bus-photo.png" alt="Bus">
+          </div>
+          <div class="meta-tags">
+            <div class="meta-tag">
+              <span class="meta-title">Highly on-time</span>
+              <span class="meta-desc">9 of 10 past trips</span>
+            </div>
+            <div class="meta-tag">
+              <span class="meta-title">New bus</span>
+              <span class="meta-desc">6 months old</span>
+            </div>
+            <div class="meta-tag primo-tag">
+              <img src="assets/primo-logo.png" alt="Primo" class="primo-mini">
+              <span class="meta-desc">A rising star</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Student Deal Success Snackbar -->
+    <div class="student-deal-snackbar" id="studentDealSnackbar">
+      <span class="snackbar-text">Great! Complete your booking now</span>
+      <div class="snackbar-timer-bar"></div>
+    </div>
+    
+    <!-- Student Deal Bottom Sheet Overlay -->
+    <div class="student-deal-overlay" id="studentDealOverlay">
+      <div class="student-deal-scrim" id="studentDealScrim"></div>
+      <div class="student-deal-sheet" id="studentDealSheet">
+        <!-- Hanging Badge with Avatars -->
+        <div class="sheet-badge-hang">
+          <img src="https://www.figma.com/api/mcp/asset/917c4d23-a227-46c2-9666-7ecf51f2a879" alt="" class="sheet-badge-ear-left">
+          <div class="sheet-badge-inner">
+            <div class="sheet-badge-avatars">
+              <div class="sheet-avatar-item">
+                <img src="assets/avatar-1.png" alt="">
+              </div>
+              <div class="sheet-avatar-item">
+                <img src="assets/avatar-2.png" alt="">
+              </div>
+              <div class="sheet-avatar-item">
+                <img src="assets/avatar-3.png" alt="">
+              </div>
+            </div>
+            <span class="sheet-badge-label">Student deal</span>
+          </div>
+          <img src="https://www.figma.com/api/mcp/asset/7e875b59-e9de-4a8c-9504-43bcef909f7f" alt="" class="sheet-badge-ear-right">
+        </div>
+        
+        <!-- Sheet Header with Close Button -->
+        <div class="sheet-header-row">
+          <div class="sheet-drag-handle"></div>
+          <button class="sheet-close-btn" id="studentDealClose">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M18 6L6 18M6 6L18 18" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Sheet Content -->
+        <div class="sheet-body">
+          <div class="sheet-title-section">
+            <h2 class="sheet-main-title">Get 15% refund after <br>your trip</h2>
+            <p class="sheet-subtitle">Directly in your bank account</p>
+            <img src="https://www.figma.com/api/mcp/asset/480994d2-ae92-4da1-8b7d-8b9398313c93" alt="" class="sheet-arrow-doodle">
+          </div>
+          
+          <!-- Visual break shape - blends with gradient background -->
+          <div class="visual-break-shape sheet-visual-break">
+            <img src="https://www.figma.com/api/mcp/asset/fd8a86e6-e039-4824-8386-c93eaf4e44a7" alt="" class="break-shape-img">
+          </div>
+
+          <!-- How it works - with visual break background -->
+          <div class="how-it-works-container sheet-how-container">
+            <div class="how-it-works">
+              <h3 class="how-title">How it works</h3>
+              <div class="steps-row">
+                <div class="step">
+                  <div class="step-icon">
+                    <img src="https://www.figma.com/api/mcp/asset/311b4213-2537-41d6-8407-676025f2f5c8" alt="" class="step-icon-img">
+                  </div>
+                  <p class="step-text">Complete <br>booking <br>for you</p>
+                </div>
+                <div class="step">
+                  <div class="step-icon">
+                    <img src="https://www.figma.com/api/mcp/asset/324b5e95-86ef-4b85-a540-3e485591f97e" alt="" class="step-icon-img">
+                  </div>
+                  <p class="step-text">Get 2 friends to join you on this trip</p>
+                </div>
+                <div class="step">
+                  <div class="step-icon">
+                    <img src="https://www.figma.com/api/mcp/asset/b2caaa05-cfef-46e0-9b89-f7a3c71480ad" alt="" class="step-icon-img">
+                  </div>
+                  <p class="step-text">Everyone gets 15% refund after the trip</p>
+                </div>
+              </div>
+              <!-- Arrows between steps - positioned absolutely within how-it-works -->
+              <img src="https://www.figma.com/api/mcp/asset/f7865907-4117-4cfb-877f-e302a0176c28" alt="" class="step-arrow step-arrow-1">
+              <img src="https://www.figma.com/api/mcp/asset/4bdd50c9-7b97-4c06-bee7-2a6cf4f8bdb4" alt="" class="step-arrow step-arrow-2">
+            </div>
+          </div>
+        </div>
+        
+        <!-- CTA Button -->
+        <div class="sheet-cta-section">
+          <button class="sheet-cta-btn">Yes, I'm in for this</button>
+          <div class="sheet-home-indicator">
+            <div class="indicator-bar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Student Deal Confirmation Bottom Sheet (Non-dismissible) -->
+    <div class="confirm-deal-overlay" id="confirmDealOverlay">
+      <div class="confirm-deal-scrim"></div>
+      <div class="confirm-deal-sheet">
+        <!-- Hanging Badge with Avatars -->
+        <div class="sheet-badge-hang">
+          <img src="https://www.figma.com/api/mcp/asset/917c4d23-a227-46c2-9666-7ecf51f2a879" alt="" class="sheet-badge-ear-left">
+          <div class="sheet-badge-inner">
+            <div class="sheet-badge-avatars">
+              <div class="sheet-avatar-item">
+                <img src="assets/avatar-1.png" alt="">
+              </div>
+              <div class="sheet-avatar-item">
+                <img src="assets/avatar-2.png" alt="">
+              </div>
+              <div class="sheet-avatar-item">
+                <img src="assets/avatar-3.png" alt="">
+              </div>
+            </div>
+            <span class="sheet-badge-label">Student deal</span>
+          </div>
+          <img src="https://www.figma.com/api/mcp/asset/7e875b59-e9de-4a8c-9504-43bcef909f7f" alt="" class="sheet-badge-ear-right">
+        </div>
+        
+        <!-- Sheet Header (no close button - non-dismissible) -->
+        <div class="sheet-header-row">
+          <div class="sheet-drag-handle"></div>
+        </div>
+        
+        <!-- Sheet Content -->
+        <div class="sheet-body">
+          <div class="sheet-title-section">
+            <h2 class="sheet-main-title">Get 15% refund after <br>your trip</h2>
+            <p class="sheet-subtitle">Directly in your bank account</p>
+            <img src="https://www.figma.com/api/mcp/asset/480994d2-ae92-4da1-8b7d-8b9398313c93" alt="" class="sheet-arrow-doodle">
+          </div>
+          
+          <!-- Visual break shape -->
+          <div class="visual-break-shape sheet-visual-break">
+            <img src="https://www.figma.com/api/mcp/asset/fd8a86e6-e039-4824-8386-c93eaf4e44a7" alt="" class="break-shape-img">
+          </div>
+
+          <!-- How it works -->
+          <div class="how-it-works-container sheet-how-container">
+            <div class="how-it-works">
+              <h3 class="how-title">How it works</h3>
+              <div class="steps-row">
+                <div class="step">
+                  <div class="step-icon">
+                    <img src="https://www.figma.com/api/mcp/asset/311b4213-2537-41d6-8407-676025f2f5c8" alt="" class="step-icon-img">
+                  </div>
+                  <p class="step-text">Complete <br>booking <br>for you</p>
+                </div>
+                <div class="step">
+                  <div class="step-icon">
+                    <img src="https://www.figma.com/api/mcp/asset/324b5e95-86ef-4b85-a540-3e485591f97e" alt="" class="step-icon-img">
+                  </div>
+                  <p class="step-text">Get 2 friends to join you on this trip</p>
+                </div>
+                <div class="step">
+                  <div class="step-icon">
+                    <img src="https://www.figma.com/api/mcp/asset/b2caaa05-cfef-46e0-9b89-f7a3c71480ad" alt="" class="step-icon-img">
+                  </div>
+                  <p class="step-text">Everyone gets 15% refund after the trip</p>
+                </div>
+              </div>
+              <img src="https://www.figma.com/api/mcp/asset/f7865907-4117-4cfb-877f-e302a0176c28" alt="" class="step-arrow step-arrow-1">
+              <img src="https://www.figma.com/api/mcp/asset/4bdd50c9-7b97-4c06-bee7-2a6cf4f8bdb4" alt="" class="step-arrow step-arrow-2">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Two CTA Buttons -->
+        <div class="confirm-cta-section">
+          <button class="confirm-cta-primary" id="confirmYesBtn">Yes, I'm in for this</button>
+          <button class="confirm-cta-secondary" id="confirmNoBtn">No thanks</button>
+          <div class="sheet-home-indicator">
+            <div class="indicator-bar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Seat Selection Panel - Shows when seat is selected -->
+    <div class="seat-selection-panel" id="seatSelectionPanel">
+      <div class="selection-row">
+        <div class="selection-left">
+          <span class="seats-selected-text">1 seat selected</span>
+        </div>
+        <div class="selection-right">
+          <div class="price-info">
+            <span class="discount-badge">5% OFF</span>
+            <span class="original-price">₹1,450</span>
+            <span class="current-price">₹1,305</span>
+          </div>
+          <button class="add-seat-btn">
+            <img src="assets/add-box-icon.svg" alt="Add">
+          </button>
+        </div>
+      </div>
+      <div class="selection-cta-row">
+        <button class="selection-cta-btn" id="selectBpDpBtn">Select boarding and dropping points</button>
+      </div>
+      <div class="selection-home-indicator">
+        <div class="indicator-bar"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // =============================================
+      // CHECK IF IN STUDENT DEAL FLOW
+      // =============================================
+      const isStudentDealFlow = sessionStorage.getItem('isStudentDealFlow') === 'true';
+      
+      // =============================================
+      // CLEAR PREVIOUS STUDENT DEAL OPT-IN STATE
+      // (Fresh start when user begins new booking flow)
+      // =============================================
+      sessionStorage.removeItem('studentDealOptedIn');
+      
+      // =============================================
+      // HIDE STUDENT DEAL COMPONENTS IF NOT IN FLOW
+      // =============================================
+      if (!isStudentDealFlow) {
+        // Hide student deal banner
+        const studentDealBannerToHide = document.querySelector('.student-deal-container');
+        if (studentDealBannerToHide) {
+          studentDealBannerToHide.style.display = 'none';
+        }
+        // Hide student deal overlay
+        const studentDealOverlayToHide = document.getElementById('studentDealOverlay');
+        if (studentDealOverlayToHide) {
+          studentDealOverlayToHide.style.display = 'none';
+        }
+        // Hide student deal snackbar
+        const studentDealSnackbarToHide = document.getElementById('studentDealSnackbar');
+        if (studentDealSnackbarToHide) {
+          studentDealSnackbarToHide.style.display = 'none';
+        }
+        // Hide confirm deal overlay
+        const confirmDealOverlayToHide = document.getElementById('confirmDealOverlay');
+        if (confirmDealOverlayToHide) {
+          confirmDealOverlayToHide.style.display = 'none';
+        }
+        // Hide student deal chip in offer section
+        const studentDealChipToHide = document.getElementById('studentDealChip');
+        if (studentDealChipToHide) {
+          studentDealChipToHide.style.display = 'none';
+        }
+      }
+      
+      // =============================================
+      // STUDENT DEAL CARD ENTRANCE ANIMATION
+      // =============================================
+      const studentDealBanner = document.querySelector('.student-deal-container');
+      if (studentDealBanner && isStudentDealFlow) {
+        setTimeout(function() {
+          studentDealBanner.classList.add('animate-in');
+        }, 300);
+      }
+      
+      // =============================================
+      // SEAT SELECTION PANEL
+      // =============================================
+      const seatSelectionPanel = document.getElementById('seatSelectionPanel');
+      const seats = document.querySelectorAll('.seat.available');
+      let selectedSeats = [];
+      
+      // Add click handler to all available seats
+      seats.forEach(function(seat) {
+        seat.addEventListener('click', function() {
+          // Toggle selected state
+          if (seat.classList.contains('selected')) {
+            seat.classList.remove('selected');
+            selectedSeats = selectedSeats.filter(s => s !== seat);
+          } else {
+            seat.classList.add('selected');
+            selectedSeats.push(seat);
+          }
+          
+          // Show/hide selection panel based on selected seats
+          if (selectedSeats.length > 0) {
+            seatSelectionPanel.classList.add('active');
+            // Update text
+            const seatsText = seatSelectionPanel.querySelector('.seats-selected-text');
+            seatsText.textContent = selectedSeats.length + ' seat' + (selectedSeats.length > 1 ? 's' : '') + ' selected';
+          } else {
+            seatSelectionPanel.classList.remove('active');
+          }
+        });
+      });
+      
+      // =============================================
+      // STUDENT DEAL BOTTOM SHEET
+      // =============================================
+      const studentDealCard = document.querySelector('.student-deal-container');
+      const studentDealOverlay = document.getElementById('studentDealOverlay');
+      const studentDealClose = document.getElementById('studentDealClose');
+      const studentDealScrim = document.getElementById('studentDealScrim');
+      
+      // Function to open bottom sheet
+      function openStudentDealSheet() {
+        studentDealOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      
+      // Open bottom sheet when clicking on student deal card
+      if (studentDealCard && studentDealOverlay) {
+        studentDealCard.addEventListener('click', function(e) {
+          e.preventDefault();
+          openStudentDealSheet();
+        });
+      }
+      
+      // Open bottom sheet when clicking "Know more" button on floating card
+      const studentDealKnowMore = document.getElementById('studentDealKnowMore');
+      if (studentDealKnowMore && studentDealOverlay) {
+        studentDealKnowMore.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          openStudentDealSheet();
+        });
+      }
+      
+      // Close bottom sheet
+      function closeStudentDealSheet() {
+        studentDealOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      
+      if (studentDealClose) {
+        studentDealClose.addEventListener('click', closeStudentDealSheet);
+      }
+      
+      if (studentDealScrim) {
+        studentDealScrim.addEventListener('click', closeStudentDealSheet);
+      }
+      
+      // =============================================
+      // STUDENT DEAL OPT-IN STATE
+      // =============================================
+      let hasOptedIntoStudentDeal = false;
+      
+      // =============================================
+      // STUDENT DEAL SUCCESS SNACKBAR
+      // =============================================
+      const studentDealCta = document.querySelector('.sheet-cta-btn');
+      const studentDealSnackbar = document.getElementById('studentDealSnackbar');
+      let snackbarTimeout = null;
+      
+      function showStudentDealSnackbar() {
+        // Mark as opted in
+        hasOptedIntoStudentDeal = true;
+        // Use sessionStorage instead of localStorage (clears when tab closes)
+        sessionStorage.setItem('studentDealOptedIn', 'true');
+        
+        // Close the bottom sheet first
+        closeStudentDealSheet();
+        
+        // Clear any existing timeout
+        if (snackbarTimeout) {
+          clearTimeout(snackbarTimeout);
+        }
+        
+        // Show snackbar after a brief delay for sheet to close
+        setTimeout(function() {
+          // Remove and re-add active class to restart animation
+          studentDealSnackbar.classList.remove('active');
+          // Force reflow to restart animation
+          void studentDealSnackbar.offsetWidth;
+          studentDealSnackbar.classList.add('active');
+          
+          // Auto-hide after 10 seconds
+          snackbarTimeout = setTimeout(function() {
+            studentDealSnackbar.classList.remove('active');
+          }, 10000);
+        }, 300);
+      }
+      
+      if (studentDealCta) {
+        studentDealCta.addEventListener('click', showStudentDealSnackbar);
+      }
+      
+      // =============================================
+      // CONFIRM DEAL BOTTOM SHEET (Non-dismissible)
+      // =============================================
+      const confirmDealOverlay = document.getElementById('confirmDealOverlay');
+      const confirmYesBtn = document.getElementById('confirmYesBtn');
+      const confirmNoBtn = document.getElementById('confirmNoBtn');
+      const selectBpDpBtn = document.getElementById('selectBpDpBtn');
+      
+      function openConfirmDealSheet() {
+        confirmDealOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function closeConfirmDealSheet() {
+        confirmDealOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      
+      // Handle "Select boarding and dropping points" CTA
+      if (selectBpDpBtn) {
+        selectBpDpBtn.addEventListener('click', function() {
+          if (!isStudentDealFlow) {
+            // Not in student deal flow - go directly to next page without any prompts
+            window.location.href = 'bp-dp-selection.html';
+          } else if (hasOptedIntoStudentDeal) {
+            // Already opted in - go directly to next page
+            window.location.href = 'bp-dp-selection.html';
+          } else {
+            // Not opted in - show confirmation sheet
+            openConfirmDealSheet();
+          }
+        });
+      }
+      
+      // Handle "Yes, I'm in for this" in confirmation sheet
+      if (confirmYesBtn) {
+        confirmYesBtn.addEventListener('click', function() {
+          hasOptedIntoStudentDeal = true;
+          // Use sessionStorage instead of localStorage (clears when tab closes)
+          sessionStorage.setItem('studentDealOptedIn', 'true');
+          closeConfirmDealSheet();
+          
+          // Show snackbar
+          setTimeout(function() {
+            studentDealSnackbar.classList.remove('active');
+            void studentDealSnackbar.offsetWidth;
+            studentDealSnackbar.classList.add('active');
+            
+            snackbarTimeout = setTimeout(function() {
+              studentDealSnackbar.classList.remove('active');
+            }, 10000);
+          }, 300);
+          
+          // Navigate to next page after snackbar appears
+          setTimeout(function() {
+            window.location.href = 'bp-dp-selection.html?studentDealOptedIn=true';
+          }, 800);
+        });
+      }
+      
+      // Handle "No thanks" in confirmation sheet
+      if (confirmNoBtn) {
+        confirmNoBtn.addEventListener('click', function() {
+          closeConfirmDealSheet();
+          // Clear any previous opt-in state
+          sessionStorage.removeItem('studentDealOptedIn');
+          // Go directly to next page without opting in
+          window.location.href = 'bp-dp-selection.html';
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+
