@@ -481,59 +481,13 @@
     }
     
     /* ============================================
-       STUDENT DEAL - VARIANT TOGGLE LOGIC
+       STUDENT DEAL - ALWAYS SHOW OPTED-IN VARIANT
        ============================================ */
-    /* Default: show not-opted-in, hide opted-in (user hasn't opted in yet) */
     .student-deal-container.opted-in {
-      display: none;
-    }
-    
-    .student-deal-container.not-opted-in {
-      display: flex;
-      /* Increased space above the card */
-      margin-top: calc(32 * var(--px));
-      /* Remove external bottom padding from content area */
-      margin-bottom: calc(-32 * var(--px));
-      /* Match Figma: pt-16, pb-32 */
-      padding: calc(16 * var(--px)) 0 calc(32 * var(--px));
-      /* Match Figma: only top corners rounded */
-      border-radius: calc(16 * var(--px)) calc(16 * var(--px)) 0 0;
-      /* Match Figma gradient: ends at 91.317% */
-      background: linear-gradient(180.82deg, #EADBFE 0.64%, #FFFFFF 91.32%);
-      /* No elevation/shadow in Figma design */
-    }
-    
-    /* When user HAS opted in - show opted-in variant (with share link), hide not-opted-in */
-    body.deal-opted-in .student-deal-container.opted-in {
       display: flex;
     }
     
-    body.deal-opted-in .student-deal-container.not-opted-in {
-      display: none;
-    }
-    
-    /* Not opted-in text section - no "How it works" link */
-    .not-opted-in .deal-text-section {
-      /* Match Figma: pt-56 for badge space, pb-24, px-16 */
-      padding-top: calc(56 * var(--px));
-      padding-bottom: calc(24 * var(--px));
-      padding-left: calc(16 * var(--px));
-      padding-right: calc(16 * var(--px));
-    }
-    
-    /* Remove horizontal padding from title/subtitle since parent now has it */
-    .not-opted-in .deal-title,
-    .not-opted-in .deal-subtitle {
-      padding-left: 0;
-      padding-right: 0;
-    }
-    
-    /* Not opted-in variant has white tag background */
-    .not-opted-in .deal-tag {
-      background: white;
-    }
-    
-    /* Inline How it works section for not opted-in variant */
+    /* Inline How it works section */
     .deal-how-section {
       display: flex;
       flex-direction: column;
@@ -622,11 +576,6 @@
       width: 100%;
     }
     
-    /* Not opted-in variant WhatsApp icon size */
-    .not-opted-in .deal-share-btn .whatsapp-icon {
-      width: calc(24 * var(--px));
-      height: calc(24 * var(--px));
-    }
     
     /* ============================================
        CONTENT AREA (White background - TicketsView)
@@ -2584,68 +2533,6 @@
           </div>
         </div>
         
-        <!-- Student Deal Component - NOT OPTED IN VERSION (shown when user hasn't opted in yet) -->
-        <div class="student-deal-container not-opted-in">
-          <!-- Background rays -->
-          <img src="https://www.figma.com/api/mcp/asset/dda64e16-46ac-4cf0-a5a2-bfe3c143a5d8" alt="" class="deal-rays">
-          
-          <!-- Badge hanging at top -->
-          <div class="deal-badge-hang">
-            <img src="https://www.figma.com/api/mcp/asset/812300b4-ec6e-4eaf-a070-ef273cb81c31" alt="" class="deal-badge-ear-left">
-            <div class="deal-badge-inner">
-              <div class="deal-badge-avatars">
-                <div class="deal-avatar-item">
-                  <img src="assets/avatar-1.png" alt="">
-                </div>
-                <div class="deal-avatar-item">
-                  <img src="assets/avatar-2.png" alt="">
-                </div>
-                <div class="deal-avatar-item">
-                  <img src="assets/avatar-3.png" alt="">
-                </div>
-              </div>
-              <span class="deal-badge-label">Student deal</span>
-            </div>
-            <img src="https://www.figma.com/api/mcp/asset/0db6bb88-788b-4f7d-ae0f-74eb76e8133d" alt="" class="deal-badge-ear-right">
-          </div>
-          
-          <!-- Text content - no "How it works" link -->
-          <div class="deal-text-section">
-            <div class="deal-tag">
-              <span>Directly in your bank account</span>
-            </div>
-            <img src="https://www.figma.com/api/mcp/asset/6993bba2-dc76-425d-bae3-fa3d1bc94a8f" alt="" class="deal-arrow-doodle">
-            <h2 class="deal-title">Get ₹150 refund </h2>
-            <p class="deal-subtitle">When 2 or more friends book this same trip with your link</p>
-          </div>
-          
-          <!-- Inline How it works section -->
-          <div class="deal-how-section">
-            <h3 class="deal-how-title">How it works</h3>
-            <div class="deal-how-steps">
-              <div class="deal-how-step">
-                <div class="deal-how-step-icon">
-                  <img src="https://www.figma.com/api/mcp/asset/ee4de637-f7f7-4e76-89ff-3c7e008b491d" alt="">
-                </div>
-                <p class="deal-how-step-text">Get 2 friends to join you on this trip</p>
-              </div>
-              <div class="deal-how-step">
-                <div class="deal-how-step-icon">
-                  <img src="https://www.figma.com/api/mcp/asset/e6297bb0-c0f3-496b-a5c4-94a06973278f" alt="">
-                </div>
-                <p class="deal-how-step-text">Everyone gets ₹150 refund after the trip</p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Share button -->
-          <div class="deal-cta-section">
-            <button class="deal-share-btn not-opted-share-btn">
-              <img src="https://www.figma.com/api/mcp/asset/caabed3d-7040-443b-bfce-901e5ae717ba" alt="WhatsApp" class="whatsapp-icon">
-              <span>Share</span>
-            </button>
-          </div>
-        </div>
       </div>
       
       <!-- Points Section -->
@@ -3027,9 +2914,8 @@
     // =============================================
     const isStudentDealFlow = sessionStorage.getItem('isStudentDealFlow') === 'true';
     
-    // If not in student deal flow, hide all student deal cards
+    // If not in student deal flow, hide student deal card
     if (!isStudentDealFlow) {
-      // Hide both opted-in and not-opted-in variants
       document.querySelectorAll('.student-deal-container').forEach(function(card) {
         card.style.display = 'none';
       });
@@ -3038,16 +2924,6 @@
       if (hiwOverlayToHide) {
         hiwOverlayToHide.style.display = 'none';
       }
-    }
-    
-    // =============================================
-    // CHECK STUDENT DEAL OPT-IN STATUS
-    // =============================================
-    // Check sessionStorage (set during booking flow) or URL parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const isOptedIn = sessionStorage.getItem('studentDealOptedIn') === 'true' || urlParams.get('studentDealOptedIn') === 'true';
-    if (isOptedIn && isStudentDealFlow) {
-      document.body.classList.add('deal-opted-in');
     }
     
     // Tab switching
