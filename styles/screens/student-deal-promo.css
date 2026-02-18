@@ -405,7 +405,7 @@
   left: calc(16 * var(--px));
   right: calc(16 * var(--px));
   height: calc(97 * var(--px));
-  background: linear-gradient(180deg, rgba(236, 233, 252, 0) 0%, #ECE9FC 100%);
+  background: linear-gradient(180deg, rgba(234, 219, 254, 0) 0%, #EADBFE 65%);
   pointer-events: none;
   border-radius: 0 0 calc(20 * var(--px)) calc(20 * var(--px));
 }
