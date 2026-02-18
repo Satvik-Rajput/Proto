@@ -84,7 +84,7 @@
 /* Student Deal Promo Card */
 .student-deal-promo {
   padding: calc(32 * var(--px)) calc(0 * var(--px)) calc(16 * var(--px));
-  background: linear-gradient(180deg, #EADBFE 0%, #ECE9FC 100%);
+  background: #EADBFE;
   border-radius: calc(20 * var(--px));
   position: relative;
   overflow: hidden;
