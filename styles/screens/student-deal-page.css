@@ -64,6 +64,12 @@
   z-index: 2;
 }
 
+/* Left-aligned Badge Section */
+.deal-badge-left {
+  align-items: flex-start;
+  padding-left: calc(20 * var(--px));
+}
+
 .deal-badge-container {
   display: flex;
   flex-direction: column;
@@ -118,6 +124,25 @@
   padding: calc(24 * var(--px)) calc(16 * var(--px));
   position: relative;
   z-index: 2;
+}
+
+/* Left-aligned Title Section */
+.deal-title-left {
+  text-align: left;
+  padding: calc(24 * var(--px)) calc(20 * var(--px));
+}
+
+.deal-title-left .deal-title {
+  text-align: left;
+}
+
+.deal-title-left .deal-subtitle {
+  text-align: left;
+}
+
+.deal-title-left .hand-wave {
+  left: calc(164 * var(--px));
+  top: calc(59 * var(--px));
 }
 
 .deal-title {
@@ -302,4 +327,76 @@
 .student-deal-header ~ .filter-section ~ .bus-listings,
 .filter-section ~ .bus-listings {
   background: #F5F5F5;
+}
+
+/* How it works - List Format */
+.how-it-works-list-container {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  background: transparent;
+  padding-bottom: calc(12 * var(--px));
+}
+
+.how-it-works-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.how-title-left {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(16 * var(--px));
+  font-weight: 700;
+  color: #1D1D1D;
+  text-align: left;
+  margin: 0;
+  line-height: calc(22 * var(--px));
+  letter-spacing: calc(-0.18 * var(--px));
+  padding: calc(4 * var(--px)) calc(16 * var(--px));
+  background: white;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hiw-list-items {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: white;
+}
+
+.hiw-list-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: calc(16 * var(--px));
+  padding: calc(8 * var(--px)) calc(16 * var(--px));
+  min-height: calc(40 * var(--px));
+}
+
+.hiw-list-icon-wrap {
+  width: calc(24 * var(--px));
+  height: calc(24 * var(--px));
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hiw-list-icon-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hiw-list-label {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(16 * var(--px));
+  font-weight: 500;
+  color: #1D1D1D;
+  line-height: calc(22 * var(--px));
+  letter-spacing: calc(-0.18 * var(--px));
+  flex: 1;
 }
