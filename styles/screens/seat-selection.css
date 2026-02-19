@@ -3505,11 +3505,11 @@
 .hiw-list-item {
   display: flex !important;
   flex-direction: row !important;
-  align-items: flex-start !important;
+  align-items: center !important;
   gap: calc(16 * var(--px));
   padding: calc(8 * var(--px)) calc(16 * var(--px));
   min-height: calc(40 * var(--px));
-  background: white;
+  background: transparent;
 }
 
 .hiw-list-icon {
