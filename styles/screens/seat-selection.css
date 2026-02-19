@@ -3499,13 +3499,13 @@
 }
 
 .hiw-list {
-  display: flex;
-  flex-direction: column;
+  display: block;
 }
 
 .hiw-list-item {
-  display: flex;
-  align-items: center;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
   gap: calc(16 * var(--px));
   padding: calc(8 * var(--px)) calc(16 * var(--px));
   min-height: calc(40 * var(--px));
@@ -3515,8 +3515,9 @@
 .hiw-list-icon {
   width: calc(24 * var(--px));
   height: calc(24 * var(--px));
+  min-width: calc(24 * var(--px));
   flex-shrink: 0;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 }
@@ -3524,6 +3525,7 @@
 .hiw-list-icon svg {
   width: calc(24 * var(--px));
   height: calc(24 * var(--px));
+  display: block;
 }
 
 .hiw-list-text {
@@ -3535,5 +3537,6 @@
   letter-spacing: calc(-0.18 * var(--px));
   margin: 0;
   flex: 1;
+  display: inline;
 }
 
