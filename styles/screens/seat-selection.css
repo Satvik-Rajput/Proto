@@ -3455,3 +3455,85 @@
   border-radius: calc(12 * var(--px));
 }
 
+/* ============================================
+   HOW IT WORKS - LIST FORMAT STYLES
+   ============================================ */
+
+/* Override for left-aligned title */
+.sheet-title-left {
+  text-align: left;
+  padding: 0 calc(20 * var(--px));
+  padding-bottom: calc(24 * var(--px));
+}
+
+.sheet-title-left .sheet-arrow-doodle {
+  left: calc(167.44 * var(--px));
+  top: calc(32.25 * var(--px));
+}
+
+/* Body for list format - no visual break */
+.sheet-body-list {
+  background: linear-gradient(180.55deg, #EADBFE 0.64%, #FFFFFF 105.25%);
+  padding: 0;
+  padding-bottom: calc(12 * var(--px));
+}
+
+/* How it works list section */
+.hiw-list-section {
+  padding: 0 calc(4 * var(--px));
+}
+
+.hiw-list-title {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(16 * var(--px));
+  font-weight: 700;
+  color: #1D1D1D;
+  line-height: calc(22 * var(--px));
+  letter-spacing: calc(-0.18 * var(--px));
+  margin: 0;
+  padding: calc(4 * var(--px)) calc(16 * var(--px));
+  min-height: calc(32 * var(--px));
+  display: flex;
+  align-items: center;
+  background: white;
+}
+
+.hiw-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.hiw-list-item {
+  display: flex;
+  align-items: center;
+  gap: calc(16 * var(--px));
+  padding: calc(8 * var(--px)) calc(16 * var(--px));
+  min-height: calc(40 * var(--px));
+  background: white;
+}
+
+.hiw-list-icon {
+  width: calc(24 * var(--px));
+  height: calc(24 * var(--px));
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hiw-list-icon svg {
+  width: calc(24 * var(--px));
+  height: calc(24 * var(--px));
+}
+
+.hiw-list-text {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(16 * var(--px));
+  font-weight: 500;
+  color: #1D1D1D;
+  line-height: calc(22 * var(--px));
+  letter-spacing: calc(-0.18 * var(--px));
+  margin: 0;
+  flex: 1;
+}
+
