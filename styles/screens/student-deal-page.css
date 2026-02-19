@@ -141,7 +141,7 @@
 }
 
 .deal-title-left .hand-wave {
-  left: calc(164 * var(--px));
+  left: calc(124 * var(--px));
   top: calc(59 * var(--px));
 }
 
