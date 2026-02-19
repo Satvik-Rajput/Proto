@@ -128,16 +128,16 @@
 
 /* Left-aligned Title Section */
 .deal-title-left {
-  text-align: left;
-  padding: calc(24 * var(--px)) calc(20 * var(--px));
+  text-align: left !important;
+  padding: calc(24 * var(--px)) calc(20 * var(--px)) !important;
 }
 
 .deal-title-left .deal-title {
-  text-align: left;
+  text-align: left !important;
 }
 
 .deal-title-left .deal-subtitle {
-  text-align: left;
+  text-align: left !important;
 }
 
 .deal-title-left .hand-wave {
