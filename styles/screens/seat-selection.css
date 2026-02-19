@@ -3495,7 +3495,7 @@
   min-height: calc(32 * var(--px));
   display: flex;
   align-items: center;
-  background: white;
+  background: transparent;
 }
 
 .hiw-list {
