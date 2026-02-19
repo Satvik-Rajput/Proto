@@ -3468,7 +3468,7 @@
 
 .sheet-title-left .sheet-arrow-doodle {
   left: calc(167.44 * var(--px));
-  top: calc(32.25 * var(--px));
+  top: calc(64.25 * var(--px));
 }
 
 /* Body for list format - no visual break */
