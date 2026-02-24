@@ -820,22 +820,15 @@
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  display: none; /* Hide broken images - using CSS gradients instead */
 }
 
-/* Yellow card background (Exclusive offer) */
-.offer-chip:nth-child(1) .deal-card-v3-ticker {
-  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+/* Ticker card backgrounds */
+.ticker-yellow {
+  background: #FED9D5;
 }
 
-/* Purple card background (Student deal) */
-.offer-chip:nth-child(2) .deal-card-v3-ticker {
-  background: linear-gradient(135deg, #eadbfe 0%, #c9a8fc 100%);
-}
-
-/* Purple card background (Group deal) */
-.offer-chip:nth-child(3) .deal-card-v3-ticker {
-  background: linear-gradient(135deg, #eadbfe 0%, #c9a8fc 100%);
+.ticker-purple {
+  background: #EADBFE;
 }
 
 .deal-card-content-ticker {
