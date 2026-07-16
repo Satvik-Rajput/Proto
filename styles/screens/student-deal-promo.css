@@ -152,6 +152,8 @@
   border-radius: calc(20 * var(--px));
   padding: calc(16 * var(--px));
   width: calc(328 * var(--px));
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 /* Deal Tags - Coupon Style */
@@ -457,18 +459,36 @@
 .promo-bus-card-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: calc(12 * var(--px));
   margin-bottom: calc(12 * var(--px));
+  overflow: hidden;
+  position: relative;
 }
 
 .primo-logo-wrap {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
+  z-index: 2;
 }
 
 .primo-logo-img {
   height: calc(28 * var(--px));
   width: auto;
+  max-width: calc(56 * var(--px));
+}
+
+/* Gradient fade to hide overflow between logo and tags */
+.primo-logo-wrap::after {
+  content: '';
+  position: absolute;
+  left: calc(56 * var(--px));
+  top: 0;
+  width: calc(40 * var(--px));
+  height: 100%;
+  background: linear-gradient(to right, white, rgba(255,255,255,0));
+  z-index: 1;
+  pointer-events: none;
 }
 
 .promo-deal-tags.v2 {
@@ -476,6 +496,8 @@
   gap: calc(4 * var(--px));
   justify-content: flex-end;
   margin-bottom: 0;
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 /* Yellow coupon tag */
