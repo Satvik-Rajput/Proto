@@ -530,7 +530,7 @@
 /* V2 CTA - white outlined button */
 .promo-cta.v2 {
   margin-top: calc(-40 * var(--px));
-  padding: calc(0 * var(--px)) calc(16 * var(--px));
+  padding: calc(0 * var(--px)) calc(16 * var(--px)) calc(12 * var(--px));
   position: relative;
   z-index: 2;
 }
@@ -560,6 +560,11 @@
   text-align: center;
   position: relative;
   z-index: 2;
+  margin-top: 0;
+}
+
+.student-deal-promo.v2 {
+  padding-bottom: 0 !important;
 }
 
 .promo-info-strip span {
