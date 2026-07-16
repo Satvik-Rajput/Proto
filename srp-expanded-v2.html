@@ -19,22 +19,13 @@
     .expanded-header {
       position: relative;
       width: 100%;
-      min-height: calc(240 * var(--px));
-      background: linear-gradient(180deg, rgba(234,219,254,0.8) 0%, rgba(255,255,255,0.8) 71%);
-      overflow: visible;
+      /* tall enough to show badge + headline + card overlap area */
+      padding-bottom: calc(100 * var(--px)); /* room for cards to overlap */
+      background: linear-gradient(180deg, rgba(234,219,254,0.9) 0%, rgba(255,255,255,0) 100%);
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-bottom: calc(16 * var(--px));
-    }
-
-    /* Clip the wave bg but not the content */
-    .header-wave-clip {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 0;
     }
 
     .header-wave {
@@ -140,16 +131,41 @@
       display: flex;
       gap: calc(12 * var(--px));
       padding: calc(0 * var(--px)) calc(16 * var(--px));
-      margin-top: calc(16 * var(--px));
+      /* pull cards up into the header overlap area */
+      margin-top: calc(-96 * var(--px));
       position: relative;
-      z-index: 5;
+      z-index: 10;
     }
 
-    /* Each card wrapper allows avatar to overflow the top */
+    /* Each card wrapper — avatar sits above the white card */
     .booking-card-outer {
       flex: 1;
       position: relative;
-      padding-top: calc(48 * var(--px)); /* half of avatar height */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .booking-card-avatar {
+      width: calc(80 * var(--px));
+      height: calc(80 * var(--px));
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.08),
+                  0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0,0,0,0.08);
+      overflow: hidden;
+      flex-shrink: 0;
+      /* overlap: half sits above, half inside card */
+      margin-bottom: calc(-40 * var(--px));
+      position: relative;
+      z-index: 3;
+    }
+
+    .booking-card-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
     }
 
     .booking-card {
@@ -161,31 +177,9 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: calc(8 * var(--px));
-      padding-top: calc(48 * var(--px)); /* space below avatar */
+      padding: calc(48 * var(--px)) calc(8 * var(--px)) calc(8 * var(--px));
       position: relative;
-    }
-
-    .booking-card-avatar {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(80 * var(--px));
-      height: calc(80 * var(--px));
-      border-radius: 50%;
-      background: white;
-      box-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.08),
-                  0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0,0,0,0.08);
-      overflow: hidden;
       z-index: 2;
-    }
-
-    .booking-card-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
     }
 
     .booking-card-text {
@@ -245,31 +239,20 @@
     .bus-logo-wrap {
       flex-shrink: 0;
       height: calc(28 * var(--px));
-      z-index: 2;
-      position: relative;
+      overflow: hidden;
+      width: calc(56 * var(--px));
     }
 
     .bus-logo-wrap img {
       height: calc(28 * var(--px));
       width: auto;
-      max-width: calc(56 * var(--px));
     }
 
-    .bus-logo-fade {
-      position: absolute;
-      left: calc(56 * var(--px));
-      top: 0;
-      width: calc(40 * var(--px));
-      height: 100%;
-      background: linear-gradient(to right, white, rgba(255,255,255,0));
-      z-index: 1;
-      pointer-events: none;
-    }
+    .bus-logo-fade { display: none; }
 
     .bus-tags {
       display: flex;
       gap: calc(4 * var(--px));
-      margin-left: auto;
       flex-shrink: 0;
     }
 
@@ -446,9 +429,7 @@
 
     <!-- HEADER -->
     <div class="expanded-header">
-      <div class="header-wave-clip">
-        <img src="assets/srp-wave-bg.svg" alt="" class="header-wave">
-      </div>
+      <img src="assets/srp-wave-bg.svg" alt="" class="header-wave">
 
       <!-- Student Deal Badge -->
       <div class="deal-badge-wrap">
