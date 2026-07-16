@@ -116,6 +116,7 @@
       letter-spacing: -0.4px;
       color: #1D1D1D;
       margin-bottom: calc(2 * var(--px));
+      text-align: center;
     }
 
     .header-subtitle {
@@ -124,6 +125,7 @@
       line-height: calc(20 * var(--px));
       letter-spacing: -0.09px;
       color: #1D1D1D;
+      text-align: center;
     }
 
     /* ── BOOKING TYPE CARDS ── */
@@ -223,7 +225,6 @@
       border-radius: calc(20 * var(--px));
       box-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.08),
                   0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0,0,0,0.08);
-      overflow: hidden;
       padding: calc(16 * var(--px));
     }
 
@@ -231,21 +232,23 @@
     .bus-card-top {
       display: flex;
       align-items: center;
-      gap: calc(8 * var(--px));
+      justify-content: space-between;
       margin-bottom: calc(12 * var(--px));
-      position: relative;
     }
 
     .bus-logo-wrap {
       flex-shrink: 0;
       height: calc(28 * var(--px));
-      overflow: hidden;
       width: calc(56 * var(--px));
+      display: flex;
+      align-items: center;
     }
 
     .bus-logo-wrap img {
       height: calc(28 * var(--px));
-      width: auto;
+      width: calc(56 * var(--px));
+      object-fit: contain;
+      object-position: left center;
     }
 
     .bus-logo-fade { display: none; }
