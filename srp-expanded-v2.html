@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Proto - Student Deal Expanded</title>
   <link rel="stylesheet" href="styles/base.css">
-  <link rel="stylesheet" href="styles/screens/bus-listing.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -13,76 +12,116 @@
 
     body { background: #F2F2F8; font-family: 'Inter', sans-serif; }
 
-    .screen { max-width: calc(390 * var(--px)); margin: 0 auto; background: #F2F2F8; min-height: 100vh; position: relative; overflow-x: hidden; }
-
-    /* ── HEADER ── */
-    .expanded-header {
+    .screen {
+      width: calc(360 * var(--px));
+      margin: 0 auto;
+      background: #F2F2F8;
+      min-height: 100vh;
       position: relative;
-      width: 100%;
-      background: linear-gradient(180deg, rgba(234,219,254,0.9) 0%, rgba(255,255,255,0) 100%);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-bottom: calc(16 * var(--px));
+      overflow-x: hidden;
     }
 
-    .header-wave {
+    /* ══════════ HEADER (Deal) ══════════ */
+    /* Content = 342px tall; gradient section = 281px; cards overlap starting at 180px */
+    .exp-content {
+      position: relative;
+      width: calc(360 * var(--px));
+      height: calc(342 * var(--px));
+    }
+
+    .exp-gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(360 * var(--px));
+      height: calc(281 * var(--px));
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(234,219,254,0.8) 32.9%, rgba(255,255,255,0.8) 71.2%);
+    }
+
+    .exp-wave {
       position: absolute;
       top: calc(-129 * var(--px));
       left: 50%;
       transform: translateX(-50%);
       width: calc(504 * var(--px));
-      height: calc(617 * var(--px));
+      height: calc(617.4 * var(--px));
       pointer-events: none;
-      z-index: 0;
     }
 
-    /* Student Deal badge (ticket-notch style) */
-    .deal-badge-wrap {
+    /* Status bar */
+    .exp-statusbar {
+      position: relative;
+      height: calc(40 * var(--px));
+      width: calc(360 * var(--px));
+      z-index: 2;
+    }
+
+    .exp-time {
+      position: absolute;
+      left: calc(24 * var(--px));
+      top: calc(10 * var(--px));
+      font-size: calc(14 * var(--px));
+      font-weight: 500;
+      line-height: calc(20 * var(--px));
+      letter-spacing: -0.09px;
+      color: #000;
+    }
+
+    .exp-status-icons {
+      position: absolute;
+      right: calc(24 * var(--px));
+      top: calc(15 * var(--px));
+      display: flex;
+      align-items: center;
+      gap: calc(6 * var(--px));
+    }
+
+    .exp-status-icons svg { display: block; }
+
+    /* Student Deal badge */
+    .exp-badge-wrap {
       position: relative;
       z-index: 2;
       display: flex;
-      align-items: center;
       justify-content: center;
-      margin-top: calc(16 * var(--px));
+      padding-top: calc(16 * var(--px));
     }
 
-    .deal-badge-ticket {
-      background: #FEDE92;
-      border-radius: calc(8 * var(--px));
-      padding: calc(4 * var(--px)) calc(12 * var(--px));
+    .exp-badge {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: 'Inter', sans-serif;
+      padding: calc(2.778 * var(--px)) calc(16.667 * var(--px));
+    }
+
+    .exp-badge-bg {
+      position: absolute;
+      top: calc(-4 * var(--px));
+      left: calc(-8 * var(--px));
+      right: calc(-8 * var(--px));
+      bottom: calc(-12 * var(--px));
+      z-index: 0;
+    }
+
+    .exp-badge-label-top,
+    .exp-badge-label-bot {
+      position: relative;
+      z-index: 1;
       font-size: calc(16 * var(--px));
       line-height: calc(22 * var(--px));
+      letter-spacing: -0.18px;
       color: #1D1D1D;
-      position: relative;
+      text-align: center;
     }
-
-    .deal-badge-ticket::before,
-    .deal-badge-ticket::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: calc(10 * var(--px));
-      height: calc(10 * var(--px));
-      background: #F2F2F8;
-      border-radius: 50%;
-    }
-
-    .deal-badge-ticket::before { left: calc(-5 * var(--px)); }
-    .deal-badge-ticket::after  { right: calc(-5 * var(--px)); }
-
-    .deal-badge-label-top  { font-weight: 500; }
-    .deal-badge-label-bot  { font-weight: 700; }
+    .exp-badge-label-top { font-weight: 500; }
+    .exp-badge-label-bot { font-weight: 700; }
 
     /* Close button */
-    .close-btn {
+    .exp-close {
       position: absolute;
       top: calc(48 * var(--px));
       right: calc(8 * var(--px));
@@ -92,15 +131,12 @@
       border: none;
       cursor: pointer;
       z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 0;
     }
-
-    .close-btn img { width: 100%; height: 100%; }
+    .exp-close img { width: 100%; height: 100%; display: block; }
 
     /* Headline */
-    .header-text {
+    .exp-headline {
       position: relative;
       z-index: 2;
       text-align: center;
@@ -108,47 +144,53 @@
       width: 100%;
     }
 
-    .header-title {
+    .exp-title {
       font-size: calc(22 * var(--px));
       font-weight: 700;
       line-height: calc(28 * var(--px));
       letter-spacing: -0.4px;
       color: #1D1D1D;
       margin-bottom: calc(2 * var(--px));
-      text-align: center;
     }
 
-    .header-subtitle {
+    .exp-subtitle {
       font-size: calc(14 * var(--px));
       font-weight: 400;
       line-height: calc(20 * var(--px));
       letter-spacing: -0.09px;
       color: #1D1D1D;
-      text-align: center;
     }
 
-    /* ── BOOKING TYPE CARDS ── */
-    .booking-cards-row {
+    /* ══════════ BOOKING CARDS (Construct) ══════════ */
+    .exp-cards {
+      position: absolute;
+      top: calc(180 * var(--px));
+      left: 0;
+      width: calc(360 * var(--px));
       display: flex;
       gap: calc(12 * var(--px));
-      padding: calc(0 * var(--px)) calc(16 * var(--px));
-      margin-top: calc(12 * var(--px));
-      position: relative;
-      z-index: 10;
+      padding: 0 calc(16 * var(--px));
+      z-index: 5;
     }
 
-    /*
-     * Figma spec: outer = 162px, avatar = 80px at top, card bg = 122px at bottom
-     * (162 - 122 = 40px avatar above the card, 40px inside the SVG cutout)
-     */
-    .booking-card-outer {
-      flex: 1;
+    .exp-card {
       position: relative;
+      width: calc(158 * var(--px));
       height: calc(162 * var(--px));
+      flex-shrink: 0;
     }
 
-    /* Avatar circle — at top center of the 162px container */
-    .booking-card-avatar {
+    /* SVG card shape with circular cutout, pinned bottom */
+    .exp-card-bg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: calc(158 * var(--px));
+      height: calc(122 * var(--px));
+    }
+
+    /* Avatar in the cutout */
+    .exp-card-avatar {
       position: absolute;
       top: 0;
       left: 50%;
@@ -160,57 +202,33 @@
       box-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.08),
                   0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0,0,0,0.08);
       overflow: hidden;
-      z-index: 3;
+      z-index: 2;
     }
-
-    .booking-card-avatar img {
+    .exp-card-avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: top center;
     }
 
-    /* Card SVG bg — 122px tall, pinned to bottom of outer */
-    .booking-card {
+    /* Text at the bottom of the card */
+    .exp-card-text {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: calc(122 * var(--px));
-      z-index: 2;
-    }
-
-    .booking-card-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* Text — inside the card, at the bottom */
-    .booking-card-text {
-      position: absolute;
-      bottom: calc(8 * var(--px));
       left: calc(8 * var(--px));
       right: calc(8 * var(--px));
-      z-index: 4;
+      bottom: calc(8 * var(--px));
+      z-index: 3;
     }
 
-    .booking-card-text {
-      position: relative;
-      z-index: 1;
-    }
-
-    .booking-card-title {
+    .exp-card-title {
       font-size: calc(14 * var(--px));
       font-weight: 700;
       line-height: calc(20 * var(--px));
       letter-spacing: -0.09px;
       color: #1D1D1D;
-      margin-bottom: calc(2 * var(--px));
     }
 
-    .booking-card-desc {
+    .exp-card-desc {
       font-size: calc(14 * var(--px));
       font-weight: 400;
       line-height: calc(20 * var(--px));
@@ -218,14 +236,15 @@
       color: rgba(29,29,29,0.69);
     }
 
-    .booking-card-desc a {
+    .exp-card-desc a {
       color: #5352F8;
       font-weight: 700;
       text-decoration: underline;
     }
 
-    /* ── BUS LIST ── */
-    .bus-list {
+    /* ══════════ BUS LIST (Filter + SRP) ══════════ */
+    .exp-bus-list {
+      position: relative;
       display: flex;
       flex-direction: column;
       gap: calc(8 * var(--px));
@@ -233,179 +252,103 @@
     }
 
     .bus-card {
+      width: calc(328 * var(--px));
       background: white;
       border-radius: calc(20 * var(--px));
       box-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.08),
                   0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0,0,0,0.08);
-      padding: calc(16 * var(--px));
+      padding: calc(16 * var(--px)) 0;
     }
 
-    /* Logo + tags row */
-    .bus-card-top {
+    /* Primo logo + tags row */
+    .bus-top {
+      position: relative;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: calc(12 * var(--px));
+      gap: calc(12 * var(--px));
+      padding-left: calc(16 * var(--px));
+      overflow: hidden;
+      isolation: isolate;
     }
 
-    .bus-logo-wrap {
+    .bus-logo {
+      width: calc(56 * var(--px));
+      height: calc(28 * var(--px));
       flex-shrink: 0;
-      height: calc(28 * var(--px));
+      z-index: 3;
+    }
+    .bus-logo img {
       width: calc(56 * var(--px));
-      display: flex;
-      align-items: center;
+      height: calc(28 * var(--px));
+      display: block;
     }
 
-    .bus-logo-wrap img {
+    /* White fade between logo and tags */
+    .bus-fade {
+      position: absolute;
+      left: calc(61 * var(--px));
+      top: 0;
+      width: calc(124 * var(--px));
       height: calc(28 * var(--px));
-      width: calc(56 * var(--px));
-      object-fit: contain;
-      object-position: left center;
+      background: linear-gradient(-89deg, rgba(255,255,255,0) 47.6%, #fff 74.9%);
+      z-index: 2;
+      pointer-events: none;
     }
-
-    .bus-logo-fade { display: none; }
 
     .bus-tags {
+      flex: 1;
       display: flex;
+      justify-content: flex-end;
       gap: calc(4 * var(--px));
-      flex-shrink: 0;
+      padding-right: calc(16 * var(--px));
+      z-index: 1;
     }
 
-    .tag-coupon {
-      display: flex;
-      align-items: stretch;
+    .tag {
       height: calc(24 * var(--px));
       border-radius: calc(4 * var(--px));
-      overflow: hidden;
-    }
-
-    .tag-edge {
-      width: calc(10 * var(--px));
-      position: relative;
-    }
-
-    .tag-edge::before {
-      content: '';
-      position: absolute;
-      width: calc(6 * var(--px));
-      height: calc(6 * var(--px));
-      background: white;
-      border-radius: 50%;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .tag-edge.left::before  { left: calc(-3 * var(--px)); }
-    .tag-edge.right::before { right: calc(-3 * var(--px)); }
-
-    .tag-coupon.yellow .tag-edge { background: #FEDE92; }
-    .tag-coupon.yellow .tag-body { background: #FEDE92; }
-    .tag-coupon.purple .tag-edge { background: #EADBFE; }
-    .tag-coupon.purple .tag-body { background: #EADBFE; }
-
-    .tag-body {
-      padding: 0 calc(6 * var(--px));
       display: flex;
       align-items: center;
-      font-family: 'Inter', sans-serif;
+      padding: 0 calc(6 * var(--px));
       font-size: calc(12 * var(--px));
       line-height: calc(16 * var(--px));
+      letter-spacing: 0.01px;
       color: #1D1D1D;
       white-space: nowrap;
+      flex-shrink: 0;
     }
+    .tag strong { font-weight: 700; }
+    .tag.yellow { background: #FEDE92; }
+    .tag.purple { background: #EADBFE; }
 
-    .tag-body strong { font-weight: 700; }
-
-    /* Time & Price */
-    .bus-card-row {
+    /* Time & price */
+    .bus-row {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: calc(12 * var(--px));
+      padding: 0 calc(16 * var(--px));
     }
-
-    .bus-card-row:last-child { margin-bottom: 0; align-items: center; }
+    .bus-row.time-row { margin-top: calc(12 * var(--px)); }
+    .bus-row.op-row { margin-top: calc(12 * var(--px)); align-items: center; }
 
     .bus-time { display: flex; flex-direction: column; }
-
-    .time-row {
-      display: flex;
-      align-items: center;
-      gap: calc(6 * var(--px));
-    }
-
-    .t-bold {
-      font-size: calc(16 * var(--px));
-      font-weight: 700;
-      line-height: calc(22 * var(--px));
-      color: #1D1D1D;
-    }
-
-    .t-sep {
-      width: calc(12 * var(--px));
-      height: calc(1.5 * var(--px));
-      background: #E6E6E6;
-      border-radius: 1px;
-    }
-
-    .t-reg {
-      font-size: calc(16 * var(--px));
-      font-weight: 400;
-      line-height: calc(22 * var(--px));
-      color: #1D1D1D;
-    }
-
-    .t-sub {
-      font-size: calc(12 * var(--px));
-      font-weight: 400;
-      color: rgba(29,29,29,0.64);
-      line-height: calc(16 * var(--px));
-    }
+    .t-line { display: flex; align-items: center; gap: calc(4 * var(--px)); }
+    .t-bold { font-size: calc(16 * var(--px)); font-weight: 700; line-height: calc(22 * var(--px)); letter-spacing: -0.18px; color: #1D1D1D; }
+    .t-sep { width: calc(12 * var(--px)); height: calc(1.5 * var(--px)); background: #E6E6E6; border-radius: 1px; }
+    .t-reg { font-size: calc(16 * var(--px)); font-weight: 400; line-height: calc(22 * var(--px)); letter-spacing: -0.18px; color: #1D1D1D; }
+    .t-sub { font-size: calc(12 * var(--px)); font-weight: 400; line-height: calc(16 * var(--px)); letter-spacing: 0.01px; color: rgba(29,29,29,0.64); margin-top: calc(0 * var(--px)); }
 
     .bus-price { display: flex; flex-direction: column; align-items: flex-end; }
+    .p-line { display: flex; align-items: center; gap: calc(2 * var(--px)); }
+    .p-old { font-size: calc(14 * var(--px)); font-weight: 400; line-height: calc(20 * var(--px)); letter-spacing: -0.09px; color: rgba(29,29,29,0.64); text-decoration: line-through; }
+    .p-new { font-size: calc(16 * var(--px)); font-weight: 700; line-height: calc(22 * var(--px)); letter-spacing: -0.18px; color: #1D1D1D; }
+    .p-sub { font-size: calc(12 * var(--px)); font-weight: 400; line-height: calc(16 * var(--px)); letter-spacing: 0.01px; color: rgba(29,29,29,0.26); }
 
-    .price-row { display: flex; align-items: baseline; gap: calc(2 * var(--px)); }
+    .bus-op { display: flex; flex-direction: column; }
+    .op-name { font-size: calc(14 * var(--px)); font-weight: 700; line-height: calc(20 * var(--px)); letter-spacing: -0.09px; color: #1D1D1D; }
+    .op-type { font-size: calc(12 * var(--px)); font-weight: 400; line-height: calc(16 * var(--px)); letter-spacing: 0.01px; color: rgba(29,29,29,0.64); }
 
-    .p-old {
-      font-size: calc(14 * var(--px));
-      font-weight: 400;
-      color: rgba(29,29,29,0.64);
-      text-decoration: line-through;
-      line-height: calc(20 * var(--px));
-    }
-
-    .p-new {
-      font-size: calc(16 * var(--px));
-      font-weight: 700;
-      color: #1D1D1D;
-      line-height: calc(22 * var(--px));
-    }
-
-    .p-sub {
-      font-size: calc(12 * var(--px));
-      font-weight: 400;
-      color: rgba(29,29,29,0.26);
-    }
-
-    /* Operator */
-    .bus-operator { display: flex; flex-direction: column; }
-
-    .op-name {
-      font-size: calc(14 * var(--px));
-      font-weight: 700;
-      color: #1D1D1D;
-      line-height: calc(20 * var(--px));
-    }
-
-    .op-type {
-      font-size: calc(12 * var(--px));
-      font-weight: 400;
-      color: rgba(29,29,29,0.64);
-      line-height: calc(16 * var(--px));
-    }
-
-    /* Rating */
-    .rating-wrap {
+    .rating {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -413,243 +356,210 @@
       border-radius: calc(8 * var(--px));
       padding: calc(2 * var(--px));
     }
-
     .rating-badge {
       display: flex;
       align-items: center;
       gap: calc(2 * var(--px));
       background: #007B28;
-      color: white;
+      color: #FDFDFD;
       padding: 0 calc(4 * var(--px));
       border-radius: calc(6 * var(--px));
       font-size: calc(12 * var(--px));
       font-weight: 700;
+      line-height: calc(16 * var(--px));
+      letter-spacing: 0.01px;
       min-width: calc(46 * var(--px));
       min-height: calc(20 * var(--px));
       justify-content: center;
     }
-
     .rating-badge img { width: calc(12 * var(--px)); height: calc(12 * var(--px)); }
-
-    .rating-count {
-      font-size: calc(12 * var(--px));
-      font-weight: 500;
-      color: #1D1D1D;
-    }
+    .rating-count { font-size: calc(12 * var(--px)); font-weight: 500; line-height: calc(16 * var(--px)); letter-spacing: 0.01px; color: #1D1D1D; }
   </style>
 </head>
 <body>
 <div id="app">
   <div class="screen">
 
-    <!-- HEADER -->
-    <div class="expanded-header">
-      <img src="assets/srp-wave-bg.svg" alt="" class="header-wave">
+    <!-- ══════════ HEADER ══════════ -->
+    <div class="exp-content">
+      <div class="exp-gradient">
+        <img src="assets/exp-wave.svg" alt="" class="exp-wave">
+      </div>
 
-      <!-- Student Deal Badge -->
-      <div class="deal-badge-wrap">
-        <div class="deal-badge-ticket">
-          <span class="deal-badge-label-top">Student</span>
-          <span class="deal-badge-label-bot">Deal</span>
+      <!-- Status bar -->
+      <div class="exp-statusbar">
+        <span class="exp-time">9:30</span>
+        <div class="exp-status-icons">
+          <!-- signal -->
+          <svg width="17" height="12" viewBox="0 0 17 12" fill="none"><rect x="0" y="8" width="3" height="4" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
+          <!-- wifi -->
+          <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 11.5L10 9.2C8.9 8.2 7.1 8.2 6 9.2L8 11.5Z" fill="#000"/><path d="M8 6.5C9.9 6.5 11.6 7.2 12.9 8.4L14.3 6.9C12.6 5.3 10.4 4.4 8 4.4C5.6 4.4 3.4 5.3 1.7 6.9L3.1 8.4C4.4 7.2 6.1 6.5 8 6.5Z" fill="#000"/><path d="M8 1.5C11 1.5 13.8 2.7 15.8 4.6L15.9 4.5C13.8 2.4 11 1.1 8 1.1C5 1.1 2.2 2.4 0.1 4.5L0.2 4.6C2.2 2.7 5 1.5 8 1.5Z" fill="#000"/></svg>
+          <!-- battery -->
+          <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="#000" opacity="0.35"/><rect x="2" y="2" width="18" height="8" rx="1.5" fill="#000"/><rect x="23" y="4" width="1.5" height="4" rx="0.75" fill="#000" opacity="0.4"/></svg>
         </div>
       </div>
 
-      <!-- Close Button -->
-      <button class="close-btn" onclick="history.back()">
-        <img src="assets/srp-close-btn.svg" alt="Close">
+      <!-- Student Deal badge -->
+      <div class="exp-badge-wrap">
+        <div class="exp-badge">
+          <img src="assets/exp-badge-bg.svg" alt="" class="exp-badge-bg">
+          <span class="exp-badge-label-top">Student</span>
+          <span class="exp-badge-label-bot">Deal</span>
+        </div>
+      </div>
+
+      <!-- Close -->
+      <button class="exp-close" onclick="history.back()">
+        <img src="assets/exp-close.svg" alt="Close">
       </button>
 
       <!-- Headline -->
-      <div class="header-text">
-        <h2 class="header-title">Up to 15% OFF on primo buses</h2>
-        <p class="header-subtitle">on group and solo bookings</p>
+      <div class="exp-headline">
+        <h2 class="exp-title">Up to 15% OFF on primo buses</h2>
+        <p class="exp-subtitle">on group and solo bookings</p>
       </div>
-    </div>
 
-    <!-- BOOKING TYPE CARDS -->
-    <div class="booking-cards-row">
-      <!-- Group -->
-      <div class="booking-card-outer">
-        <div class="booking-card-avatar">
-          <img src="assets/srp-group-avatar.png" alt="Group booking">
-        </div>
-        <div class="booking-card">
-          <img src="assets/booking-card-bg.svg" alt="" class="booking-card-bg">
-          <div class="booking-card-text">
-            <p class="booking-card-title">Booking as a group?</p>
-            <p class="booking-card-desc">Instant 15% OFF<br><a href="#">know more</a></p>
+      <!-- Booking cards -->
+      <div class="exp-cards">
+        <!-- Group -->
+        <div class="exp-card">
+          <img src="assets/exp-card-subtract.svg" alt="" class="exp-card-bg">
+          <div class="exp-card-avatar">
+            <img src="assets/exp-group-avatar.png" alt="Group booking">
+          </div>
+          <div class="exp-card-text">
+            <p class="exp-card-title">Booking as a group?</p>
+            <p class="exp-card-desc">Instant 15% OFF<br><a href="#">know more</a></p>
           </div>
         </div>
-      </div>
-      <!-- Solo -->
-      <div class="booking-card-outer">
-        <div class="booking-card-avatar">
-          <img src="assets/srp-solo-avatar.png" alt="Solo booking">
-        </div>
-        <div class="booking-card">
-          <img src="assets/booking-card-bg.svg" alt="" class="booking-card-bg">
-          <div class="booking-card-text">
-            <p class="booking-card-title">Booking solo?</p>
-            <p class="booking-card-desc">15% refund after booking <a href="#">know more</a></p>
+        <!-- Solo -->
+        <div class="exp-card">
+          <img src="assets/exp-card-subtract.svg" alt="" class="exp-card-bg">
+          <div class="exp-card-avatar">
+            <img src="assets/exp-solo-avatar.png" alt="Solo booking">
+          </div>
+          <div class="exp-card-text">
+            <p class="exp-card-title">Booking solo?</p>
+            <p class="exp-card-desc">15% refund after booking <a href="#">know more</a></p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- BUS LIST -->
-    <div class="bus-list">
+    <!-- ══════════ BUS LIST ══════════ -->
+    <div class="exp-bus-list">
 
-      <!-- Bus Card 1 -->
+      <!-- Card 1 -->
       <div class="bus-card">
-        <div class="bus-card-top">
-          <div class="bus-logo-wrap">
-            <img src="assets/primo-logo-srp.svg" alt="Primo">
-            <div class="bus-logo-fade"></div>
-          </div>
+        <div class="bus-top">
+          <div class="bus-logo"><img src="assets/exp-primo-logo.svg" alt="Primo"></div>
+          <div class="bus-fade"></div>
           <div class="bus-tags">
-            <div class="tag-coupon yellow">
-              <div class="tag-edge left"></div>
-              <div class="tag-body"><span>Last min. <strong>5% OFF</strong></span></div>
-              <div class="tag-edge right"></div>
-            </div>
-            <div class="tag-coupon purple">
-              <div class="tag-edge left"></div>
-              <div class="tag-body"><span>Student. <strong>15% OFF</strong></span></div>
-              <div class="tag-edge right"></div>
-            </div>
+            <div class="tag yellow">Last min. <strong>&nbsp;5% OFF</strong></div>
+            <div class="tag purple">Student. <strong>&nbsp;15% OFF</strong></div>
           </div>
         </div>
-        <div class="bus-card-row">
+        <div class="bus-row time-row">
           <div class="bus-time">
-            <div class="time-row">
-              <span class="t-bold">20:15</span>
-              <div class="t-sep"></div>
-              <span class="t-reg">09:00</span>
-            </div>
+            <div class="t-line"><span class="t-bold">20:15</span><div class="t-sep"></div><span class="t-reg">09:00</span></div>
             <span class="t-sub">7h 30m · 11 Seats</span>
           </div>
           <div class="bus-price">
-            <div class="price-row">
-              <span class="p-old">₹1,750</span>
-              <span class="p-new">₹1,805</span>
-            </div>
+            <div class="p-line"><span class="p-old">₹1,750</span><span class="p-new">₹1,805</span></div>
             <span class="p-sub">Onwards</span>
           </div>
         </div>
-        <div class="bus-card-row">
-          <div class="bus-operator">
-            <span class="op-name">Sri Krishna Travels</span>
-            <span class="op-type">A/C Sleeper (2+1)</span>
-          </div>
-          <div class="rating-wrap">
-            <div class="rating-badge">
-              <img src="assets/star-icon.svg" alt="">
-              <span>4.4</span>
-            </div>
+        <div class="bus-row op-row">
+          <div class="bus-op"><span class="op-name">Sri Krishna Travels</span><span class="op-type">A/C Sleeper (2+1)</span></div>
+          <div class="rating">
+            <div class="rating-badge"><img src="assets/exp-star.svg" alt=""><span>4.4</span></div>
             <span class="rating-count">0000</span>
           </div>
         </div>
       </div>
 
-      <!-- Bus Card 2 -->
+      <!-- Card 2 -->
       <div class="bus-card">
-        <div class="bus-card-top">
-          <div class="bus-logo-wrap">
-            <img src="assets/primo-logo-srp.svg" alt="Primo">
-            <div class="bus-logo-fade"></div>
-          </div>
+        <div class="bus-top">
+          <div class="bus-logo"><img src="assets/exp-primo-logo.svg" alt="Primo"></div>
+          <div class="bus-fade"></div>
           <div class="bus-tags">
-            <div class="tag-coupon yellow">
-              <div class="tag-edge left"></div>
-              <div class="tag-body"><span>Last min. <strong>5% OFF</strong></span></div>
-              <div class="tag-edge right"></div>
-            </div>
-            <div class="tag-coupon purple">
-              <div class="tag-edge left"></div>
-              <div class="tag-body"><span>Student. <strong>15% OFF</strong></span></div>
-              <div class="tag-edge right"></div>
-            </div>
+            <div class="tag yellow">Last min. <strong>&nbsp;5% OFF</strong></div>
+            <div class="tag purple">Student. <strong>&nbsp;15% OFF</strong></div>
           </div>
         </div>
-        <div class="bus-card-row">
+        <div class="bus-row time-row">
           <div class="bus-time">
-            <div class="time-row">
-              <span class="t-bold">20:15</span>
-              <div class="t-sep"></div>
-              <span class="t-reg">09:00</span>
-            </div>
+            <div class="t-line"><span class="t-bold">20:15</span><div class="t-sep"></div><span class="t-reg">09:00</span></div>
             <span class="t-sub">7h 30m · 11 Seats</span>
           </div>
           <div class="bus-price">
-            <div class="price-row">
-              <span class="p-old">₹1,550</span>
-              <span class="p-new">₹1,405</span>
-            </div>
+            <div class="p-line"><span class="p-old">₹1,550</span><span class="p-new">₹1,405</span></div>
             <span class="p-sub">Onwards</span>
           </div>
         </div>
-        <div class="bus-card-row">
-          <div class="bus-operator">
-            <span class="op-name">Charter travels</span>
-            <span class="op-type">A/C Sleeper (2+1)</span>
-          </div>
-          <div class="rating-wrap">
-            <div class="rating-badge">
-              <img src="assets/star-icon.svg" alt="">
-              <span>4.4</span>
-            </div>
+        <div class="bus-row op-row">
+          <div class="bus-op"><span class="op-name">Charter travels</span><span class="op-type">A/C Sleeper (2+1)</span></div>
+          <div class="rating">
+            <div class="rating-badge"><img src="assets/exp-star.svg" alt=""><span>4.4</span></div>
             <span class="rating-count">0000</span>
           </div>
         </div>
       </div>
 
-      <!-- Bus Card 3 -->
+      <!-- Card 3 -->
       <div class="bus-card">
-        <div class="bus-card-top">
-          <div class="bus-logo-wrap">
-            <img src="assets/primo-logo-srp.svg" alt="Primo">
-            <div class="bus-logo-fade"></div>
-          </div>
+        <div class="bus-top">
+          <div class="bus-logo"><img src="assets/exp-primo-logo.svg" alt="Primo"></div>
+          <div class="bus-fade"></div>
           <div class="bus-tags">
-            <div class="tag-coupon yellow">
-              <div class="tag-edge left"></div>
-              <div class="tag-body"><span>Last min. <strong>5% OFF</strong></span></div>
-              <div class="tag-edge right"></div>
-            </div>
-            <div class="tag-coupon purple">
-              <div class="tag-edge left"></div>
-              <div class="tag-body"><span>Student. <strong>15% OFF</strong></span></div>
-              <div class="tag-edge right"></div>
-            </div>
+            <div class="tag yellow">Last min. <strong>&nbsp;5% OFF</strong></div>
+            <div class="tag purple">Student. <strong>&nbsp;15% OFF</strong></div>
           </div>
         </div>
-        <div class="bus-card-row">
+        <div class="bus-row time-row">
           <div class="bus-time">
-            <div class="time-row">
-              <span class="t-bold">20:15</span>
-              <div class="t-sep"></div>
-              <span class="t-reg">09:00</span>
-            </div>
+            <div class="t-line"><span class="t-bold">20:15</span><div class="t-sep"></div><span class="t-reg">09:00</span></div>
             <span class="t-sub">7h 30m · 11 Seats</span>
           </div>
           <div class="bus-price">
-            <div class="price-row">
-              <span class="p-old">₹1,750</span>
-              <span class="p-new">₹1,805</span>
-            </div>
+            <div class="p-line"><span class="p-old">₹1,750</span><span class="p-new">₹1,805</span></div>
             <span class="p-sub">Onwards</span>
           </div>
         </div>
-        <div class="bus-card-row">
-          <div class="bus-operator">
-            <span class="op-name">Sri Krishna Travels</span>
-            <span class="op-type">A/C Sleeper (2+1)</span>
+        <div class="bus-row op-row">
+          <div class="bus-op"><span class="op-name">Sri Krishna Travels</span><span class="op-type">A/C Sleeper (2+1)</span></div>
+          <div class="rating">
+            <div class="rating-badge"><img src="assets/exp-star.svg" alt=""><span>4.4</span></div>
+            <span class="rating-count">0000</span>
           </div>
-          <div class="rating-wrap">
-            <div class="rating-badge">
-              <img src="assets/star-icon.svg" alt="">
-              <span>4.4</span>
-            </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bus-card">
+        <div class="bus-top">
+          <div class="bus-logo"><img src="assets/exp-primo-logo.svg" alt="Primo"></div>
+          <div class="bus-fade"></div>
+          <div class="bus-tags">
+            <div class="tag yellow">Last min. <strong>&nbsp;5% OFF</strong></div>
+            <div class="tag purple">Student. <strong>&nbsp;15% OFF</strong></div>
+          </div>
+        </div>
+        <div class="bus-row time-row">
+          <div class="bus-time">
+            <div class="t-line"><span class="t-bold">20:15</span><div class="t-sep"></div><span class="t-reg">09:00</span></div>
+            <span class="t-sub">7h 30m · 11 Seats</span>
+          </div>
+          <div class="bus-price">
+            <div class="p-line"><span class="p-old">₹1,750</span><span class="p-new">₹1,805</span></div>
+            <span class="p-sub">Onwards</span>
+          </div>
+        </div>
+        <div class="bus-row op-row">
+          <div class="bus-op"><span class="op-name">Sri Krishna Travels</span><span class="op-type">A/C Sleeper (2+1)</span></div>
+          <div class="rating">
+            <div class="rating-badge"><img src="assets/exp-star.svg" alt=""><span>4.4</span></div>
             <span class="rating-count">0000</span>
           </div>
         </div>
