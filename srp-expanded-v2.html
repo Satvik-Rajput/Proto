@@ -19,13 +19,12 @@
     .expanded-header {
       position: relative;
       width: 100%;
-      /* tall enough to show badge + headline + card overlap area */
-      padding-bottom: calc(100 * var(--px)); /* room for cards to overlap */
       background: linear-gradient(180deg, rgba(234,219,254,0.9) 0%, rgba(255,255,255,0) 100%);
       overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding-bottom: calc(16 * var(--px));
     }
 
     .header-wave {
@@ -46,7 +45,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: calc(52 * var(--px));
+      margin-top: calc(16 * var(--px));
     }
 
     .deal-badge-ticket {
@@ -133,19 +132,22 @@
       display: flex;
       gap: calc(12 * var(--px));
       padding: calc(0 * var(--px)) calc(16 * var(--px));
-      margin-top: calc(16 * var(--px));
+      margin-top: calc(12 * var(--px));
       position: relative;
       z-index: 10;
     }
 
-    /* Each card is 162px tall total — avatar 80px at top, card bg 122px at bottom */
+    /*
+     * Figma spec: outer = 162px, avatar = 80px at top, card bg = 122px at bottom
+     * (162 - 122 = 40px avatar above the card, 40px inside the SVG cutout)
+     */
     .booking-card-outer {
       flex: 1;
       position: relative;
       height: calc(162 * var(--px));
     }
 
-    /* Avatar circle — centred at top of the outer container */
+    /* Avatar circle — at top center of the 162px container */
     .booking-card-avatar {
       position: absolute;
       top: 0;
@@ -165,10 +167,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top;
+      object-position: top center;
     }
 
-    /* Card background SVG (with circular cutout) — 122px tall, at bottom */
+    /* Card SVG bg — 122px tall, pinned to bottom of outer */
     .booking-card {
       position: absolute;
       bottom: 0;
@@ -185,7 +187,7 @@
       height: 100%;
     }
 
-    /* Text sits at the bottom of the card */
+    /* Text — inside the card, at the bottom */
     .booking-card-text {
       position: absolute;
       bottom: calc(8 * var(--px));
