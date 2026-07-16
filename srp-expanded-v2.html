@@ -19,12 +19,22 @@
     .expanded-header {
       position: relative;
       width: 100%;
-      min-height: calc(281 * var(--px));
+      min-height: calc(240 * var(--px));
       background: linear-gradient(180deg, rgba(234,219,254,0.8) 0%, rgba(255,255,255,0.8) 71%);
-      overflow: hidden;
+      overflow: visible;
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding-bottom: calc(16 * var(--px));
+    }
+
+    /* Clip the wave bg but not the content */
+    .header-wave-clip {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
     }
 
     .header-wave {
@@ -130,14 +140,20 @@
       display: flex;
       gap: calc(12 * var(--px));
       padding: calc(0 * var(--px)) calc(16 * var(--px));
-      margin-top: calc(-42 * var(--px)); /* overlap with header */
+      margin-top: calc(16 * var(--px));
       position: relative;
       z-index: 5;
     }
 
-    .booking-card {
+    /* Each card wrapper allows avatar to overflow the top */
+    .booking-card-outer {
       flex: 1;
-      height: calc(162 * var(--px));
+      position: relative;
+      padding-top: calc(48 * var(--px)); /* half of avatar height */
+    }
+
+    .booking-card {
+      width: 100%;
       background: white;
       border-radius: calc(20 * var(--px));
       box-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.08),
@@ -146,8 +162,8 @@
       flex-direction: column;
       justify-content: flex-end;
       padding: calc(8 * var(--px));
+      padding-top: calc(48 * var(--px)); /* space below avatar */
       position: relative;
-      overflow: hidden;
     }
 
     .booking-card-avatar {
@@ -162,6 +178,7 @@
       box-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.08),
                   0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0,0,0,0.08);
       overflow: hidden;
+      z-index: 2;
     }
 
     .booking-card-avatar img {
@@ -220,9 +237,8 @@
     .bus-card-top {
       display: flex;
       align-items: center;
-      gap: calc(12 * var(--px));
+      gap: calc(8 * var(--px));
       margin-bottom: calc(12 * var(--px));
-      overflow: hidden;
       position: relative;
     }
 
@@ -430,7 +446,9 @@
 
     <!-- HEADER -->
     <div class="expanded-header">
-      <img src="assets/srp-wave-bg.svg" alt="" class="header-wave">
+      <div class="header-wave-clip">
+        <img src="assets/srp-wave-bg.svg" alt="" class="header-wave">
+      </div>
 
       <!-- Student Deal Badge -->
       <div class="deal-badge-wrap">
@@ -455,23 +473,27 @@
     <!-- BOOKING TYPE CARDS -->
     <div class="booking-cards-row">
       <!-- Group -->
-      <div class="booking-card">
+      <div class="booking-card-outer">
         <div class="booking-card-avatar">
           <img src="assets/srp-group-avatar.png" alt="Group booking">
         </div>
-        <div class="booking-card-text">
-          <p class="booking-card-title">Booking as a group?</p>
-          <p class="booking-card-desc">Instant 15% OFF<br><a href="#">know more</a></p>
+        <div class="booking-card">
+          <div class="booking-card-text">
+            <p class="booking-card-title">Booking as a group?</p>
+            <p class="booking-card-desc">Instant 15% OFF<br><a href="#">know more</a></p>
+          </div>
         </div>
       </div>
       <!-- Solo -->
-      <div class="booking-card">
+      <div class="booking-card-outer">
         <div class="booking-card-avatar">
           <img src="assets/srp-solo-avatar.png" alt="Solo booking">
         </div>
-        <div class="booking-card-text">
-          <p class="booking-card-title">Booking solo?</p>
-          <p class="booking-card-desc">15% refund after booking <a href="#">know more</a></p>
+        <div class="booking-card">
+          <div class="booking-card-text">
+            <p class="booking-card-title">Booking solo?</p>
+            <p class="booking-card-desc">15% refund after booking <a href="#">know more</a></p>
+          </div>
         </div>
       </div>
     </div>
