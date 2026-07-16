@@ -133,22 +133,24 @@
       display: flex;
       gap: calc(12 * var(--px));
       padding: calc(0 * var(--px)) calc(16 * var(--px));
-      /* pull cards up into the header overlap area */
-      margin-top: calc(-96 * var(--px));
+      margin-top: calc(16 * var(--px));
       position: relative;
       z-index: 10;
     }
 
-    /* Each card wrapper — avatar sits above the white card */
+    /* Each card is 162px tall total — avatar 80px at top, card bg 122px at bottom */
     .booking-card-outer {
       flex: 1;
       position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      height: calc(162 * var(--px));
     }
 
+    /* Avatar circle — centred at top of the outer container */
     .booking-card-avatar {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
       width: calc(80 * var(--px));
       height: calc(80 * var(--px));
       border-radius: 50%;
@@ -156,10 +158,6 @@
       box-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.08),
                   0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0,0,0,0.08);
       overflow: hidden;
-      flex-shrink: 0;
-      /* overlap: half sits above, half inside card */
-      margin-bottom: calc(-40 * var(--px));
-      position: relative;
       z-index: 3;
     }
 
@@ -170,18 +168,30 @@
       object-position: top;
     }
 
+    /* Card background SVG (with circular cutout) — 122px tall, at bottom */
     .booking-card {
-      width: 100%;
-      background: white;
-      border-radius: calc(20 * var(--px));
-      box-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.08),
-                  0 calc(4 * var(--px)) calc(8 * var(--px)) rgba(0,0,0,0.08);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: calc(48 * var(--px)) calc(8 * var(--px)) calc(8 * var(--px));
-      position: relative;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: calc(122 * var(--px));
       z-index: 2;
+    }
+
+    .booking-card-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Text sits at the bottom of the card */
+    .booking-card-text {
+      position: absolute;
+      bottom: calc(8 * var(--px));
+      left: calc(8 * var(--px));
+      right: calc(8 * var(--px));
+      z-index: 4;
     }
 
     .booking-card-text {
@@ -462,6 +472,7 @@
           <img src="assets/srp-group-avatar.png" alt="Group booking">
         </div>
         <div class="booking-card">
+          <img src="assets/booking-card-bg.svg" alt="" class="booking-card-bg">
           <div class="booking-card-text">
             <p class="booking-card-title">Booking as a group?</p>
             <p class="booking-card-desc">Instant 15% OFF<br><a href="#">know more</a></p>
@@ -474,6 +485,7 @@
           <img src="assets/srp-solo-avatar.png" alt="Solo booking">
         </div>
         <div class="booking-card">
+          <img src="assets/booking-card-bg.svg" alt="" class="booking-card-bg">
           <div class="booking-card-text">
             <p class="booking-card-title">Booking solo?</p>
             <p class="booking-card-desc">15% refund after booking <a href="#">know more</a></p>
