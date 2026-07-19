@@ -599,43 +599,104 @@
       }
       
       // =============================================
-      // SEAT SELECTION PANEL
+      // SEAT SELECTION PANEL + BLOW-UP CHOREOGRAPHY
       // =============================================
       const seatSelectionPanel = document.getElementById('seatSelectionPanel');
+      const screenContainer = document.querySelector('.screen-container');
+      const bottomSheet = document.querySelector('.bottom-sheet');
+      const trayPhotoSlot = document.querySelector('.bottom-sheet .bus-photo');
       const seats = document.querySelectorAll('.seat.available');
       let selectedSeats = [];
-      
+
+      const BLOWUP_PHOTO = 'assets/seat-blowup-photo.png';
+
+      // Pop the blow-up photo out of the seat
+      function addBlowup(seat) {
+        let blowup = seat.querySelector('.seat-blowup');
+        if (!blowup) {
+          blowup = document.createElement('img');
+          blowup.className = 'seat-blowup';
+          blowup.src = BLOWUP_PHOTO;
+          blowup.alt = '';
+          seat.appendChild(blowup);
+        }
+        return blowup;
+      }
+
+      // Bring the tray forward so it peeks just above the selection panel
+      function bringTrayForward() {
+        if (!bottomSheet || !seatSelectionPanel) return;
+        const panelH = seatSelectionPanel.offsetHeight;
+        bottomSheet.style.transform =
+          'translateX(-50%) translateY(-' + panelH + 'px)';
+      }
+
+      function resetTray() {
+        if (bottomSheet) bottomSheet.style.transform = '';
+      }
+
+      // Fly the blown-up photo down into the tray's bottom-left slot
+      function flyToTray(blowup) {
+        if (!trayPhotoSlot || !blowup || !blowup.isConnected) return;
+        const start = blowup.getBoundingClientRect();
+        const clone = document.createElement('img');
+        clone.src = blowup.src;
+        clone.className = 'seat-fly-clone';
+        clone.style.left = start.left + 'px';
+        clone.style.top = start.top + 'px';
+        clone.style.width = start.width + 'px';
+        clone.style.height = start.height + 'px';
+        clone.style.borderRadius = getComputedStyle(blowup).borderRadius;
+        document.body.appendChild(clone);
+        blowup.remove();
+
+        const endRadius = getComputedStyle(trayPhotoSlot).borderRadius;
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            const end = trayPhotoSlot.getBoundingClientRect();
+            clone.style.left = end.left + 'px';
+            clone.style.top = end.top + 'px';
+            clone.style.width = end.width + 'px';
+            clone.style.height = end.height + 'px';
+            clone.style.borderRadius = endRadius;
+            clone.style.boxShadow = 'none';
+          });
+        });
+
+        clone.addEventListener('transitionend', function (e) {
+          if (e.propertyName !== 'width') return;
+          const slotImg = trayPhotoSlot.querySelector('img');
+          if (slotImg) slotImg.src = BLOWUP_PHOTO;
+          clone.remove();
+        }, { once: true });
+      }
+
       // Add click handler to all available seats
       seats.forEach(function(seat) {
         seat.addEventListener('click', function() {
-          // Toggle selected state
-          if (seat.classList.contains('selected')) {
+          const wasSelected = seat.classList.contains('selected');
+
+          if (wasSelected) {
             seat.classList.remove('selected');
             selectedSeats = selectedSeats.filter(s => s !== seat);
-            // Remove blow-up photo
             const existingPhoto = seat.querySelector('.seat-blowup');
             if (existingPhoto) existingPhoto.remove();
           } else {
             seat.classList.add('selected');
             selectedSeats.push(seat);
-            // Add blow-up photo that pops out of the seat
-            if (!seat.querySelector('.seat-blowup')) {
-              const photo = document.createElement('img');
-              photo.className = 'seat-blowup';
-              photo.src = 'assets/seat-blowup-photo.png';
-              photo.alt = '';
-              seat.appendChild(photo);
-            }
+            const blowup = addBlowup(seat);
+            // 1) panel slides up, 2) tray comes forward, 3) photo flies to corner
+            setTimeout(bringTrayForward, 60);
+            setTimeout(function () { flyToTray(blowup); }, 520);
           }
-          
-          // Show/hide selection panel based on selected seats
+
           if (selectedSeats.length > 0) {
             seatSelectionPanel.classList.add('active');
-            // Update text
             const seatsText = seatSelectionPanel.querySelector('.seats-selected-text');
             seatsText.textContent = selectedSeats.length + ' seat' + (selectedSeats.length > 1 ? 's' : '') + ' selected';
           } else {
             seatSelectionPanel.classList.remove('active');
+            resetTray();
           }
         });
       });
