@@ -553,7 +553,6 @@
             </span>
           </div>
         </div>
-        <div class="deal-confetti" id="dealConfetti"></div>
       </div>
       <div class="selection-row">
         <div class="selection-left">
@@ -577,6 +576,9 @@
         <div class="indicator-bar"></div>
       </div>
     </div>
+
+    <!-- Confetti overlay — floats above the deal area per design (194x194) -->
+    <div class="deal-confetti" id="dealConfetti"></div>
   </div>
 
 
@@ -813,7 +815,7 @@
             loop: false,
             autoplay: true,
             path: 'assets/confetti.json',
-            rendererSettings: { preserveAspectRatio: 'xMidYMid slice' }
+            rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
           });
         } else {
           confettiAnim.goToAndPlay(0, true);

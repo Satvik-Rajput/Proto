@@ -2528,11 +2528,15 @@
   animation: dealShake 0.45s ease-in-out;
 }
 
-/* Confetti lottie overlay — spans the deals section (both chips) */
+/* Confetti lottie overlay — 194x194, centered, floating above the deal area */
 .deal-confetti {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
+  position: fixed;
+  left: 50%;
+  bottom: calc(122 * var(--px));
+  width: calc(194 * var(--px));
+  height: calc(194 * var(--px));
+  transform: translateX(-50%);
+  z-index: 500;
   pointer-events: none;
   opacity: 0;
 }
