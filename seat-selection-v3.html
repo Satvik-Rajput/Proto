@@ -24,7 +24,7 @@
         <p>Bangalore → Chennai</p>
       </div>
       <div class="nav-trailing">
-        <div class="nav-deal-chips">
+        <div class="nav-deal-chips stacking" id="navDealChips">
           <div class="nav-deal-chip chip-student">
             <span class="chip-label">Student</span>
             <span class="chip-value">15% OFF</span>
@@ -544,7 +544,7 @@
             </span>
           </div>
         </div>
-        <div class="deal-chip deal-chip-purple">
+        <div class="deal-chip deal-chip-purple" id="purpleDealChip">
           <div class="deal-chip-text">
             <span class="deal-chip-title">Student. <strong>15% OFF</strong></span>
             <span class="deal-chip-status">
@@ -552,6 +552,21 @@
               <span class="purple-seat-count">1/3 seats selected</span>
             </span>
           </div>
+        </div>
+        <!-- Full-width student callout — revealed after 3rd seat -->
+        <div class="purple-deal-expanded" id="purpleDealExpanded" aria-hidden="true">
+          <div class="purple-expanded-left">
+            <div class="student-price-tag">
+              <img src="assets/student-tag-notch-left.svg" alt="" class="tag-notch-img tag-notch-left">
+              <div class="tag-body">
+                <span>Student</span>
+                <strong>15% OFF</strong>
+              </div>
+              <img src="assets/student-tag-notch-right.svg" alt="" class="tag-notch-img tag-notch-right">
+            </div>
+            <span class="purple-save-amount">Save ₹230</span>
+          </div>
+          <button type="button" class="purple-apply-btn">Apply</button>
         </div>
       </div>
       <div class="selection-row">
@@ -643,6 +658,7 @@
       const bottomSheet = document.querySelector('.bottom-sheet');
       const seatPhotosDock = document.getElementById('seatPhotosDock');
       const dealsTicker = document.getElementById('dealsTicker');
+      const navDealChips = document.getElementById('navDealChips');
       const seats = document.querySelectorAll('.seat.available');
       let selectedSeats = [];
       let trayForward = false;
@@ -676,7 +692,11 @@
       function resetTray() {
         if (bottomSheet) bottomSheet.style.transform = '';
         if (seatPhotosDock) seatPhotosDock.classList.remove('visible');
-        if (dealsTicker) dealsTicker.classList.remove('show');
+        if (dealsTicker) {
+          dealsTicker.classList.remove('show', 'student-expanded');
+        }
+        const purpleChip = document.getElementById('purpleDealChip');
+        if (purpleChip) purpleChip.classList.remove('shaking');
         const chip = document.getElementById('yellowDealChip');
         if (chip) {
           chip.classList.remove('applying', 'applied-final', 'shaking', 'show-saved');
@@ -754,6 +774,80 @@
         }, 650);
       }
 
+      let navDealStackStopped = false;
+      let navDealSwapTimer = null;
+      let navDealSwapKickoff = null;
+      let navDealSwapInProgress = false;
+      let studentIsFront = false;
+
+      function initNavDealSwapState() {
+        if (!navDealChips) return;
+        const student = navDealChips.querySelector('.chip-student');
+        const yellow = navDealChips.querySelector('.chip-yellow');
+        studentIsFront = false;
+        student.classList.remove('tucking-back', 'rising-front');
+        yellow.classList.remove('tucking-back', 'rising-front');
+        student.classList.add('is-back');
+        yellow.classList.add('is-front');
+      }
+
+      function runNavDealSwap() {
+        if (navDealStackStopped || !navDealChips || navDealSwapInProgress) return;
+        const student = navDealChips.querySelector('.chip-student');
+        const yellow = navDealChips.querySelector('.chip-yellow');
+        const frontChip = studentIsFront ? student : yellow;
+        const backChip = studentIsFront ? yellow : student;
+
+        navDealSwapInProgress = true;
+
+        // Top chip tucks down behind the stack first
+        frontChip.classList.remove('is-front', 'rising-front');
+        frontChip.classList.add('is-back', 'tucking-back');
+
+        // Then the rear chip rises to the front
+        setTimeout(function () {
+          if (navDealStackStopped || !navDealChips) return;
+          backChip.classList.remove('is-back', 'tucking-back');
+          backChip.classList.add('is-front', 'rising-front');
+          studentIsFront = !studentIsFront;
+
+          setTimeout(function () {
+            frontChip.classList.remove('tucking-back');
+            backChip.classList.remove('rising-front');
+            navDealSwapInProgress = false;
+          }, 480);
+        }, 240);
+      }
+
+      function stopNavDealStacking() {
+        if (navDealStackStopped || !navDealChips) return;
+        navDealStackStopped = true;
+        navDealSwapInProgress = false;
+        clearTimeout(navDealSwapKickoff);
+        clearInterval(navDealSwapTimer);
+        navDealChips.classList.remove('stacking', 'swapping');
+        navDealChips.querySelector('.chip-student').classList.remove('is-front', 'is-back', 'tucking-back', 'rising-front');
+        navDealChips.querySelector('.chip-yellow').classList.remove('is-front', 'is-back', 'tucking-back', 'rising-front');
+        navDealChips.classList.add('stacked');
+      }
+
+      function startNavDealSwapLoop() {
+        if (navDealStackStopped || !navDealChips) return;
+        navDealChips.classList.add('stacked', 'swapping');
+        initNavDealSwapState();
+        navDealSwapTimer = setInterval(runNavDealSwap, 2000);
+      }
+
+      if (navDealChips) {
+        navDealChips.addEventListener('animationend', function (e) {
+          if (e.target.classList.contains('chip-yellow') && navDealChips.classList.contains('stacking')) {
+            navDealChips.classList.remove('stacking');
+            navDealChips.classList.add('stacked');
+            navDealSwapKickoff = setTimeout(startNavDealSwapLoop, 2000);
+          }
+        });
+      }
+
       // Add click handler to all available seats
       seats.forEach(function(seat) {
         seat.addEventListener('click', function() {
@@ -767,6 +861,7 @@
           } else {
             seat.classList.add('selected');
             selectedSeats.push(seat);
+            stopNavDealStacking();
             const blowup = addBlowup(seat);
             seatSelectionPanel.classList.add('active');
             if (!trayForward) {
@@ -778,7 +873,7 @@
               // Tray already forward — pop then fly straight to the dock
               setTimeout(function () { flyToDock(blowup); }, 360);
               // Replay "₹X saved" swap: ₹100 on 2nd seat
-              if (yellowDealChip.classList.contains('applied-final')) {
+              if (yellowDealChip.classList.contains('applied-final') && selectedSeats.length < 3) {
                 showSavedSwap(selectedSeats.length === 2 ? 100 : 50);
               }
             }
@@ -786,6 +881,12 @@
 
           // Update the purple chip count (1/3, 2/3, ...)
           updatePurpleCount(selectedSeats.length);
+
+          if (selectedSeats.length === 3 && !dealsTicker.classList.contains('student-expanded')) {
+            runPurpleDealExpandAnimation();
+          } else if (selectedSeats.length < 3 && dealsTicker.classList.contains('student-expanded')) {
+            revertPurpleDealExpand();
+          }
 
           if (selectedSeats.length > 0) {
             seatSelectionPanel.classList.add('active');
@@ -824,11 +925,33 @@
         }, 1300);
       }
 
+      const purpleDealChip = document.getElementById('purpleDealChip');
+      const purpleDealExpanded = document.getElementById('purpleDealExpanded');
+
       // Update the purple chip "x/3 seats selected" count
       function updatePurpleCount(count) {
-        if (purpleSeatCount) {
+        if (purpleSeatCount && count < 3) {
           purpleSeatCount.textContent = count + '/3 seats selected';
         }
+      }
+
+      // Shake purple chip, then expand to full-width student callout
+      function runPurpleDealExpandAnimation() {
+        if (!purpleDealChip || !dealsTicker || !dealsTicker.classList.contains('show')) return;
+        if (dealsTicker.classList.contains('student-expanded')) return;
+        purpleDealChip.classList.add('shaking');
+        setTimeout(function () {
+          purpleDealChip.classList.remove('shaking');
+          dealsTicker.classList.add('student-expanded');
+          if (purpleDealExpanded) purpleDealExpanded.setAttribute('aria-hidden', 'false');
+        }, 450);
+      }
+
+      function revertPurpleDealExpand() {
+        if (!dealsTicker) return;
+        dealsTicker.classList.remove('student-expanded');
+        if (purpleDealExpanded) purpleDealExpanded.setAttribute('aria-hidden', 'true');
+        if (purpleDealChip) purpleDealChip.classList.remove('shaking');
       }
 
       function playConfetti(onDone) {
