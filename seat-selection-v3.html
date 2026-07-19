@@ -540,6 +540,7 @@
               <span>Applied</span>
             </span>
           </div>
+          <div class="deal-confetti" id="dealConfetti"></div>
         </div>
         <div class="deal-chip deal-chip-purple">
           <div class="deal-chip-text">
@@ -573,9 +574,6 @@
         <div class="indicator-bar"></div>
       </div>
     </div>
-
-    <!-- Confetti lottie overlay (kept outside transformed panel so fixed works) -->
-    <div class="deal-confetti" id="dealConfetti"></div>
   </div>
 
 
@@ -677,7 +675,7 @@
         if (dealsTicker) dealsTicker.classList.remove('show');
         const chip = document.getElementById('yellowDealChip');
         if (chip) {
-          chip.classList.remove('applying', 'settling');
+          chip.classList.remove('applying', 'applied-final');
           delete chip.dataset.animated;
         }
         const confetti = document.getElementById('dealConfetti');
@@ -711,6 +709,10 @@
             'translateX(-50%) translateY(-' + lift + 'px)';
         }
         dealsTicker.classList.add('show');
+        // Show the default deal for ~2s, then run the micro-animation
+        setTimeout(function () {
+          if (typeof runYellowDealAnimation === 'function') runYellowDealAnimation();
+        }, 2000);
       }
 
       // Fly the blown-up photo into the floating "Seat photos" dock
@@ -807,7 +809,8 @@
             renderer: 'svg',
             loop: false,
             autoplay: true,
-            path: 'assets/confetti.json'
+            path: 'assets/confetti.json',
+            rendererSettings: { preserveAspectRatio: 'xMidYMid slice' }
           });
         } else {
           confettiAnim.goToAndPlay(0, true);
@@ -827,32 +830,17 @@
         yellowDealChip.dataset.animated = '1';
         // 1) green dot blows up + swap to "Applied" (white on green)
         yellowDealChip.classList.add('applying');
-        // 2) confetti once the chip is green; 3) settle back to the resting
-        //    "Last min./5% OFF" yellow deal when the confetti ends
+        // 2) confetti (inside the chip) once green; 3) fade green -> yellow
+        //    keeping the "Applied" state when the confetti ends
         setTimeout(function () {
           playConfetti(function () {
             yellowDealChip.classList.remove('applying');
-            yellowDealChip.classList.add('settling');
+            yellowDealChip.classList.add('applied-final');
             if (dealConfetti) dealConfetti.classList.remove('playing');
-            setTimeout(function () {
-              yellowDealChip.classList.remove('settling');
-            }, 450);
           });
         }, 560);
       }
 
-      if (yellowDealChip && 'IntersectionObserver' in window) {
-        const dealObserver = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-              runYellowDealAnimation();
-              dealObserver.disconnect();
-            }
-          });
-        }, { threshold: 0.6 });
-        dealObserver.observe(yellowDealChip);
-      }
-      
       // =============================================
       // STUDENT DEAL BOTTOM SHEET
       // =============================================

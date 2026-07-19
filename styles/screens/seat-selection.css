@@ -2384,7 +2384,7 @@
 .deal-chip-yellow {
   background-image: url('../../assets/deal-chip-yellow.svg');
   position: relative;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .deal-chip-purple {
@@ -2410,8 +2410,8 @@
   -webkit-clip-path: circle(80% at 50% 50%);
 }
 
-/* Settling: fade the green out and return to the resting "Last min./5% OFF" */
-.deal-chip.settling .deal-chip-green {
+/* Final: fade the green out (green -> yellow) while keeping "Applied" */
+.deal-chip.applied-final .deal-chip-green {
   clip-path: circle(80% at 50% 50%);
   -webkit-clip-path: circle(80% at 50% 50%);
   transition: opacity 0.4s ease;
@@ -2439,40 +2439,33 @@
   color: #1d1d1d;
 }
 
-/* While green: show the "Applied" confirmation (dark text on light green) */
-.deal-chip.applying .deal-chip-initial {
+/* While green and after (final): show the "Applied" confirmation (dark text) */
+.deal-chip.applying .deal-chip-initial,
+.deal-chip.applied-final .deal-chip-initial {
   opacity: 0;
 }
 
-.deal-chip.applying .deal-chip-applied-state {
+.deal-chip.applying .deal-chip-applied-state,
+.deal-chip.applied-final .deal-chip-applied-state {
   opacity: 1;
 }
 
-/* Settling back: initial deal returns, applied fades out */
-.deal-chip.settling .deal-chip-initial {
-  opacity: 1;
-}
-
-.deal-chip.settling .deal-chip-applied-state {
-  opacity: 0;
-}
-
-/* Confetti lottie overlay (full-screen burst) */
+/* Confetti lottie overlay — confined inside the yellow chip only */
 .deal-confetti {
-  position: fixed;
-  left: 50%;
-  top: 0;
-  width: calc(360 * var(--px));
-  height: 100vh;
-  height: 100dvh;
-  transform: translateX(-50%);
-  z-index: 500;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
   pointer-events: none;
   opacity: 0;
 }
 
 .deal-confetti.playing {
   opacity: 1;
+}
+
+.deal-confetti svg {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .deal-chip-text {
