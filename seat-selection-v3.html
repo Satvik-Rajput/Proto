@@ -677,7 +677,7 @@
         if (dealsTicker) dealsTicker.classList.remove('show');
         const chip = document.getElementById('yellowDealChip');
         if (chip) {
-          chip.classList.remove('applying', 'applied-final');
+          chip.classList.remove('applying', 'settling');
           delete chip.dataset.animated;
         }
         const confetti = document.getElementById('dealConfetti');
@@ -827,12 +827,16 @@
         yellowDealChip.dataset.animated = '1';
         // 1) green dot blows up + swap to "Applied" (white on green)
         yellowDealChip.classList.add('applying');
-        // 2) confetti once the chip is green; 3) return to yellow when it ends
+        // 2) confetti once the chip is green; 3) settle back to the resting
+        //    "Last min./5% OFF" yellow deal when the confetti ends
         setTimeout(function () {
           playConfetti(function () {
             yellowDealChip.classList.remove('applying');
-            yellowDealChip.classList.add('applied-final');
+            yellowDealChip.classList.add('settling');
             if (dealConfetti) dealConfetti.classList.remove('playing');
+            setTimeout(function () {
+              yellowDealChip.classList.remove('settling');
+            }, 450);
           });
         }, 560);
       }

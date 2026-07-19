@@ -2410,9 +2410,11 @@
   -webkit-clip-path: circle(80% at 50% 50%);
 }
 
-/* When returning to yellow, fade the green fill out (applied text stays) */
-.deal-chip.applied-final .deal-chip-green {
-  transition: opacity 0.45s ease;
+/* Settling: fade the green out and return to the resting "Last min./5% OFF" */
+.deal-chip.settling .deal-chip-green {
+  clip-path: circle(80% at 50% 50%);
+  -webkit-clip-path: circle(80% at 50% 50%);
+  transition: opacity 0.4s ease;
   opacity: 0;
 }
 
@@ -2437,23 +2439,22 @@
   color: #1d1d1d;
 }
 
-.deal-chip.applying .deal-chip-initial,
-.deal-chip.applied-final .deal-chip-initial {
+/* While green: show the "Applied" confirmation (dark text on light green) */
+.deal-chip.applying .deal-chip-initial {
   opacity: 0;
 }
 
-.deal-chip.applying .deal-chip-applied-state,
-.deal-chip.applied-final .deal-chip-applied-state {
+.deal-chip.applying .deal-chip-applied-state {
   opacity: 1;
 }
 
-/* White text/icon while the chip is green */
-.deal-chip.applying .deal-chip-applied-state {
-  color: #fff;
+/* Settling back: initial deal returns, applied fades out */
+.deal-chip.settling .deal-chip-initial {
+  opacity: 1;
 }
 
-.deal-chip.applying .deal-chip-check {
-  filter: brightness(0) invert(1);
+.deal-chip.settling .deal-chip-applied-state {
+  opacity: 0;
 }
 
 /* Confetti lottie overlay (full-screen burst) */
