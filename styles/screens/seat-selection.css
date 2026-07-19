@@ -2327,7 +2327,7 @@
   transform: translateX(-50%) translateY(100%);
   width: calc(360 * var(--px));
   background: white;
-  border-radius: calc(16 * var(--px)) calc(16 * var(--px)) 0 0;
+  border-radius: 0;
   box-shadow: 0 calc(-4 * var(--px)) calc(8 * var(--px)) rgba(0, 0, 0, 0.08),
               0 calc(-8 * var(--px)) calc(16 * var(--px)) rgba(0, 0, 0, 0.08);
   z-index: 400;
