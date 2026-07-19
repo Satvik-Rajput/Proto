@@ -2883,13 +2883,16 @@
 
 .nav-deal-chip {
   width: calc(79 * var(--px));
-  border-radius: calc(6 * var(--px));
+  height: calc(36 * var(--px));
   padding: calc(2 * var(--px)) calc(8 * var(--px));
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  box-sizing: border-box;
 }
 
 .chip-student {
@@ -2897,13 +2900,13 @@
   left: 50%;
   top: 50%;
   transform: translate(calc(-50% + 2 * var(--px)), calc(-50% + 2 * var(--px)));
-  background: #EADBFE;
+  background-image: url('../../assets/nav-chip-student.svg');
   z-index: 1;
 }
 
 .chip-yellow {
   position: relative;
-  background: #FEDE92;
+  background-image: url('../../assets/nav-chip-yellow.svg');
   z-index: 2;
 }
 
