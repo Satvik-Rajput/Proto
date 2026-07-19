@@ -612,9 +612,20 @@
           if (seat.classList.contains('selected')) {
             seat.classList.remove('selected');
             selectedSeats = selectedSeats.filter(s => s !== seat);
+            // Remove blow-up photo
+            const existingPhoto = seat.querySelector('.seat-blowup');
+            if (existingPhoto) existingPhoto.remove();
           } else {
             seat.classList.add('selected');
             selectedSeats.push(seat);
+            // Add blow-up photo that pops out of the seat
+            if (!seat.querySelector('.seat-blowup')) {
+              const photo = document.createElement('img');
+              photo.className = 'seat-blowup';
+              photo.src = 'assets/seat-blowup-photo.png';
+              photo.alt = '';
+              seat.appendChild(photo);
+            }
           }
           
           // Show/hide selection panel based on selected seats

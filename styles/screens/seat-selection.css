@@ -401,7 +401,7 @@
 .seat-area {
   background: #f2f2f8;
   padding: 0;
-  padding-bottom: calc(250 * var(--px));
+  padding-bottom: calc(80 * var(--px));
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -473,6 +473,40 @@
   justify-content: center;
   gap: calc(1 * var(--px));
   cursor: pointer;
+  position: relative;
+}
+
+/* Blow-up photo that pops out when a seat is selected */
+.seat-blowup {
+  position: absolute;
+  top: calc(13 * var(--px));
+  left: 50%;
+  width: calc(50 * var(--px));
+  height: calc(50 * var(--px));
+  border-radius: calc(6 * var(--px));
+  border: 0.5px solid #f4f4f4;
+  object-fit: cover;
+  transform: translate(-50%, -50%) scale(0);
+  transform-origin: center center;
+  z-index: 60;
+  pointer-events: none;
+  box-shadow: 0 calc(4 * var(--px)) calc(12 * var(--px)) rgba(0, 0, 0, 0.28);
+  animation: seatBlowUp 0.32s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.seat.sleeper .seat-blowup {
+  top: calc(35 * var(--px));
+}
+
+@keyframes seatBlowUp {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
 }
 
 .seat-body {
