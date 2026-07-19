@@ -2930,6 +2930,25 @@
   white-space: nowrap;
 }
 
+.nav-trailing .share-btn {
+  width: calc(48 * var(--px));
+  height: calc(48 * var(--px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.nav-trailing .share-btn .share-icon {
+  width: calc(18 * var(--px));
+  height: calc(20 * var(--px));
+  display: block;
+}
+
 /* ============================================
    STUDENT DEAL BANNER V3
    ============================================ */
