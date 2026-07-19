@@ -777,9 +777,9 @@
             } else {
               // Tray already forward — pop then fly straight to the dock
               setTimeout(function () { flyToDock(blowup); }, 360);
-              // Replay the "₹50 saved" swap once the deal is already applied
+              // Replay "₹X saved" swap: ₹100 on 2nd seat
               if (yellowDealChip.classList.contains('applied-final')) {
-                showSavedSwap();
+                showSavedSwap(selectedSeats.length === 2 ? 100 : 50);
               }
             }
           }
@@ -810,9 +810,11 @@
       let confettiAnim = null;
       let savedSwapTimer = null;
 
-      // Briefly swap "Applied" -> "₹50 saved" -> "Applied"
-      function showSavedSwap() {
+      // Briefly swap "Applied" -> "₹X saved" -> "Applied"
+      function showSavedSwap(amount) {
         if (!yellowDealChip) return;
+        const savedEl = yellowDealChip.querySelector('.status-saved');
+        if (savedEl) savedEl.textContent = '₹' + (amount || 50) + ' saved';
         yellowDealChip.classList.remove('show-saved');
         void yellowDealChip.offsetWidth; // restart the transition
         yellowDealChip.classList.add('show-saved');
@@ -877,7 +879,7 @@
             yellowDealChip.classList.remove('applying');
             yellowDealChip.classList.add('applied-final');
             // 5) briefly swap "Applied" -> "₹50 saved" -> "Applied"
-            setTimeout(showSavedSwap, 700);
+            setTimeout(function () { showSavedSwap(50); }, 700);
           }, 1000);
         }, 450);
       }
