@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="styles/screens/seat-selection.css">
   <link rel="stylesheet" href="styles/screens/student-deal-page.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 </head>
 <body>
   <div class="screen-container">
@@ -526,11 +527,20 @@
     <div class="seat-selection-panel" id="seatSelectionPanel">
       <!-- Deals ticker - slides in from bottom as final state -->
       <div class="deals-ticker" id="dealsTicker">
-        <div class="deal-chip deal-chip-yellow">
-          <div class="deal-chip-text">
+        <div class="deal-chip deal-chip-yellow" id="yellowDealChip">
+          <div class="deal-chip-green"></div>
+          <div class="deal-chip-text deal-chip-initial">
             <span class="deal-chip-line">Last min.</span>
             <span class="deal-chip-line bold">5% OFF</span>
           </div>
+          <div class="deal-chip-text deal-chip-applied-state">
+            <span class="deal-chip-title">Last min. <strong>5% OFF</strong></span>
+            <span class="deal-chip-status">
+              <img src="assets/deal-check-icon.svg" alt="" class="deal-chip-icon deal-chip-check">
+              <span>Applied</span>
+            </span>
+          </div>
+          <div class="deal-confetti" id="dealConfetti"></div>
         </div>
         <div class="deal-chip deal-chip-purple">
           <div class="deal-chip-text">
@@ -663,6 +673,13 @@
         if (bottomSheet) bottomSheet.style.transform = '';
         if (seatPhotosDock) seatPhotosDock.classList.remove('visible');
         if (dealsTicker) dealsTicker.classList.remove('show');
+        const chip = document.getElementById('yellowDealChip');
+        if (chip) {
+          chip.classList.remove('applying', 'applied-final');
+          delete chip.dataset.animated;
+        }
+        const confetti = document.getElementById('dealConfetti');
+        if (confetti) confetti.classList.remove('playing');
         trayForward = false;
       }
 
@@ -765,6 +782,59 @@
           }
         });
       });
+
+      // =============================================
+      // YELLOW DEAL MICRO-ANIMATION (on viewport entry)
+      // green dot blows up -> chip turns green -> reveal "Applied"
+      // -> confetti -> chip returns to yellow keeping "Applied"
+      // =============================================
+      const yellowDealChip = document.getElementById('yellowDealChip');
+      const dealConfetti = document.getElementById('dealConfetti');
+      const CONFETTI_DURATION = 1600;
+      let confettiAnim = null;
+
+      function playConfetti() {
+        if (!dealConfetti || typeof lottie === 'undefined') return;
+        dealConfetti.classList.add('playing');
+        if (!confettiAnim) {
+          confettiAnim = lottie.loadAnimation({
+            container: dealConfetti,
+            renderer: 'svg',
+            loop: false,
+            autoplay: true,
+            path: 'assets/confetti.json'
+          });
+        } else {
+          confettiAnim.goToAndPlay(0, true);
+        }
+      }
+
+      function runYellowDealAnimation() {
+        if (!yellowDealChip || yellowDealChip.dataset.animated) return;
+        yellowDealChip.dataset.animated = '1';
+        // 1) green dot blows up + swap to "Applied" (white on green)
+        yellowDealChip.classList.add('applying');
+        // 2) confetti once the chip is green
+        setTimeout(playConfetti, 560);
+        // 3) return to yellow, keep "Applied" (dark)
+        setTimeout(function () {
+          yellowDealChip.classList.remove('applying');
+          yellowDealChip.classList.add('applied-final');
+          if (dealConfetti) dealConfetti.classList.remove('playing');
+        }, 560 + CONFETTI_DURATION);
+      }
+
+      if (yellowDealChip && 'IntersectionObserver' in window) {
+        const dealObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+              runYellowDealAnimation();
+              dealObserver.disconnect();
+            }
+          });
+        }, { threshold: 0.6 });
+        dealObserver.observe(yellowDealChip);
+      }
       
       // =============================================
       // STUDENT DEAL BOTTOM SHEET
