@@ -524,6 +524,27 @@
     
     <!-- Seat Selection Panel - Shows when seat is selected -->
     <div class="seat-selection-panel" id="seatSelectionPanel">
+      <!-- Deals ticker - slides in from bottom as final state -->
+      <div class="deals-ticker" id="dealsTicker">
+        <div class="deal-chip deal-chip-yellow">
+          <div class="deal-chip-text">
+            <span class="deal-chip-title">Last min. <strong>5% OFF</strong></span>
+            <span class="deal-chip-status">
+              <img src="assets/deal-check-icon.svg" alt="" class="deal-chip-icon">
+              <span>Applied</span>
+            </span>
+          </div>
+        </div>
+        <div class="deal-chip deal-chip-purple">
+          <div class="deal-chip-text">
+            <span class="deal-chip-title">Student. <strong>15% OFF</strong></span>
+            <span class="deal-chip-status">
+              <img src="assets/deal-lock-icon.svg" alt="" class="deal-chip-icon">
+              <span>1/3 seats selected</span>
+            </span>
+          </div>
+        </div>
+      </div>
       <div class="selection-row">
         <div class="selection-left">
           <span class="seats-selected-text">1 seat selected</span>
@@ -610,6 +631,7 @@
       const screenContainer = document.querySelector('.screen-container');
       const bottomSheet = document.querySelector('.bottom-sheet');
       const seatPhotosDock = document.getElementById('seatPhotosDock');
+      const dealsTicker = document.getElementById('dealsTicker');
       const seats = document.querySelectorAll('.seat.available');
       let selectedSeats = [];
       let trayForward = false;
@@ -636,17 +658,35 @@
         const panelH = seatSelectionPanel.offsetHeight;
         bottomSheet.style.transform =
           'translateX(-50%) translateY(-' + panelH + 'px)';
-        bottomSheet.addEventListener('transitionend', function handler(e) {
-          if (e.propertyName !== 'transform') return;
-          bottomSheet.removeEventListener('transitionend', handler);
-          flyToDock(blowup);
-        });
+        // Tray transition is 0.5s — fly once it has settled
+        setTimeout(function () { flyToDock(blowup); }, 560);
       }
 
       function resetTray() {
         if (bottomSheet) bottomSheet.style.transform = '';
         if (seatPhotosDock) seatPhotosDock.classList.remove('visible');
+        if (dealsTicker) dealsTicker.classList.remove('show');
         trayForward = false;
+      }
+
+      // Final state: deals ticker slides up from the bottom while the tray
+      // lifts to make room for it.
+      function showDealsTicker() {
+        if (!dealsTicker || dealsTicker.classList.contains('show')) return;
+        // Measure the final panel height with the ticker expanded (no transition)
+        dealsTicker.style.transition = 'none';
+        dealsTicker.classList.add('show');
+        const finalPanelH = seatSelectionPanel.offsetHeight;
+        dealsTicker.classList.remove('show');
+        void dealsTicker.offsetHeight;       // lock collapsed state
+        dealsTicker.style.transition = '';
+        void dealsTicker.offsetHeight;       // apply transition before animating
+        // Animate tray lift + ticker slide-in together
+        if (bottomSheet) {
+          bottomSheet.style.transform =
+            'translateX(-50%) translateY(-' + finalPanelH + 'px)';
+        }
+        dealsTicker.classList.add('show');
       }
 
       // Fly the blown-up photo into the floating "Seat photos" dock
@@ -676,12 +716,12 @@
           });
         });
 
-        clone.addEventListener('transitionend', function onEnd(e) {
-          if (e.propertyName !== 'width') return;
-          clone.removeEventListener('transitionend', onEnd);
+        // Fly transition is 0.6s — reveal dock, then bring in deals ticker
+        setTimeout(function () {
           seatPhotosDock.classList.add('visible');
           clone.remove();
-        });
+          showDealsTicker();
+        }, 650);
       }
 
       // Add click handler to all available seats

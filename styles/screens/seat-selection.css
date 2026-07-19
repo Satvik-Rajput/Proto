@@ -2342,6 +2342,97 @@
   transform: translateX(-50%) translateY(0);
 }
 
+/* Deals ticker — slides in from bottom as the final state */
+.deals-ticker {
+  display: flex;
+  gap: calc(12 * var(--px));
+  padding: 0 calc(16 * var(--px)) 0 calc(12 * var(--px));
+  border-top: calc(1 * var(--px)) solid #e6e6e6;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.35s ease,
+              padding 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.deals-ticker.show {
+  max-height: calc(52 * var(--px));
+  opacity: 1;
+  padding-top: calc(12 * var(--px));
+  padding-bottom: 0;
+}
+
+.deal-chip {
+  flex: 1 0 0;
+  min-width: 0;
+  height: calc(40 * var(--px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(4 * var(--px)) calc(8 * var(--px));
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  transform: translateY(calc(16 * var(--px)));
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.deals-ticker.show .deal-chip {
+  transform: translateY(0);
+}
+
+.deal-chip-yellow {
+  background-image: url('../../assets/deal-chip-yellow.svg');
+}
+
+.deal-chip-purple {
+  background-image: url('../../assets/deal-chip-purple.svg');
+}
+
+.deal-chip-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.deal-chip-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: calc(12 * var(--px));
+  line-height: calc(16 * var(--px));
+  letter-spacing: calc(0.01 * var(--px));
+  color: #1d1d1d;
+  white-space: nowrap;
+}
+
+.deal-chip-title strong {
+  font-weight: 700;
+}
+
+.deal-chip-status {
+  display: flex;
+  align-items: center;
+  gap: calc(2 * var(--px));
+}
+
+.deal-chip-icon {
+  width: calc(16 * var(--px));
+  height: calc(16 * var(--px));
+}
+
+.deal-chip-status > span {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: calc(12 * var(--px));
+  line-height: calc(16 * var(--px));
+  letter-spacing: calc(0.01 * var(--px));
+  color: #1d1d1d;
+  white-space: nowrap;
+}
+
 /* Selection Row - seats count and price */
 .selection-row {
   display: flex;
