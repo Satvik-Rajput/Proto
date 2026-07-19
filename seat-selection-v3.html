@@ -712,10 +712,10 @@
             'translateX(-50%) translateY(-' + lift + 'px)';
         }
         dealsTicker.classList.add('show');
-        // Show the default deal for ~2s, then run the micro-animation
+        // Briefly show the default deal, then start the micro-animation
         setTimeout(function () {
           if (typeof runYellowDealAnimation === 'function') runYellowDealAnimation();
-        }, 2000);
+        }, 300);
       }
 
       // Fly the blown-up photo into the floating "Seat photos" dock

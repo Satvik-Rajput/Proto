@@ -2495,8 +2495,12 @@
 .deal-chip-status-wrap .status-saved {
   opacity: 0;
   transform: translate(-50%, calc(-50% + 11 * var(--px)));
-  font-weight: 700;
-  color: #007b28;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: calc(12 * var(--px));
+  line-height: calc(16 * var(--px));
+  letter-spacing: calc(0.01 * var(--px));
+  color: #1d1d1d;
   white-space: nowrap;
 }
 
