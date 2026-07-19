@@ -535,12 +535,14 @@
           </div>
           <div class="deal-chip-text deal-chip-applied-state">
             <span class="deal-chip-title">Last min. <strong>5% OFF</strong></span>
-            <span class="deal-chip-status">
-              <img src="assets/deal-check-icon.svg" alt="" class="deal-chip-icon deal-chip-check">
-              <span>Applied</span>
+            <span class="deal-chip-status-wrap">
+              <span class="deal-chip-status status-applied">
+                <img src="assets/deal-check-icon.svg" alt="" class="deal-chip-icon deal-chip-check">
+                <span>Applied</span>
+              </span>
+              <span class="deal-chip-status status-saved">₹50 saved</span>
             </span>
           </div>
-          <div class="deal-confetti" id="dealConfetti"></div>
         </div>
         <div class="deal-chip deal-chip-purple">
           <div class="deal-chip-text">
@@ -551,6 +553,7 @@
             </span>
           </div>
         </div>
+        <div class="deal-confetti" id="dealConfetti"></div>
       </div>
       <div class="selection-row">
         <div class="selection-left">
@@ -675,7 +678,7 @@
         if (dealsTicker) dealsTicker.classList.remove('show');
         const chip = document.getElementById('yellowDealChip');
         if (chip) {
-          chip.classList.remove('applying', 'applied-final');
+          chip.classList.remove('applying', 'applied-final', 'shaking', 'show-saved');
           delete chip.dataset.animated;
         }
         const confetti = document.getElementById('dealConfetti');
@@ -828,17 +831,31 @@
       function runYellowDealAnimation() {
         if (!yellowDealChip || yellowDealChip.dataset.animated) return;
         yellowDealChip.dataset.animated = '1';
-        // 1) green dot blows up + swap to "Applied" (white on green)
-        yellowDealChip.classList.add('applying');
-        // 2) confetti (inside the chip) once green; 3) fade green -> yellow
-        //    keeping the "Applied" state when the confetti ends
+        // 1) build-up shake
+        yellowDealChip.classList.add('shaking');
         setTimeout(function () {
-          playConfetti(function () {
+          yellowDealChip.classList.remove('shaking');
+          // 2) green swap (1s) + smooth morph to "Applied"
+          yellowDealChip.classList.add('applying');
+          // 3) confetti over the deals section, slightly into the transition
+          setTimeout(function () {
+            playConfetti(function () {
+              if (dealConfetti) dealConfetti.classList.remove('playing');
+            });
+          }, 250);
+          // 4) after the 1s green swap -> back to yellow keeping "Applied"
+          setTimeout(function () {
             yellowDealChip.classList.remove('applying');
             yellowDealChip.classList.add('applied-final');
-            if (dealConfetti) dealConfetti.classList.remove('playing');
-          });
-        }, 560);
+            // 5) briefly swap "Applied" -> "₹50 saved" -> "Applied"
+            setTimeout(function () {
+              yellowDealChip.classList.add('show-saved');
+              setTimeout(function () {
+                yellowDealChip.classList.remove('show-saved');
+              }, 1300);
+            }, 700);
+          }, 1000);
+        }, 450);
       }
 
       // =============================================

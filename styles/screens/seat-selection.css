@@ -2342,6 +2342,7 @@
 
 /* Deals ticker — slides in from bottom as the final state */
 .deals-ticker {
+  position: relative;
   display: flex;
   gap: calc(12 * var(--px));
   padding: 0 calc(16 * var(--px)) 0 calc(12 * var(--px));
@@ -2404,8 +2405,8 @@
 }
 
 .deal-chip.applying .deal-chip-green {
-  transition: clip-path 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-              -webkit-clip-path 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: clip-path 1s cubic-bezier(0.22, 1, 0.36, 1),
+              -webkit-clip-path 1s cubic-bezier(0.22, 1, 0.36, 1);
   clip-path: circle(80% at 50% 50%);
   -webkit-clip-path: circle(80% at 50% 50%);
 }
@@ -2424,37 +2425,110 @@
   z-index: 2;
 }
 
-.deal-chip-initial,
-.deal-chip-applied-state {
-  transition: opacity 0.3s ease;
+/* Initial deal shifts up + fades as it morphs to the applied state */
+.deal-chip-initial {
+  transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Applied state is layered over the initial state, hidden until animation */
+.deal-chip.applying .deal-chip-initial,
+.deal-chip.applied-final .deal-chip-initial {
+  opacity: 0;
+  transform: translateY(calc(-9 * var(--px)));
+}
+
+/* Applied state layered over initial, hidden until animation */
 .deal-chip .deal-chip-applied-state {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0;
   color: #1d1d1d;
-}
-
-/* While green and after (final): show the "Applied" confirmation (dark text) */
-.deal-chip.applying .deal-chip-initial,
-.deal-chip.applied-final .deal-chip-initial {
-  opacity: 0;
+  visibility: hidden;
 }
 
 .deal-chip.applying .deal-chip-applied-state,
 .deal-chip.applied-final .deal-chip-applied-state {
-  opacity: 1;
+  visibility: visible;
 }
 
-/* Confetti lottie overlay — confined inside the yellow chip only */
+/* "Last min. 5% OFF" line rises into place (5% OFF shifts to the top) */
+.deal-chip .deal-chip-applied-state .deal-chip-title {
+  opacity: 0;
+  transform: translateY(calc(7 * var(--px)));
+  transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.deal-chip.applying .deal-chip-applied-state .deal-chip-title,
+.deal-chip.applied-final .deal-chip-applied-state .deal-chip-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Status ("Applied") comes AFTER the title (delayed) */
+.deal-chip-status-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: calc(72 * var(--px));
+  height: calc(16 * var(--px));
+  opacity: 0;
+  transform: translateY(calc(10 * var(--px)));
+  transition: opacity 0.3s ease 0.32s, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.32s;
+}
+
+.deal-chip.applying .deal-chip-status-wrap,
+.deal-chip.applied-final .deal-chip-status-wrap {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Applied <-> ₹50 saved swap (both centered, toggled) */
+.deal-chip-status-wrap .deal-chip-status {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.28s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.deal-chip-status-wrap .status-saved {
+  opacity: 0;
+  transform: translate(-50%, calc(-50% + 11 * var(--px)));
+  font-weight: 700;
+  color: #007b28;
+  white-space: nowrap;
+}
+
+.deal-chip.show-saved .status-applied {
+  opacity: 0;
+  transform: translate(-50%, calc(-50% - 11 * var(--px)));
+}
+
+.deal-chip.show-saved .status-saved {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+/* Build-up shake before the green swap */
+@keyframes dealShake {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(calc(-2.5 * var(--px))); }
+  30% { transform: translateX(calc(2.5 * var(--px))); }
+  45% { transform: translateX(calc(-2 * var(--px))); }
+  60% { transform: translateX(calc(2 * var(--px))); }
+  75% { transform: translateX(calc(-1 * var(--px))); }
+}
+
+.deal-chip.shaking {
+  animation: dealShake 0.45s ease-in-out;
+}
+
+/* Confetti lottie overlay — spans the deals section (both chips) */
 .deal-confetti {
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: 4;
   pointer-events: none;
   opacity: 0;
 }
