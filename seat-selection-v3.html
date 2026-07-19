@@ -775,67 +775,38 @@
       }
 
       let navDealStackStopped = false;
-      let navDealSwapTimer = null;
-      let navDealSwapKickoff = null;
-      let navDealSwapInProgress = false;
-      let studentIsFront = false;
-
-      function initNavDealSwapState() {
-        if (!navDealChips) return;
-        const student = navDealChips.querySelector('.chip-student');
-        const yellow = navDealChips.querySelector('.chip-yellow');
-        studentIsFront = false;
-        student.classList.remove('tucking-back', 'rising-front');
-        yellow.classList.remove('tucking-back', 'rising-front');
-        student.classList.add('is-back');
-        yellow.classList.add('is-front');
-      }
-
-      function runNavDealSwap() {
-        if (navDealStackStopped || !navDealChips || navDealSwapInProgress) return;
-        const student = navDealChips.querySelector('.chip-student');
-        const yellow = navDealChips.querySelector('.chip-yellow');
-        const frontChip = studentIsFront ? student : yellow;
-        const backChip = studentIsFront ? yellow : student;
-
-        navDealSwapInProgress = true;
-
-        // Top chip tucks down behind the stack first
-        frontChip.classList.remove('is-front', 'rising-front');
-        frontChip.classList.add('is-back', 'tucking-back');
-
-        // Then the rear chip rises to the front
-        setTimeout(function () {
-          if (navDealStackStopped || !navDealChips) return;
-          backChip.classList.remove('is-back', 'tucking-back');
-          backChip.classList.add('is-front', 'rising-front');
-          studentIsFront = !studentIsFront;
-
-          setTimeout(function () {
-            frontChip.classList.remove('tucking-back');
-            backChip.classList.remove('rising-front');
-            navDealSwapInProgress = false;
-          }, 480);
-        }, 240);
-      }
 
       function stopNavDealStacking() {
         if (navDealStackStopped || !navDealChips) return;
         navDealStackStopped = true;
-        navDealSwapInProgress = false;
-        clearTimeout(navDealSwapKickoff);
-        clearInterval(navDealSwapTimer);
-        navDealChips.classList.remove('stacking', 'swapping');
-        navDealChips.querySelector('.chip-student').classList.remove('is-front', 'is-back', 'tucking-back', 'rising-front');
-        navDealChips.querySelector('.chip-yellow').classList.remove('is-front', 'is-back', 'tucking-back', 'rising-front');
+        navDealChips.classList.remove('stacking');
         navDealChips.classList.add('stacked');
       }
 
-      function startNavDealSwapLoop() {
-        if (navDealStackStopped || !navDealChips) return;
-        navDealChips.classList.add('stacked', 'swapping');
-        initNavDealSwapState();
-        navDealSwapTimer = setInterval(runNavDealSwap, 2000);
+      function bringNavPurpleToFront() {
+        if (!navDealChips || navDealChips.classList.contains('purple-front')) return;
+        const student = navDealChips.querySelector('.chip-student');
+        const yellow = navDealChips.querySelector('.chip-yellow');
+        navDealChips.classList.add('stacked', 'reordering');
+        yellow.classList.add('tucking-back');
+        setTimeout(function () {
+          if (!navDealChips) return;
+          student.classList.add('rising-front');
+          navDealChips.classList.add('purple-front');
+          setTimeout(function () {
+            if (!navDealChips) return;
+            navDealChips.classList.remove('reordering');
+            yellow.classList.remove('tucking-back');
+            student.classList.remove('rising-front');
+          }, 480);
+        }, 240);
+      }
+
+      function revertNavPurpleFront() {
+        if (!navDealChips) return;
+        navDealChips.classList.remove('purple-front', 'reordering');
+        navDealChips.querySelector('.chip-student').classList.remove('tucking-back', 'rising-front');
+        navDealChips.querySelector('.chip-yellow').classList.remove('tucking-back', 'rising-front');
       }
 
       if (navDealChips) {
@@ -843,7 +814,6 @@
           if (e.target.classList.contains('chip-yellow') && navDealChips.classList.contains('stacking')) {
             navDealChips.classList.remove('stacking');
             navDealChips.classList.add('stacked');
-            navDealSwapKickoff = setTimeout(startNavDealSwapLoop, 2000);
           }
         });
       }
@@ -942,6 +912,7 @@
         purpleDealChip.classList.add('shaking');
         setTimeout(function () {
           purpleDealChip.classList.remove('shaking');
+          bringNavPurpleToFront();
           dealsTicker.classList.add('student-expanded');
           if (purpleDealExpanded) purpleDealExpanded.setAttribute('aria-hidden', 'false');
         }, 450);
@@ -950,6 +921,7 @@
       function revertPurpleDealExpand() {
         if (!dealsTicker) return;
         dealsTicker.classList.remove('student-expanded');
+        revertNavPurpleFront();
         if (purpleDealExpanded) purpleDealExpanded.setAttribute('aria-hidden', 'true');
         if (purpleDealChip) purpleDealChip.classList.remove('shaking');
       }

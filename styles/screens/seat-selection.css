@@ -2333,6 +2333,7 @@
   flex-direction: column;
   gap: calc(8 * var(--px));
   padding: 0;
+  overflow: hidden;
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -2357,9 +2358,13 @@
 
 .deals-ticker.show {
   max-height: calc(52 * var(--px));
+  min-height: calc(52 * var(--px));
+  height: calc(52 * var(--px));
   opacity: 1;
   padding-top: calc(12 * var(--px));
   padding-bottom: 0;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .deal-chip {
@@ -2426,14 +2431,19 @@
 
 .deals-ticker.student-expanded .deal-chip {
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
+  transition: none;
 }
 
 .deals-ticker.student-expanded {
+  min-height: calc(52 * var(--px));
+  height: calc(52 * var(--px));
   padding-left: 0;
   padding-right: 0;
   gap: 0;
   border-top-color: #e7dcf9;
+  overflow: hidden;
   transition: border-top-color 0.68s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
@@ -2444,7 +2454,7 @@
   justify-content: center;
   gap: 0;
   min-width: 0;
-  padding: calc(8 * var(--px)) 0;
+  padding: 0;
 }
 
 .purple-apply-btn {
@@ -3510,11 +3520,12 @@
   }
 }
 
-/* Resting stack after intro animation */
+/* Resting stack after intro — yellow front, purple back */
 .nav-deal-chips.stacked .chip-student,
 .nav-deal-chips.stacked .chip-yellow {
   animation: none;
   opacity: 1;
+  transition: transform 0.48s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .nav-deal-chips.stacked .chip-student {
@@ -3527,32 +3538,28 @@
   z-index: 2;
 }
 
-/* Swap loop — top chip tucks back first, then rear chip comes forward */
-.nav-deal-chips.swapping .nav-deal-chip {
-  transition: transform 0.48s cubic-bezier(0.33, 1, 0.68, 1);
-}
-
-.nav-deal-chips.swapping .nav-deal-chip.is-front {
+/* After 3 seats — purple front, yellow back */
+.nav-deal-chips.stacked.purple-front .chip-student {
   transform: translate(-50%, -50%) scale(1);
   z-index: 2;
 }
 
-.nav-deal-chips.swapping .nav-deal-chip.is-back {
+.nav-deal-chips.stacked.purple-front .chip-yellow {
   transform: translate(calc(-50% + 3 * var(--px)), calc(-50% + 3 * var(--px))) scale(0.94);
   z-index: 1;
 }
 
-.nav-deal-chips.swapping .nav-deal-chip.tucking-back {
+.nav-deal-chips.reordering .chip-yellow.tucking-back {
   z-index: 1;
 }
 
-.nav-deal-chips.swapping .nav-deal-chip.rising-front {
+.nav-deal-chips.reordering .chip-student.rising-front {
   z-index: 2;
 }
 
-/* Stop all motion when a seat is selected */
-.nav-deal-chips.stacked:not(.swapping) .chip-student,
-.nav-deal-chips.stacked:not(.swapping) .chip-yellow {
+/* Stop motion when a seat is selected mid-intro */
+.nav-deal-chips.stacked:not(.reordering) .chip-student,
+.nav-deal-chips.stacked:not(.reordering) .chip-yellow {
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
               opacity 0.3s ease;
 }
