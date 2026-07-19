@@ -790,11 +790,14 @@
       // =============================================
       const yellowDealChip = document.getElementById('yellowDealChip');
       const dealConfetti = document.getElementById('dealConfetti');
-      const CONFETTI_DURATION = 1600;
+      const CONFETTI_FALLBACK = 2200;
       let confettiAnim = null;
 
-      function playConfetti() {
-        if (!dealConfetti || typeof lottie === 'undefined') return;
+      function playConfetti(onDone) {
+        if (!dealConfetti || typeof lottie === 'undefined') {
+          setTimeout(onDone, CONFETTI_FALLBACK);
+          return;
+        }
         dealConfetti.classList.add('playing');
         if (!confettiAnim) {
           confettiAnim = lottie.loadAnimation({
@@ -807,6 +810,14 @@
         } else {
           confettiAnim.goToAndPlay(0, true);
         }
+        let done = false;
+        const finish = function () {
+          if (done) return;
+          done = true;
+          onDone();
+        };
+        confettiAnim.addEventListener('complete', finish);
+        setTimeout(finish, CONFETTI_FALLBACK); // safety fallback
       }
 
       function runYellowDealAnimation() {
@@ -814,14 +825,14 @@
         yellowDealChip.dataset.animated = '1';
         // 1) green dot blows up + swap to "Applied" (white on green)
         yellowDealChip.classList.add('applying');
-        // 2) confetti once the chip is green
-        setTimeout(playConfetti, 560);
-        // 3) return to yellow, keep "Applied" (dark)
+        // 2) confetti once the chip is green; 3) return to yellow when it ends
         setTimeout(function () {
-          yellowDealChip.classList.remove('applying');
-          yellowDealChip.classList.add('applied-final');
-          if (dealConfetti) dealConfetti.classList.remove('playing');
-        }, 560 + CONFETTI_DURATION);
+          playConfetti(function () {
+            yellowDealChip.classList.remove('applying');
+            yellowDealChip.classList.add('applied-final');
+            if (dealConfetti) dealConfetti.classList.remove('playing');
+          });
+        }, 560);
       }
 
       if (yellowDealChip && 'IntersectionObserver' in window) {
