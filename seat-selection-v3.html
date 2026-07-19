@@ -549,7 +549,7 @@
             <span class="deal-chip-title">Student. <strong>15% OFF</strong></span>
             <span class="deal-chip-status">
               <img src="assets/deal-lock-icon.svg" alt="" class="deal-chip-icon">
-              <span>1/3 seats selected</span>
+              <span class="purple-seat-count">1/3 seats selected</span>
             </span>
           </div>
         </div>
@@ -777,8 +777,15 @@
             } else {
               // Tray already forward — pop then fly straight to the dock
               setTimeout(function () { flyToDock(blowup); }, 360);
+              // Replay the "₹50 saved" swap once the deal is already applied
+              if (yellowDealChip.classList.contains('applied-final')) {
+                showSavedSwap();
+              }
             }
           }
+
+          // Update the purple chip count (1/3, 2/3, ...)
+          updatePurpleCount(selectedSeats.length);
 
           if (selectedSeats.length > 0) {
             seatSelectionPanel.classList.add('active');
@@ -798,8 +805,29 @@
       // =============================================
       const yellowDealChip = document.getElementById('yellowDealChip');
       const dealConfetti = document.getElementById('dealConfetti');
+      const purpleSeatCount = document.querySelector('.deal-chip-purple .purple-seat-count');
       const CONFETTI_FALLBACK = 2200;
       let confettiAnim = null;
+      let savedSwapTimer = null;
+
+      // Briefly swap "Applied" -> "₹50 saved" -> "Applied"
+      function showSavedSwap() {
+        if (!yellowDealChip) return;
+        yellowDealChip.classList.remove('show-saved');
+        void yellowDealChip.offsetWidth; // restart the transition
+        yellowDealChip.classList.add('show-saved');
+        clearTimeout(savedSwapTimer);
+        savedSwapTimer = setTimeout(function () {
+          yellowDealChip.classList.remove('show-saved');
+        }, 1300);
+      }
+
+      // Update the purple chip "x/3 seats selected" count
+      function updatePurpleCount(count) {
+        if (purpleSeatCount) {
+          purpleSeatCount.textContent = count + '/3 seats selected';
+        }
+      }
 
       function playConfetti(onDone) {
         if (!dealConfetti || typeof lottie === 'undefined') {
@@ -849,12 +877,7 @@
             yellowDealChip.classList.remove('applying');
             yellowDealChip.classList.add('applied-final');
             // 5) briefly swap "Applied" -> "₹50 saved" -> "Applied"
-            setTimeout(function () {
-              yellowDealChip.classList.add('show-saved');
-              setTimeout(function () {
-                yellowDealChip.classList.remove('show-saved');
-              }, 1300);
-            }, 700);
+            setTimeout(showSavedSwap, 700);
           }, 1000);
         }, 450);
       }
