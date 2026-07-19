@@ -681,10 +681,18 @@
         void dealsTicker.offsetHeight;       // lock collapsed state
         dealsTicker.style.transition = '';
         void dealsTicker.offsetHeight;       // apply transition before animating
-        // Animate tray lift + ticker slide-in together
+        // Lift the tray so only the bus name/rating peeks above the panel; the
+        // meta (photos) row stays hidden behind the ticker, matching the design.
+        let lift = finalPanelH;
+        const meta = bottomSheet && bottomSheet.querySelector('.bus-meta');
+        if (meta) {
+          const trayRect = bottomSheet.getBoundingClientRect();
+          const metaRect = meta.getBoundingClientRect();
+          lift = finalPanelH - (trayRect.bottom - metaRect.top);
+        }
         if (bottomSheet) {
           bottomSheet.style.transform =
-            'translateX(-50%) translateY(-' + finalPanelH + 'px)';
+            'translateX(-50%) translateY(-' + lift + 'px)';
         }
         dealsTicker.classList.add('show');
       }
