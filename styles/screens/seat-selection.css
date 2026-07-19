@@ -992,7 +992,57 @@
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Flying clone that carries the blown-up seat photo to the tray slot */
+/* Floating "Seat photos" dock — sits above the tray's top-left corner */
+.seat-photos-dock {
+  position: absolute;
+  left: calc(12 * var(--px));
+  bottom: calc(100% + 12 * var(--px));
+  width: calc(56 * var(--px));
+  height: calc(56 * var(--px));
+  border-radius: calc(8 * var(--px));
+  border: 0.5px solid #f4f4f4;
+  overflow: hidden;
+  z-index: 350;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 calc(4 * var(--px)) calc(12 * var(--px)) rgba(0, 0, 0, 0.2);
+  transition: opacity 0.2s ease;
+}
+
+.seat-photos-dock.visible {
+  opacity: 1;
+}
+
+.seat-photos-dock > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.seat-photos-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(29, 29, 29, 0.7);
+  border-radius: calc(4 * var(--px));
+  padding: 0 calc(4 * var(--px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.seat-photos-label span {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: calc(11 * var(--px));
+  line-height: calc(14 * var(--px));
+  letter-spacing: calc(0.05 * var(--px));
+  color: #fff;
+  text-align: center;
+}
+
+/* Flying clone that carries the blown-up seat photo to the dock */
 .seat-fly-clone {
   position: fixed;
   z-index: 600;

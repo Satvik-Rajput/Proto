@@ -306,6 +306,11 @@
 
     <!-- Bottom Sheet -->
     <div class="bottom-sheet">
+      <!-- Floating "Seat photos" dock (blown-up photo lands here, sits above the tray) -->
+      <div class="seat-photos-dock" id="seatPhotosDock">
+        <img src="assets/seat-blowup-photo.png" alt="">
+        <div class="seat-photos-label"><span>Seat</span><span>photos</span></div>
+      </div>
       <div class="sheet-handle">
         <div class="handle-bar"></div>
       </div>
@@ -604,9 +609,10 @@
       const seatSelectionPanel = document.getElementById('seatSelectionPanel');
       const screenContainer = document.querySelector('.screen-container');
       const bottomSheet = document.querySelector('.bottom-sheet');
-      const trayPhotoSlot = document.querySelector('.bottom-sheet .bus-photo');
+      const seatPhotosDock = document.getElementById('seatPhotosDock');
       const seats = document.querySelectorAll('.seat.available');
       let selectedSeats = [];
+      let trayForward = false;
 
       const BLOWUP_PHOTO = 'assets/seat-blowup-photo.png';
 
@@ -623,21 +629,29 @@
         return blowup;
       }
 
-      // Bring the tray forward so it peeks just above the selection panel
-      function bringTrayForward() {
+      // Bring the tray forward so it peeks just above the selection panel,
+      // then fly the blown-up photo into the dock once it has settled.
+      function bringTrayForward(blowup) {
         if (!bottomSheet || !seatSelectionPanel) return;
         const panelH = seatSelectionPanel.offsetHeight;
         bottomSheet.style.transform =
           'translateX(-50%) translateY(-' + panelH + 'px)';
+        bottomSheet.addEventListener('transitionend', function handler(e) {
+          if (e.propertyName !== 'transform') return;
+          bottomSheet.removeEventListener('transitionend', handler);
+          flyToDock(blowup);
+        });
       }
 
       function resetTray() {
         if (bottomSheet) bottomSheet.style.transform = '';
+        if (seatPhotosDock) seatPhotosDock.classList.remove('visible');
+        trayForward = false;
       }
 
-      // Fly the blown-up photo down into the tray's bottom-left slot
-      function flyToTray(blowup) {
-        if (!trayPhotoSlot || !blowup || !blowup.isConnected) return;
+      // Fly the blown-up photo into the floating "Seat photos" dock
+      function flyToDock(blowup) {
+        if (!seatPhotosDock || !blowup || !blowup.isConnected) return;
         const start = blowup.getBoundingClientRect();
         const clone = document.createElement('img');
         clone.src = blowup.src;
@@ -650,25 +664,24 @@
         document.body.appendChild(clone);
         blowup.remove();
 
-        const endRadius = getComputedStyle(trayPhotoSlot).borderRadius;
+        const endRect = seatPhotosDock.getBoundingClientRect();
+        const endRadius = getComputedStyle(seatPhotosDock).borderRadius;
         requestAnimationFrame(function () {
           requestAnimationFrame(function () {
-            const end = trayPhotoSlot.getBoundingClientRect();
-            clone.style.left = end.left + 'px';
-            clone.style.top = end.top + 'px';
-            clone.style.width = end.width + 'px';
-            clone.style.height = end.height + 'px';
+            clone.style.left = endRect.left + 'px';
+            clone.style.top = endRect.top + 'px';
+            clone.style.width = endRect.width + 'px';
+            clone.style.height = endRect.height + 'px';
             clone.style.borderRadius = endRadius;
-            clone.style.boxShadow = 'none';
           });
         });
 
-        clone.addEventListener('transitionend', function (e) {
+        clone.addEventListener('transitionend', function onEnd(e) {
           if (e.propertyName !== 'width') return;
-          const slotImg = trayPhotoSlot.querySelector('img');
-          if (slotImg) slotImg.src = BLOWUP_PHOTO;
+          clone.removeEventListener('transitionend', onEnd);
+          seatPhotosDock.classList.add('visible');
           clone.remove();
-        }, { once: true });
+        });
       }
 
       // Add click handler to all available seats
@@ -685,9 +698,16 @@
             seat.classList.add('selected');
             selectedSeats.push(seat);
             const blowup = addBlowup(seat);
-            // 1) panel slides up, 2) tray comes forward, 3) photo flies to corner
-            setTimeout(bringTrayForward, 60);
-            setTimeout(function () { flyToTray(blowup); }, 520);
+            seatSelectionPanel.classList.add('active');
+            if (!trayForward) {
+              trayForward = true;
+              // Wait a frame so the panel height is measurable, then bring the
+              // tray forward; the fly is triggered once the tray settles.
+              requestAnimationFrame(function () { bringTrayForward(blowup); });
+            } else {
+              // Tray already forward — pop then fly straight to the dock
+              setTimeout(function () { flyToDock(blowup); }, 360);
+            }
           }
 
           if (selectedSeats.length > 0) {
