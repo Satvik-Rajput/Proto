@@ -2855,10 +2855,76 @@
    ============================================ */
 .top-nav.simple-nav {
   background: white;
-  overflow: hidden;
+  overflow: visible;
   position: sticky;
   top: 0;
   z-index: 100;
+  border-bottom: 0.33px solid #e6e6e6;
+}
+
+/* ============================================
+   NAV TRAILING — DEAL CHIPS + SHARE
+   ============================================ */
+.nav-trailing {
+  display: flex;
+  align-items: center;
+  gap: calc(4 * var(--px));
+  flex-shrink: 0;
+}
+
+.nav-deal-chips {
+  position: relative;
+  width: calc(87 * var(--px));
+  height: calc(48 * var(--px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-deal-chip {
+  width: calc(79 * var(--px));
+  border-radius: calc(6 * var(--px));
+  padding: calc(2 * var(--px)) calc(8 * var(--px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.chip-student {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(calc(-50% + 2 * var(--px)), calc(-50% + 2 * var(--px)));
+  background: #EADBFE;
+  z-index: 1;
+}
+
+.chip-yellow {
+  position: relative;
+  background: #FEDE92;
+  z-index: 2;
+}
+
+.chip-label {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(12 * var(--px));
+  font-weight: 500;
+  line-height: calc(16 * var(--px));
+  letter-spacing: 0.01px;
+  color: #1d1d1d;
+  white-space: nowrap;
+}
+
+.chip-value {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(12 * var(--px));
+  font-weight: 700;
+  line-height: calc(16 * var(--px));
+  letter-spacing: 0.01px;
+  color: #1d1d1d;
+  white-space: nowrap;
 }
 
 /* ============================================
