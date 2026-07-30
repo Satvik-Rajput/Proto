@@ -553,7 +553,16 @@
             </span>
           </div>
         </div>
-        <!-- Full-width student callout — revealed after 3rd seat -->
+        <!-- Last min. applied strip — overlays bottom of ticker slot, no tray shift -->
+        <div class="last-min-applied-banner" id="lastMinAppliedBanner" aria-hidden="true">
+          <div class="last-min-applied-inner">
+            <img src="assets/deal-offer-icon.png" alt="" class="last-min-applied-icon">
+            <span class="last-min-applied-text">Last min. deal applied</span>
+            <span class="last-min-applied-dot">·</span>
+            <span class="last-min-applied-saved"><span class="last-min-saved-amount">₹100</span> saved</span>
+          </div>
+        </div>
+        <!-- Full-width student callout — revealed after 4th seat -->
         <div class="purple-deal-expanded" id="purpleDealExpanded" aria-hidden="true">
           <div class="purple-expanded-left">
             <div class="student-price-tag">
@@ -695,6 +704,12 @@
         if (dealsTicker) {
           dealsTicker.classList.remove('show', 'student-expanded');
         }
+        if (seatSelectionPanel) {
+          seatSelectionPanel.classList.remove('last-min-applied', 'last-min-applied-show');
+        }
+        revertNavPurpleFront();
+        const purpleDealExpandedEl = document.getElementById('purpleDealExpanded');
+        if (purpleDealExpandedEl) purpleDealExpandedEl.setAttribute('aria-hidden', 'true');
         const purpleChip = document.getElementById('purpleDealChip');
         if (purpleChip) purpleChip.classList.remove('shaking');
         const chip = document.getElementById('yellowDealChip');
@@ -859,10 +874,17 @@
           // Update the purple chip count (1/3, 2/3, ...)
           updatePurpleCount(selectedSeats.length);
 
-          if (selectedSeats.length === 3 && !dealsTicker.classList.contains('student-expanded')) {
-            runPurpleDealExpandAnimation();
-          } else if (selectedSeats.length < 3 && dealsTicker.classList.contains('student-expanded')) {
+          if (selectedSeats.length < 4 && dealsTicker.classList.contains('student-expanded')) {
             revertPurpleDealExpand();
+          }
+
+          if (selectedSeats.length === 4 && !dealsTicker.classList.contains('student-expanded')) {
+            revertLastMinApplied();
+            runPurpleDealExpandAnimation();
+          } else if (selectedSeats.length === 3 && !seatSelectionPanel.classList.contains('last-min-applied')) {
+            runLastMinAppliedAnimation();
+          } else if (selectedSeats.length < 3 && seatSelectionPanel.classList.contains('last-min-applied')) {
+            revertLastMinApplied();
           }
 
           if (selectedSeats.length > 0) {
@@ -903,6 +925,7 @@
       }
 
       const purpleDealChip = document.getElementById('purpleDealChip');
+      const lastMinAppliedBanner = document.getElementById('lastMinAppliedBanner');
       const purpleDealExpanded = document.getElementById('purpleDealExpanded');
 
       // Update the purple chip "x/3 seats selected" count
@@ -912,7 +935,7 @@
         }
       }
 
-      // Shake purple chip, then expand to full-width student callout
+      // Shake purple chip, then expand to full-width student callout (4th seat)
       function runPurpleDealExpandAnimation() {
         if (!purpleDealChip || !dealsTicker || !dealsTicker.classList.contains('show')) return;
         if (dealsTicker.classList.contains('student-expanded')) return;
@@ -931,6 +954,28 @@
         revertNavPurpleFront();
         if (purpleDealExpanded) purpleDealExpanded.setAttribute('aria-hidden', 'true');
         if (purpleDealChip) purpleDealChip.classList.remove('shaking');
+      }
+
+      // 3rd seat — shake yellow chip, then expand to last min. strip (same delay as student)
+      function runLastMinAppliedAnimation() {
+        if (!dealsTicker || !seatSelectionPanel || !yellowDealChip || !dealsTicker.classList.contains('show')) return;
+        if (seatSelectionPanel.classList.contains('last-min-applied')) return;
+        yellowDealChip.classList.add('shaking');
+        setTimeout(function () {
+          yellowDealChip.classList.remove('shaking');
+          seatSelectionPanel.classList.add('last-min-applied');
+          if (lastMinAppliedBanner) lastMinAppliedBanner.setAttribute('aria-hidden', 'false');
+          requestAnimationFrame(function () {
+            seatSelectionPanel.classList.add('last-min-applied-show');
+          });
+        }, 450);
+      }
+
+      function revertLastMinApplied() {
+        if (!seatSelectionPanel) return;
+        seatSelectionPanel.classList.remove('last-min-applied', 'last-min-applied-show');
+        if (lastMinAppliedBanner) lastMinAppliedBanner.setAttribute('aria-hidden', 'true');
+        if (yellowDealChip) yellowDealChip.classList.remove('shaking');
       }
 
       function playConfetti(onDone) {
