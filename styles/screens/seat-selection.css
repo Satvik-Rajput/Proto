@@ -3478,6 +3478,11 @@
   z-index: 2;
 }
 
+/* Hidden until the delayed intro animation or seat selection */
+.nav-deal-chips:not(.stacking):not(.stacked) .nav-deal-chip {
+  opacity: 0;
+}
+
 /* Paper-stack: purple lands first, then yellow on top — plays once */
 .nav-deal-chips.stacking .chip-student {
   animation: navDealStackPurple 1.4s cubic-bezier(0.33, 1, 0.68, 1) forwards;

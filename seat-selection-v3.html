@@ -24,7 +24,7 @@
         <p>Bangalore → Chennai</p>
       </div>
       <div class="nav-trailing">
-        <div class="nav-deal-chips stacking" id="navDealChips">
+        <div class="nav-deal-chips" id="navDealChips">
           <div class="nav-deal-chip chip-student">
             <span class="chip-label">Student</span>
             <span class="chip-value">15% OFF</span>
@@ -775,10 +775,12 @@
       }
 
       let navDealStackStopped = false;
+      let navDealStackKickoff = null;
 
       function stopNavDealStacking() {
         if (navDealStackStopped || !navDealChips) return;
         navDealStackStopped = true;
+        clearTimeout(navDealStackKickoff);
         navDealChips.classList.remove('stacking');
         navDealChips.classList.add('stacked');
       }
@@ -810,6 +812,11 @@
       }
 
       if (navDealChips) {
+        navDealStackKickoff = setTimeout(function () {
+          if (navDealStackStopped || !navDealChips) return;
+          navDealChips.classList.add('stacking');
+        }, 1000);
+
         navDealChips.addEventListener('animationend', function (e) {
           if (e.target.classList.contains('chip-yellow') && navDealChips.classList.contains('stacking')) {
             navDealChips.classList.remove('stacking');
